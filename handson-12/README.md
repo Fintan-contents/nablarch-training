@@ -118,4 +118,4 @@ TODO：参照先を書く。
 
 ## 解答例について
 
-解答例は、[nablarch-handson-app-batdh-ee](../../../nablarch-handson-app-batch-ee)を参照してください。
+解答例は、[nablarch-handson-app-batdh-ee](../../../../nablarch-handson-app-batch-ee)を参照してください。
