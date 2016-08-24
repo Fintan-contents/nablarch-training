@@ -29,11 +29,11 @@ TODO：参照先を書く。
 
 では、Batchletを実装していきましょう。
 
-### Java部分
+### Java部分([TruncateTableBatchlet.java](./src/main/java/com/nablarch/example/app/batch/ee/batchlet/TruncateTableBatchlet.java))
 
 - TRUNCATE対象テーブルをジョブ定義ファイルのproperty要素で指定できるよう、プロパティにアノテーションを追加してください。
 
-### XML部分
+### XML部分([zip-code-truncate-table.xml](./src/main/resources/META-INF/batch-jobs/zip-code-truncate-table.xml))
 
 - ジョブレベル
    - ジョブレベルのリスナーを実行するNablarchのリスナーを定義してください。
