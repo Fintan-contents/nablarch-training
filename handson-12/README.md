@@ -1,16 +1,15 @@
-データベースの全件削除をしてみよう
+Batchletを作ってみよう
 ===============
 
 ## 演習内容
-JSR352に準拠したバッチアプリケーションには、BatchletとChunkの2種類があります。本エクササイズでは、nablarch-exampleを題材にして、Batchletの作り方を学習します。
+JSR352に準拠したバッチアプリケーションには、BatchletとChunkの2種類があります。本ハンズオンでは、nablarch-exampleを題材にして、Batchletの作り方を学習します。
 
 ## 演習を開始するための準備
 
 ### 1. 事前準備
-本エクササイズを開始するまでにデータベースのセットアップ及びエンティティクラスの生成を行っていない場合(以下のコマンドを実行したことがない場合)は、以下のコマンドを実行してください。
+本ハンズオンを開始するまでにデータベースのセットアップ及びエンティティクラスの生成を行っていない場合(以下のmavenコマンドを実行したことがない場合)は、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
-    TODO：ディレクトリ名の修正
-    $cd nablarch-example-batch-ee
+    $cd handson-12
     $mvn -P gsp generate-resources
 
 ## 演習内容に関するリファレンスマニュアル
@@ -51,50 +50,57 @@ TODO：参照先を書く。
 
 ### テーブルの初期化
 
-TODO：ディレクトリ名の記述
-XXX ディレクトリに移動後に、以下を実行してテーブルを初期化します。
+1. コマンドプロンプトを起動します。
+1. カレントディレクトリを<チェックアウトディレクトリ>/h2/bin/に移動します。
+1. h2.batを起動します。
+2. ブラウザから http://localhost:8082 を開きます。H2に接続するための情報を入力する画面が表示されるので、後述の「H2への接続情報」に記載されている情報を入力し、Connectボタンをクリックします。
+3. 中央のSQLを入力するフィールドに以下のように入力し、Runボタンをクリックします。
 ```
-    $mvn gsp-dba:import-schema
+    insert into ZIP_CODE_DATA
+        select * from
+        csvread('..\..\handson-12\src\test\resources\data\zip_code_data.csv',
+                null,
+                'Shift-JIS');
+    insert into ZIP_CODE_DATA_WORK
+        select * from
+        csvread('..\..\handson-12\src\test\resources\data\zip_code_data_work.csv',
+                null,
+                'Shift-JIS');
 ```
+
 ### 実行前のテーブルの内容を確認
 
-TODO：ディレクトリ名の修正
+引き続き、ブラウザ上で作業します。
 
-1. コマンドプロンプトを起動します。
-1. カレントディレクトリをbatch-exercise-01/h2/bin/に移動します。
-1. h2.batを起動します。
-1. ブラウザが起動し、H2に接続するための情報を入力する画面が表示されるので、後述の「H2への接続情報」に記載されている情報を入力し、Connectボタンをクリックします。
+1. Clearボタンをクリックします。
 1. 左側のペインに表示されているZIP_CODE_DATAをクリックします。
 1. SELECT文が画面に表示されますので、そのままRunボタンをクリックします。
 1. データが表示されることを確認します。
 1. Clearボタンをクリックします。
 1. 同様に、ZIP_CODE_DATA_WORKにデータが入っていることを確認します。
-1. 手順1を実行した際に開いたコマンドプロンプトを終了して、H2のConsoleを終了します。
+1. 最初に開いたコマンドプロンプトを終了して、H2のConsoleを終了します。
 
 ### バッチ実行
 
-TODO：ディレクトリ名の修正
-XXX ディレクトリに移動後に、以下を実行してjarの作成及び関係するjarの取得を行います。
+チェックアウトディレクトリに移動後、以下を実行してjarの作成及び関係するjarの取得を行います。
 
-    $mvn clean install
+    $cd handson-12
+    $mvn clean package
     $mvn dependency:copy-dependencies -DoutputDirectory=target/dependency
 
-ここまでの操作で、targetにjarが作成されます。
-また、XXX/target/dependencyディレクトリに、関係するjarが格納されます。
+ここまでの操作で、targetディレクトリにjarが作成され、target/dependencyディレクトリに、関係するjarが格納されます。
 
-XXX ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
+<チェックアウトディレクトリ>/handson-12 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
     java -cp .\target\*;.\target\dependency\* com.nablarch.example.app.main.ExampleMain zip-code-truncate-table
 
 ### バッチ実行結果の確認
 
-TODO：ディレクトリ名の修正
-
 1. コマンドプロンプトを起動します。
-1. カレントディレクトリをXXX/h2/bin/に移動します。
+1. カレントディレクトリを<チェックアウトディレクトリ>/h2/bin/に移動します。
 1. h2.batを起動します。
-1. ブラウザが起動し、H2に接続するための情報を入力する画面が表示されるので、後述の「H2への接続情報」に記載されている情報を入力し、Connectボタンをクリックします。
-1. SQLを入力するフィールドに以下のように入力します。
+2. ブラウザから http://localhost:8082 を開きます。H2に接続するための情報を入力する画面が表示されるので、後述の「H2への接続情報」に記載されている情報を入力し、Connectボタンをクリックします。
+1. 中央のSQLを入力するフィールドに以下のように入力し、Runボタンをクリックします。
 ```
     SELECT count(*) FROM ZIP_CODE_DATA
 ```
@@ -104,14 +110,12 @@ TODO：ディレクトリ名の修正
 
 ### H2への接続情報
 
-TODO：JDBC URLの修正
-
 | 項目      | 値                         |
 |:----------|:---------------------------|
-| JDBC URL  | jdbc:h2:XXX/nablarch_example |
+| JDBC URL  | jdbc:h2:..\\..\entity\h2\db\nablarch_example |
 | User Name | NABLARCH_EXAMPLE           |
 | Password  | NABLARCH_EXAMPLE           |
 
 ## 解答例について
 
-TODO：解答例へのリンクの記載
+解答例は、[nablarch-handson-app-batdh-ee](../nablarch-handson-app-batch-ee)を参照してください。
