@@ -67,4 +67,7 @@ gradle-app.setting
 .project
 
 # h2
-h2/db/
+h2/
+
+# gsp
+gsp-target/
