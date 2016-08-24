@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-configuration
+    xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration http://tis.co.jp/nablarch/component-configuration">
+
+  <component name="dataSource"
+             class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="org.h2.jdbcx.JdbcDataSource"/>
+    <property name="url" value="jdbc:h2:../entity/h2/db/nablarch_example"/>
+    <property name="username" value="${db.user}"/>
+    <property name="password" value="${db.password}"/>
+  </component>
+</component-configuration>

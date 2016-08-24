@@ -1,0 +1,43 @@
+<job id="etl-zip-code-csv-to-db-chunk" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+
+  <listeners>
+    <listener ref="nablarchJobListenerExecutor" />
+  </listeners>
+
+  <step id="truncate" next="extract">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+    </listeners>
+    <batchlet ref="tableCleaningBatchlet" />
+  </step>
+
+  <step id="extract" next="validation">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+      <listener ref="nablarchItemWriteListenerExecutor" />
+    </listeners>
+    <chunk item-count="3000">
+      <reader ref="fileItemReader" />
+      <writer ref="databaseItemWriter" />
+    </chunk>
+  </step>
+
+  <step id="validation" next="load">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+    </listeners>
+    <batchlet ref="validationBatchlet" />
+  </step>
+
+  <step id="load">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+      <listener ref="nablarchItemWriteListenerExecutor" />
+    </listeners>
+    <chunk item-count="3000">
+      <reader ref="databaseItemReader" />
+      <writer ref="databaseItemWriter" />
+    </chunk>
+  </step>
+
+</job>

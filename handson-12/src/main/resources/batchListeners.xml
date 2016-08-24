@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-configuration
+    xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration http://tis.co.jp/nablarch/component-configuration">
+
+  <!-- JobListener -->
+  <list name="jobListeners">
+    <component class="nablarch.fw.batch.ee.listener.job.JobProgressLogListener" />
+  </list>
+
+  <!-- StepListener-->
+  <list name="stepListeners">
+    <component class="nablarch.fw.batch.ee.listener.step.StepProgressLogListener" />
+    <component class="nablarch.fw.batch.ee.listener.step.DbConnectionManagementListener">
+      <property name="dbConnectionManagementHandler">
+        <component class="nablarch.common.handler.DbConnectionManagementHandler" />
+      </property>
+    </component>
+    <component class="nablarch.fw.batch.ee.listener.step.StepTransactionManagementListener" />
+  </list>
+
+  <!-- ItemWriteListener -->
+  <list name="itemWriteListeners">
+    <component class="nablarch.fw.batch.ee.listener.chunk.ChunkProgressLogListener" />
+    <component class="nablarch.fw.batch.ee.listener.chunk.ItemWriteTransactionManagementListener" />
+  </list>
+
+
+</component-configuration>

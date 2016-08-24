@@ -1,0 +1,20 @@
+<job id="zip-code-truncate-table" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <!-- ジョブレベルのリスナーを実行するNablarchのリスナーを定義してください。 -->
+
+  <step id="step1" next="step2">
+    <!-- ステップレベルのリスナーを実行するNablarchのリスナーを定義してください。 -->
+
+    <!-- Batchletを定義してください。 -->
+
+      <!-- 削除対象テーブル名「ZIP_CODE_DATA」を、Batchletクラスのプロパティにインジェクトするよう定義してください。 -->
+
+  </step>
+  <step id="step2">
+    <!-- ステップレベルのリスナーを実行するNablarchのリスナーを定義してください。 -->
+
+    <!-- Batchletを定義してください。 -->
+
+      <!-- 削除対象テーブル名「ZIP_CODE_DATA_WORK」を、Batchletクラスのプロパティにインジェクトするよう定義してください。 -->
+
+  </step>
+</job>
