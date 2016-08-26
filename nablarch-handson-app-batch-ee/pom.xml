@@ -49,7 +49,7 @@
     <!-- maven-gsp-dba-pluginでEntityクラスを生成するパッケージ名。 -->
     <dba.entity.rootPackage>com.nablarch.example.app</dba.entity.rootPackage>
     <dba.entity.entityPackage>entity</dba.entity.entityPackage>
-    <dba.gsp-target-dir>../entity/gsp-target</dba.gsp-target-dir>
+    <dba.gsp-target-dir>gsp-target</dba.gsp-target-dir>
     <dba.entity.javaFileDestDir>${dba.gsp-target-dir}/generated-sources/entity</dba.entity.javaFileDestDir>
 
     <!-- TODO: 利用するJavaのバージョンを設定してください。 -->
