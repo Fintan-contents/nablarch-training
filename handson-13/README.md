@@ -73,6 +73,7 @@ TODO：参照先を書く。
     - ItemWriterレベルのリスナーを実行するNablarchのリスナーを定義してください。
     - Chunkを定義してください。アイテムライタのwriteItems一回当たりで処理する件数は1000件としてください。
         - reader、processor、writerは以下の表のように指定してください。
+
         |要素名|指定するクラス|
         |:----|:---------|
         |reader|EmployeeSearchReader|
