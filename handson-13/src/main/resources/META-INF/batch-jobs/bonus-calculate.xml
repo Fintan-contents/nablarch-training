@@ -1,0 +1,16 @@
+<job id="bonus-calculate" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <!-- ジョブレベルのリスナーを実行するNablarchのリスナーを定義してください。 -->
+
+  <step id="step1">
+    <!-- ステップレベルのリスナーと、ItemWriterレベルのリスナーを実行するNablarchのリスナーを定義してください。 -->
+
+    <!-- Chunkを定義してください。アイテムライタのwriteItems一回当たりで処理する件数は1000件としてください。 -->
+
+      <!-- 「EmployeeSearchReader」をreaderとして定義してください。 -->
+
+      <!-- 「BonusCalculateProcessor」をprocessorとして定義してください。 -->
+
+      <!-- 「BonusWriter」をwriterとして定義してください。 -->
+
+  </step>
+</job>

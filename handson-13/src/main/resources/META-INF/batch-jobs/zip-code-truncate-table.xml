@@ -1,0 +1,26 @@
+<job id="zip-code-truncate-table" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <listeners>
+    <listener ref="nablarchJobListenerExecutor" />
+  </listeners>
+
+  <step id="step1" next="step2">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+    </listeners>
+    <batchlet ref="truncateTableBatchlet">
+      <properties>
+        <property name="tableName" value="ZIP_CODE_DATA" />
+      </properties>
+    </batchlet>
+  </step>
+  <step id="step2">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+    </listeners>
+    <batchlet ref="truncateTableBatchlet">
+      <properties>
+        <property name="tableName" value="ZIP_CODE_DATA_WORK" />
+      </properties>
+    </batchlet>
+  </step>
+</job>

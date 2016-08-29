@@ -1,0 +1,25 @@
+<job id="etl-zip-code-csv-to-db-insert-batchlet" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+
+  <listeners>
+    <listener ref="nablarchJobListenerExecutor" />
+  </listeners>
+
+  <step id="extract" next="validation">
+    <batchlet ref="sqlLoaderBatchlet" />
+  </step>
+
+  <step id="validation" next="load">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+    </listeners>
+    <batchlet ref="validationBatchlet" />
+  </step>
+
+  <step id="load">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+    </listeners>
+    <batchlet ref="deleteInsertBatchlet" />
+  </step>
+
+</job>
