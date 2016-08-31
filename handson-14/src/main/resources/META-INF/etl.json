@@ -1,0 +1,30 @@
+{
+  "inputFileBasePath": "testdata/input",
+  "outputFileBasePath": "testdata/output",
+  "jobs": {
+    "etl-zip-code-csv-to-db-chunk": {
+      "steps" : {
+        "truncate": {
+          "type": "truncate",
+          "entities": ["ワークテーブルのエンティティクラスを完全修飾名で記述してください。"]
+        },
+        "extract": {
+          "type": "file2db",
+          "bean": "ワークテーブルのエンティティクラスを完全修飾名で記述してください。",
+          "fileName": "入力ファイル名を記述してください。"
+        },
+        "validation" : {
+          "type": "validation",
+          "bean": "ワークテーブルのエンティティクラスを完全修飾名で記述してください。",
+          "errorEntity": "エラーデータを格納するワークテーブルのエンティティクラスを完全修飾名で記述してください。",
+          "mode": "ABORT"
+        },
+        "load": {
+          "type": "db2db",
+          "bean": "本番テーブルのエンティティクラスを完全修飾名で記述してください。",
+          "sqlId": "ワークテーブルから本番テーブルに登録する際に使用するSQLのSQL_IDを記述してください。"
+        }
+      }
+    }
+  }
+}
