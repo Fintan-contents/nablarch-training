@@ -50,63 +50,8 @@ handson-01から順番に実施することで Nablarch を体系的に学習す
 
     $git clone -b master http://nablarch.intra.tis.co.jp/gitbucket/git/nablarch-handson/nablarch-handson.git
 
-### 2. mavenのリポジトリ設定
-指示があった場合は、各ディレクトリに存在するpom.xmlに記載されているMavenリポジトリのURLを書き換えてください。
 
-#### 修正前の例
-
-```xml
-  <project>
-    ・・・
-      <repositories>
-        <repository>
-          <id>nablarch-handson-staging</id>
-          <!-- MavenリポジトリのURL -->
-          <url>http://nablarch.intra.tis.co.jp/repository/staging</url>
-          ・・・
-        </repository>
-      </repositories>
-
-       <pluginRepositories>
-         <pluginRepository>
-          <id>nablarch-handson-staging</id>
-          <!-- MavenリポジトリのURL -->
-          <url>http://nablarch.intra.tis.co.jp/repository/staging</url>
-          ・・・
-        </pluginRepository>
-      </pluginRepositories>
-    ・・・
-  </project>
-```
-
-#### 修正後の例
-
-```xml
-  <project>
-    ・・・
-      <repositories>
-        <repository>
-          <id>nablarch-handson-staging</id>
-          <!-- MavenリポジトリのURL -->
-          <url>http://192.168.0.10:10080/repository/staging</url>
-          ・・・
-        </repository>
-      </repositories>
-
-       <pluginRepositories>
-         <pluginRepository>
-          <id>nablarch-handson-staging</id>
-          <!-- MavenリポジトリのURL -->
-          <url>http://192.168.0.10:10080/repository/staging</url>
-          ・・・
-        </pluginRepository>
-      </pluginRepositories>
-    ・・・
-  </project>
-```
-
-
-### 3. mavenのプロキシ設定
+### 2. mavenのプロキシ設定
 ネットワークにプロキシが存在する場合は、mavenのsetting.xmlを修正し、ハンズオン用のmavenリポジトリについて、プロキシを経由しないように除外設定してください。
 
 #### TIS(東京地区)のプロキシ設定の例
@@ -137,7 +82,7 @@ handson-01から順番に実施することで Nablarch を体系的に学習す
   </settings>
 ```
 
-### 4. データベース、エンティティクラスの生成
+### 3. データベース、エンティティクラスの生成
 
 本ハンズオン教材では、どのハンズオンでも共通しているデータベースやエンティティクラスをentityディレクトリ配下に切りだし、1つのプロジェクトとしてまとめています。以下のコマンドを実行し、データベースのセットアップ、及びエンティティクラスの生成を行ってください。
 
@@ -150,7 +95,7 @@ DBは、組み込みDBのH2を使用しています。
 
 - <チェックアウトディレクトリ>/entity/h2/db/nablarch_example.*.db
 
-### 5. 動作確認
+### 4. 動作確認
 
 `mvn waitt:run`を実行し、http://localhost:9080 にアクセスしてください。ログイン後、正常に「プロジェクト検索画面」が表示されることを確認してください。
 ログイン時に利用できるユーザは以下の通りです。
@@ -163,12 +108,13 @@ DBは、組み込みDBのH2を使用しています。
 
 本コンテンツは maven プロジェクトですので、IDEにmavenプロジェクトとしてインポートしてください。
 
-以下にEclipseに取り込む方法を記載します。<br />
-### 1. 必要プラグインのインストール<br />
+以下にEclipseに取り込む方法を記載します。
+### 1. 必要プラグインのインストール
 m2eプラグインをインストールして下さい（最初からこのプラグインが入っているEclipseのバージョンもありますので、存在を確認してから導入してください）。
 
-### 2. プロジェクトのインポート<br />
-プロジェクト・エクスプローラ右クリック > インポート > Existing Maven Project<br />
+### 2. プロジェクトのインポート
+プロジェクト・エクスプローラ右クリック > インポート > 既存Mavenプロジェクト
+
 クローンしたリポジトリをルート・ディレクトリとし完了を押してください。
 
 
