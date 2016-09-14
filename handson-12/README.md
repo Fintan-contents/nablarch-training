@@ -100,7 +100,7 @@ TODO：参照先を書く。
 
 <チェックアウトディレクトリ>/handson-12 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
-    java -cp .\target\*;.\target\dependency\* com.nablarch.example.app.main.ExampleMain zip-code-truncate-table
+    java -cp ./target/*;./target/dependency/* com.nablarch.example.app.main.ExampleMain zip-code-truncate-table
 
 ### バッチ実行結果の確認
 

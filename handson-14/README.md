@@ -161,7 +161,7 @@ TODO：参照先を書く。
 
 <チェックアウトディレクトリ>/handson-14 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
-    java -cp .\target\*;.\target\dependency\* com.nablarch.example.app.main.ExampleMain etl-zip-code-csv-to-db-chunk
+    java -cp ./target/*;./target/dependency/* com.nablarch.example.app.main.ExampleMain etl-zip-code-csv-to-db-chunk
 
 ### バッチ実行結果の確認
 
