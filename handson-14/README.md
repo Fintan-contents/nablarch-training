@@ -95,6 +95,8 @@ TODO：参照先を書く。
 
 ### XML部分([etl-zip-code-csv-to-db-chunk.xml](./src/main/resources/META-INF/batch-jobs/etl-zip-code-csv-to-db-chunk.xml))
 
+XMLに定義するBatchletや指定するクラスは、すべてETLモジュールに含まれているものです。
+
 - 「truncate」ステップ
     - テーブルクリーニングを行うBatchletを定義してください。
 - 「extract」ステップ
@@ -125,7 +127,8 @@ TODO：参照先を書く。
 |:--|:--|
 |入力ファイル|KEN_ALL.CSV|
 |エラーデータを格納するワークテーブルのエンティティクラス|com.nablarch.example.app.batch.ee.dto.ZipCodeErrorEntity|
-|本番テーブル名|ZIP_CODE_DATA|
+|本番テーブルのエンティティクラス|com.nablarch.example.app.entity.ZipCodeData|
+|ワークテーブルのエンティティクラス|上記「Java部分」参照|
 |SQL_ID|SELECT_ZIPCODE_FROM_WORK|
 
 
