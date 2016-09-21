@@ -15,7 +15,7 @@ public class BonusWriter extends AbstractItemWriter {
 
     @Override
     public void writeItems(List<Object> items) {
-        // 引数「item」をDBに登録してください。
+        // 引数「items」をDBにバッチ登録してください。
 
     }
 }
