@@ -4,8 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import nablarch.codefirst.domain.FieldName;
-import nablarch.codefirst.domain.InterfaceName;
+import nablarch.common.databind.csv.Csv;
+import nablarch.common.databind.csv.Csv.CsvType;
+import nablarch.common.databind.csv.CsvDataBindConfig.QuoteMode;
+import nablarch.common.databind.csv.CsvFormat;
 import nablarch.core.validation.ee.Domain;
 import nablarch.core.validation.ee.Required;
 import nablarch.etl.WorkItem;
@@ -15,8 +17,32 @@ import nablarch.etl.WorkItem;
  */
 @Entity
 @Table(name="ZIP_CODE_DATA_WORK")
-@InterfaceName("郵便番号一覧ファイル")
-// アノテーションを用いて、CSVファイルのフォーマットを設定してください。
+@Csv(
+    type = CsvType.CUSTOM,
+    properties = {
+        "localGovernmentCode",
+        "zipCode5digit",
+        "zipCode7digit",
+        "prefectureKana",
+        "cityKana",
+        "addressKana",
+        "prefectureKanji",
+        "cityKanji",
+        "addressKanji",
+        "multipleZipCodes",
+        "numberedEveryKoaza",
+        "addressWithChome",
+        "multipleAddress",
+        "updateData",
+        "updateDataReason" })
+@CsvFormat(
+    fieldSeparator = ',',
+    lineSeparator = "\r\n",
+    quote = '"',
+    ignoreEmptyLine = false,
+    requiredHeader = false,
+    charset = "MS932",
+    quoteMode = QuoteMode.NORMAL)
 public class ZipCodeDto extends WorkItem {
 
     /** 全国地方公共団体コード */
@@ -71,7 +97,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Domain("localGovernmentCode")
     @Required
-    @FieldName("全国地方公共団体コード")
     public String getLocalGovernmentCode() {
         return localGovernmentCode;
     }
@@ -92,7 +117,6 @@ public class ZipCodeDto extends WorkItem {
     @Domain("oldZipCode")
     @Required
     @Column(name = "ZIP_CODE_5DIGIT")
-    @FieldName("郵便番号(5桁)")
     public String getZipCode5digit() {
         return zipCode5digit;
     }
@@ -113,7 +137,6 @@ public class ZipCodeDto extends WorkItem {
     @Domain("zipCode")
     @Required
     @Column(name = "ZIP_CODE_7DIGIT")
-    @FieldName("郵便番号(7桁)")
     public String getZipCode7digit() {
         return zipCode7digit;
     }
@@ -134,7 +157,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Required
     @Domain("prefectureKana")
-    @FieldName("都道府県名カナ")
     public String getPrefectureKana() {
         return prefectureKana;
     }
@@ -155,7 +177,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Domain("cityKana")
     @Required
-    @FieldName("市区町村名カナ")
     public String getCityKana() {
         return cityKana;
     }
@@ -175,7 +196,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Domain("address")
     @Required
-    @FieldName("町域名カナ")
     public String getAddressKana() {
         return addressKana;
     }
@@ -196,7 +216,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Domain("prefecture")
     @Required
-    @FieldName("都道府県名漢字")
     public String getPrefectureKanji() {
         return prefectureKanji;
     }
@@ -216,7 +235,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Domain("city")
     @Required
-    @FieldName("市区町村名漢字")
     public String getCityKanji() {
         return cityKanji;
     }
@@ -237,7 +255,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Domain("address")
     @Required
-    @FieldName("町域名漢字")
     public String getAddressKanji() {
         return addressKanji;
     }
@@ -258,7 +275,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Domain("flag")
     @Required
-    @FieldName("一町域が二以上の郵便番号")
     public String getMultipleZipCodes() {
         return multipleZipCodes;
     }
@@ -279,7 +295,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Domain("flag")
     @Required
-    @FieldName("小字毎に番地が起番されている町域")
     public String getNumberedEveryKoaza() {
         return numberedEveryKoaza;
     }
@@ -300,7 +315,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Domain("flag")
     @Required
-    @FieldName("丁目を有する町域")
     public String getAddressWithChome() {
         return addressWithChome;
     }
@@ -321,7 +335,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Domain("flag")
     @Required
-    @FieldName("一つの郵便番号で二以上の町域")
     public String getMultipleAddress() {
         return multipleAddress;
     }
@@ -342,7 +355,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Domain("code")
     @Required
-    @FieldName("更新")
     public String getUpdateData() {
         return updateData;
     }
@@ -363,7 +375,6 @@ public class ZipCodeDto extends WorkItem {
      */
     @Domain("code")
     @Required
-    @FieldName("変更理由")
     public String getUpdateDataReason() {
         return updateDataReason;
     }

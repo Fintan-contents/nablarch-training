@@ -6,7 +6,7 @@ JSR352に準拠したバッチアプリケーションには、BatchletとChunk�
 
 ## 作成するバッチについて
 
-社員テーブルから社員情報を抜き出し、各社員の設定に応じて固定賞与または月給ベースの賞与を計算し、賞与テーブルに書き込むバッチです。社員テーブルから社員情報を抜き出す部分、賞与を計算する部分、計算した賞与を賞与テーブルに書き込む部分の3つからできているます。
+社員テーブルから社員情報を抜き出し、各社員の設定に応じて固定賞与または月給ベースの賞与を計算し、賞与テーブルに書き込むバッチです。社員テーブルから社員情報を抜き出す部分、賞与を計算する部分、計算した賞与を賞与テーブルに書き込む部分の3つからできています。
 
 ## 演習を開始するための準備
 
@@ -64,7 +64,7 @@ TODO：参照先を書く。
 ##### writeItemsメソッド
 - 引数のリストをBonusテーブルに登録してください。なお、このリストはBonusCalculateProcessor#processItemで返却したインスタンスのリストです。
 
-### XML部分([zip-code-truncate-table.xml](./src/main/resources/META-INF/batch-jobs/zip-code-truncate-table.xml))
+### XML部分([bonus-calculate.xml](./src/main/resources/META-INF/batch-jobs/bonus-calculate.xml))
 
 - ジョブレベル
     - ジョブレベルのリスナーを実行するNablarchのリスナーを定義してください。
