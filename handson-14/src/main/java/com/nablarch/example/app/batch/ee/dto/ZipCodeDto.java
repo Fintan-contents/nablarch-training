@@ -17,32 +17,6 @@ import nablarch.etl.WorkItem;
  */
 @Entity
 @Table(name="ZIP_CODE_DATA_WORK")
-@Csv(
-    type = CsvType.CUSTOM,
-    properties = {
-        "localGovernmentCode",
-        "zipCode5digit",
-        "zipCode7digit",
-        "prefectureKana",
-        "cityKana",
-        "addressKana",
-        "prefectureKanji",
-        "cityKanji",
-        "addressKanji",
-        "multipleZipCodes",
-        "numberedEveryKoaza",
-        "addressWithChome",
-        "multipleAddress",
-        "updateData",
-        "updateDataReason" })
-@CsvFormat(
-    fieldSeparator = ',',
-    lineSeparator = "\r\n",
-    quote = '"',
-    ignoreEmptyLine = false,
-    requiredHeader = false,
-    charset = "MS932",
-    quoteMode = QuoteMode.NORMAL)
 public class ZipCodeDto extends WorkItem {
 
     /** 全国地方公共団体コード */
