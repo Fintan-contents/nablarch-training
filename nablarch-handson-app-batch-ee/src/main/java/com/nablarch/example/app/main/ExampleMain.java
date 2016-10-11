@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * Exampleバッチアプリケーションの実行クラス。
  * <p/>
  * 実行引数として、対象JOBの名称を指定する。
- * </p>
+ * <p/>
  * 終了コードについて<br>
  * <ul>
  *     <li>正常終了：0</li>
@@ -38,12 +38,12 @@ public class ExampleMain {
 
         // JOBを取得する
         if (args.length != 1) {
-            usage(args);
+            usage();
             return;
         }
         final String jobXml = args[0];
-        if (StringUtil.isNullOrEmpty(jobXml)){
-            usage(args);
+        if (StringUtil.isNullOrEmpty(jobXml)) {
+            usage();
             return;
         }
 
@@ -57,13 +57,13 @@ public class ExampleMain {
             jobExecution.awaitTermination(0, TimeUnit.SECONDS);  //no timeout
 
             // バッチステータスがCOMPLETED以外の場合は異常終了
-            if (!jobExecution.getBatchStatus().equals(BatchStatus.COMPLETED)) {
+            if (jobExecution.getBatchStatus() != BatchStatus.COMPLETED) {
                 System.exit(1);
             }
 
             // 終了コード判定
             String status = jobExecution.getExitStatus();
-            if(status == null){
+            if (status == null) {
                 throw new BatchRuntimeException(String.format("The job did not complete: %s%n", jobXml));
             } else if ("WARNING".equals(status)) {
 
@@ -77,7 +77,10 @@ public class ExampleMain {
         }
     }
 
-    private static void usage(final String[] args) {
-        System.err.printf("args are invalid. Please pass the JOB name.");
+    /**
+     * 標準エラー出力を行う。
+     */
+    private static void usage() {
+        System.err.printf("JOB name is invalid. Please pass the JOB name.");
     }
 }

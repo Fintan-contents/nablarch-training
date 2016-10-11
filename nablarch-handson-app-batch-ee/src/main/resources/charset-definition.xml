@@ -4,9 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration http://tis.co.jp/nablarch/component-configuration">
 
-  <component name="domainManager"
-      class="com.nablarch.example.app.validation.DomainBeanManager"/>
-
   <component name="数字"
       class="nablarch.core.validation.validator.unicode.RangedCharsetDef">
     <property name="startCodePoint" value="U+0030"/>

@@ -19,6 +19,9 @@ import javax.inject.Named;
 @Named
 public class TruncateTableBatchlet extends AbstractBatchlet {
 
+    /**
+     * テーブル名
+     */
     @Inject
     @BatchProperty
     private String tableName;
