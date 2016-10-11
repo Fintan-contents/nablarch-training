@@ -12,6 +12,8 @@ import javax.inject.Named;
 
 /**
  * テーブルをTRUNCATEするBatchlet。
+ * <p/>
+ * TRUNCATE対象のテーブルはBatchletの「tableName」プロパティで指定します。
  */
 @Dependent
 @Named
