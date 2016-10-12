@@ -48,7 +48,7 @@ Nablarch で JSP を表示するためにはアクションクラス（正式に
   本エクササイズでは、コンテンツパスの指定方法を学んでください。ログインのアクションクラスである [AuthenticationAction.java](./src/main/java/com/nablarch/example/app/web/action/AuthenticationAction.java) の index メソッドを修正し、作成した JSP が表示されるようにしてください。
 
 ## 動作確認方法
-exercise-01 を起動後、 http://localhost:8082 にアクセスし以下の点を確認してください。
+handson-01 を起動後、 http://localhost:8082 にアクセスし以下の点を確認してください。
 
 - ログイン画面が表示される
 - ログイン画面のレイアウトが提示された HTML と同じになっている
