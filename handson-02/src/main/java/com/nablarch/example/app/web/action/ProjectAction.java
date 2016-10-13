@@ -75,9 +75,6 @@ public class ProjectAction {
         // ("form"は、JSPの各画面項目に記述されているリクエストスコープ名です)
 
 
-        // 詳細画面に戻る際に使用するProjectId
-        context.setRequestScopedVar("projectId", dto.getProjectId());
-
         SessionUtil.put(context, "project", BeanUtil.createAndCopy(Project.class, dto));
 
         return new HttpResponse("/WEB-INF/view/project/update.jsp");
@@ -326,9 +323,6 @@ public class ProjectAction {
         // 出力情報をリクエストスコープにセット
         context.setRequestScopedVar("form", BeanUtil.createAndCopy(ProjectDto.class, form));
 
-        // 詳細画面に戻る際に使用するProjectId
-        context.setRequestScopedVar("projectId", project.getProjectId());
-
         return new HttpResponse("/WEB-INF/view/project/confirmOfUpdate.jsp");
     }
 
@@ -354,9 +348,6 @@ public class ProjectAction {
             dto.setClientName(client.getClientName());
         }
         context.setRequestScopedVar("form", dto);
-
-        // 詳細画面に戻る際に使用するProjectId
-        context.setRequestScopedVar("projectId", project.getProjectId());
 
         return new HttpResponse("/WEB-INF/view/project/update.jsp");
     }

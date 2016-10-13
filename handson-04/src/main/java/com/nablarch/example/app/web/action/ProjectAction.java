@@ -56,8 +56,6 @@ public class ProjectAction {
         // セッションからの情報取得には nablarch.common.web.session.SessionUtil を使用してください。
         // また、画面に値を表示する為には ProjectDto を生成して値を設定する必要があります。
         // セッションから取得した entity で保持している値を　nablarch.core.beans.BeanUtil　を使用して ProjectDto にコピーしてください。
-        Project project = null;
-        ProjectDto dto = null;
 
         // exercise-04 step2
         // 画面からの入力値で entity で保持していない値が入力されていた場合はその情報を DB から取得する必要があります。
@@ -68,10 +66,6 @@ public class ProjectAction {
         // exercise-04 step3
         // 画面に入力情報を復元する為に入力値を設定した ProjectDto をリクエストスコープに設定します。
         // JSP の各入力フォームの名前と一致するようにキー名を指定してください。
-
-
-        // 詳細画面に戻る際に使用するProjectId
-        context.setRequestScopedVar("projectId", project.getProjectId());
 
         return new HttpResponse("/WEB-INF/view/project/update.jsp");
     }
@@ -311,9 +305,6 @@ public class ProjectAction {
         ProjectDto dto = UniversalDao.findBySqlFile(ProjectDto.class, "FIND_BY_PROJECT",
                 new Object[]{targetForm.getProjectId(), userContext.getUserId()});
 
-        // 詳細画面に戻る際に使用するProjectId
-        context.setRequestScopedVar("projectId", dto.getProjectId());
-
         // 出力情報をリクエストスコープにセット
         context.setRequestScopedVar("form", dto);
 
@@ -348,9 +339,6 @@ public class ProjectAction {
 
         // 出力情報をリクエストスコープにセット
         context.setRequestScopedVar("form", BeanUtil.createAndCopy(ProjectDto.class, form));
-
-        // 詳細画面に戻る際に使用するProjectId
-        context.setRequestScopedVar("projectId", project.getProjectId());
 
         return new HttpResponse("/WEB-INF/view/project/confirmOfUpdate.jsp");
     }

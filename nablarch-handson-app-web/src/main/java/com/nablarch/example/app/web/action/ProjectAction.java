@@ -1,5 +1,8 @@
 package com.nablarch.example.app.web.action;
 
+import java.nio.file.Path;
+import java.util.List;
+
 import com.nablarch.example.app.entity.Client;
 import com.nablarch.example.app.entity.Project;
 import com.nablarch.example.app.web.common.authentication.context.LoginUserPrincipal;
@@ -12,6 +15,7 @@ import com.nablarch.example.app.web.form.ProjectForm;
 import com.nablarch.example.app.web.form.ProjectSearchForm;
 import com.nablarch.example.app.web.form.ProjectTargetForm;
 import com.nablarch.example.app.web.form.ProjectUpdateForm;
+
 import nablarch.common.dao.DeferredEntityList;
 import nablarch.common.dao.UniversalDao;
 import nablarch.common.databind.ObjectMapper;
@@ -30,9 +34,6 @@ import nablarch.fw.ExecutionContext;
 import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
 import nablarch.fw.web.interceptor.OnError;
-
-import java.nio.file.Path;
-import java.util.List;
 
 /**
  * プロジェクト検索、登録、更新、削除機能 。
@@ -277,9 +278,6 @@ public class ProjectAction {
         ProjectDto dto = UniversalDao.findBySqlFile(ProjectDto.class, "FIND_BY_PROJECT",
                 new Object[]{targetForm.getProjectId(), userContext.getUserId()});
 
-        // 詳細画面に戻る際に使用するProjectId
-        context.setRequestScopedVar("projectId", dto.getProjectId());
-
         // 出力情報をリクエストスコープにセット
         context.setRequestScopedVar("form", dto);
 
@@ -315,9 +313,6 @@ public class ProjectAction {
         // 出力情報をリクエストスコープにセット
         context.setRequestScopedVar("form", BeanUtil.createAndCopy(ProjectDto.class, form));
 
-        // 詳細画面に戻る際に使用するProjectId
-        context.setRequestScopedVar("projectId", project.getProjectId());
-
         return new HttpResponse("/WEB-INF/view/project/confirmOfUpdate.jsp");
     }
 
@@ -343,9 +338,6 @@ public class ProjectAction {
             dto.setClientName(client.getClientName());
         }
         context.setRequestScopedVar("form", dto);
-
-        // 詳細画面に戻る際に使用するProjectId
-        context.setRequestScopedVar("projectId", project.getProjectId());
 
         return new HttpResponse("/WEB-INF/view/project/update.jsp");
     }
