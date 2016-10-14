@@ -35,7 +35,6 @@
     </listeners>
     <!--
         Chunkを定義してください。item-countは3000とします。
-        reader、writerともに、対象はDBです。
      -->
   </step>
 
