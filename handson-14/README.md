@@ -57,6 +57,7 @@ ETL機能とJSR352に準拠したバッチアプリケーションを組み合�
         - 3.2.2. Transformフェーズ
         	- データのバリデーション
         - 3.2.3. Loadフェーズ
+    		- データベース出力
 	- 3.3. 使用方法
 		- 3.3.2. ETL用設定ファイルを作成する
 
@@ -119,12 +120,7 @@ XMLに定義するBatchletや指定するクラスは、すべてETLモジュー
     - 精査を行うBatchletを定義してください。
 - 「load」ステップ
     - Chunkを定義してください。item-countは3000件としてください。
-        - reader、writerを以下の表を参考に指定してください。
-
-|要素名|指定するクラス|
-|:----|:---------|
-|reader|DBからの読み込み|
-|writer|DBへの書き込み|
+        - reader、writerを指定してください。
 
 ### JSON(ETL用設定ファイル)部分([etl.json](./src/main/resources/META-INF/batch-jobs/etl-zip-code-csv-to-db-chunk.xml))
 
