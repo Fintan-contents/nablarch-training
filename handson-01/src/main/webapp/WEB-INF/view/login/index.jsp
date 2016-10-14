@@ -23,7 +23,7 @@
             <div class="title-nav">
                 <span>ログイン</span>
             </div>
-            <%-- exercise-01 form タグは Nablarch のカスタムタグがあるのでそちらを使用する。 --%>
+            <%-- handson-01 form タグは Nablarch のカスタムタグがあるのでそちらを使用する。 --%>
 
                 <div class="message-area margin-top">
                     <n:errors filter="global" cssClass="message-error"/>
@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <label for="loginId" class="col-md-2 control-label">ログインID</label>
                     <div class="col-md-10">
-                        <%-- exercise-01 input タグは Nablarch のカスタムタグがあるのでそちらを使用する 。--%>
+                        <%-- handson-01 input タグは Nablarch のカスタムタグがあるのでそちらを使用する 。--%>
 
                         <n:error errorCss="message-error" name="loginId" />
                     </div>
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="userPassword" class="col-md-2 control-label">パスワード</label>
                     <div class="col-md-10">
-                        <%-- exercise-01 input タグは Nablarch のカスタムタグがあるのでそちらを使用する 。--%>
+                        <%-- handson-01 input タグは Nablarch のカスタムタグがあるのでそちらを使用する 。--%>
 
                         <n:error errorCss="message-error" name="userPassword" />
                     </div>
@@ -49,7 +49,7 @@
                 <div class="title-nav page-footer" >
                     <div class="button-nav">
                         <div class="button-block real-button-block" style="float:right">
-                            <%-- exercise-01 button タグは Nablarch のカスタムタグがあるのでそちらを使用する 。--%>
+                            <%-- handson-01 button タグは Nablarch のカスタムタグがあるのでそちらを使用する 。--%>
                             <%-- 指定する uri については元 HTML の action と合わせる必要がある。--%>
 
                         </div>

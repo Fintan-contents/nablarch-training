@@ -51,19 +51,19 @@ public class ProjectAction {
      * @return HTTPレスポンス
      */
     public HttpResponse backToEdit(HttpRequest request, ExecutionContext context) {
-        // exercise-04 step1
+        // handson-04 step1
         // セッションに格納してある更新用の entity に入力した値が "project" というキー名で保存されているので、セッションから entity を取得します。
         // セッションからの情報取得には nablarch.common.web.session.SessionUtil を使用してください。
         // また、画面に値を表示する為には ProjectDto を生成して値を設定する必要があります。
         // セッションから取得した entity で保持している値を　nablarch.core.beans.BeanUtil　を使用して ProjectDto にコピーしてください。
 
-        // exercise-04 step2
+        // handson-04 step2
         // 画面からの入力値で entity で保持していない値が入力されていた場合はその情報を DB から取得する必要があります。
         // 今回のエクササイズでは顧客名については entity では保持していないので、顧客情報が入力されていた場合は DB から値を再取得する必要があります。
         // entity で保持している顧客IDを元に、顧客名をDBから主キー検索して下さい。
         // また、取得した値は ProjectDtoに設定しないと画面には出力できません。忘れずに設定してください。
 
-        // exercise-04 step3
+        // handson-04 step3
         // 画面に入力情報を復元する為に入力値を設定した ProjectDto をリクエストスコープに設定します。
         // JSP の各入力フォームの名前と一致するようにキー名を指定してください。
 

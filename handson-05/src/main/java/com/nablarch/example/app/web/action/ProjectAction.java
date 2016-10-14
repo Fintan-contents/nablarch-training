@@ -56,15 +56,15 @@ public class ProjectAction {
     // エラー発生時の遷移先はデフォルト(web-component-configuration.xmlで定義しています)とします。
     public HttpResponse update(HttpRequest request, ExecutionContext context) {
         // handson-05  step1
-        // セッションからエンティティを取り出してください。次に、セッションからそのエンティティを削除してください
-        // (本メソッド実行後、セッションで持ちまわっていたエンティティが不要になるため)。キー名は "project"です。
-        // エンティティの取り出し、削除にはSessionUtilクラスを使用します。
+        // セッションから entity を取り出してください。次に、セッションからその entity を削除してください
+        // (本メソッド実行後、セッションで持ちまわっていた entity が不要になるため)。キー名は "project"です。
+        //  entity の取り出し、削除にはSessionUtilクラスを使用します。
         // SessionUtilクラスの使用方法は、Nablarchアプリケーションフレームワークの解説書の「セッションストア」を参照してください。
 
         // handson-05 step2
-        // セッションから取り出したエンティティを使用して、DBのupdateを実装してください。
+        // セッションから取り出した entity を使用して、DBのupdateを実装してください。
         // updateの方法は、Nablarchアプリケーションフレームワークの解説書の「ユニバーサルDAO」を参照してください。
-        // なお、セッションから取り出したエンティティは、Entityアノテーションが付与されているクラスのインスタンスですので、
+        // なお、セッションから取り出した entity は、Entityアノテーションが付与されているクラスのインスタンスですので、
         // ユニバーサルDAOのメソッドの引数としてそのまま使用できます。
 
         // handson-05  step3

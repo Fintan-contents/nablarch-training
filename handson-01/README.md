@@ -45,7 +45,7 @@
 
 ### 2. アクション（AuthenticationAction.java）を作成する。
 Nablarch で JSP を表示するためにはアクションクラス（正式には業務アクションハンドラ）を作成し、コンテンツパスに表示する JSP を指定する必要があります。
-  本エクササイズでは、コンテンツパスの指定方法を学んでください。ログインのアクションクラスである [AuthenticationAction.java](./src/main/java/com/nablarch/example/app/web/action/AuthenticationAction.java) の index メソッドを修正し、作成した JSP が表示されるようにしてください。
+  本ハンズオンでは、コンテンツパスの指定方法を学んでください。ログインのアクションクラスである [AuthenticationAction.java](./src/main/java/com/nablarch/example/app/web/action/AuthenticationAction.java) の index メソッドを修正し、作成した JSP が表示されるようにしてください。
 
 ## 動作確認方法
 handson-01 を起動後、 http://localhost:8082 にアクセスし以下の点を確認してください。

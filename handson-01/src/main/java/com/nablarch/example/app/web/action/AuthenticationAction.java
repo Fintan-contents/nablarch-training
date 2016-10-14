@@ -41,7 +41,7 @@ public class AuthenticationAction {
      * @return HTTPレスポンス
      */
     public HttpResponse index(HttpRequest request, ExecutionContext context) {
-        // exercise-01
+        // handson-01
         // xxxxx.jsp となっている箇所を html から作成した jsp に書き換えて画面表示できることを確認してください。
         return new HttpResponse("/WEB-INF/view/login/xxxxx.jsp");
     }

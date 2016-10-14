@@ -59,7 +59,7 @@ public class ProjectAction {
         ProjectTargetForm targetForm = context.getRequestScopedVar("form");
         LoginUserPrincipal userContext = SessionUtil.get(context, "userContext");
 
-        // exercise-02 step 1
+        // handson-02 step 1
         // UniversalDaoのfindBySqlFileメソッドを使用して、PROJECT(及びCLIENT)テーブルから値を取得してください。
         // 引数は以下のようにしてください。
         // ・エンティティクラスはProjectDtoを使用してください。
@@ -69,7 +69,7 @@ public class ProjectAction {
         //   検索条件は配列で渡してください。
         ProjectDto dto = null;
 
-        // exercise-02 step 2
+        // handson-02 step 2
         // ExecutionContext#setRequestScopedVarを使用して値をリクエストスコープに値を設定してください。
         // 値を設定する際のリクエストスコープ名(setRequestScopedVarの第1引数)は、"form"としてください。
         // ("form"は、JSPの各画面項目に記述されているリクエストスコープ名です)
