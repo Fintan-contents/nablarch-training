@@ -21,7 +21,7 @@
 チェックアウトディレクトリに移動し、以下のコマンドを実行してください。その後、http://localhost:8082 にアクセスし、
   正常に「ログイン画面」が表示されることを確認してください。
 
-    $cd handson-06
+    $cd handson-07
     $mvn clean compile
     $mvn waitt:run
 
