@@ -112,7 +112,7 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 | 同上 | 更新処理([ProjectAction#update](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)) |
 | プロジェクト変更画面([update.jsp](./src/main/webapp/WEB-INF/view/project/update.jsp)) （セッションへの値の登録自体は、更新初期画面表示処理([ProjectAction#edit](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))で実施） | 削除処理([ProjectAction#delete](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)) |
 
-補足：セッションからの値に取り出しについては、[handson-04](../../../handson-04/README.md)と[handson-05](../handson-05)で登場しました。セッションへの値の登録については、APIドキュメント(アプリケーションプログラマ向け)を参照してください。
+補足：セッションからの値に取り出しについては、[handson-04](../handson-04/README.md)と[handson-05](../handson-05)で登場しました。セッションへの値の登録については、APIドキュメント(アプリケーションプログラマ向け)を参照してください。
 
 
 ### システム全般で共通する仕様
