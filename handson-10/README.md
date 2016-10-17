@@ -112,16 +112,16 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 | 同上 | 更新処理([ProjectAction#update](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)) |
 | プロジェクト変更画面([update.jsp](./src/main/webapp/WEB-INF/view/project/update.jsp)) （セッションへの値の登録自体は、更新初期画面表示処理([ProjectAction#edit](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))で実施） | 削除処理([ProjectAction#delete](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)) |
 
-補足：セッションからの値に取り出しについては、[handson-04](../handson-04/README.md)と[handson-05](../handson-05)で登場しました。セッションへの値の登録については、APIドキュメント(アプリケーションプログラマ向け)を参照してください。
+補足：セッションからの値に取り出しについては、[handson-04](../handson-04/README.md)と[handson-05](../handson-05/README.md)で登場しました。セッションへの値の登録については、APIドキュメント(アプリケーションプログラマ向け)を参照してください。
 
 
 ### システム全般で共通する仕様
 #### DB更新(及び削除)を伴うリクエストのルール
 - DB更新(及び削除)を伴うリクエストは以下のルールを守ってください。
     - 更新完了画面(及び削除完了画面)の表示について、リロードした際に値がPOSTされるのを防ぐために、リダイレクトを使用してください。
-        表示にリダイレクトを使用する方法は、[handson-05](../handson-05)で登場しました。
+        表示にリダイレクトを使用する方法は、[handson-05](../handson-05/README.md)で登場しました。
     - 二重サブミット対策を実装してください。エラー時の遷移先はデフォルト(web-component-configuration.xmlで定義されています)とします。
-        二重サブミット対策は、[handson-05](../handson-05)で登場しました。
+        二重サブミット対策は、[handson-05](../handson-05/README.md)で登場しました。
 
 
 #### トランザクション系テーブル(PROJECTテーブル)にUPDATEを行う際のルール
@@ -148,7 +148,7 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 
 ##### プロジェクト変更初期画面の表示処理([ProjectAction#edit](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))
 - 本メソッドには以下の処理を実装します。
-    - Formに実装した入力値の精査処理の呼び出し。精査処理の呼び出し方法については、[handson-03](../handson-03)で登場しました。
+    - Formに実装した入力値の精査処理の呼び出し。精査処理の呼び出し方法については、[handson-03](../handson-03/README.md)で登場しました。
     - 画面から受け取ったプロジェクトIDと、セッションから取り出したログインユーザのIDを元に、PROJECTテーブルを検索し、更新対象のエンティティを取得してください。
     - エンティティの値を設定した[ProjectDto](./src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java)のインスタンスを用意してください。
     - 次画面の表示に使用するために、ProjectDtoをリクエストスコープに設定してください。キーは"form"です。
@@ -237,4 +237,4 @@ exercise-10 を起動後以下を行います。
 
 
 ## 解答例について
-解答例は、[nablarch-handson-app-web](../nablarch-handson-app-web)を参照してください。
+解答例は、[nablarch-handson-app-web](../nablarch-handson-app-web/README.md)を参照してください。
