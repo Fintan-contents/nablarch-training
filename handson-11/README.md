@@ -51,7 +51,7 @@
 以下の機能を実装してください。
 
 - ユーザの入力を元に、プロジェクトを検索する機能を実装してください。検索先のテーブルはPROJECTテーブルです。
-  	入力項目については、提供するJSPを参照してください。
+	入力項目については、提供するJSPを参照してください。
 - プロジェクトの詳細を表示する機能を実装してください。
 
 
@@ -64,7 +64,7 @@
 ![画面遷移2](./fig/fig02.png "画面遷移2")
 
 ## 実装済みの箇所
-###画面(Java側、JSP側双方含む)
+### 画面(Java側、JSP側双方含む)
 以下の画面については実装済みです。
 
 - 顧客検索
@@ -119,7 +119,7 @@
 - 本メソッドには以下の処理を実装します。
 	- 初期表示時点での検索条件として以下を設定し、リクエストスコープにキー名「searchForm」で設定してください。
     	- ソートキーとして"NAME"を設定してください。ソートキーは、[ProjectSortKey](./src/main/java/com/nablarch/example/app/web/common/code/ProjectSortKey.java)列挙型に定義されています。
-    	- 並び順として"ASC"を設定してください。ソートキーは、[SortOrder](./src/main/java/com/nablarch/example/app/web/common/code/SortOrder.java)列挙型に定義されています。
+    	- 並び順として"ASC"を設定してください。並び順は、[SortOrder](./src/main/java/com/nablarch/example/app/web/common/code/SortOrder.java)列挙型に定義されています。
 		- ページ番号として1ページを設定してください。
 	- 検索を実行([ProjectAction#searchProject](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)メソッドを呼び出す)し、結果をリクエストスコープに設定してください。設定に使用する名前は、[index.jsp](./src/main/webapp/WEB-INF/view/project/index.jsp)を参照してください。
     - プロジェクト検索一覧画面([index.jsp](./src/main/webapp/WEB-INF/view/project/index.jsp))に遷移する処理を実装してください。
