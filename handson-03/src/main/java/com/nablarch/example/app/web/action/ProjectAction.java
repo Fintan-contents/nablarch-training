@@ -44,6 +44,46 @@ import nablarch.fw.web.interceptor.OnError;
 public class ProjectAction {
 
     /**
+     * 更新確認画面を表示。
+     *
+     * @param request HTTPリクエスト
+     * @param context 実行コンテキスト
+     * @return HTTPレスポンス
+     */
+    /* handson-03 step1
+     * アノテーションを付与して、精査処理が行われるように実装してください。
+     * ・精査対象のFormクラスは、ProjectUpdateForm.class。
+     * ・フォームに設定されているパラメータのプレフィックスは、"form"。
+     * 実装方法は、Nablarchアプリケーションフレームワークの解説書の「InjectFormを利用する」を参照してください。
+     */
+
+    /* handson-03 step2
+     * アノテーションを付与して、精査エラーが発生した場合は、"/WEB-INF/view/project/update.jsp"に遷移するようにしてください。
+     * 実装方法は、Nablarchアプリケーションフレームワークの解説書の「バリデーションエラー時の遷移先を指定する」を参照してください。
+     */
+
+    public HttpResponse confirmOfUpdate(HttpRequest request, ExecutionContext context) {
+        ProjectUpdateForm form = context.getRequestScopedVar("form");
+
+        if (form.hasClientId()) {
+            if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID", new Object[]{Integer.parseInt(form.getClientId())})) {
+                //補足：数値に対する自動フォーマット(自動的にカンマ編集される)を避けるため、Integerを明示的に文字列に変換している。
+                throw new ApplicationException(
+                        MessageUtil.createMessage(MessageLevel.ERROR,
+                                "errors.nothing.client", form.getClientId()));
+            }
+        }
+
+        Project project = SessionUtil.get(context, "project");
+        BeanUtil.copy(form, project);
+
+        // 出力情報をリクエストスコープにセット
+        context.setRequestScopedVar("form", BeanUtil.createAndCopy(ProjectDto.class, form));
+
+        return new HttpResponse("/WEB-INF/view/project/confirmOfUpdate.jsp");
+    }
+
+    /**
      * プロジェクト登録初期画面を表示。
      *
      * @param request HTTPリクエスト
@@ -284,46 +324,6 @@ public class ProjectAction {
         SessionUtil.put(context, "project", BeanUtil.createAndCopy(Project.class, dto));
 
         return new HttpResponse("/WEB-INF/view/project/update.jsp");
-    }
-
-    /**
-     * 更新確認画面を表示。
-     *
-     * @param request HTTPリクエスト
-     * @param context 実行コンテキスト
-     * @return HTTPレスポンス
-     */
-    /* handson-03 step1
-     * アノテーションを付与して、精査処理が行われるように実装してください。
-     * ・精査対象のFormクラスは、ProjectUpdateForm.class。
-     * ・フォームに設定されているパラメータのプレフィックスは、"form"。
-     * 実装方法は、Nablarchアプリケーションフレームワークの解説書の「InjectFormを利用する」を参照してください。
-     */
-
-    /* handson-03 step2
-     * アノテーションを付与して、精査エラーが発生した場合は、"/WEB-INF/view/project/update.jsp"に遷移するようにしてください。
-     * 実装方法は、Nablarchアプリケーションフレームワークの解説書の「バリデーションエラー時の遷移先を指定する」を参照してください。
-     */
-
-    public HttpResponse confirmOfUpdate(HttpRequest request, ExecutionContext context) {
-        ProjectUpdateForm form = context.getRequestScopedVar("form");
-
-        if (form.hasClientId()) {
-            if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID", new Object[]{Integer.parseInt(form.getClientId())})) {
-                //補足：数値に対する自動フォーマット(自動的にカンマ編集される)を避けるため、Integerを明示的に文字列に変換している。
-                throw new ApplicationException(
-                        MessageUtil.createMessage(MessageLevel.ERROR,
-                                "errors.nothing.client", form.getClientId()));
-            }
-        }
-
-        Project project = SessionUtil.get(context, "project");
-        BeanUtil.copy(form, project);
-
-        // 出力情報をリクエストスコープにセット
-        context.setRequestScopedVar("form", BeanUtil.createAndCopy(ProjectDto.class, form));
-
-        return new HttpResponse("/WEB-INF/view/project/confirmOfUpdate.jsp");
     }
 
     /**
