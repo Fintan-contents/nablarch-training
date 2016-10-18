@@ -7,6 +7,7 @@ import com.nablarch.example.app.entity.Client;
 import com.nablarch.example.app.entity.Project;
 import com.nablarch.example.app.web.common.authentication.context.LoginUserPrincipal;
 import com.nablarch.example.app.web.common.code.ProjectSortKey;
+import com.nablarch.example.app.web.common.code.SortOrder;
 import com.nablarch.example.app.web.common.file.TempFileUtil;
 import com.nablarch.example.app.web.dto.ProjectDownloadDto;
 import com.nablarch.example.app.web.dto.ProjectDto;
@@ -185,7 +186,8 @@ public class ProjectAction {
 
         // 初期表示時点でのページ番号とソートキーを設定する
         ProjectSearchForm searchForm = new ProjectSearchForm();
-        searchForm.setSortKey(ProjectSortKey.ID.getCode());
+        searchForm.setSortKey(ProjectSortKey.NAME.getCode());
+        searchForm.setSortDir(SortOrder.ASC.getCode());
         searchForm.setPageNumber("1");
         context.setRequestScopedVar("searchForm", searchForm);
 
@@ -284,7 +286,6 @@ public class ProjectAction {
     @InjectForm(form = ProjectTargetForm.class)
     public HttpResponse show(HttpRequest request, ExecutionContext context) {
         ProjectTargetForm targetForm = context.getRequestScopedVar("form");
-        context.setRequestScopedVar("projectId", targetForm.getProjectId());
         LoginUserPrincipal userContext = SessionUtil.get(context, "userContext");
 
         ProjectDto dto = UniversalDao.findBySqlFile(ProjectDto.class, "FIND_BY_PROJECT",

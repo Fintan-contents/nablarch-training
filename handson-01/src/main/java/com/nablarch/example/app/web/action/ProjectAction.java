@@ -1,9 +1,13 @@
 package com.nablarch.example.app.web.action;
 
+import java.nio.file.Path;
+import java.util.List;
+
 import com.nablarch.example.app.entity.Client;
 import com.nablarch.example.app.entity.Project;
 import com.nablarch.example.app.web.common.authentication.context.LoginUserPrincipal;
 import com.nablarch.example.app.web.common.code.ProjectSortKey;
+import com.nablarch.example.app.web.common.code.SortOrder;
 import com.nablarch.example.app.web.common.file.TempFileUtil;
 import com.nablarch.example.app.web.dto.ProjectDownloadDto;
 import com.nablarch.example.app.web.dto.ProjectDto;
@@ -12,6 +16,7 @@ import com.nablarch.example.app.web.form.ProjectForm;
 import com.nablarch.example.app.web.form.ProjectSearchForm;
 import com.nablarch.example.app.web.form.ProjectTargetForm;
 import com.nablarch.example.app.web.form.ProjectUpdateForm;
+
 import nablarch.common.dao.DeferredEntityList;
 import nablarch.common.dao.UniversalDao;
 import nablarch.common.databind.ObjectMapper;
@@ -30,9 +35,6 @@ import nablarch.fw.ExecutionContext;
 import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
 import nablarch.fw.web.interceptor.OnError;
-
-import java.nio.file.Path;
-import java.util.List;
 
 /**
  * プロジェクト検索、登録、更新、削除機能 。
@@ -147,7 +149,8 @@ public class ProjectAction {
 
         // 初期表示時点でのページ番号とソートキーを設定する
         ProjectSearchForm searchForm = new ProjectSearchForm();
-        searchForm.setSortKey(ProjectSortKey.ID.getCode());
+        searchForm.setSortKey(ProjectSortKey.NAME.getCode());
+        searchForm.setSortDir(SortOrder.ASC.getCode());
         searchForm.setPageNumber("1");
         context.setRequestScopedVar("searchForm", searchForm);
 
@@ -246,7 +249,6 @@ public class ProjectAction {
     @InjectForm(form = ProjectTargetForm.class)
     public HttpResponse show(HttpRequest request, ExecutionContext context) {
         ProjectTargetForm targetForm = context.getRequestScopedVar("form");
-        context.setRequestScopedVar("projectId", targetForm.getProjectId());
         LoginUserPrincipal userContext = SessionUtil.get(context, "userContext");
 
         ProjectDto dto = UniversalDao.findBySqlFile(ProjectDto.class, "FIND_BY_PROJECT",

@@ -6,8 +6,6 @@ $(function() {
   // ソート条件選択
   var url = location.href;
   if (url.indexOf("?") == -1) {
-    $("select[name='searchForm.sortKey']").val("name");
-    $("select[name='searchForm.sortDir']").val("asc");
     return;
   }
   var paramStr = url.split("?");

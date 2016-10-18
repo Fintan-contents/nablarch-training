@@ -24,7 +24,7 @@
                 <span class="page-title">プロジェクト詳細画面</span>
                 <div class="button-nav">
                     <div class="button-block real-button-block">
-                        <n:a href="/action/project/edit/${projectId}" cssClass="btn btn-raised btn-success">変更</n:a>
+                        <n:a href="/action/project/edit/${form.projectId}" cssClass="btn btn-raised btn-success">変更</n:a>
                     </div>
                     <div class="button-block link-button-block">
                         <n:a id="topReturnList" href="#" cssClass="btn btn-raised btn-default">戻る</n:a>
