@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-configuration
+        xmlns="http://tis.co.jp/nablarch/component-configuration"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration http://tis.co.jp/nablarch/component-configuration">
+
+    <!-- テーブル定義 -->
+    <import file="nablarch/schema-config.xml" />
+
+    <!-- 精査に使用する文字集合定義 -->
+    <import file="charset-definition.xml"/>
+
+    <!-- DomainManager 実装クラス設定 -->
+    <component name="domainManager"
+               class="com.nablarch.example.app.validation.DomainBeanManager"/>
+
+    <!-- 環境設定 -->
+    <config-file file="env.config" />
+    <config-file file="common.config" />
+
+    <!-- データベース設定-->
+    <import file="nablarch/batch/db-for-batch.xml" />
+    <import file="data-source.xml"/>
+
+    <!-- 自動採番型を持たないRDBMSで、ユニバーサルDAOを使用するための設定 -->
+    <import file="nablarch/common/dao.xml" />
+
+    <!-- JobListener -->
+    <list name="jobListeners">
+        <component class="nablarch.fw.batch.ee.listener.job.JobProgressLogListener" />
+    </list>
+
+    <!-- StepListener-->
+    <list name="stepListeners">
+        <component class="nablarch.fw.batch.ee.listener.step.StepProgressLogListener" />
+        <component class="nablarch.fw.batch.ee.listener.step.DbConnectionManagementListener">
+            <property name="dbConnectionManagementHandler">
+                <component class="nablarch.common.handler.DbConnectionManagementHandler" />
+            </property>
+        </component>
+        <component class="nablarch.fw.batch.ee.listener.step.StepTransactionManagementListener" />
+    </list>
+
+    <!-- ItemWriteListener -->
+    <list name="itemWriteListeners">
+        <component class="nablarch.fw.batch.ee.listener.chunk.ChunkProgressLogListener" />
+        <component class="nablarch.fw.batch.ee.listener.chunk.ItemWriteTransactionManagementListener" />
+    </list>
+
+</component-configuration>

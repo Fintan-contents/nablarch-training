@@ -17,18 +17,24 @@
   <!-- ビルド設定 -->
   <properties>
 
-    <!-- TODO: 利用するJavaのバージョンを設定してください。 -->
+    <!-- 利用するJavaのバージョン -->
     <java.version>1.7</java.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+    <scheme>バッチ</scheme>
+    <!-- 環境ごとのリソースディレクトリ(プロファイルにより切り替わる) -->
+    <env.resources>${project.basedir}/src/env/${envDir}/resources</env.resources>
   </properties>
 
   <build>
     <!-- 成果物の名称 -->
     <finalName>${finalName}</finalName>
     <resources>
+      <resource>
+        <directory>${env.resources}</directory>
+      </resource>
       <resource>
         <directory>src/main/resources</directory>
       </resource>
@@ -89,7 +95,7 @@
               <groupId>com.nablarch.framework</groupId>
               <artifactId>nablarch-testing</artifactId>
               <!-- プラグインに内包するモジュールはバージョン指定必須 -->
-              <version>1.0.5</version>
+              <version>1.0.6</version>
             </plugin>
           </plugins>
         </configuration>
@@ -149,15 +155,22 @@
         <!-- 環境設定ファイル自動生成ツールで指定している環境名 -->
         <envName>開発環境</envName>
         <!-- Mavenの環境別リソースのディレクトリ名 -->
-        <envDir>ut</envDir>
+        <envDir>dev</envDir>
         <finalName>${project.artifactId}-${project.version}</finalName>
-        <db.product>ut</db.product>
+        <db.product>dev</db.product>
       </properties>
     </profile>
 
   </profiles>
 
   <dependencies>
+
+    <dependency>
+      <groupId>com.nablarch.configuration</groupId>
+      <artifactId>nablarch-main-default-configuration</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-core-transaction</artifactId>
@@ -196,6 +209,11 @@
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-etl</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.nablarch.framework</groupId>
+      <artifactId>nablarch-common-idgenerator-jdbc</artifactId>
     </dependency>
 
     <dependency>
