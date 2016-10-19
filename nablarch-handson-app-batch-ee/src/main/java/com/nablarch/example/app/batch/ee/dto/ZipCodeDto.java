@@ -16,7 +16,7 @@ import nablarch.etl.WorkItem;
  * 郵便番号。
  */
 @Entity
-@Table(name="ZIP_CODE_DATA_WORK")
+@Table(name = "ZIP_CODE_DATA_WORK")
 @Csv(
     type = CsvType.CUSTOM,
     properties = {

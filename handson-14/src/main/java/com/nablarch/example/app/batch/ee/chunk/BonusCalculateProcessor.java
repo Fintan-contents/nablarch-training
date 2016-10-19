@@ -17,7 +17,7 @@ public class BonusCalculateProcessor implements ItemProcessor {
     @Override
     public Object processItem(Object item) {
 
-        EmployeeForm form = (EmployeeForm)item;
+        EmployeeForm form = (EmployeeForm) item;
         Bonus bonus = new Bonus();
         bonus.setEmployeeId(form.getEmployeeId());
         bonus.setPayments(calculateBonus(form));
