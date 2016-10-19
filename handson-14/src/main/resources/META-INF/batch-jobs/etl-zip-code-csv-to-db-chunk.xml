@@ -18,7 +18,6 @@
     </listeners>
     <!--
         Chunkを定義してください。item-countは3000とします。
-        readerはファイル読み込み、writerはDB書き込みです。
      -->
   </step>
 
@@ -36,7 +35,6 @@
     </listeners>
     <!--
         Chunkを定義してください。item-countは3000とします。
-        reader、writerともに、対象はDBです。
      -->
   </step>
 

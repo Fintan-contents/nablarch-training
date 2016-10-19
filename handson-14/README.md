@@ -39,15 +39,34 @@ ETL機能とJSR352に準拠したバッチアプリケーションを組み合�
 ## 演習内容に関するリファレンスマニュアル
 本演習中に実装方法で不明な点が存在した場合は、以下のドキュメントを参照してください。
 
-### Nablarchドキュメント
+### 解説書
 
-TODO：参照先を書く。
+
+
+#### Nablarchアプリケーションフレームワークの解説書
+- 7.5.1. データバインド
+	- 使用方法
+		- CSVファイルのフォーマットを指定する
+			- Java Beansクラスにバインドする場合
+
+#### Nablarch拡張コンポーネントの解説書
+
+- 3.ETL
+	- 3.2.ETLの各フェーズの使用
+		- 3.2.1.Extractフェーズ
+			- JSR352 のChunkステップを使用したデータのロード
+        - 3.2.2. Transformフェーズ
+        	- データのバリデーション
+        - 3.2.3. Loadフェーズ
+    		- データベース出力
+	- 3.3. 使用方法
+		- 3.3.2. ETL用設定ファイルを作成する
 
 ## 実装する機能
 
 - 郵便番号データの1レコードに対応するDTOを作成してください。
 - ジョブ定義ファイルを作成してください。
-- ジョブ定義ファイルに対応するETLの設定を行ってください。
+- ジョブ定義ファイルに対応するETL用設定ファイルを作成してください。
 
 ## 演習
 
@@ -90,33 +109,21 @@ TODO：参照先を書く。
 |文字コード|MS932|
 |クォートモード|NORMAL|
 
-### XML部分([etl-zip-code-csv-to-db-chunk.xml](./src/main/resources/META-INF/batch-jobs/etl-zip-code-csv-to-db-chunk.xml))
+### XML(JOB定義ファイル)部分([etl-zip-code-csv-to-db-chunk.xml](./src/main/resources/META-INF/batch-jobs/etl-zip-code-csv-to-db-chunk.xml))
 
 XMLに定義するBatchletや指定するクラスは、すべてETLモジュールに含まれているものです。
 
 - 「truncate」ステップ
     - テーブルクリーニングを行うBatchletを定義してください。
 - 「extract」ステップ
-    - Chunkを定義してください。item-countは3000件としてください。
-        - reader、writerを以下の表を参考に指定してください。
-
-|要素名|指定するクラス|
-|:----|:---------|
-|reader|ファイルからの読み込み|
-|writer|DBへの書き込み|
-
+    - JSR352のChunkステップを使用したデータのロードを記述してください。item-countは3000件としてください。
 - 「validation」ステップ
     - 精査を行うBatchletを定義してください。
 - 「load」ステップ
     - Chunkを定義してください。item-countは3000件としてください。
-        - reader、writerを以下の表を参考に指定してください。
+        - reader、writerを指定してください。
 
-|要素名|指定するクラス|
-|:----|:---------|
-|reader|DBからの読み込み|
-|writer|DBへの書き込み|
-
-### JSON部分([etl.json](./src/main/resources/META-INF/batch-jobs/etl-zip-code-csv-to-db-chunk.xml))
+### JSON(ETL用設定ファイル)部分([etl.json](./src/main/resources/META-INF/batch-jobs/etl-zip-code-csv-to-db-chunk.xml))
 
 コメント部分を、コメントの内容と下表を参考に書き換えてください。
 
