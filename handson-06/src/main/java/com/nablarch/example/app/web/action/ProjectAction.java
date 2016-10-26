@@ -63,7 +63,7 @@ public class ProjectAction {
         // ・ページ番号は、searchCondition.getPageNumber()から取得してください。
         // ・１ページ辺り20件取得してください。
         // ・使用するエンティティクラスは、Projectです。
-        // ・SQL_IDは、Project.sqlで定義してあるものを使用してください。
+        // ・SQL_IDは、Project.sqlを参照してください。
         // ・検索条件は、本メソッドで用意しているsearchCondition変数に設定して渡してください。
         //   設定する条件は、「プロジェクト種別」に値:「development」とします。
         // 実装方法はNablarchアプリケーションフレームワークの解説書の「ユニバーサルDAO」を参照してください。
