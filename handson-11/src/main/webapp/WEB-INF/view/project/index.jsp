@@ -150,6 +150,13 @@
                                             </jsp:attribute>
                                             <jsp:attribute name="bodyRowFragment">
                                                 <tr class="info">
+                                                    <td>
+                                                        <c:forEach var="projectType" items="<%= ProjectType.values() %>">
+                                                            <c:if test="${projectType.code == row.projectType}">
+
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </td>
                                                 </tr>
                                             </jsp:attribute>
                                         </app:listSearchResult>

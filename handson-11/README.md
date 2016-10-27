@@ -99,7 +99,7 @@
 ### JSP部分
 #### 検索に関する部分
 ##### プロジェクト検索結果表示部分([index.jsp](./src/main/webapp/WEB-INF/view/project/index.jsp))
-- 152行目付近の<tr class="info"> タグの中を記述してください。各行の値はProjectクラスに格納されています。
+- 152行目の <tr class="info"> タグの中を記述してください。各行の値はProjectクラスに格納されています。
   下表の項目を出力するように実装します。
 
 |プロパティ名      | 説明 |
@@ -143,7 +143,7 @@
 ##### プロジェクト詳細画面の表示処理([ProjectAction#show](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))
 - 本メソッドには以下の処理を実装します。
     - Formに実装した入力値の精査処理の呼び出し。直接ユーザが入力する値は有りませんが、プロジェクトIDが画面から送信されてくるため、精査が必要です。
-    - プロジェクトIDと、セッションから取得したログインユーザのIDを元に、PROJECTテーブルから値を取得してください。SQL_IDは、"FIND_BY_PROJECT_ID"です。
+    - プロジェクトIDと、セッションから取得したログインユーザのIDを元に、PROJECTテーブルから値を取得してください。SQL_IDは、"FIND_BY_PROJECT"です。
     - 検索結果をリクエストスコープに設定してください。
     - 正常終了時、プロジェクト詳細画面([detail.jsp](./src/main/webapp/WEB-INF/view/project/detail.jsp))に遷移する処理を実装してください。
 
