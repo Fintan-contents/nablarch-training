@@ -50,7 +50,7 @@
                     <div class="button-nav">
                         <div class="button-block real-button-block" style="float:right">
                             <%-- handson-01 button タグは Nablarch のカスタムタグがあるのでそちらを使用する 。--%>
-                            <%-- 指定する uri については元 HTML の action と合わせる必要がある。--%>
+                            <%-- 指定する uri は"/action/login"。--%>
 
                         </div>
                     </div>
