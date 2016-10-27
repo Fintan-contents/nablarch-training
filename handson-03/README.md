@@ -67,8 +67,8 @@
   実装すべき内容の詳細は雛形に記載してあります。
 
 
-### 3. Form（ProjectForm.java）に精査処理を実装する
-[ProjectForm.java](./src/main/java/com/nablarch/example/app/web/form/ProjectForm.java)に以下を実装してください。
+### 3. Form（ProjectUpdateForm.java）に精査処理を実装する
+[ProjectUpdateForm.java](./src/main/java/com/nablarch/example/app/web/form/ProjectUpdateForm.java)に以下を実装してください。
 
 - ドメイン指定によるバリデーションに使用するアノテーションの付与(今回は、projectNameプロパティに対して付与します。他のプロパティには付与済みです)
 
@@ -96,7 +96,7 @@ handson-03 を起動後以下を行います。
 8. プロジェクト変更画面に、エラーメッセージが表示されることを確認してください。
 9. プロジェクト変更画面で、プロジェクト名に全角でなにか入力して、更新ボタンをクリックしてください。
 10. 入力内容の確認画面(テキストボックス等が、単なる文字列として表示される画面)に遷移することを確認してください。
-ｓ
+
 ※ログイン時に利用できるユーザは以下です。
 
 | ログインID | パスワード |
