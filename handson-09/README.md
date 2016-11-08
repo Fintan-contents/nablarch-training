@@ -174,22 +174,24 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
     - 必須項目を表すアノテーションの設定。プロジェクト登録画面([create.jsp](./src/main/webapp/WEB-INF/view/project/create.jsp))のrequiredが付いた入力項目が必須項目です。
     - ドメインの設定。ドメインは、[ExampleDomainType](./src/main/java/com/nablarch/example/app/entity/core/validation/validator/ExampleDomainType.java)で定義されているものを使用してください。どのプロパティにどのドメインを設定するかは、下表を参照してください。
 
-| 項目 | 必須 | ドメイン | 補足|
-|--------|--------|--------|--------|
-|プロジェクト名|○|projectName| |
-|プロジェクト種別|○|projectType| |
-|プロジェクト分類|○|projectClass| |
-|プロジェクトマネージャー名||userName| |
-|プロジェクトリーダー名||userName| |
-|顧客ID|○|id| |
-|顧客名||clientName| |
-|開始日||date| |
-|終了日||date|開始日よりも前(同日は問題なし)に設定されている場合エラーとします。開始日が未設定の場合は、問題ありません。|
-|備考||note| |
-|売上高||amountOfMoney| |
-|売上原価||amountOfMoney| |
-|販管費||amountOfMoney| |
-|本社配賦||amountOfMoney| |
+| 項目 | 必須 | ドメイン |
+|--------|--------|--------|
+|プロジェクト名|○|projectName|
+|プロジェクト種別|○|projectType|
+|プロジェクト分類|○|projectClass|
+|プロジェクトマネージャー名||userName|
+|プロジェクトリーダー名||userName|
+|顧客ID|○|id|
+|顧客名||clientName|
+|開始日||date|
+|終了日※||date|
+|備考||note|
+|売上高||amountOfMoney|
+|売上原価||amountOfMoney|
+|販管費||amountOfMoney|
+|本社配賦||amountOfMoney|
+
+※:開始日よりも前(同日は問題なし)に設定されている場合エラーとします。開始日が未設定の場合は、いつであっても問題ありません。
 
 ##### プロジェクト登録Formの精査処理([ProjectForm#isValidProjectPeriod](./src/main/java/com/nablarch/example/app/web/form/ProjectForm.java))
 - 本メソッドには以下の処理を実装します。
