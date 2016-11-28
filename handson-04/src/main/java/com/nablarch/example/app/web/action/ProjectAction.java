@@ -99,10 +99,8 @@ public class ProjectAction {
         ProjectForm form = context.getRequestScopedVar("form");
         if (form.hasClientId()) {
             if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID", new Object[]{Integer.parseInt(form.getClientId())})) {
-                //補足：数値に対する自動フォーマット(自動的にカンマ編集される)を避けるため、Integerを明示的に文字列に変換している。
                 throw new ApplicationException(
-                        MessageUtil.createMessage(MessageLevel.ERROR, "errors.nothing.client", Client.class.getSimpleName(),
-                                form.getClientId()));
+                        MessageUtil.createMessage(MessageLevel.ERROR, "errors.nothing.client", form.getClientId()));
             }
         }
 
@@ -328,7 +326,6 @@ public class ProjectAction {
 
         if (form.hasClientId()) {
             if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID", new Object[]{Integer.parseInt(form.getClientId())})) {
-                //補足：数値に対する自動フォーマット(自動的にカンマ編集される)を避けるため、Integerを明示的に文字列に変換している。
                 throw new ApplicationException(
                         MessageUtil.createMessage(MessageLevel.ERROR,
                                 "errors.nothing.client", form.getClientId()));
