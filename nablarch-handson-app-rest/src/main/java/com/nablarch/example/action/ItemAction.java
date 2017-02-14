@@ -52,6 +52,8 @@ import java.util.List;
     @Valid
     public HttpResponse save(ItemForm form) {
         UniversalDao.insert(BeanUtil.createAndCopy(Item.class, form));
+
+        HttpResponse res = new HttpResponse(201);
         return new HttpResponse(HttpResponse.Status.CREATED.getStatusCode());
     }
 
