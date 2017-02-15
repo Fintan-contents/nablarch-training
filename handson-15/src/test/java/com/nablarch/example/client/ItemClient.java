@@ -33,7 +33,7 @@ public class ItemClient {
         System.out.println("insert status:" + postItem(item));
         System.out.print(makeDataString(ItemClient.getItems()));
 
-        // 更新対象プロジェクト取得
+        // 更新対象商品取得
         String updateSearchParam = "?itemName=商品９９９";
         Item updateItem = getItems(updateSearchParam).get(0);
         ItemUpdateForm updateForm = setUpdateItem(updateItem);
