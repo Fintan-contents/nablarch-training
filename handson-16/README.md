@@ -41,7 +41,7 @@ RESTfulウェブサービスに認証認可を組み込んでみよう
 
 ## 実装済みの箇所
 以下については実装済みです。
-- URLと対応するアクションクラス、メソッドをマッピングするルート定義ファイル(./src/main/resources/routes.xml))
+- URLと対応するアクションクラス、メソッドをマッピングするルート定義ファイル([routes.xml](./src/main/resources/routes.xml))
 - 商品テーブルの一覧検索
 - DBを使用した認証用のユーティリティクラス([AuthenticationUtil.java](./src/main/java/com/nablarch/example/common/authentication/AuthenticationUtil.java))
 - DBストアが使用するテーブル(USER_SESSIONテーブル)
@@ -170,4 +170,4 @@ LoginUserPrincipalCheckHandler.javaに、ログインチェック機能を実装
 
 ## 解答例について
 
-解答例は、[nablarch-handson-app-rest](../nablarch-handson-app-rest/README.md)を参照してください。
+解答例は、[nablarch-handson-app-rest-session](../nablarch-handson-app-rest-session/README.md)を参照してください。
