@@ -93,7 +93,7 @@ public class ItemClient {
         if (jsessionid != null) {
             invocationBuilder.cookie(jsessionid);
         }
-        
+
         return invocationBuilder.get(new GenericType<List<Item>>() {});
     }
     

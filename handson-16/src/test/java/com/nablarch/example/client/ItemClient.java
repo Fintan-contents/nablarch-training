@@ -18,31 +18,48 @@ import com.nablarch.example.form.LoginForm;
 public class ItemClient {
 
     private static final String targetUrl = "http://localhost:9080/items";
-    private static Cookie nablarchSid;
-    private static Cookie jsessionid;
 
     /**
      * 商品情報の操作を行う。
      * @param args 引数
      */
     public static void main(String[] args) throws Exception {
-        //ログイン処理
-        Response loginResponse = login();
-        System.out.println("login http status:" + loginResponse.getStatus());
-        Map<String, NewCookie> cookies = loginResponse.getCookies();
+        //ログイン処理(ログイン失敗)
+        Response loginFailResponse = login("10000001", "hoge");
+        System.out.println("start login(expect http status code 400.)");
+        System.out.println("http status:" + loginFailResponse.getStatus());
+
+        // 検索(未認証であるため失敗する)
+        // 全件検索
+        try {
+            System.out.println("start getitem(expect http status code 401.)");
+            System.out.print(makeDataString(ItemClient.getItems(null, null)));
+        } catch (javax.ws.rs.NotAuthorizedException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("--------");
+
+        //ログイン処理(ログイン成功)
+        Response loginSuccessResponse = login("10000001", "pass123-");
+        System.out.println("start login(expect http status code 200.)");
+        System.out.println("http status:" + loginSuccessResponse.getStatus());
+
+        Map<String, NewCookie> loginSuccessCookies = loginSuccessResponse.getCookies();
         //セッション維持に必要な情報を持ったcookieを生成する。
-        nablarchSid = new Cookie(cookies.get("NABLARCH_SID").getName(),
-                cookies.get("NABLARCH_SID").getValue(),
-                cookies.get("NABLARCH_SID").getPath(),
-                cookies.get("NABLARCH_SID").getDomain());
-        jsessionid = new Cookie(cookies.get("JSESSIONID").getName(),
-                cookies.get("JSESSIONID").getValue(),
-                cookies.get("JSESSIONID").getPath(),
-                cookies.get("JSESSIONID").getDomain());
+        Cookie nablarchSid = new Cookie(loginSuccessCookies.get("NABLARCH_SID").getName(),
+                loginSuccessCookies.get("NABLARCH_SID").getValue(),
+                loginSuccessCookies.get("NABLARCH_SID").getPath(),
+                loginSuccessCookies.get("NABLARCH_SID").getDomain());
+        Cookie jsessionid = new Cookie(loginSuccessCookies.get("JSESSIONID").getName(),
+                loginSuccessCookies.get("JSESSIONID").getValue(),
+                loginSuccessCookies.get("JSESSIONID").getPath(),
+                loginSuccessCookies.get("JSESSIONID").getDomain());
         
         // 検索
         // 全件検索
-        System.out.print(makeDataString(ItemClient.getItems()));
+        System.out.println("start getitem(expect successful get data)");
+        System.out.print(makeDataString(ItemClient.getItems(nablarchSid, jsessionid)));
     }
 
 
@@ -50,10 +67,10 @@ public class ItemClient {
      * ログイン処理を行う
      * @return セッションクッキーを含むレスポンス。
      */
-    private static Response login() {
+    private static Response login(String id, String password) {
         LoginForm form =new LoginForm();
-        form.setLoginId("10000001");
-        form.setUserPassword("pass123-");
+        form.setLoginId(id);
+        form.setUserPassword(password);
         return ClientBuilder.newClient()
                 .target("http://localhost:9080/login")
                 .request(MediaType.APPLICATION_JSON)
@@ -65,12 +82,18 @@ public class ItemClient {
      * HTTP GETメソッドを使用したクライアント操作を行う。
      * @return 商品情報リスト
      */
-    private static List<Item> getItems() {
+    private static List<Item> getItems(Cookie nablarchSid, Cookie jsessionid) {
         Invocation.Builder invocationBuilder = ClientBuilder.newClient()
                 .target(targetUrl)
-                .request(MediaType.APPLICATION_JSON)
-                .cookie(nablarchSid)
-                .cookie(jsessionid);
+                .request(MediaType.APPLICATION_JSON);
+
+        if (nablarchSid != null) {
+            invocationBuilder.cookie(nablarchSid);
+        }
+        if (jsessionid != null) {
+            invocationBuilder.cookie(jsessionid);
+        }
+
         return invocationBuilder.get(new GenericType<List<Item>>() {});
     }
     
