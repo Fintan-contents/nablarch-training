@@ -1,0 +1,6 @@
+<routes>
+  <get    path="items" to="Item#find" />
+  <post   path="items" to="Item#save" />
+  <put    path="items" to="Item#update" />
+  <post   path="login" to="Authentication#login" />
+</routes>
