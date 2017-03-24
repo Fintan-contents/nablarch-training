@@ -5,12 +5,12 @@
   <parent>
     <groupId>com.nablarch.archetype</groupId>
     <artifactId>nablarch-archetype-parent</artifactId>
-    <version>5u8</version>
+    <version>5u6</version>
   </parent>
 
   <groupId>nablarch.handson</groupId>
   <artifactId>nablarch-handson-app-web</artifactId>
-  <version>1.2.0</version>
+  <version>1.1.0</version>
   <packaging>war</packaging>
 
   <properties>
@@ -73,7 +73,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>5u8</version>
+        <version>5u6</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -192,7 +192,7 @@
     <dependency>
       <groupId>nablarch.handson</groupId>
       <artifactId>nablarch-handson-app-entity</artifactId>
-      <version>1.2.0</version>
+      <version>1.1.0</version>
     </dependency>
 
   </dependencies>
