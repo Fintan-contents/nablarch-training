@@ -17,6 +17,7 @@
     <!-- 環境設定 -->
     <config-file file="env.config" />
     <config-file file="common.config" />
+    <config-file file="base-path.config" />
 
     <!-- データベース設定-->
     <import file="nablarch/batch/db-for-batch.xml" />

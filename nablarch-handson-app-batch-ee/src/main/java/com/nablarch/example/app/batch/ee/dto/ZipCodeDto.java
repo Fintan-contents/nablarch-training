@@ -14,6 +14,8 @@ import nablarch.etl.WorkItem;
 
 /**
  * 郵便番号。
+ *
+ * @author Nabu Rakutaro
  */
 @Entity
 @Table(name = "ZIP_CODE_DATA_WORK")
@@ -36,6 +38,7 @@ import nablarch.etl.WorkItem;
         "updateData",
         "updateDataReason" })
 @CsvFormat(
+	emptyToNull = false,
     fieldSeparator = ',',
     lineSeparator = "\r\n",
     quote = '"',

@@ -6,12 +6,12 @@
   <parent>
     <groupId>com.nablarch.archetype</groupId>
     <artifactId>nablarch-archetype-parent</artifactId>
-    <version>5u6</version>
+    <version>5u9</version>
   </parent>
 
   <groupId>nablarch.handson</groupId>
   <artifactId>nablarch-handson-app-entity</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
 
 
   <!-- DB接続設定とビルド設定 -->
@@ -39,8 +39,7 @@
     <dba.gsp-target-dir>gsp-target</dba.gsp-target-dir>
     <dba.entity.javaFileDestDir>${dba.gsp-target-dir}/generated-sources/entity</dba.entity.javaFileDestDir>
 
-    <!-- TODO: 利用するJavaのバージョンを設定してください。 -->
-    <java.version>1.7</java.version>
+    <java.version>1.8</java.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -85,7 +84,7 @@
           <configuration>
             <archive>
               <manifestEntries>
-                <Target-Environment>${envName}</Target-Environment>
+                <Target-Environment>開発環境</Target-Environment>
               </manifestEntries>
             </archive>
           </configuration>
@@ -191,7 +190,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>5u6</version>
+        <version>5u9</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
