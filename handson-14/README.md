@@ -123,7 +123,7 @@ XMLに定義するBatchletや指定するクラスは、すべてETLモジュー
     - Chunkを定義してください。item-countは3000件としてください。
         - reader、writerを指定してください。
 
-### JSON(ETL用設定ファイル)部分([etl.json](./src/main/resources/META-INF/batch-jobs/etl-zip-code-csv-to-db-chunk.xml))
+### JSON(ETL用設定ファイル)部分([etl-zip-code-csv-to-db-chunk.json](./src/main/resources/META-INF/etl-config/etl-zip-code-csv-to-db-chunk.json))
 
 コメント部分を、コメントの内容と下表を参考に書き換えてください。
 
@@ -162,13 +162,13 @@ XMLに定義するBatchletや指定するクラスは、すべてETLモジュー
 
     $cd handson-14
     $mvn clean package
-    $mvn dependency:copy-dependencies -DoutputDirectory=target/dependency
+    $mvn dependency:copy-dependencies
 
 ここまでの操作で、targetディレクトリにjarが作成され、target/dependencyディレクトリに、関係するjarが格納されます。
 
 <チェックアウトディレクトリ>/handson-14 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
-    java -cp ./target/*;./target/dependency/* com.nablarch.example.app.main.ExampleMain etl-zip-code-csv-to-db-chunk
+    java -cp ./target/*;./target/dependency/* nablarch.fw.batch.ee.Main etl-zip-code-csv-to-db-chunk
 
 ### バッチ実行結果の確認
 
