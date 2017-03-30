@@ -9,6 +9,8 @@ import javax.inject.Named;
 
 /**
  * 賞与計算を行う{@link ItemProcessor}実装クラス。
+ *
+ * @author Nabu Rakutaro
  */
 @Dependent
 @Named
@@ -31,7 +33,7 @@ public class BonusCalculateProcessor implements ItemProcessor {
      * @param form 社員情報Form
      * @return 賞与
      */
-    private Long calculateBonus(EmployeeForm form) {
+    private static Long calculateBonus(EmployeeForm form) {
         if (form.getFixedBonus() == null) {
             return form.getBasicSalary() * form.getBonusMagnification() / 100;
         } else {

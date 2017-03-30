@@ -6,19 +6,18 @@
   <parent>
     <groupId>com.nablarch.archetype</groupId>
     <artifactId>nablarch-archetype-parent</artifactId>
-    <version>5u6</version>
+    <version>5u9</version>
   </parent>
 
   <groupId>nablarch.handson</groupId>
   <artifactId>nablarch-handson12</artifactId>
-  <version>1.1.0</version>
-
+  <version>1.2.0</version>
 
   <!-- ビルド設定 -->
   <properties>
 
     <!-- 利用するJavaのバージョン -->
-    <java.version>1.7</java.version>
+    <java.version>1.8</java.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -58,48 +57,6 @@
           <useManifestOnlyJar>false</useManifestOnlyJar>
         </configuration>
       </plugin>
-      <!-- ant経由で各種ツールを起動する。実行対象のツールは、
-           Findbugs、使用許可API一覧作成ツールである -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-      </plugin>
-      <!-- Check Style実行 -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <configuration>
-          <excludes>
-            **/com/nablarch/example/app/entity/*.java
-          </excludes>
-        </configuration>
-      </plugin>
-      <!-- findBugs -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>verify</phase>
-            <goals>
-              <goal>findbugs</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <xmlOutput>true</xmlOutput>
-          <excludeFilterFile>${findbugs.config.filter.production}</excludeFilterFile>
-          <jvmArgs>-Dnablarch-findbugs-config=${findbugs.config.published.production}</jvmArgs>
-          <plugins>
-            <plugin>
-              <groupId>com.nablarch.framework</groupId>
-              <artifactId>nablarch-testing</artifactId>
-              <!-- プラグインに内包するモジュールはバージョン指定必須 -->
-              <version>1.0.6</version>
-            </plugin>
-          </plugins>
-        </configuration>
-      </plugin>
       <!-- カバレッジ取得 -->
       <plugin>
         <groupId>org.jacoco</groupId>
@@ -112,7 +69,14 @@
           </excludes>
         </configuration>
       </plugin>
-
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.9</version>
+        <configuration>
+          <includeScope>runtime</includeScope>
+        </configuration>
+      </plugin>
     </plugins>
 
     <pluginManagement>
@@ -353,7 +317,7 @@
     <dependency>
       <groupId>nablarch.handson</groupId>
       <artifactId>nablarch-handson-app-entity</artifactId>
-      <version>1.1.0</version>
+      <version>1.2.0</version>
     </dependency>
 
   </dependencies>
@@ -363,7 +327,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>5u6</version>
+        <version>5u9</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
