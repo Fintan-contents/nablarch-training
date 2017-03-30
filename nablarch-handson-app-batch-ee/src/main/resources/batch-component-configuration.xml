@@ -44,7 +44,6 @@
 
     <!-- ItemWriteListener -->
     <list name="itemWriteListeners">
-        <component class="nablarch.fw.batch.ee.listener.chunk.ChunkProgressLogListener" />
         <component class="nablarch.fw.batch.ee.listener.chunk.ItemWriteTransactionManagementListener" />
     </list>
 
