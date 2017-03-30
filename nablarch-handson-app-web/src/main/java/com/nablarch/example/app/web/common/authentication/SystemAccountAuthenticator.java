@@ -11,7 +11,6 @@ import nablarch.core.db.statement.SqlPStatement;
 import nablarch.core.db.transaction.SimpleDbTransactionExecutor;
 import nablarch.core.db.transaction.SimpleDbTransactionManager;
 import nablarch.core.util.DateUtil;
-import nablarch.core.util.annotation.Published;
 
 import com.nablarch.example.app.entity.SystemAccount;
 import com.nablarch.example.app.web.common.authentication.encrypt.PasswordEncryptor;
@@ -34,7 +33,6 @@ import com.nablarch.example.app.web.common.authentication.exception.UserIdLocked
  *
  * @author Nabu Rakutaro
  */
-@Published(tag = "architect")
 public class SystemAccountAuthenticator implements PasswordAuthenticator {
 
     /** ユーザIDをロックする認証失敗回数 */
@@ -51,7 +49,7 @@ public class SystemAccountAuthenticator implements PasswordAuthenticator {
 
     /** デフォルトコンストラクタ。 */
     public SystemAccountAuthenticator() {
-        setFailedCountToLock(0);
+        failedCountToLock = 0;
     }
 
     /**
@@ -91,6 +89,7 @@ public class SystemAccountAuthenticator implements PasswordAuthenticator {
      * @throws UserIdLockedException ユーザIDがロックされている場合。この例外がスローされる場合は、まだ認証を実施していない。
      * @throws PasswordExpiredException パスワードが有効期限切れの場合。この例外がスローされる場合は、古いパスワードによる認証に成功している。
      */
+    @Override
     public void authenticate(final String userId, final String password)
         throws AuthenticationFailedException, UserIdLockedException, PasswordExpiredException {
 
@@ -105,7 +104,7 @@ public class SystemAccountAuthenticator implements PasswordAuthenticator {
             account = UniversalDao.findBySqlFile(
                     SystemAccount.class,
                     "FIND_SYSTEM_ACCOUNT", new Object[]{userId, sysDate});
-        } catch (NoDataException e) {
+        } catch (NoDataException ignored) {
             // ユーザIDに一致するユーザーが見つからない場合
             throw new AuthenticationFailedException(userId);
         }
@@ -141,8 +140,9 @@ public class SystemAccountAuthenticator implements PasswordAuthenticator {
             // ログインの連続失敗回数を記録する場合、
             // 現在の失敗回数に 1 を加算する。
             // 記録しない場合は現在の失敗回数のままとする。（変更しない）
+            @SuppressWarnings("NumericCastThatLosesPrecision")
             short failedCount = isChecksFailedCount()
-                    ? (short) (account.getFailedCount() + 1)
+                    ? (short) (account.getFailedCount() + Short.valueOf("1"))
                     : account.getFailedCount();
             updateAuthenticationFailed(account.getUserId(), failedCount);
             throw new AuthenticationFailedException(String.valueOf(account.getUserId()));
@@ -153,7 +153,7 @@ public class SystemAccountAuthenticator implements PasswordAuthenticator {
 
         // パスワード有効期限切れの判定
         // パスワードの有効期限が切れていたら例外を送出する。
-        if (expiredPassword(account, businessDate)) {
+        if (isExpiredPassword(account, businessDate)) {
 
             throw new PasswordExpiredException(
                     String.valueOf(account.getUserId()),
@@ -169,7 +169,7 @@ public class SystemAccountAuthenticator implements PasswordAuthenticator {
      * @param businessDate 判定基準日（yyyyMMdd）
      * @return パスワードが有効期限切れの場合　true
      */
-    private boolean expiredPassword(SystemAccount account, Date businessDate) {
+    private boolean isExpiredPassword(SystemAccount account, Date businessDate) {
         return businessDate.compareTo(account.getPasswordExpirationDate()) > 0;
     }
 

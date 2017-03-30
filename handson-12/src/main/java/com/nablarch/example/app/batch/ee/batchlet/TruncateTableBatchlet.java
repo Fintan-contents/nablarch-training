@@ -5,15 +5,15 @@ import nablarch.core.db.connection.DbConnectionContext;
 import nablarch.core.db.statement.SqlPStatement;
 
 import javax.batch.api.AbstractBatchlet;
-import javax.batch.api.BatchProperty;
 import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
  * テーブルをTRUNCATEするBatchlet。
  * <p/>
  * TRUNCATE対象のテーブルはBatchletの「tableName」プロパティで指定します。
+ *
+ * @author Nabu Rakutaro
  */
 @Dependent
 @Named

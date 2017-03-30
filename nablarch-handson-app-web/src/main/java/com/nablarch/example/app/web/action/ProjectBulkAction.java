@@ -1,8 +1,12 @@
 package com.nablarch.example.app.web.action;
 
+import java.util.List;
+import java.util.Objects;
+
 import com.nablarch.example.app.web.common.code.ProjectSortKey;
 import com.nablarch.example.app.web.dto.ProjectListDto;
 import com.nablarch.example.app.web.form.ProjectBulkForm;
+
 import nablarch.common.dao.EntityList;
 import nablarch.common.dao.UniversalDao;
 import nablarch.common.web.interceptor.InjectForm;
@@ -10,7 +14,6 @@ import nablarch.common.web.session.SessionUtil;
 import nablarch.common.web.token.OnDoubleSubmission;
 import nablarch.core.beans.BeanUtil;
 import nablarch.core.message.ApplicationException;
-import nablarch.core.util.annotation.Published;
 import nablarch.fw.ExecutionContext;
 import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
@@ -27,7 +30,6 @@ import com.nablarch.example.app.web.form.ProjectSearchForm;
  *
  * @author Nabu Rakutaro
  */
-@Published
 public class ProjectBulkAction {
 
     /**
@@ -39,7 +41,8 @@ public class ProjectBulkAction {
      */
     public HttpResponse index(HttpRequest request, ExecutionContext context) {
 
-        initialize(request, context);
+        SessionUtil.delete(context, "projectSearchDto");
+        SessionUtil.delete(context, "projectListDto");
 
         // 初期表示時の検索条件を設定
         ProjectSearchForm searchForm = new ProjectSearchForm();
@@ -67,7 +70,7 @@ public class ProjectBulkAction {
      * @param context 実行コンテキスト
      * @return HTTPレスポンス
      */
-    @InjectForm(form = ProjectSearchForm.class, prefix = "searchForm",  name = "searchForm")
+    @InjectForm(form = ProjectSearchForm.class, prefix = "searchForm", name = "searchForm")
     @OnError(type = ApplicationException.class, path = "forward://initialize")
     public HttpResponse list(HttpRequest request, ExecutionContext context) {
 
@@ -121,15 +124,14 @@ public class ProjectBulkAction {
         ProjectListDto dto = SessionUtil.get(context, "projectListDto");
 
         // 更新内容をセッションに上書き
-        for (Project project : dto.getProjectList()) {
-            for (InnerProjectForm innerForm : form.getProjectList()) {
-                if (innerForm.getProjectId().equals(project.getProjectId().toString())) {
-                    BeanUtil.copy(innerForm, project);
-                    break;
-                }
-            }
-        }
-
+        final List<InnerProjectForm> innerForms = form.getProjectList();
+        dto.getProjectList()
+           .forEach(project -> innerForms.stream()
+                                         .filter(innerForm ->
+                                                 Objects.equals(innerForm.getProjectId(), project.getProjectId()
+                                                                                                 .toString()))
+                                         .findFirst()
+                                         .ifPresent(innerForm -> BeanUtil.copy(innerForm, project)));
         return new HttpResponse("/WEB-INF/view/projectBulk/confirmOfUpdate.jsp");
     }
 
@@ -159,7 +161,8 @@ public class ProjectBulkAction {
     public HttpResponse update(HttpRequest request, ExecutionContext context) {
 
         ProjectListDto projectListDto = SessionUtil.get(context, "projectListDto");
-        projectListDto.getProjectList().forEach(UniversalDao::update);
+        projectListDto.getProjectList()
+                      .forEach(UniversalDao::update);
 
         return new HttpResponse("redirect://completeOfUpdate");
     }
@@ -172,7 +175,8 @@ public class ProjectBulkAction {
      * @return HTTPレスポンス
      */
     public HttpResponse completeOfUpdate(HttpRequest request, ExecutionContext context) {
-        initialize(request, context);
+        SessionUtil.delete(context, "projectSearchDto");
+        SessionUtil.delete(context, "projectListDto");
         return new HttpResponse("/WEB-INF/view/projectBulk/completeOfUpdate.jsp");
     }
 

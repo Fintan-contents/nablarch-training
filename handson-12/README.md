@@ -100,13 +100,13 @@ ZIP_CODE_DATAテーブル と ZIP_CODE_DATA_WORKテーブル のデータを削�
 
     $cd handson-12
     $mvn clean package
-    $mvn dependency:copy-dependencies -DoutputDirectory=target/dependency
+    $mvn dependency:copy-dependencies
 
 ここまでの操作で、targetディレクトリにjarが作成され、target/dependencyディレクトリに、関係するjarが格納されます。
 
 <チェックアウトディレクトリ>/handson-12 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
-    java -cp ./target/*;./target/dependency/* com.nablarch.example.app.main.ExampleMain zip-code-truncate-table
+    java -cp ./target/*;./target/dependency/* nablarch.fw.batch.ee.Main zip-code-truncate-table
 
 ### バッチ実行結果の確認
 
