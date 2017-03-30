@@ -1,11 +1,10 @@
 package com.nablarch.example.app.web.common.code;
 
-import nablarch.core.util.annotation.Published;
-
 /**
  * 並び順を定義したEnum。
+ * 
+ * @author Nabu Rakutaro
  */
-@Published
 public enum SortOrder implements CodeEnum {
     /** 昇順 */
     ASC("asc", "昇順"),
@@ -13,9 +12,9 @@ public enum SortOrder implements CodeEnum {
     DESC("desc", "降順");
 
     /** 並び順のラベル */
-    private String label;
+    private final String label;
     /** 並び順のコード */
-    private String code;
+    private final String code;
 
     /**
      * コンストラクタ。

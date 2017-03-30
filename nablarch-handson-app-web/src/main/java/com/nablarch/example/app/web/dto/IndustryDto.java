@@ -1,18 +1,11 @@
 package com.nablarch.example.app.web.dto;
 
 /**
- * 顧客検索機能のDto。
+ * 業種情報を保持するDtoクラス。
  *
  * @author Nabu Rakutaro
- *
  */
-public class ClientDto {
-
-    /** 顧客ID */
-    private Integer clientId;
-
-    /** 顧客名 */
-    private String clientName;
+public class IndustryDto {
 
     /** 業種コード */
     private String industryCode;
@@ -20,41 +13,9 @@ public class ClientDto {
     /** 業種名 */
     private String industryName;
 
-
-    /**
-     * 顧客IDを取得する。
-     * @return 顧客ID
-     */
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    /**
-     * 顧客IDを設定する。
-     * @param clientId 顧客ID
-     */
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
-    }
-
-    /**
-     * 顧客名を取得する。
-     * @return 顧客名
-     */
-    public String getClientName() {
-        return clientName;
-    }
-
-    /**
-     * 顧客名を設定する。
-     * @param clientName 顧客名
-     */
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
     /**
      * 業種コードを取得する。
+     *
      * @return 業種コード
      */
     public String getIndustryCode() {
@@ -63,6 +24,7 @@ public class ClientDto {
 
     /**
      * 業種コードを設定する。
+     *
      * @param industryCode 業種コード
      */
     public void setIndustryCode(String industryCode) {
@@ -70,7 +32,7 @@ public class ClientDto {
     }
 
     /**
-     * 業種名を返する。
+     * 業種名を取得する。
      *
      * @return 業種名
      */
