@@ -1,18 +1,14 @@
 package com.nablarch.example.app.web.form;
 
-import nablarch.core.util.annotation.Published;
-
 import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * プロジェクト一括更新フォーム
  *
  * @author Nabu Rakutaro
  */
-@Published
 public class ProjectBulkForm implements Serializable {
 
     /** シリアルバージョンUID */
@@ -20,14 +16,14 @@ public class ProjectBulkForm implements Serializable {
 
     /** プロジェクト情報のリスト */
     @Valid
-    private List<InnerProjectForm> projectList = new ArrayList<>();
+    private ArrayList<InnerProjectForm> projectList = new ArrayList<>();
 
     /**
      * プロジェクト情報のリストを返す。
      *
      * @return プロジェクト情報のリスト
      */
-    public List<InnerProjectForm> getProjectList() {
+    public ArrayList<InnerProjectForm> getProjectList() {
         return projectList;
     }
 
@@ -36,7 +32,7 @@ public class ProjectBulkForm implements Serializable {
      *
      * @param projectList 設定したいプロジェクト情報のリスト
      */
-    public void setProjectList(List<InnerProjectForm> projectList) {
+    public void setProjectList(ArrayList<InnerProjectForm> projectList) {
         this.projectList = projectList;
     }
 }
