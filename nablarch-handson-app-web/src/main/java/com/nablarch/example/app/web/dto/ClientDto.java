@@ -1,15 +1,11 @@
 package com.nablarch.example.app.web.dto;
 
-import nablarch.core.util.annotation.Published;
-
-import javax.persistence.Column;
 /**
  * 顧客検索機能のDto。
  *
  * @author Nabu Rakutaro
  *
  */
-@Published
 public class ClientDto {
 
     /** 顧客ID */
@@ -78,7 +74,6 @@ public class ClientDto {
      *
      * @return 業種名
      */
-    @Column(name = "INDUSTRY_NAME", length = 50, nullable = true, unique = false)
     public String getIndustryName() {
         return industryName;
     }
