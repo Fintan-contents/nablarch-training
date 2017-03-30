@@ -114,13 +114,13 @@ JSR352に準拠したバッチアプリケーションには、BatchletとChunk�
 
     $cd handson-13
     $mvn clean package
-    $mvn dependency:copy-dependencies -DoutputDirectory=target/dependency
+    $mvn dependency:copy-dependencies
 
 ここまでの操作で、targetディレクトリにjarが作成され、target/dependencyディレクトリに、関係するjarが格納されます。
 
 <チェックアウトディレクトリ>/handson-13 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
-    java -cp ./target/*;./target/dependency/* com.nablarch.example.app.main.ExampleMain bonus-calculate
+    java -cp ./target/*;./target/dependency/* nablarch.fw.batch.ee.Main bonus-calculate
 
 ### バッチ実行結果の確認
 

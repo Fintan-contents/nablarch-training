@@ -5,7 +5,10 @@ import nablarch.core.validation.ee.SystemChar;
 
 /**
  * ドメインバリデーション用のBeanクラス。
+ *
+ * @author Nabu Rakutaro
  */
+ @SuppressWarnings("all")
 public class DomainBean {
 
     /** 公共団体コード */
