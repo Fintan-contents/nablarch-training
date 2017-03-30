@@ -1,19 +1,21 @@
 package com.nablarch.example.app.web.dto;
 
-import com.nablarch.example.app.entity.core.validation.validator.DateRangeValidator;
-import nablarch.common.databind.LineNumber;
-import nablarch.common.databind.csv.Csv;
-import nablarch.common.databind.csv.CsvDataBindConfig;
-import nablarch.common.databind.csv.CsvFormat;
-import nablarch.core.util.StringUtil;
-import nablarch.core.util.annotation.Published;
-import nablarch.core.validation.ee.Domain;
-import nablarch.core.validation.ee.Required;
-
-import javax.validation.constraints.AssertTrue;
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.validation.constraints.AssertTrue;
+
+import nablarch.common.databind.LineNumber;
+import nablarch.common.databind.csv.Csv;
+import nablarch.common.databind.csv.Csv.CsvType;
+import nablarch.common.databind.csv.CsvDataBindConfig.QuoteMode;
+import nablarch.common.databind.csv.CsvFormat;
+import nablarch.core.util.StringUtil;
+import nablarch.core.validation.ee.Domain;
+import nablarch.core.validation.ee.Required;
+
+import com.nablarch.example.app.entity.core.validation.validator.DateRangeValidator;
 
 /**
  * CSV形式でアップロードされたプロジェクト情報の一行分のデータをバインドするBeanクラス。
@@ -29,11 +31,10 @@ import java.util.regex.Pattern;
                 "projectManager", "projectLeader", "clientId",
                 "clientName", "projectStartDate", "projectEndDate",
                 "note", "sales", "costOfGoodsSold", "sga", "allocationOfCorpExpenses" },
-        type = Csv.CsvType.CUSTOM)
+        type = CsvType.CUSTOM)
 @CsvFormat(charset = "Shift_JIS", fieldSeparator = ',',
         ignoreEmptyLine = true, lineSeparator = "\r\n", quote = '"',
-        quoteMode = CsvDataBindConfig.QuoteMode.NORMAL, requiredHeader = true)
-@Published
+        quoteMode = QuoteMode.NORMAL, requiredHeader = true, emptyToNull = true)
 public class ProjectUploadDto implements Serializable {
 
     /** シリアルバージョンUID */
@@ -230,7 +231,7 @@ public class ProjectUploadDto implements Serializable {
      * @param projectStartDate プロジェクト開始日
      */
     public void setProjectStartDate(String projectStartDate) {
-        this.projectStartDate = projectStartDate.replace("/", "");
+        this.projectStartDate = projectStartDate;
     }
 
     /**
@@ -246,7 +247,7 @@ public class ProjectUploadDto implements Serializable {
      * @param projectEndDate プロジェクト終了日
      */
     public void setProjectEndDate(String projectEndDate) {
-        this.projectEndDate = projectEndDate.replace("/", "");
+        this.projectEndDate = projectEndDate;
     }
 
     /**

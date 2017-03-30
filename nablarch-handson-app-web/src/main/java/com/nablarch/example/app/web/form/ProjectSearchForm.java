@@ -1,13 +1,14 @@
 package com.nablarch.example.app.web.form;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import nablarch.core.util.StringUtil;
-import nablarch.core.util.annotation.Published;
 import nablarch.core.validation.ee.Domain;
 
 /**
@@ -15,7 +16,6 @@ import nablarch.core.validation.ee.Domain;
  *
  * @author Nabu Rakutaro
  */
-@Published
 public class ProjectSearchForm extends SearchFormBase implements Serializable {
 
     /** シリアルバージョンUID */
@@ -66,21 +66,17 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
     private String sortDir;
 
     /**
-     * プロジェクト検索結果を受け取るためのフォーム
-     */
-    public ProjectSearchForm() {
-    }
-
-    /**
      * 顧客IDを取得する。
+     *
      * @return 顧客ID
      */
     public String getClientId() {
-        return this.clientId;
+        return clientId;
     }
 
     /**
      * 顧客IDを設定する。
+     *
      * @param clientId 顧客ID
      */
     public void setClientId(String clientId) {
@@ -89,14 +85,16 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
 
     /**
      * 顧客名を取得する。
+     *
      * @return 顧客名
      */
     public String getClientName() {
-        return this.clientName;
+        return clientName;
     }
 
     /**
      * 顧客名を設定する。
+     *
      * @param clientName 顧客名
      */
     public void setClientName(String clientName) {
@@ -105,14 +103,16 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
 
     /**
      * プロジェクト名を取得する。
+     *
      * @return プロジェクト名
      */
     public String getProjectName() {
-        return this.projectName;
+        return projectName;
     }
 
     /**
      * プロジェクト名を設定する。
+     *
      * @param projectName プロジェクト名
      */
     public void setProjectName(String projectName) {
@@ -121,14 +121,16 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
 
     /**
      * プロジェクト種別を取得する。
+     *
      * @return プロジェクト種別
      */
     public String getProjectType() {
-        return this.projectType;
+        return projectType;
     }
 
     /**
      * プロジェクト種別を設定する。
+     *
      * @param projectType プロジェクト種別
      */
     public void setProjectType(String projectType) {
@@ -137,6 +139,7 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
 
     /**
      * プロジェクト分類を取得する。
+     *
      * @return プロジェクト分類
      */
     public String[] getProjectClass() {
@@ -144,17 +147,14 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
         if (projectClass == null) {
             return null;
         }
-
-        List<String> stringList = new ArrayList<String>();
-        for (ProjectClass bean: projectClass) {
-            stringList.add(bean.getProjectClass());
-        }
-
-        return stringList.toArray(new String[stringList.size()]);
+        return projectClass.stream()
+                    .map(ProjectClass::getProjectClass)
+                    .toArray(String[]::new);
     }
 
     /**
      * プロジェクト分類を設定する。
+     *
      * @param projectClass プロジェクト分類
      */
     public void setProjectClass(String[] projectClass) {
@@ -164,22 +164,16 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
             return;
         }
 
-        boolean hasValue = false;
+        final List<ProjectClass> projectClassList = Arrays.stream(projectClass)
+                                                          .filter(StringUtil::hasValue)
+                                                          .map(p -> {
+                                                              ProjectClass bean = new ProjectClass();
+                                                              bean.setProjectClass(p);
+                                                              return bean;
+                                                          })
+                                                          .collect(Collectors.toList());
 
-        this.projectClass = new ArrayList<ProjectSearchForm.ProjectClass>();
-        for (String project : projectClass) {
-            if (StringUtil.hasValue(project)) {
-                hasValue = true;
-            }
-            ProjectClass bean = new ProjectClass();
-            bean.setProjectClass(project);
-            this.projectClass.add(bean);
-        }
-
-        // 配列内に空文字のみの場合はnullを設定(検索条件に空文字が設定されるのを回避)
-        if (!hasValue) {
-            this.projectClass = null;
-        }
+        this.projectClass = projectClassList.isEmpty() ? null : projectClassList;
     }
 
     /**
@@ -188,7 +182,7 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
      * @return プロジェクト開始日（FROM）
      */
     public String getProjectStartDateBegin() {
-        return this.projectStartDateBegin;
+        return projectStartDateBegin;
     }
 
     /**
@@ -206,7 +200,7 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
      * @return プロジェクト開始日（TO）
      */
     public String getProjectStartDateEnd() {
-        return this.projectStartDateEnd;
+        return projectStartDateEnd;
     }
 
     /**
@@ -224,7 +218,7 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
      * @return プロジェクト終了日（FROM）
      */
     public String getProjectEndDateBegin() {
-        return this.projectEndDateBegin;
+        return projectEndDateBegin;
     }
 
     /**
@@ -242,7 +236,7 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
      * @return プロジェクト終了日（TO）
      */
     public String getProjectEndDateEnd() {
-        return this.projectEndDateEnd;
+        return projectEndDateEnd;
     }
 
     /**
@@ -256,14 +250,16 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
 
     /**
      * 並び順項目を取得する。
+     *
      * @return 並び順項目
      */
     public String getSortKey() {
-        return this.sortKey;
+        return sortKey;
     }
 
     /**
      * 並び順項目を設定する。
+     *
      * @param sortKey 並び順項目
      */
     public void setSortKey(String sortKey) {
@@ -279,18 +275,8 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
     public String getSortId() {
         String sortId = "idAsc";
         if (StringUtil.hasValue(sortKey) && StringUtil.hasValue(sortDir)) {
-            if ("id".equals(sortKey)) {
-                sortId = "id";
-            } else if ("name".equals(sortKey)) {
-                sortId = "name";
-            } else if ("sdate".equals(sortKey)) {
-                sortId = "startDate";
-            } else if ("edate".equals(sortKey)) {
-                sortId = "endDate";
-            } else {
-                sortId = "id";
-            }
-            sortId += sortDir.equals("desc") ? "Desc" : "Asc";
+            sortId = sortKey;
+            sortId += Objects.equals(sortDir, "desc") ? "Desc" : "Asc";
         }
         return sortId;
     }
@@ -301,33 +287,33 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
      * @param sortId ソートID
      */
     public void setSortId(String sortId) {
-        this.sortDir = "asc";
-        this.sortKey = "name";
+        sortDir = "asc";
+        sortKey = "name";
 
         if (StringUtil.hasValue(sortId)) {
-            if (sortId.startsWith("id")) {
-                this.sortKey = "id";
-            } else if (sortId.startsWith("name")) {
-                this.sortKey = "name";
-            } else if (sortId.startsWith("startDate")) {
-                this.sortKey = "sdate";
-            } else if (sortId.startsWith("sortKey")) {
-                this.sortKey = "edate";
+
+            if (sortId.endsWith("Desc")) {
+                sortDir = "desc";
+                sortKey = sortId.substring(0, sortId.length() - 4);
+            } else {
+                sortDir = "asc";
+                sortKey = sortId.substring(0, sortId.length() - 3);
             }
-            this.sortDir = sortId.endsWith("Desc") ? "desc" : "asc";
         }
     }
 
     /**
      * 並び順を取得する。
+     *
      * @return 並び順
      */
     public String getSortDir() {
-        return this.sortDir;
+        return sortDir;
     }
 
     /**
      * 並び順を設定する。
+     *
      * @param sortDir 並び順
      */
     public void setSortDir(String sortDir) {
@@ -336,9 +322,10 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
 
     /**
      * プロジェクト分類Beanクラス。
+     *
      * @author Nabu Rakutaro
      */
-    static class ProjectClass implements Serializable {
+    private static class ProjectClass implements Serializable {
 
         /** シリアルバージョンUID */
         private static final long serialVersionUID = 1L;
@@ -351,6 +338,7 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
 
         /**
          * プロジェクト分類を取得する。
+         *
          * @return プロジェクト分類
          */
         public String getProjectClass() {
@@ -359,6 +347,7 @@ public class ProjectSearchForm extends SearchFormBase implements Serializable {
 
         /**
          * プロジェクト分類を設定する。
+         *
          * @param projectClass プロジェクト分類
          */
         public void setProjectClass(String projectClass) {

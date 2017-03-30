@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.validation.constraints.AssertTrue;
 
 import com.nablarch.example.app.entity.core.validation.validator.DateRangeValidator;
-import nablarch.core.util.StringUtil;
-import nablarch.core.util.annotation.Published;
 import nablarch.core.validation.ee.Domain;
 import nablarch.core.validation.ee.Required;
 
@@ -15,7 +13,6 @@ import nablarch.core.validation.ee.Required;
  *
  * @author Nabu Rakutaro
  */
-@Published
 public class InnerProjectForm implements Serializable {
 
     /** シリアルバージョンUID */
@@ -68,7 +65,7 @@ public class InnerProjectForm implements Serializable {
      * @return プロジェクト名
      */
     public String getProjectName() {
-        return this.projectName;
+        return projectName;
     }
 
     /**
@@ -77,7 +74,7 @@ public class InnerProjectForm implements Serializable {
      * @return プロジェクト種別
      */
     public String getProjectType() {
-        return this.projectType;
+        return projectType;
     }
 
     /**
@@ -86,7 +83,7 @@ public class InnerProjectForm implements Serializable {
      * @return プロジェクト開始日文字列
      */
     public String getProjectStartDate() {
-        return this.projectStartDate;
+        return projectStartDate;
     }
 
     /**
@@ -95,7 +92,7 @@ public class InnerProjectForm implements Serializable {
      * @return プロジェクト終了日文字列
      */
     public String getProjectEndDate() {
-        return this.projectEndDate;
+        return projectEndDate;
     }
 
     /**
@@ -124,7 +121,7 @@ public class InnerProjectForm implements Serializable {
      *
      */
     public void setProjectStartDate(String projectStartDate) {
-        this.projectStartDate = StringUtil.isNullOrEmpty(projectStartDate) ? null : projectStartDate.replace("/", "");
+        this.projectStartDate = projectStartDate;
     }
 
     /**
@@ -134,7 +131,7 @@ public class InnerProjectForm implements Serializable {
      *
      */
     public void setProjectEndDate(String projectEndDate) {
-        this.projectEndDate = StringUtil.isNullOrEmpty(projectEndDate) ? null : projectEndDate.replace("/", "");
+        this.projectEndDate = projectEndDate;
     }
 
     /**
