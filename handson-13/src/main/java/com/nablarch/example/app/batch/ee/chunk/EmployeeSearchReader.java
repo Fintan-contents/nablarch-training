@@ -13,6 +13,8 @@ import nablarch.common.dao.DeferredEntityList;
 
 /**
  * 社員情報をDBから取得する{@link javax.batch.api.chunk.ItemReader}実装クラス。
+ *
+ * @author Nabu Rakutaro
  */
 @Dependent
 @Named
