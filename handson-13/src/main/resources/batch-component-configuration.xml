@@ -17,6 +17,7 @@
     <!-- 環境設定 -->
     <config-file file="env.config" />
     <config-file file="common.config" />
+    <config-file file="base-path.config" />
 
     <!-- データベース設定-->
     <import file="nablarch/batch/db-for-batch.xml" />
@@ -43,7 +44,6 @@
 
     <!-- ItemWriteListener -->
     <list name="itemWriteListeners">
-        <component class="nablarch.fw.batch.ee.listener.chunk.ChunkProgressLogListener" />
         <component class="nablarch.fw.batch.ee.listener.chunk.ItemWriteTransactionManagementListener" />
     </list>
 

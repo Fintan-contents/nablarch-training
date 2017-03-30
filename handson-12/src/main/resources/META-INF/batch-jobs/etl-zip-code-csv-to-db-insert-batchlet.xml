@@ -5,6 +5,9 @@
   </listeners>
 
   <step id="extract" next="validation">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+    </listeners>
     <batchlet ref="sqlLoaderBatchlet" />
   </step>
 
