@@ -1,25 +1,24 @@
 package com.nablarch.example.app.web.common.code;
 
-import nablarch.core.util.annotation.Published;
-
 /**
  * プロジェクトのソートキーを定義したEnum。
+ * 
+ * @author Nabu Rakutaro
  */
-@Published
 public enum ProjectSortKey implements CodeEnum {
     /** プロジェクトID */
     ID("id", "プロジェクトＩＤ"),
     /** プロジェクト名 */
     NAME("name", "プロジェクト名"),
     /** プロジェクト開始日 */
-    SDATE("sdate", "プロジェクト開始日"),
+    START_DATE("startDate", "プロジェクト開始日"),
     /** プロジェクト終了日 */
-    EDATE("edate", "プロジェクト終了日");
+    END_DATE("endDate", "プロジェクト終了日");
 
     /** ソートキーのラベル */
-    private String label;
+    private final String label;
     /** ソートキーのコード */
-    private String code;
+    private final String code;
 
     /**
      * コンストラクタ。

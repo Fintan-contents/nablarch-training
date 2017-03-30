@@ -1,11 +1,10 @@
 package com.nablarch.example.app.web.common.code;
 
-import nablarch.core.util.annotation.Published;
-
 /**
  * プロジェクト種別を定義したEnum。
+ * 
+ * @author Nabu Rakutaro
  */
-@Published
 public enum ProjectType implements CodeEnum {
     /** 新規開発PJ */
     DEVELOPMENT("development", "新規開発PJ"),
@@ -13,9 +12,9 @@ public enum ProjectType implements CodeEnum {
     MAINTENANCE("maintenance", "保守PJ");
 
     /** プロジェクト種別のラベル */
-    private String label;
+    private final String label;
     /** プロジェクト種別のコード */
-    private String code;
+    private final String code;
 
     /**
      * コンストラクタ。

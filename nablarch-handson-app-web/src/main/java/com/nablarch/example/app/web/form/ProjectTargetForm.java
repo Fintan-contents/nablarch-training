@@ -2,7 +2,6 @@ package com.nablarch.example.app.web.form;
 
 import java.io.Serializable;
 
-import nablarch.core.util.annotation.Published;
 import nablarch.core.validation.PropertyName;
 import nablarch.core.validation.ee.Required;
 
@@ -11,7 +10,6 @@ import nablarch.core.validation.ee.Required;
  *
  * @author Nabu Rakutaro
  */
-@Published
 public class ProjectTargetForm implements Serializable {
 
     /** シリアルバージョンUID */
@@ -22,19 +20,12 @@ public class ProjectTargetForm implements Serializable {
     private String projectId;
 
     /**
-     * コンストラクタ
-     *
-     */
-    public ProjectTargetForm() {
-    }
-
-    /**
      * プロジェクトIDを取得する。
      *
      * @return プロジェクトID
      */
     public String getProjectId() {
-        return this.projectId;
+        return projectId;
     }
 
     /**
