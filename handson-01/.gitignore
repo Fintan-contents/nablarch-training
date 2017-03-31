@@ -87,7 +87,7 @@ target
 .project
 .classpath
 WebContent/META-INF/MANIFEST.MF
-# work
+work
 gsp-target/
 
 
