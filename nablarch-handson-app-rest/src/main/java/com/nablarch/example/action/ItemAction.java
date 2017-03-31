@@ -1,6 +1,5 @@
 package com.nablarch.example.action;
 
-import com.nablarch.example.app.entity.Employee;
 import com.nablarch.example.app.entity.Item;
 import com.nablarch.example.dto.ItemSearchDto;
 import com.nablarch.example.form.ItemForm;
