@@ -1,21 +1,18 @@
 package com.nablarch.example.app.web.common.authentication.exception;
 
-import nablarch.core.util.annotation.Published;
-
 /**
  * アカウント情報の不一致により認証に失敗した場合に発生する例外。
  * <p/>
  * 対象ユーザのユーザIDを保持する。
  * @author Nabu Rakutaro
  */
-@Published
 public class AuthenticationFailedException extends AuthenticationException {
 
     /** serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
     /** ユーザID */
-    private String userId;
+    private final String userId;
 
     /**
      * コンストラクタ。
