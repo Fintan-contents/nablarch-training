@@ -15,8 +15,6 @@
 
   <properties>
     <scheme>画面オンライン</scheme>
-    <!-- 環境ごとのリソースディレクトリ(プロファイルにより切り替わる) -->
-    <env.resources>src/env/${env.dir}/resources</env.resources>
 
     <!-- 利用するJavaのバージョン -->
     <java.version>1.8</java.version>
@@ -41,8 +39,6 @@
         <env.dir>dev</env.dir>
         <env.classifier>dev</env.classifier>
         <finalName>${project.artifactId}-${project.version}</finalName>
-        <!-- 使用するweb.xmlのパス -->
-        <webxml.path>src/env/dev/webapp/WEB-INF/web.xml</webxml.path>
       </properties>
       <dependencies>
         <dependency>
@@ -227,9 +223,6 @@
     <finalName>${finalName}</finalName>
     <resources>
       <resource>
-        <directory>${env.resources}</directory>
-      </resource>
-      <resource>
         <directory>src/main/resources</directory>
       </resource>
       <resource>
@@ -241,19 +234,6 @@
     </resources>
 
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <configuration>
-          <webXml>${webxml.path}</webXml>
-          <classifier>${env.classifier}</classifier>
-          <archive>
-            <manifestEntries>
-              <Target-Environment>${env.name}</Target-Environment>
-            </manifestEntries>
-          </archive>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
