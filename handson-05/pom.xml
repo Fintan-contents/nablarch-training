@@ -16,7 +16,7 @@
   <properties>
     <scheme>画面オンライン</scheme>
     <!-- 環境ごとのリソースディレクトリ(プロファイルにより切り替わる) -->
-    <env.resources>${project.basedir}/../nablarch-handson-app-web-common/src/env/${env.dir}/resources</env.resources>
+    <env.resources>src/env/${env.dir}/resources</env.resources>
 
     <!-- 利用するJavaのバージョン -->
     <java.version>1.8</java.version>
@@ -42,7 +42,7 @@
         <env.classifier>dev</env.classifier>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <!-- 使用するweb.xmlのパス -->
-        <webxml.path>${project.basedir}/../nablarch-handson-app-web-common/src/env/dev/webapp/WEB-INF/web.xml</webxml.path>
+        <webxml.path>src/env/dev/webapp/WEB-INF/web.xml</webxml.path>
       </properties>
       <dependencies>
         <dependency>
@@ -221,6 +221,12 @@
       <version>1.2.0</version>
     </dependency>
 
+    <dependency>
+      <groupId>nablarch.handson</groupId>
+      <artifactId>nablarch-handson-app-web-common</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -287,64 +293,6 @@
             </server>
           </servers>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>add-source</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>add-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>${project.basedir}/../nablarch-handson-app-web-common/src/main/java</source>
-              </sources>
-            </configuration>
-          </execution>
-          <execution>
-            <id>add-test-source</id>
-            <phase>generate-test-sources</phase>
-            <goals>
-              <goal>add-test-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>${project.basedir}/../nablarch-handson-app-web-common/src/test/java</source>
-              </sources>
-            </configuration>
-          </execution>
-          <execution>
-            <id>add-resource</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>add-resource</goal>
-            </goals>
-            <configuration>
-              <resources>
-                <resource>
-                  <directory>${project.basedir}/../nablarch-handson-app-web-common/src/main/resources</directory>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-          <execution>
-            <id>add-test-resource</id>
-            <phase>generate-test-resources</phase>
-            <goals>
-              <goal>add-test-resource</goal>
-            </goals>
-            <configuration>
-              <resources>
-                <resource>
-                  <directory>${project.basedir}/../nablarch-handson-app-web-common/src/test/resources</directory>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
       <!-- ================ここから任意で使用するツールの設定================ -->
       <!-- カバレッジ取得 -->
