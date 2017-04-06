@@ -1,8 +1,5 @@
 package com.nablarch.example.app.web.action;
 
-import java.nio.file.Path;
-import java.util.List;
-
 import com.nablarch.example.app.entity.Client;
 import com.nablarch.example.app.entity.Project;
 import com.nablarch.example.app.web.common.authentication.context.LoginUserPrincipal;
@@ -28,18 +25,19 @@ import nablarch.core.beans.BeanUtil;
 import nablarch.core.message.ApplicationException;
 import nablarch.core.message.MessageLevel;
 import nablarch.core.message.MessageUtil;
-import nablarch.core.util.annotation.Published;
 import nablarch.fw.ExecutionContext;
 import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
 import nablarch.fw.web.interceptor.OnError;
+
+import java.nio.file.Path;
+import java.util.List;
 
 /**
  * プロジェクト検索、登録、更新、削除機能 。
  *
  * @author Nabu Rakutaro
  */
-@Published
 public class ProjectAction {
 
     /**
@@ -116,9 +114,11 @@ public class ProjectAction {
 
         ProjectForm form = context.getRequestScopedVar("form");
         if (form.hasClientId()) {
-            if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID", new Object[]{Integer.parseInt(form.getClientId())})) {
+            if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID",
+                    new Object[] {Integer.parseInt(form.getClientId())})) {
                 throw new ApplicationException(
-                        MessageUtil.createMessage(MessageLevel.ERROR, "errors.nothing.client", form.getClientId()));
+                        MessageUtil.createMessage(MessageLevel.ERROR, "errors.nothing.client",
+                                form.getClientId()));
             }
         }
 
@@ -200,13 +200,12 @@ public class ProjectAction {
         final Path path = TempFileUtil.createTempFile();
         try (DeferredEntityList<ProjectDownloadDto> searchList = (DeferredEntityList<ProjectDownloadDto>) UniversalDao
                 .defer()
-                .findAllBySqlFile(ProjectDownloadDto.class, "SEARCH_PROJECT", searchCondition)) {
+                .findAllBySqlFile(ProjectDownloadDto.class, "SEARCH_PROJECT", searchCondition);
+             ObjectMapper<ProjectDownloadDto> mapper = ObjectMapperFactory.create(ProjectDownloadDto.class,
+                     TempFileUtil.newOutputStream(path))) {
 
-            try (ObjectMapper<ProjectDownloadDto> mapper =
-                         ObjectMapperFactory.create(ProjectDownloadDto.class, TempFileUtil.newOutputStream(path))) {
-                for (ProjectDownloadDto dto : searchList) {
-                    mapper.write(dto);
-                }
+            for (ProjectDownloadDto dto : searchList) {
+                mapper.write(dto);
             }
         }
 
@@ -234,7 +233,7 @@ public class ProjectAction {
         LoginUserPrincipal userContext = SessionUtil.get(context, "userContext");
 
         ProjectDto dto = UniversalDao.findBySqlFile(ProjectDto.class, "FIND_BY_PROJECT",
-                new Object[]{targetForm.getProjectId(), userContext.getUserId()});
+                new Object[] {targetForm.getProjectId(), userContext.getUserId()});
 
         // 出力情報をリクエストスコープにセット
         context.setRequestScopedVar("form", dto);
@@ -257,7 +256,8 @@ public class ProjectAction {
         ProjectUpdateForm form = context.getRequestScopedVar("form");
 
         if (form.hasClientId()) {
-            if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID", new Object[]{Integer.parseInt(form.getClientId())})) {
+            if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID",
+                    new Object[] {Integer.parseInt(form.getClientId())})) {
                 throw new ApplicationException(
                         MessageUtil.createMessage(MessageLevel.ERROR,
                                 "errors.nothing.client", form.getClientId()));
