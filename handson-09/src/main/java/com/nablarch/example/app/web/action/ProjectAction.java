@@ -1,17 +1,14 @@
 package com.nablarch.example.app.web.action;
 
-import java.nio.file.Path;
-import java.util.List;
-
 import com.nablarch.example.app.entity.Client;
 import com.nablarch.example.app.entity.Project;
 import com.nablarch.example.app.web.common.authentication.context.LoginUserPrincipal;
 import com.nablarch.example.app.web.common.code.ProjectSortKey;
-import com.nablarch.example.app.web.common.code.SortOrder;
 import com.nablarch.example.app.web.common.file.TempFileUtil;
 import com.nablarch.example.app.web.dto.ProjectDownloadDto;
 import com.nablarch.example.app.web.dto.ProjectDto;
 import com.nablarch.example.app.web.dto.ProjectSearchDto;
+import com.nablarch.example.app.web.form.ProjectForm;
 import com.nablarch.example.app.web.form.ProjectSearchForm;
 import com.nablarch.example.app.web.form.ProjectTargetForm;
 import com.nablarch.example.app.web.form.ProjectUpdateForm;
@@ -29,18 +26,19 @@ import nablarch.core.beans.BeanUtil;
 import nablarch.core.message.ApplicationException;
 import nablarch.core.message.MessageLevel;
 import nablarch.core.message.MessageUtil;
-import nablarch.core.util.annotation.Published;
 import nablarch.fw.ExecutionContext;
 import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
 import nablarch.fw.web.interceptor.OnError;
+
+import java.nio.file.Path;
+import java.util.List;
 
 /**
  * プロジェクト検索、登録、更新、削除機能 。
  *
  * @author Nabu Rakutaro
  */
-@Published
 public class ProjectAction {
 
     /**
@@ -72,7 +70,6 @@ public class ProjectAction {
      * @param context 実行コンテキスト
      * @return HTTPレスポンス
      */
-    @OnDoubleSubmission
     public HttpResponse create(HttpRequest request, ExecutionContext context) {
         return new HttpResponse(500).write("not implemented yet."); // TODO
     }
@@ -110,8 +107,7 @@ public class ProjectAction {
 
         // 初期表示時点でのページ番号とソートキーを設定する
         ProjectSearchForm searchForm = new ProjectSearchForm();
-        searchForm.setSortKey(ProjectSortKey.NAME.getCode());
-        searchForm.setSortDir(SortOrder.ASC.getCode());
+        searchForm.setSortKey(ProjectSortKey.ID.getCode());
         searchForm.setPageNumber("1");
         context.setRequestScopedVar("searchForm", searchForm);
 
@@ -149,11 +145,11 @@ public class ProjectAction {
      * 実行コンテキスト及びセッションから、ログインユーザの情報を取得して検索条件に追加する。
      *
      * @param searchCondition 検索条件
-     * @param context         実行コンテキスト
+     * @param context 実行コンテキスト
      * @return プロジェクトのリスト
      */
     private List<Project> searchProject(ProjectSearchDto searchCondition,
-                                        ExecutionContext context) {
+            ExecutionContext context) {
 
         LoginUserPrincipal userContext = SessionUtil.get(context, "userContext");
         searchCondition.setUserId(userContext.getUserId());
@@ -183,13 +179,12 @@ public class ProjectAction {
         final Path path = TempFileUtil.createTempFile();
         try (DeferredEntityList<ProjectDownloadDto> searchList = (DeferredEntityList<ProjectDownloadDto>) UniversalDao
                 .defer()
-                .findAllBySqlFile(ProjectDownloadDto.class, "SEARCH_PROJECT", searchCondition)) {
+                .findAllBySqlFile(ProjectDownloadDto.class, "SEARCH_PROJECT", searchCondition);
+             ObjectMapper<ProjectDownloadDto> mapper = ObjectMapperFactory.create(ProjectDownloadDto.class,
+                     TempFileUtil.newOutputStream(path))) {
 
-            try (ObjectMapper<ProjectDownloadDto> mapper =
-                         ObjectMapperFactory.create(ProjectDownloadDto.class, TempFileUtil.newOutputStream(path))) {
-                for (ProjectDownloadDto dto : searchList) {
-                    mapper.write(dto);
-                }
+            for (ProjectDownloadDto dto : searchList) {
+                mapper.write(dto);
             }
         }
 
@@ -210,10 +205,11 @@ public class ProjectAction {
     @InjectForm(form = ProjectTargetForm.class)
     public HttpResponse show(HttpRequest request, ExecutionContext context) {
         ProjectTargetForm targetForm = context.getRequestScopedVar("form");
+        context.setRequestScopedVar("projectId", targetForm.getProjectId());
         LoginUserPrincipal userContext = SessionUtil.get(context, "userContext");
 
         ProjectDto dto = UniversalDao.findBySqlFile(ProjectDto.class, "FIND_BY_PROJECT",
-                new Object[]{targetForm.getProjectId(), userContext.getUserId()});
+                new Object[] {targetForm.getProjectId(), userContext.getUserId()});
 
         // 出力情報をリクエストスコープにセット
         context.setRequestScopedVar("form", dto);
@@ -238,7 +234,7 @@ public class ProjectAction {
         LoginUserPrincipal userContext = SessionUtil.get(context, "userContext");
 
         ProjectDto dto = UniversalDao.findBySqlFile(ProjectDto.class, "FIND_BY_PROJECT",
-                new Object[]{targetForm.getProjectId(), userContext.getUserId()});
+                new Object[] {targetForm.getProjectId(), userContext.getUserId()});
 
         // 出力情報をリクエストスコープにセット
         context.setRequestScopedVar("form", dto);
@@ -261,7 +257,8 @@ public class ProjectAction {
         ProjectUpdateForm form = context.getRequestScopedVar("form");
 
         if (form.hasClientId()) {
-            if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID", new Object[]{Integer.parseInt(form.getClientId())})) {
+            if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID",
+                    new Object[] {Integer.parseInt(form.getClientId())})) {
                 throw new ApplicationException(
                         MessageUtil.createMessage(MessageLevel.ERROR,
                                 "errors.nothing.client", form.getClientId()));
