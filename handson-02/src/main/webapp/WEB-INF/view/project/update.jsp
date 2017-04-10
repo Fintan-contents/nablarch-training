@@ -4,12 +4,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="n" uri="http://tis.co.jp/nablarch" %>
 <%@ page session="false" %>
+
 <!DOCTYPE html>
 <html>
     <head>
         <%-- javascript --%>
         <n:script type="text/javascript" src="/javascripts/lib/jquery-1.11.2.min.js"></n:script>
         <n:script type="text/javascript" src="/javascripts/projectInput.js"></n:script>
+        <n:script type="text/javascript" src="/javascripts/clientList.js"></n:script>
         <title>プロジェクト変更画面</title>
     </head>
     <body>
@@ -116,11 +118,14 @@
                             </th>
                             <td>
                                 <div class="form-group">
-                                    <n:text name="form.clientId" maxlength="10" readonly="true" cssClass="form-control input-label" tabindex="-1" />
-                                    <n:text name="form.clientName" maxlength="64" readonly="true" cssClass="form-control  input-label" tabindex="-1" />
+                                  <n:text name="form.clientId" maxlength="10" readonly="true" cssClass="form-control input-label" tabindex="-1" id="client-id" />
+                                  <n:text name="form.clientName" maxlength="64" readonly="true" cssClass="form-control  input-label" tabindex="-1" id="client-name" />
                                 </div>
                                 <n:forInputPage>
-                                    <n:a href="/action/client/index" id="client_pop"><n:img src="/images/glass.png" alt="glass"/></n:a>
+                                  <div class="btn-group-sm">
+                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#client-search-dialog"  class="btn btn-default btn-fab"><i class="material-icons">search</i></a>
+                                    <a href="javascript:void(0)" class="btn btn-default btn-fab" id="client-remove"><i class="material-icons">remove</i></a>
+                                  </div>
                                 </n:forInputPage>
                                 <n:error errorCss="message-error" name="form.clientId" />
                                 <n:error errorCss="message-error" name="form.clientName" />
@@ -235,7 +240,6 @@
                                 </td>
                                 <td>
                                     <n:write name="form.grossProfit" valueFormat="decimal{###,###,### 千円}" />
-                                    <n:error errorCss="message-error" name="form.grossProfit" />
                                 </td>
                             </tr>
                             <tr>
@@ -244,7 +248,6 @@
                                 </td>
                                 <td>
                                     <n:write name="form.profitBeforeAllocation" valueFormat="decimal{###,###,### 千円}" />
-                                    <n:error errorCss="message-error" name="form.profitBeforeAllocation" />
                                 </td>
                             </tr>
                             <tr>
@@ -253,7 +256,6 @@
                                 </td>
                                 <td>
                                     <n:write name="form.profitRateBeforeAllocation" valueFormat="decimal{##0.0 %}" />
-                                    <n:error errorCss="message-error" name="form.profitRateBeforeAllocation" />
                                 </td>
                             </tr>
                             <tr>
@@ -262,7 +264,6 @@
                                 </td>
                                 <td>
                                     <n:write name="form.operatingProfit" valueFormat="decimal{###,###,### 千円}" />
-                                    <n:error errorCss="message-error" name="form.operatingProfit" />
                                 </td>
                             </tr>
                             <tr>
@@ -271,7 +272,6 @@
                                 </td>
                                 <td>
                                     <n:write name="form.operatingProfitRate" valueFormat="decimal{##0.0 %}" />
-                                     <n:error errorCss="message-error" name="form.operatingProfitRate" />
                                 </td>
                             </tr>
                         </n:forConfirmationPage>
@@ -293,5 +293,8 @@
             </n:form>
         </section>
         <n:include path="/WEB-INF/view/common/footer.jsp" />
+
+        <%-- 顧客検索 --%>
+        <n:include path="/WEB-INF/view/client/index.jsp" />
     </body>
 </html>
