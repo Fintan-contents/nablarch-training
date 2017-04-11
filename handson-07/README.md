@@ -3,7 +3,7 @@
 
 ## 演習内容
 ユーザからの入力を元に検索をする方法を学習します。
-  本ハンズオンでは nablarch-example のプロジェクト検索一覧画面を題材にします。
+  本ハンズオンではウェブExampleアプリケーションのプロジェクト検索一覧画面を題材にします。
 
 ## 作成する機能について
 
@@ -12,9 +12,17 @@
 ## 演習を開始するための準備
 
 ### 事前準備
+
+#### データベース・エンティティクラスの準備
 本ハンズオンを開始する前にデータベースの作成及びエンティティクラスの生成を行っていない(以下のコマンドを実行していない)場合、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
     $cd entity
+    $mvn clean install
+
+#### ウェブアプリケーション共通ライブラリの準備
+本ハンズオンを開始する前にウェブアプリケーション共通ライブラリの作成を行っていない(以下のコマンドを実行していない)場合、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
+
+    $cd nablarch-handson-app-web-common
     $mvn clean install
 
 ### web プロジェクト起動
@@ -51,13 +59,7 @@
 実装すべき内容の詳細は雛形に記載してあります。
 
 
-### 2. Form（ProjectSearchForm.java）を作成する
-[ProjectSearchForm.java](./src/main/java/com/nablarch/example/app/web/form/ProjectSearchForm.java)に、SQL文で使用するsortIdの生成を実装してください。
-
-実装すべき内容の詳細は雛形に記載してあります。
-
-
-### 3. アクション（ProjectAction.java）を作成する
+### 2. アクション（ProjectAction.java）を作成する
 [ProjectAction.java](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)のlistメソッドに、検索条件を表すオブジェクトの生成を実装してください。
 
 実装すべき内容の詳細は雛形に記載してあります。
