@@ -1,11 +1,11 @@
 nablarch-handson-app-batch-ee
 ===============
-Nablarch Framework(nablarch-fw-batch-ee、nablarch-etl)のサンプルアプリケーションです。
+Nablarch Framework（nablarch-fw-batch-ee、nablarch-etl）のバッチExampleアプリケーションです。
 
 ## アプリケーションのビルドと実行
 
 ### 事前準備
-本サンプルアプリケーションをビルドする前に、データベースの作成及びエンティティクラスの生成を行っていない(以下のコマンドを実行していない)場合、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
+本Exampleアプリケーションをビルドする前に、データベースの作成及びエンティティクラスの生成を行っていない(以下のコマンドを実行していない)場合、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
     $cd entity
     $mvn clean install
