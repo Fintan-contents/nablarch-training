@@ -1,12 +1,12 @@
 package com.nablarch.example.error;
 
+import javax.persistence.OptimisticLockException;
+
 import nablarch.common.dao.NoDataException;
 import nablarch.fw.ExecutionContext;
 import nablarch.fw.jaxrs.ErrorResponseBuilder;
 import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
-
-import javax.persistence.OptimisticLockException;
 
 /**
  * Example用のエラーレスポンス生成クラス。
@@ -20,7 +20,7 @@ public class ExampleErrorResponseBuilder extends ErrorResponseBuilder {
      * <p/>
      * 発生したエラーが{@link NoDataException}の場合は{@code 404}、
      * {@link OptimisticLockException}の場合は{@code 409}を生成する。
-     * それ以外のエラーの場合には、{@link ErrorResponseBuilder#build(HttpRequest, ExecutionContext, Throwable)}に処理を委譲する。
+     * それ以外のエラーの場合には、上位クラスに処理を委譲する。
      *
      * @param request {@link HttpRequest}
      * @param context {@link ExecutionContext}
@@ -29,12 +29,14 @@ public class ExampleErrorResponseBuilder extends ErrorResponseBuilder {
      */
     @Override
     public HttpResponse build(HttpRequest request, ExecutionContext context, Throwable throwable) {
+        final HttpResponse response;
         if (throwable instanceof NoDataException) {
-            return new HttpResponse(404);
+            response = new HttpResponse(404);
         } else if (throwable instanceof OptimisticLockException) {
-            return new HttpResponse(409);
+            response = new HttpResponse(409);
         } else {
-            return super.build(request, context, throwable);
+            response = super.build(request, context, throwable);
         }
+        return response;
     }
 }

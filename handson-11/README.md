@@ -2,8 +2,8 @@
 ==================================
 
 ## 演習内容
-本エクササイズでは、マスタメンテでよく扱う検索機能と照会機能の作り方を学習します。
-  nablarch-example のプロジェクト検索機能と詳細機能を題材にします。
+本ハンズオンでは、マスタメンテでよく扱う検索機能と照会機能の作り方を学習します。
+  ウェブExampleアプリケーションのプロジェクト検索機能と詳細機能を題材にします。
 
 基本編では、入門編で学んだことを踏まえつつ、Nablarchの解説書を参照しながら機能を作りこんでいきます。
 
@@ -14,9 +14,17 @@
 ## 演習を開始する為の準備
 
 ### 事前準備
+
+#### データベース・エンティティクラスの準備
 本ハンズオンを開始する前にデータベースの作成及びエンティティクラスの生成を行っていない(以下のコマンドを実行していない)場合、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
     $cd entity
+    $mvn clean install
+
+#### ウェブアプリケーション共通ライブラリの準備
+本ハンズオンを開始する前にウェブアプリケーション共通ライブラリの作成を行っていない(以下のコマンドを実行していない)場合、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
+
+    $cd nablarch-handson-app-web-common
     $mvn clean install
 
 ### web プロジェクト起動
@@ -72,10 +80,10 @@
 ### Form、DTO
 以下のFormやDTOは実装済みです。
 
-- プロジェクト検索一覧フォーム([ProjectSearchForm](./src/main/java/com/nablarch/example/app/web/form/ProjectSearchForm.java))
-- プロジェクト検索条件DTO([ProjectSearchDto](./src/main/java/com/nablarch/example/app/web/dto/ProjectSearchDto.java))
-- プロジェクト詳細画面への遷移用フォーム([ProjectTargetForm](./src/main/java/com/nablarch/example/app/web/form/ProjectTargetForm.java))
-- プロジェクト情報DTO([ProjectDto](./src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java))
+- プロジェクト検索一覧フォーム([ProjectSearchForm](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/form/ProjectSearchForm.java))
+- プロジェクト検索条件DTO([ProjectSearchDto](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/dto/ProjectSearchDto.java))
+- プロジェクト詳細画面への遷移用フォーム([ProjectTargetForm](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/form/ProjectTargetForm.java))
+- プロジェクト情報DTO([ProjectDto](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java))
 
 ### JSPファイル
 以下のJSPファイルは実装済みです。
@@ -87,10 +95,10 @@
 ### 画面間の連携に関する仕様
 #### 画面から送信される値及び、画面表示する値に関するDTOの利用ルール
 - 以下の値の連携は、Formを使用して連携してください。
-	- プロジェクト検索一覧画面([index.jsp](./src/main/webapp/WEB-INF/view/project/index.jsp))から、プロジェクト詳細画面の表示処理([ProjectAction#show](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))へ送信された値の取り出しは、プロジェクト詳細画面への遷移用Form([ProjectTargetForm](./src/main/java/com/nablarch/example/app/web/form/ProjectTargetForm.java))を使用してください。
+	- プロジェクト検索一覧画面([index.jsp](./src/main/webapp/WEB-INF/view/project/index.jsp))から、プロジェクト詳細画面の表示処理([ProjectAction#show](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))へ送信された値の取り出しは、プロジェクト詳細画面への遷移用Form([ProjectTargetForm](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/form/ProjectTargetForm.java))を使用してください。
 
 - 以下の値の連携は、DTOを使用して連携してください。
-    - プロジェクト詳細画面([detail.jsp](./src/main/webapp/WEB-INF/view/project/detail.jsp))へ表示する値は、プロジェクト情報DTO([ProjectDto](./src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java))を介して設定してください。
+    - プロジェクト詳細画面([detail.jsp](./src/main/webapp/WEB-INF/view/project/detail.jsp))へ表示する値は、プロジェクト情報DTO([ProjectDto](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java))を介して設定してください。
 
 
 ## 演習
@@ -99,14 +107,14 @@
 ### JSP部分
 #### 検索に関する部分
 ##### プロジェクト検索結果表示部分([index.jsp](./src/main/webapp/WEB-INF/view/project/index.jsp))
-- 152行目の <tr class="info"> タグの中を記述してください。各行の値はProjectクラスに格納されています。
+- 154行目の <tr class="info"> タグの中を記述してください。各行の値はProjectクラスに格納されています。
   下表の項目を出力するように実装します。
 
 |プロパティ名      | 説明 |
 |:-----------------|:-----|
 | projectId        | プロジェクトIDをリンクで表示してください。リンクの遷移先は、プロジェクト詳細画面です。パスの最後を「show/プロジェクトID」とすることでProjectAction#showメソッドにプロジェクトIDがパラメータとして渡ります。 |
 | projectName      | プロジェクト名をそのまま表示してください。 |
-| projectType      | 値に対応するコード名称を表示してください。コードは、[ProjectType](./src/main/java/com/nablarch/example/app/web/common/code/ProjectType.java)列挙型に定義されています。|
+| projectType      | 値に対応するコード名称を表示してください。コードは、[ProjectType](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/common/code/ProjectType.java)列挙型に定義されています。|
 | projectStartDate | yyyy/MM/ddの書式で表示してください。書式の変換はカスタムタグの機能を使用してください。データタイプは、「exampleDateTime」を指定してください。 |
 | projectEndDate   | 同上の表示を行ってください。 |
 
@@ -118,8 +126,8 @@
 ##### 検索一覧初期画面表示([ProjectAction#index](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))
 - 本メソッドには以下の処理を実装します。
 	- 初期表示時点での検索条件として以下を設定し、リクエストスコープにキー名「searchForm」で設定してください。
-    	- ソートキーとして"NAME"を設定してください。ソートキーは、[ProjectSortKey](./src/main/java/com/nablarch/example/app/web/common/code/ProjectSortKey.java)列挙型に定義されています。
-    	- 並び順として"ASC"を設定してください。並び順は、[SortOrder](./src/main/java/com/nablarch/example/app/web/common/code/SortOrder.java)列挙型に定義されています。
+    	- ソートキーとして"NAME"を設定してください。ソートキーは、[ProjectSortKey](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/common/code/ProjectSortKey.java)列挙型に定義されています。
+    	- 並び順として"ASC"を設定してください。並び順は、[SortOrder](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/common/code/SortOrder.java)列挙型に定義されています。
 		- ページ番号として1ページを設定してください。
 	- 検索を実行([ProjectAction#searchProject](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)メソッドを呼び出す)し、結果をリクエストスコープに設定してください。設定に使用する名前は、[index.jsp](./src/main/webapp/WEB-INF/view/project/index.jsp)を参照してください。
     - プロジェクト検索一覧画面([index.jsp](./src/main/webapp/WEB-INF/view/project/index.jsp))に遷移する処理を実装してください。

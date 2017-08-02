@@ -2,6 +2,8 @@ package com.nablarch.example.app.batch.ee.form;
 
 /**
  * 社員情報Form。
+ *
+ * @author Nabu Rakutaro
  */
 public class EmployeeForm {
 

@@ -32,6 +32,9 @@ handson-01から順番に実施することで Nablarch を体系的に学習す
 | [13](./handson-13/README.md) | 基本   | Chunkタイプのバッチを作ってみよう | JSR352に準拠したバッチアプリケーションの一つであるChunkの作り方を学びます。 |
 | [14](./handson-14/README.md) | 基本   | ETLを使って、CSVファイルの内容をDBに登録してみよう | ETLを利用したバッチアプリケーションでCSVファイルの内容をDBに登録する方法を学びます。 |
 | [15](./handson-15/README.md) | 基本   | RESTfulウェブサービスを作成してみよう | NablarchのJAX-RSサポートを利用した、RESTfulウェブサービスの作り方を学びます。|
+| [nablarch-handson-app-web](./nablarch-handson-app-web/README.md) | -   | 解答 | 01～11の解答(完成品)のプログラムです。 |
+| [nablarch-handson-app-batch-ee](./nablarch-handson-app-batch-ee/README.md) | -   | 解答 | 12～14の解答(完成品)のプログラムです。 |
+| [nablarch-handson-app-rest](./nablarch-handson-app-rest/README.md) | -   | 解答 | 15の解答(完成品)のプログラムです。 |
 
 ### 3. ハンズオンを実施する。
 
@@ -41,9 +44,10 @@ handson-01から順番に実施することで Nablarch を体系的に学習す
 
 ### 0. 環境
 
-* Java 7 以降
+* Java 8 以降
 * Git クライアント
 * Maven 3.0.4以降
+* Chrome(ハンズオン1～11で使用します。IEでも実施可能ですが、レイアウトが崩れることがあります)
 
 ### 1. リポジトリの作成
 以下のGitリポジトリを作成してください。
@@ -53,35 +57,7 @@ handson-01から順番に実施することで Nablarch を体系的に学習す
 
 
 ### 2. mavenのプロキシ設定
-ネットワークにプロキシが存在する場合は、mavenのsetting.xmlを修正し、ハンズオン用のmavenリポジトリについて、プロキシを経由しないように除外設定してください。
-
-#### TIS(東京地区)のプロキシ設定の例
-
-```xml
-  <settings>
-    ・・・
-    <!-- プロキシ情報 -->
-    <proxies>
-      <proxy>
-        <active>true</active>
-        <protocol>http</protocol>
-        <host>tkyproxy.intra.tis.co.jp</host>
-        <port>8080</port>
-        <!-- プロキシを経由しないホスト -->
-        <nonProxyHosts>localhost|127.0.0.1|nablarch.intra.tis.co.jp</nonProxyHosts>
-      </proxy>
-      <proxy>
-        <active>true</active>
-        <protocol>https</protocol>
-        <host>tkyproxy.intra.tis.co.jp</host>
-        <port>8080</port>
-        <!-- プロキシを経由しないホスト -->
-        <nonProxyHosts>localhost|127.0.0.1|nablarch.intra.tis.co.jp</nonProxyHosts>
-      </proxy>
-    </proxies>
-    ・・・
-  </settings>
-```
+ネットワークにプロキシが存在する場合は、mavenのsetting.xmlを修正し、適切にプロキシの設定をしてください。
 
 ### 3. データベース、エンティティクラスの生成
 
@@ -96,31 +72,21 @@ DBは、組み込みDBのH2を使用しています。
 
 - <チェックアウトディレクトリ>/entity/h2/db/nablarch_example.*.db
 
-### 4. 動作確認
+### 4. ウェブアプリケーション共通ライブラリの準備
 
-`mvn waitt:run`を実行し、http://localhost:9080 にアクセスしてください。ログイン後、正常に「プロジェクト検索画面」が表示されることを確認してください。
-ログイン時に利用できるユーザは以下の通りです。
+本ハンズオン教材では、ハンズオン01～11で共通している資源をウェブアプリケーション共通ライブラリとしてnablarch-handson-app-web-commonディレクトリ配下に切りだし、1つのプロジェクトとしてまとめています。以下のコマンドを実行し、ウェブアプリケーション共通ライブラリの生成を行ってください。
 
-| ユーザ名 | パスワード |
-|:------|:--------|
-| 10000001 | pass123- |
+    $cd <チェックアウトディレクトリ>
+    $cd nablarch-handson-app-web-common
+    $mvn clean install
+
+
+
 
 ## IDEへの取り込み
 
 本コンテンツは maven プロジェクトですので、IDEにmavenプロジェクトとしてインポートしてください。
 
-以下にEclipseに取り込む方法を記載します。
-### 1. 必要プラグインのインストール
-m2eプラグインをインストールして下さい（最初からこのプラグインが入っているEclipseのバージョンもありますので、存在を確認してから導入してください）。
-
-### 2. プロジェクトのインポート
-プロジェクト・エクスプローラ右クリック > インポート > 既存Mavenプロジェクト
-
-クローンしたリポジトリをルート・ディレクトリとし完了を押してください。
-
-
 ## 補足
 
-- 各ハンズオンについて、ホットデプロイが有効になっていますので、アプリの再起動をしなくても変更がすぐに反映されます。
-- 題材にしているアプリの概要については、[doc/spec.md](./doc/spec.md)を参照してください。
-- Nablarchでアプリを開発する際の責務配置については、[doc/responsibility.md](./doc/responsibility.md)を参照してください。
+- ハンズオン01～11については、ホットデプロイが有効になっていますので、クラスのコンパイルを行えば、アプリの再起動をしなくても変更がすぐに反映されます。

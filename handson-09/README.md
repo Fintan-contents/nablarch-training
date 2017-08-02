@@ -2,8 +2,8 @@
 ==================================
 
 ## 演習内容
-本エクササイズでは、マスタメンテでよく扱う登録処理の作り方を学習します。
-  nablarch-example のプロジェクト新規登録機能を題材にします。
+本ハンズオンでは、マスタメンテでよく扱う登録処理の作り方を学習します。
+ウェブExampleアプリケーションのプロジェクト新規登録機能を題材にします。
 
 基本編では、入門編で学んだことを踏まえつつ、Nablarchの解説書を参照しながら機能を作りこんでいきます。
 
@@ -14,9 +14,17 @@
 ## 演習を開始する為の準備
 
 ### 事前準備
+
+#### データベース・エンティティクラスの準備
 本ハンズオンを開始する前にデータベースの作成及びエンティティクラスの生成を行っていない(以下のコマンドを実行していない)場合、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
     $cd entity
+    $mvn clean install
+
+#### ウェブアプリケーション共通ライブラリの準備
+本ハンズオンを開始する前にウェブアプリケーション共通ライブラリの作成を行っていない(以下のコマンドを実行していない)場合、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
+
+    $cd nablarch-handson-app-web-common
     $mvn clean install
 
 ### web プロジェクト起動
@@ -37,10 +45,10 @@
 #### Nablarchアプリケーションフレームワークの解説書
 
 - 2.2. アプリケーションの責務配置
-- 7.11.1. Bean Validation
+- 7.10.1. Bean Validation
 	- 相関バリデーションを行う
 	- データベースとの相関バリデーションを行う
-		(2.2と7.11.1の「データベースとの相関バリデーションを行う」を読むことで、どの精査をFormで行い、どの精査をActionで行うかがわかります。また、7.11.1の「相関バリデーションを行う」を読むことで、Formで行う相関バリデーションの実装方法がわかります。)
+		(2.2と7.10.1の「データベースとの相関バリデーションを行う」を読むことで、どの精査をFormで行い、どの精査をActionで行うかがわかります。また、7.10.1の「相関バリデーションを行う」を読むことで、Formで行う相関バリデーションの実装方法がわかります。)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
 - UniversalDao
@@ -94,7 +102,7 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
     - プロジェクト登録画面([create.jsp](./src/main/webapp/WEB-INF/view/project/create.jsp))から、プロジェクト登録情報確認画面の表示処理([ProjectAction#confirmOfCreate](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))へ送信された値の取り出しは、プロジェクト登録Form([ProjectForm](./src/main/java/com/nablarch/example/app/web/form/ProjectForm.java))を使用してください。
 
 - 以下の値の連携は、DTOを使用してください。
-    - プロジェクト登録画面([create.jsp](./src/main/webapp/WEB-INF/view/project/create.jsp))へ戻る処理([ProjectAction#backToNew](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))で表示する値は、プロジェクト情報DTO([ProjectDto](./src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java))を介して設定してください。
+    - プロジェクト登録画面([create.jsp](./src/main/webapp/WEB-INF/view/project/create.jsp))へ戻る処理([ProjectAction#backToNew](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))で表示する値は、プロジェクト情報DTO([ProjectDto](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java))を介して設定してください。
 
 #### セッションを用いた値の連携を使用する箇所
 以下の値の連携は、セッション上のProjectのエンティティを介して行ってください。セッションに登録する際のキー名は"project"としてください。
@@ -172,7 +180,7 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 ##### プロジェクト登録Form([ProjectForm](./src/main/java/com/nablarch/example/app/web/form/ProjectForm.java))のプロパティ
 - 以下を実装します。
     - 必須項目を表すアノテーションの設定。プロジェクト登録画面([create.jsp](./src/main/webapp/WEB-INF/view/project/create.jsp))のrequiredが付いた入力項目が必須項目です。
-    - ドメインの設定。ドメインは、[ExampleDomainType](./src/main/java/com/nablarch/example/app/entity/core/validation/validator/ExampleDomainType.java)で定義されているものを使用してください。どのプロパティにどのドメインを設定するかは、下表を参照してください。
+    - ドメインの設定。ドメインは、[ExampleDomainType](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/entity/core/validation/validator/ExampleDomainType.java)で定義されているものを使用してください。どのプロパティにどのドメインを設定するかは、下表を参照してください。
 
 | 項目 | 必須 | ドメイン |
 |--------|--------|--------|
@@ -191,7 +199,7 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 |販管費||amountOfMoney|
 |本社配賦||amountOfMoney|
 
-※:開始日よりも前(同日は問題なし)に設定されている場合エラーとします。開始日が未設定の場合は、いつであっても問題ありません。
+※:開始日よりも前(同日は問題なし)に設定されている場合エラーとします。開始日が未設定の場合は、いつであっても問題ありません。チェック処理を実装するメソッドなどは下記を参照してください。
 
 ##### プロジェクト登録Formの精査処理([ProjectForm#isValidProjectPeriod](./src/main/java/com/nablarch/example/app/web/form/ProjectForm.java))
 - 本メソッドには以下の処理を実装します。

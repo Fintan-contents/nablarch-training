@@ -1,25 +1,24 @@
 package com.nablarch.example.app.web.action;
 
-import com.nablarch.example.app.entity.SystemAccount;
-import com.nablarch.example.app.entity.Users;
-import com.nablarch.example.app.web.common.authentication.AuthenticationUtil;
-import com.nablarch.example.app.web.common.authentication.context.LoginUserPrincipal;
-import com.nablarch.example.app.web.common.authentication.exception.AuthenticationException;
-import com.nablarch.example.app.web.form.LoginForm;
-
 import nablarch.common.dao.UniversalDao;
 import nablarch.common.web.session.SessionUtil;
 import nablarch.core.beans.BeanUtil;
 import nablarch.core.message.ApplicationException;
 import nablarch.core.message.MessageLevel;
 import nablarch.core.message.MessageUtil;
-import nablarch.core.util.annotation.Published;
 import nablarch.core.validation.ee.ValidatorUtil;
 import nablarch.fw.ExecutionContext;
 import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
 import nablarch.fw.web.interceptor.OnError;
 import nablarch.fw.web.interceptor.OnErrors;
+
+import com.nablarch.example.app.entity.SystemAccount;
+import com.nablarch.example.app.entity.Users;
+import com.nablarch.example.app.web.common.authentication.AuthenticationUtil;
+import com.nablarch.example.app.web.common.authentication.context.LoginUserPrincipal;
+import com.nablarch.example.app.web.common.authentication.exception.AuthenticationException;
+import com.nablarch.example.app.web.form.LoginForm;
 
 /**
  * 認証アクション。
@@ -30,7 +29,6 @@ import nablarch.fw.web.interceptor.OnErrors;
  *
  * @author Nabu Rakutaro
  */
-@Published
 public class AuthenticationAction {
 
     /**

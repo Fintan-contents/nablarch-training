@@ -1,11 +1,11 @@
 nablarch-handson-app-batch-ee
 ===============
-Nablarch Framework(nablarch-fw-batch-ee、nablarch-etl)のサンプルアプリケーションです。
+Nablarch Framework（nablarch-fw-batch-ee、nablarch-etl）のバッチExampleアプリケーションです。
 
 ## アプリケーションのビルドと実行
 
 ### 事前準備
-本サンプルアプリケーションをビルドする前に、データベースの作成及びエンティティクラスの生成を行っていない(以下のコマンドを実行していない)場合、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
+本Exampleアプリケーションをビルドする前に、データベースの作成及びエンティティクラスの生成を行っていない(以下のコマンドを実行していない)場合、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
     $cd entity
     $mvn clean install
@@ -19,7 +19,7 @@ Nablarch Framework(nablarch-fw-batch-ee、nablarch-etl)のサンプルアプリ�
 
 ビルド後、以下のコマンドを実行し依存するライブラリを取得します。
 
-    $mvn dependency:copy-dependencies -DoutputDirectory=target/dependency
+    $mvn dependency:copy-dependencies
 
 
 ### 実行
@@ -27,12 +27,12 @@ Nablarch Framework(nablarch-fw-batch-ee、nablarch-etl)のサンプルアプリ�
 ビルド、依存ライブラリの取得が終わったら、以下のコマンドを実行するとサンプルアプリケーションを動作させることができます。
 
 
-    $java -cp ./target/*;./target/dependency/* com.nablarch.example.app.main.ExampleMain <batch-job名>
+    $java -cp ./target/*;./target/dependency/* nablarch.fw.batch.ee.Main <batch-job名>
 
 
 ＜batch-job名＞の指定例を示します。
 
-    java -cp ./target/*;./target/dependency/* com.nablarch.example.app.main.ExampleMain zip-code-truncate-table
+    java -cp ./target/*;./target/dependency/* nablarch.fw.batch.ee.Main zip-code-truncate-table
 
 
 ＜batch-job名＞を変えることで、CSVからDBおよびDBからCSVへのデータ保存と、DBのTRUNCATE処理を行うことができます。

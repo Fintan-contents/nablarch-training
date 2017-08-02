@@ -2,8 +2,8 @@
 ==================================
 
 ## 演習内容
-本エクササイズでは、マスタメンテでよく扱う更新処理及び削除処理の作り方を学習します。
-  nablarch-example のプロジェクト変更機能を題材にします。
+本ハンズオンでは、マスタメンテでよく扱う更新処理及び削除処理の作り方を学習します。
+  ウェブExampleアプリケーションのプロジェクト変更機能を題材にします。
 
 基本編では、入門編で学んだことを踏まえつつ、Nablarchの解説書を参照しながら機能を作りこんでいきます。
 
@@ -14,9 +14,17 @@
 ## 演習を開始する為の準備
 
 ### 事前準備
+
+#### データベース・エンティティクラスの準備
 本ハンズオンを開始する前にデータベースの作成及びエンティティクラスの生成を行っていない(以下のコマンドを実行していない)場合、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
     $cd entity
+    $mvn clean install
+
+#### ウェブアプリケーション共通ライブラリの準備
+本ハンズオンを開始する前にウェブアプリケーション共通ライブラリの作成を行っていない(以下のコマンドを実行していない)場合、チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
+
+    $cd nablarch-handson-app-web-common
     $mvn clean install
 
 ### web プロジェクト起動
@@ -36,9 +44,9 @@
 
 #### Nablarchアプリケーションフレームワークの解説書
 - 2.2. アプリケーションの責務配置
-- 7.11.1. Bean Validation
+- 7.10.1. Bean Validation
 	- データベースとの相関バリデーションを行う
-		(2.2と7.11.1を読むことで、どの精査をFormで行い、どの精査をActionで行うかがわかります)
+		(2.2と7.10.1を読むことで、どの精査をFormで行い、どの精査をActionで行うかがわかります)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
 - UniversalDao
@@ -77,8 +85,8 @@
 ### Form、DTO
 以下のFormやDTOは実装済みです。
 
-- プロジェクト変更画面への遷移用Form([ProjectTargetForm](./src/main/java/com/nablarch/example/app/web/form/ProjectTargetForm.java))
-- プロジェクト情報DTO([ProjectDto](./src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java))
+- プロジェクト変更画面への遷移用Form([ProjectTargetForm](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/form/ProjectTargetForm.java))
+- プロジェクト情報DTO([ProjectDto](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java))
 - プロジェクト変更画面用Form([ProjectForm](./src/main/java/com/nablarch/example/app/web/form/ProjectForm.java))
 
 ### JSPファイル
@@ -97,11 +105,11 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 
 #### 画面から送信される値及び、画面表示する値に関するFormやDTOの利用ルール
 - 以下の値の連携は、Formを使用してください。
-    - プロジェクト詳細画面([detail.jsp](./src/main/webapp/WEB-INF/view/project/detail.jsp))から、プロジェクト変更初期画面の表示処理([ProjectAction#edit](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))へ送信された値の取り出しは、プロジェクト変更画面への遷移用Form([ProjectTargetForm](./src/main/java/com/nablarch/example/app/web/form/ProjectTargetForm.java))を使用してください。
+    - プロジェクト詳細画面([detail.jsp](./src/main/webapp/WEB-INF/view/project/detail.jsp))から、プロジェクト変更初期画面の表示処理([ProjectAction#edit](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))へ送信された値の取り出しは、プロジェクト変更画面への遷移用Form([ProjectTargetForm](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/form/ProjectTargetForm.java))を使用してください。
     - プロジェクト変更画面([update.jsp](./src/main/webapp/WEB-INF/view/project/update.jsp))から、更新確認画面の表示処理([ProjectAction#confirmOfUpdate](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))へ送信された値の取り出しは、プロジェクト変更画面用Form([ProjectForm](./src/main/java/com/nablarch/example/app/web/form/ProjectForm.java))を使用してください。
 
 - 以下の値の連携は、DTOを使用してください。
-    - プロジェクト変更画面([update.jsp](./src/main/webapp/WEB-INF/view/project/update.jsp))へ表示する値は、プロジェクト情報DTO([ProjectDto](./src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java))を介して設定してください。
+    - プロジェクト変更画面([update.jsp](./src/main/webapp/WEB-INF/view/project/update.jsp))へ表示する値は、プロジェクト情報DTO([ProjectDto](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java))を介して設定してください。
 
 #### セッションを用いた値の連携を使用する箇所
 以下の値の連携は、セッション上のProjectのエンティティを介して行ってください。セッションに登録する際のキー名は"project"としてください。
@@ -150,7 +158,7 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 - 本メソッドには以下の処理を実装します。
     - Formに実装した入力値の精査処理の呼び出し。精査処理の呼び出し方法については、[handson-03](../handson-03/README.md)で登場しました。
     - 画面から受け取ったプロジェクトIDと、セッションから取り出したログインユーザのIDを元に、PROJECTテーブルを検索し、更新対象のエンティティを取得してください。
-    - エンティティの値を設定した[ProjectDto](./src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java)のインスタンスを用意してください。
+    - エンティティの値を設定した[ProjectDto](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java)のインスタンスを用意してください。
     - 次画面の表示に使用するために、ProjectDtoをリクエストスコープに設定してください。キーは"form"です。
     - 更新対象のエンティティをセッションに登録してください。登録時の名前は、"project"としてください。このエンティティは画面間の値の受け渡しで使用します。
     - 正常終了時、プロジェクト変更画面([update.jsp](./src/main/webapp/WEB-INF/view/project/update.jsp))に遷移する処理を実装してください。

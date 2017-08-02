@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import nablarch.core.util.StringUtil;
-import nablarch.core.util.annotation.Published;
+
 
 /**
  * プロジェクト登録フォーム。
+ *
  * @author Nabu Rakutaro
  */
-@Published
 public class ProjectForm implements Serializable {
 
     /** シリアルバージョンUID */
@@ -59,18 +59,12 @@ public class ProjectForm implements Serializable {
     private String allocationOfCorpExpenses;
 
     /**
-     * コンストラクタ
-     */
-    public ProjectForm() {
-    }
-
-    /**
      * プロジェクト名を取得する。
      *
      * @return プロジェクト名
      */
     public String getProjectName() {
-        return this.projectName;
+        return projectName;
     }
 
     /**
@@ -79,7 +73,7 @@ public class ProjectForm implements Serializable {
      * @return プロジェクト種別
      */
     public String getProjectType() {
-        return this.projectType;
+        return projectType;
     }
 
     /**
@@ -88,7 +82,7 @@ public class ProjectForm implements Serializable {
      * @return プロジェクト分類
      */
     public String getProjectClass() {
-        return this.projectClass;
+        return projectClass;
     }
 
     /**
@@ -97,7 +91,7 @@ public class ProjectForm implements Serializable {
      * @return プロジェクトマネージャー名
      */
     public String getProjectManager() {
-        return this.projectManager;
+        return projectManager;
     }
 
     /**
@@ -106,7 +100,7 @@ public class ProjectForm implements Serializable {
      * @return プロジェクトリーダー名
      */
     public String getProjectLeader() {
-        return this.projectLeader;
+        return projectLeader;
     }
 
     /**
@@ -115,15 +109,16 @@ public class ProjectForm implements Serializable {
      * @return 顧客ID
      */
     public String getClientId() {
-        return this.clientId;
+        return clientId;
     }
 
     /**
      * 顧客IDを保持しているか否かを返す。
+     *
      * @return trueの場合は、顧客IDを保持している。
      */
     public boolean hasClientId() {
-        return this.clientId != null;
+        return clientId != null;
     }
 
     /**
@@ -132,12 +127,13 @@ public class ProjectForm implements Serializable {
      * @return 顧客名
      */
     public String getClientName() {
-        return this.clientName;
+        return clientName;
     }
 
 
     /**
      * プロジェクト開始日を取得する。
+     *
      * @return プロジェクト開始日
      */
     public String getProjectStartDate() {
@@ -146,6 +142,7 @@ public class ProjectForm implements Serializable {
 
     /**
      * プロジェクト終了日を取得する。
+     *
      * @return プロジェクト終了日
      */
     public String getProjectEndDate() {
@@ -158,7 +155,7 @@ public class ProjectForm implements Serializable {
      * @return 備考
      */
     public String getNote() {
-        return this.note;
+        return note;
     }
 
     /**
@@ -201,7 +198,6 @@ public class ProjectForm implements Serializable {
      * プロジェクト名を設定する。
      *
      * @param projectName 設定するプロジェクト名
-     *
      */
 
     public void setProjectName(String projectName) {
@@ -239,7 +235,6 @@ public class ProjectForm implements Serializable {
      * プロジェクトリーダー名を設定する。
      *
      * @param projectLeader 設定するプロジェクトリーダー名
-     *
      */
     public void setProjectLeader(String projectLeader) {
         this.projectLeader = projectLeader;
@@ -258,7 +253,6 @@ public class ProjectForm implements Serializable {
      * 顧客名を設定する。
      *
      * @param clientName 設定する顧客名
-     *
      */
     public void setClientName(String clientName) {
         this.clientName = clientName;
@@ -270,7 +264,7 @@ public class ProjectForm implements Serializable {
      * @param projectStartDate プロジェクト開始日
      */
     public void setProjectStartDate(String projectStartDate) {
-        this.projectStartDate = StringUtil.isNullOrEmpty(projectStartDate) ? null : projectStartDate.replace("/", "");
+        this.projectStartDate = projectStartDate;
     }
 
     /**
@@ -279,7 +273,7 @@ public class ProjectForm implements Serializable {
      * @param projectEndDate プロジェクト終了日
      */
     public void setProjectEndDate(String projectEndDate) {
-        this.projectEndDate = StringUtil.isNullOrEmpty(projectEndDate) ? null : projectEndDate.replace("/", "");
+        this.projectEndDate = projectEndDate;
     }
 
 
@@ -287,7 +281,6 @@ public class ProjectForm implements Serializable {
      * 備考を設定する。
      *
      * @param note 設定する備考
-     *
      */
     public void setNote(String note) {
         this.note = note;
@@ -299,7 +292,7 @@ public class ProjectForm implements Serializable {
      * @param sales 売上高
      */
     public void setSales(String sales) {
-        this.sales = StringUtil.isNullOrEmpty(sales) ? null : sales;
+        this.sales = sales;
     }
 
     /**
@@ -308,7 +301,7 @@ public class ProjectForm implements Serializable {
      * @param costOfGoodsSold 売上原価
      */
     public void setCostOfGoodsSold(String costOfGoodsSold) {
-        this.costOfGoodsSold = StringUtil.isNullOrEmpty(costOfGoodsSold) ? null : costOfGoodsSold;
+        this.costOfGoodsSold = costOfGoodsSold;
     }
 
     /**
@@ -317,7 +310,7 @@ public class ProjectForm implements Serializable {
      * @param sga 販管費
      */
     public void setSga(String sga) {
-        this.sga = StringUtil.isNullOrEmpty(sga) ? null : sga;
+        this.sga = sga;
     }
 
     /**
@@ -326,7 +319,7 @@ public class ProjectForm implements Serializable {
      * @param allocationOfCorpExpenses 本社配賦
      */
     public void setAllocationOfCorpExpenses(String allocationOfCorpExpenses) {
-        this.allocationOfCorpExpenses = StringUtil.isNullOrEmpty(allocationOfCorpExpenses) ? null : allocationOfCorpExpenses;
+        this.allocationOfCorpExpenses = allocationOfCorpExpenses;
     }
 
 
@@ -402,7 +395,7 @@ public class ProjectForm implements Serializable {
         long result = Integer.valueOf(sales).longValue() - Integer.valueOf(costOfGoodsSold).longValue()
                 - Integer.valueOf(sga).longValue() - Integer.valueOf(allocationOfCorpExpenses).longValue();
         return result;
-    };
+    }
 
     /**
      * 営業利益率を取得する。<br />

@@ -8,6 +8,8 @@ import javax.inject.Named;
 
 /**
  * 賞与の計算結果をDBに登録する{@link javax.batch.api.chunk.ItemWriter}実装クラス。
+ *
+ * @author Nabu Rakutaro
  */
 @Dependent
 @Named
