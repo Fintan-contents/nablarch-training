@@ -63,13 +63,14 @@ ETL機能とJSR352に準拠したバッチアプリケーションを組み合�
 		- 3.3.2. ETL用設定ファイルを作成する
 
 #### ETLデザイナーの解説書
-- [Getting Started](https://alfort.adc-tis.com/gitbucket/shaft/etl-designer/blob/master/doc/getting-started.md0)
+ETLデザイナーの操作方法はGetting Startedを参照してください。
+- [Getting Started](https://alfort.adc-tis.com/gitbucket/shaft/etl-designer/blob/master/doc/getting-started.md)
 - [利用方法](https://alfort.adc-tis.com/gitbucket/shaft/etl-designer/blob/master/doc/operation-guide.md)
 
 ## 実装する機能
 
 - 郵便番号データの1レコードに対応するDTOを作成してください。
-- ETLデザイナー上でJob定義を作成してください。
+- ETLデザイナー上でJOB定義を作成してください。
 
 ## 演習
 
@@ -113,13 +114,18 @@ ETL機能とJSR352に準拠したバッチアプリケーションを組み合�
 |文字コード|MS932|
 |クォートモード|NORMAL|
 
-### ETLデザイナーでJob定義の作成
+### JOB定義ファイル及びETL用JOB設定ファイル
+
+ETLデザイナーで作成します。
 
 - テンプレートの読み込み
     - ETLデザイナーで使用するテンプレートを選択します。「file2db_chunk_chunk」を開いてください。
 
-- Job定義の編集
-下表を参考にしてETLの設定を行ってください。
+- JOBの編集
+  
+図形の削除はキャンバス上で行ってください。  
+値の設定はプロパティパネルで行ってください。設定する値は下表を参考にしてください。
+
     - Jobのname属性
         - 「etl-zip-code-csv-to-db-chunk」を設定してください。
     - 「truncate」ステップ
@@ -146,6 +152,7 @@ ETL機能とJSR352に準拠したバッチアプリケーションを組み合�
 |SQL_ID|SELECT_ZIPCODE_FROM_WORK|
 
 - JOB定義ファイル(XML)ETL用設定ファイルと(JSON)の出力
+    - JOB定義のバリデーションを行ってください。
     - 設定ファイルを出力してください。
     - 出力した設定ファイルを、所定の位置に移動させてください。
         - XMLファイル： <チェックアウトディレクトリ>/handson-14/src/main/resources/META-INF/batch-jobs/
