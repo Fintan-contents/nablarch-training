@@ -62,11 +62,15 @@ ETL機能とJSR352に準拠したバッチアプリケーションを組み合�
 	- 3.3. 使用方法
 		- 3.3.2. ETL用設定ファイルを作成する
 
+#### ETLデザイナーの解説書
+ETLデザイナーの操作方法はGetting Startedを参照してください。
+- [Getting Started](https://alfort.adc-tis.com/gitbucket/shaft/etl-designer/blob/master/doc/getting-started.md)
+- [利用方法](https://alfort.adc-tis.com/gitbucket/shaft/etl-designer/blob/master/doc/operation-guide.md)
+
 ## 実装する機能
 
 - 郵便番号データの1レコードに対応するDTOを作成してください。
-- ジョブ定義ファイルを作成してください。
-- ジョブ定義ファイルに対応するETL用設定ファイルを作成してください。
+- ETLデザイナー上でJOB定義ファイル及びETL用JOB設定ファイルを作成してください。
 
 ## 演習
 
@@ -110,23 +114,34 @@ ETL機能とJSR352に準拠したバッチアプリケーションを組み合�
 |文字コード|MS932|
 |クォートモード|NORMAL|
 
-### XML(JOB定義ファイル)部分([etl-zip-code-csv-to-db-chunk.xml](./src/main/resources/META-INF/batch-jobs/etl-zip-code-csv-to-db-chunk.xml))
+### JOB定義ファイル及びETL用JOB設定ファイル
 
-XMLに定義するBatchletや指定するクラスは、すべてETLモジュールに含まれているものです。
+ETLデザイナーで作成します。
 
-- 「truncate」ステップ
-    - テーブルクリーニングを行うBatchletを定義してください。
-- 「extract」ステップ
-    - JSR352のChunkステップを使用したデータのロードを記述してください。item-countは3000件としてください。
-- 「validation」ステップ
-    - 精査を行うBatchletを定義してください。
-- 「load」ステップ
-    - Chunkを定義してください。item-countは3000件としてください。
-        - reader、writerを指定してください。
+- テンプレートの読み込み
+    - ETLデザイナーで使用するテンプレートを選択します。「file2db_chunk_chunk」を開いてください。
 
-### JSON(ETL用設定ファイル)部分([etl-zip-code-csv-to-db-chunk.json](./src/main/resources/META-INF/etl-config/etl-zip-code-csv-to-db-chunk.json))
+- JOBの編集
+  
+図形の削除はキャンバス上で行ってください。  
+値の設定はプロパティパネルで行ってください。設定する値は下表を参考にしてください。
 
-コメント部分を、コメントの内容と下表を参考に書き換えてください。
+    - Jobのname属性
+        - 「etl-zip-code-csv-to-db-chunk」を設定してください。
+    - 「truncate」ステップ
+        - truncate entity: テーブルクリーニングの対象テーブル(今回はワークテーブルのみ)のエンティティクラスを設定してください。
+    - 「extract」ステップ
+        - Processorを使用しないため図形を削除してください。
+        - fileName: 入力ファイル名を設定してください。
+        - bean: ワークテーブルのエンティティクラスを完全修飾名で設定してください。
+    - 「validation」ステップ
+        - bean: バリデーション対象のワークテーブルのエンティティクラスの完全修飾名を設定してください。
+        - errorEntity: エラーデータを格納するワークテーブルのエンティティクラスを完全修飾名で記述してください。
+        - mode: ABORTを選択してください。
+    - 「load」ステップ
+        - Processorを使用しないため図形を削除してください。
+        - bean: 本番テーブルのエンティティクラスを完全修飾名で記述してください。
+        - SQLId: ワークテーブルから本番テーブルに登録する際に使用するSQLのSQL_IDを記述してください。
 
 |項目|値|
 |:--|:--|
@@ -136,6 +151,12 @@ XMLに定義するBatchletや指定するクラスは、すべてETLモジュー
 |ワークテーブルのエンティティクラス|上記「Java部分」参照|
 |SQL_ID|SELECT_ZIPCODE_FROM_WORK|
 
+- JOB定義ファイル(XML)とETL用JOB設定ファイル(JSON)の出力
+    - JOB定義のバリデーションを行ってください。
+    - 設定ファイルを出力してください。
+    - 出力した設定ファイルを、下記のディレクトリ配下に移動させてください。
+        - XMLファイル： <チェックアウトディレクトリ>/handson-14/src/main/resources/META-INF/batch-jobs/
+        - JSONファイル: <チェックアウトディレクトリ>/handson-14/src/main/resources/META-INF/etl-config/
 
 
 ## 動作確認方法
