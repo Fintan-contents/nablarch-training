@@ -70,7 +70,7 @@ ETLデザイナーの操作方法はGetting Startedを参照してください�
 ## 実装する機能
 
 - 郵便番号データの1レコードに対応するDTOを作成してください。
-- ETLデザイナー上でJOB定義を作成してください。
+- ETLデザイナー上でJOB定義ファイル及びETL用JOB設定ファイルを作成してください。
 
 ## 演習
 
@@ -151,10 +151,10 @@ ETLデザイナーで作成します。
 |ワークテーブルのエンティティクラス|上記「Java部分」参照|
 |SQL_ID|SELECT_ZIPCODE_FROM_WORK|
 
-- JOB定義ファイル(XML)ETL用設定ファイルと(JSON)の出力
+- JOB定義ファイル(XML)とETL用JOB設定ファイル(JSON)の出力
     - JOB定義のバリデーションを行ってください。
     - 設定ファイルを出力してください。
-    - 出力した設定ファイルを、所定の位置に移動させてください。
+    - 出力した設定ファイルを、下記のディレクトリ配下に移動させてください。
         - XMLファイル： <チェックアウトディレクトリ>/handson-14/src/main/resources/META-INF/batch-jobs/
         - JSONファイル: <チェックアウトディレクトリ>/handson-14/src/main/resources/META-INF/etl-config/
 
