@@ -52,7 +52,7 @@
   </dependencies>
   <build>
     <!-- 成果物の名称 -->
-    <finalName>${artifactId}-${version}</finalName>
+    <finalName>${project.artifactId}-${project.version}</finalName>
     <resources>
       <resource>
         <directory>src/main/resources</directory>
