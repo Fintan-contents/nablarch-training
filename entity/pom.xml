@@ -22,15 +22,6 @@
 
 
   </properties>
-  <profiles>
-    <!-- gsp-dba-plugin -->
-    <profile>
-      <id>gsp</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-    </profile>
-  </profiles>
 
   <dependencyManagement>
     <dependencies>

@@ -20,17 +20,6 @@
     <webxml.path>src/main/webapp/WEB-INF/web.xml</webxml.path>
   </properties>
 
-  <profiles>
-
-    <!-- 開発環境 -->
-    <profile>
-      <id>development</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-    </profile>
-  </profiles>
-
   <dependencyManagement>
     <dependencies>
       <dependency>

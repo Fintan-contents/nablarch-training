@@ -19,17 +19,6 @@
 
   </properties>
 
-  <profiles>
-
-    <!-- 開発環境 -->
-    <profile>
-      <id>development</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-    </profile>
-  </profiles>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
