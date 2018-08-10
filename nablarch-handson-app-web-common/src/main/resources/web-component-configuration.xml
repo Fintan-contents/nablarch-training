@@ -2,15 +2,20 @@
 
 <component-configuration
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://tis.co.jp/nablarch/component-configuration"
-    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  /component-configuration.xsd">
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  https://nablarch.github.io/schema/component-configuration.xsd">
 
   <!-- テーブル定義 -->
   <import file="nablarch/schema-config.xml" />
+  
+  <!-- jsr310 -->
+  <import file="JSR310.xml" />
+  
+  <component name="dialect" class="nablarch.core.db.dialect.H2Dialect" />
 
   <!-- 環境設定ファイル -->
-  <config-file file="env.config" />
-  <config-file file="common.config" />
-  <config-file file="RegistrationPdfFile.config" />
+  <config-file file="env.properties" />
+  <config-file file="common.properties" />
+  <config-file file="RegistrationPdfFile.properties" />
 
   <!-- バリデーション -->
   <import file="com/nablarch/example/app/core/validation.xml" />
@@ -29,6 +34,7 @@
   <!-- web固有設定の読み込み -->
   <!-- データベース設定 -->
   <import file="nablarch/webui/db-for-webui.xml"/>
+  <import file="db.xml" />
 
   <!-- Interceptorの実行順定義 -->
   <import file="nablarch/webui/interceptors.xml" />
