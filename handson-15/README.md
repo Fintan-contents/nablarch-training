@@ -22,8 +22,8 @@ RESTfulウェブサービスを作成してみよう
 
 #### Nablarchアプリケーションフレームワークの解説書
 - 3.1. RESTfulウェブサービス編
-    - 3.1.1. アーキテクチャ概要
-    - 3.1.3. Getting Started
+    - アーキテクチャ概要
+    - Getting Started
 
 - 7.3.2. ユニバーサルDAO
 	- 使用方法
