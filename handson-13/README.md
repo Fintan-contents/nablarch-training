@@ -109,17 +109,23 @@ JSR352に準拠したバッチアプリケーションには、BatchletとChunk�
 
 ### バッチ実行
 
-チェックアウトディレクトリに移動後、以下を実行してjarの作成及び関係するjarの取得を行います。
+チェックアウトディレクトリに移動後、以下を実行してjarの作成を行います。
 
     $cd handson-13
     $mvn clean package
-    $mvn dependency:copy-dependencies
 
-ここまでの操作で、targetディレクトリにjarが作成され、target/dependencyディレクトリに、関係するjarが格納されます。
+ここまでの操作で、targetディレクトリにjarが作成されます。
 
 <チェックアウトディレクトリ>/handson-13 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
-    java -cp ./target/*;./target/dependency/* nablarch.fw.batch.ee.Main bonus-calculate
+    $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=bonus-calculate
+
+実行すると、以下のようなログがコンソールに出力されますが、問題はありません。
+
+    (中略)
+    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PostActivate not found, interception based on it is not enabled
+    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PrePassivate not found, interception based on it is not enabled
+    (中略)
 
 ### バッチ実行結果の確認
 
