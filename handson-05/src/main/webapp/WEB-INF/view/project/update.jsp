@@ -30,7 +30,7 @@
                     <span class="page-title">プロジェクト変更画面</span>
                     <div class="button-nav">
                         <n:forInputPage>
-                            <n:a href="/action/project/show/${form.projectId}" cssClass="btn btn-raised btn-default">戻る</n:a>
+                            <n:a href="/action/project/show/${project.projectId}" cssClass="btn btn-raised btn-default">戻る</n:a>
                             <n:submit value="削除" uri="#" id="topDeleteButton" cssClass="btn btn-raised btn-danger" allowDoubleSubmission="false" type="button" />
                             <n:submit value="更新" uri="#" id="topUpdateButton" cssClass="btn btn-raised btn-success" type="button" />
                         </n:forInputPage>
@@ -147,7 +147,10 @@
                             </th>
                             <td>
                                 <div class="form-group">
-                                    <n:text name="form.projectStartDate" nameAlias="form.date" valueFormat="exampleDateTime{yyyy/MM/dd}" cssClass="form-control datepicker" errorCss="input-error"/>
+                                  <n:set var="projectStartDate" name="form.projectStartDate" scope="page" />
+                                  <n:text name="form.projectStartDate" nameAlias="form.date"
+                                          value="${n:formatByDefault('dateTime', projectStartDate)}"
+                                          cssClass="form-control datepicker" errorCss="input-error" />
                                     <n:error errorCss="message-error" name="form.projectStartDate" />
                                 </div>
                             </td>
@@ -158,7 +161,10 @@
                             </th>
                             <td>
                                 <div class="form-group">
-                                    <n:text name="form.projectEndDate" nameAlias="form.date" valueFormat="exampleDateTime{yyyy/MM/dd}" cssClass="form-control datepicker" errorCss="input-error" />
+                                  <n:set var="projectEndDate" name="form.projectEndDate" scope="page" />
+                                  <n:text name="form.projectEndDate" nameAlias="form.date"
+                                          value="${n:formatByDefault('dateTime', projectEndDate)}"
+                                          cssClass="form-control datepicker" errorCss="input-error" />
                                     <n:error errorCss="message-error" name="form.projectEndDate" />
                                     <n:error errorCss="message-error" name="form.validProjectPeriod" />
                                 </div>
@@ -188,7 +194,7 @@
                                 </div>
                                 </n:forInputPage>
                                 <n:forConfirmationPage>
-                                    <n:write name="form.sales" valueFormat="decimal{###,###,### 千円}" />
+                                  <n:write value="${n:format('number', form.sales, '###,###,### 千円')}" />
                                 </n:forConfirmationPage>
                             </td>
                         </tr>
@@ -205,7 +211,7 @@
                                 </div>
                                 </n:forInputPage>
                                 <n:forConfirmationPage>
-                                    <n:write name="form.costOfGoodsSold" valueFormat="decimal{###,###,### 千円}" />
+                                  <n:write value="${n:format('number', form.costOfGoodsSold, '###,###,### 千円')}" />
                                 </n:forConfirmationPage>
                             </td>
                         </tr>
@@ -222,7 +228,7 @@
                                 </div>
                                 </n:forInputPage>
                                 <n:forConfirmationPage>
-                                    <n:write name="form.sga" valueFormat="decimal{###,###,### 千円}" />
+                                  <n:write value="${n:format('number', form.sga, '###,###,### 千円')}" />
                                 </n:forConfirmationPage>
                             </td>
                         </tr>
@@ -239,7 +245,8 @@
                                 </div>
                                 </n:forInputPage>
                                 <n:forConfirmationPage>
-                                    <n:write name="form.allocationOfCorpExpenses" valueFormat="decimal{###,###,### 千円}" />
+                                  <n:write
+                                      value="${n:format('number', form.allocationOfCorpExpenses, '###,###,### 千円')}" />
                                 </n:forConfirmationPage>
                             </td>
                         </tr>
@@ -249,7 +256,7 @@
                                     売上総利益
                                 </td>
                                 <td>
-                                    <n:write name="form.grossProfit" valueFormat="decimal{###,###,### 千円}" />
+                                  <n:write value="${n:format('number', form.grossProfit, '###,###,### 千円')}" />
                                 </td>
                             </tr>
                             <tr>
@@ -257,7 +264,8 @@
                                     配賦前利益
                                 </td>
                                 <td>
-                                    <n:write name="form.profitBeforeAllocation" valueFormat="decimal{###,###,### 千円}" />
+                                  <n:write
+                                      value="${n:format('number', form.profitBeforeAllocation, '###,###,### 千円')}" />
                                 </td>
                             </tr>
                             <tr>
@@ -265,7 +273,8 @@
                                     配賦前利益率
                                 </td>
                                 <td>
-                                    <n:write name="form.profitRateBeforeAllocation" valueFormat="decimal{##0.0 %}" />
+                                  <n:write
+                                      value="${n:format('number', form.profitRateBeforeAllocation, '##0.0 %')}" />
                                 </td>
                             </tr>
                             <tr>
@@ -273,7 +282,7 @@
                                     営業利益
                                 </td>
                                 <td>
-                                    <n:write name="form.operatingProfit" valueFormat="decimal{###,###,### 千円}" />
+                                  <n:write value="${n:format('number', form.operatingProfit, '###,###,### 千円')}" />
                                 </td>
                             </tr>
                             <tr>
@@ -281,7 +290,7 @@
                                     営業利益率
                                 </td>
                                 <td>
-                                    <n:write name="form.operatingProfitRate" valueFormat="decimal{##0.0 %}" />
+                                  <n:write value="${n:format('number', form.operatingProfitRate, '##0.0 %')}" />
                                 </td>
                             </tr>
                         </n:forConfirmationPage>
@@ -290,7 +299,7 @@
                 <div class="title-nav page-footer">
                     <div class="button-nav">
                         <n:forInputPage>
-                            <n:a href="/action/project/show/${form.projectId}" cssClass="btn btn-raised btn-default">戻る</n:a>
+                            <n:a href="/action/project/show/${project.projectId}" cssClass="btn btn-raised btn-default">戻る</n:a>
                             <n:submit value="削除" uri="/action/project/delete" id="bottomDeleteButton" cssClass="btn btn-raised btn-danger" allowDoubleSubmission="false" type="button" />
                             <n:submit value="更新" uri="/action/project/confirmOfUpdate" id="bottomUpdateButton" cssClass="btn btn-raised btn-success" type="button" />
                         </n:forInputPage>
