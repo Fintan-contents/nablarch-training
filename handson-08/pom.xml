@@ -140,7 +140,6 @@
       <artifactId>nablarch-fw-web-hotdeploy</artifactId>
     </dependency>
 
-    <!-- TEST -->
     <dependency>
       <groupId>nablarch.handson</groupId>
       <artifactId>nablarch-handson-app-entity</artifactId>
@@ -153,6 +152,7 @@
       <version>1.3.0</version>
     </dependency>
 
+    <!-- TEST -->
     <dependency>
       <groupId>com.nablarch.configuration</groupId>
       <artifactId>nablarch-testing-default-configuration</artifactId>
