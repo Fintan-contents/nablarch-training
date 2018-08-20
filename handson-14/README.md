@@ -44,23 +44,23 @@ ETL機能とJSR352に準拠したバッチアプリケーションを組み合�
 
 
 #### Nablarchアプリケーションフレームワークの解説書
-- 7.5.1. データバインド
+- 7.4.1. データバインド
 	- 使用方法
 		- CSVファイルのフォーマットを指定する
 			- Java Beansクラスにバインドする場合
 
 #### Nablarch拡張コンポーネントの解説書
 
-- 3.ETL
-	- 3.2.ETLの各フェーズの使用
-		- 3.2.1.Extractフェーズ
-			- JSR352 のChunkステップを使用したデータのロード
-        - 3.2.2. Transformフェーズ
-        	- データのバリデーション
-        - 3.2.3. Loadフェーズ
-    		- データベース出力
-	- 3.3. 使用方法
-		- 3.3.2. ETL用設定ファイルを作成する
+- 4.ETL
+	- ETLの各フェーズの仕様
+		- Extractフェーズ
+			- Extractフェーズ(Chunk)を使用する
+        - Transformフェーズ
+        	- Transformフェーズでバリデーションを行う
+        - Loadフェーズ
+    		- Loadフェーズでデータベースへの登録を行う
+	- 使用方法
+		- ETL用環境設定ファイルを作成する
 
 #### ETLデザイナーの解説書
 ETLデザイナーの操作方法はGetting Startedを参照してください。
@@ -180,17 +180,23 @@ ETLデザイナーで作成します。
 
 ### バッチ実行
 
-チェックアウトディレクトリに移動後、以下を実行してjarの作成及び関係するjarの取得を行います。
+チェックアウトディレクトリに移動後、以下を実行してjarの作成を行います。
 
     $cd handson-14
     $mvn clean package
-    $mvn dependency:copy-dependencies
 
-ここまでの操作で、targetディレクトリにjarが作成され、target/dependencyディレクトリに、関係するjarが格納されます。
+ここまでの操作で、targetディレクトリにjarが作成されます。
 
 <チェックアウトディレクトリ>/handson-14 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
-    java -cp ./target/*;./target/dependency/* nablarch.fw.batch.ee.Main etl-zip-code-csv-to-db-chunk
+    $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=etl-zip-code-csv-to-db-chunk
+
+実行すると、以下のようなログがコンソールに出力されますが、問題はありません。
+
+    (中略)
+    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PostActivate not found, interception based on it is not enabled
+    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PrePassivate not found, interception based on it is not enabled
+    (中略)
 
 ### バッチ実行結果の確認
 

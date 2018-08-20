@@ -23,10 +23,10 @@ JSR352に準拠したバッチアプリケーションには、BatchletとChunk�
 
 #### Nablarchアプリケーションフレームワークの解説書
 
-- 7.4.2. ユニバーサルDAO
+- 7.3.2. ユニバーサルDAO
     - 使用方法
         - 検索結果を遅延ロードする
-        - バッチ実行（一括登録、更新、削除）を行う
+        - バッチ実行(一括登録、更新、削除)を行う
 - 4.1.1. アーキテクチャ概要
 	- バッチアプリケーションの処理の流れ
 		- Chunk
@@ -34,7 +34,6 @@ JSR352に準拠したバッチアプリケーションには、BatchletとChunk�
     - リスナーの指定方法
 - 4.1.3. Getting Started
 	- データを導出するバッチの作成(Chunkステップ)
-		- JOB設定ファイルを作成する
 
 ## 実装する機能
 
@@ -110,17 +109,23 @@ JSR352に準拠したバッチアプリケーションには、BatchletとChunk�
 
 ### バッチ実行
 
-チェックアウトディレクトリに移動後、以下を実行してjarの作成及び関係するjarの取得を行います。
+チェックアウトディレクトリに移動後、以下を実行してjarの作成を行います。
 
     $cd handson-13
     $mvn clean package
-    $mvn dependency:copy-dependencies
 
-ここまでの操作で、targetディレクトリにjarが作成され、target/dependencyディレクトリに、関係するjarが格納されます。
+ここまでの操作で、targetディレクトリにjarが作成されます。
 
 <チェックアウトディレクトリ>/handson-13 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
-    java -cp ./target/*;./target/dependency/* nablarch.fw.batch.ee.Main bonus-calculate
+    $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=bonus-calculate
+
+実行すると、以下のようなログがコンソールに出力されますが、問題はありません。
+
+    (中略)
+    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PostActivate not found, interception based on it is not enabled
+    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PrePassivate not found, interception based on it is not enabled
+    (中略)
 
 ### バッチ実行結果の確認
 
