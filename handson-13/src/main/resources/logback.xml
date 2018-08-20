@@ -1,10 +1,40 @@
 <configuration>
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
+      <pattern>%d %-5level %logger{10} %msg%n</pattern>
     </encoder>
   </appender>
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>log/all.log</file>
+    <encoder>
+      <pattern>%d %-5level %logger{10} [%X{logid}] %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE_PROGRESS" class="ch.qos.logback.core.FileAppender">
+    <file>log/progress.log</file>
+    <encoder>
+      <pattern>%d %-5level %logger{10} %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE_OPERATION" class="ch.qos.logback.core.FileAppender">
+    <file>log/operation.log</file>
+    <encoder>
+      <pattern>%d %-5level %logger{10} %msg%n%nopex</pattern>
+    </encoder>
+  </appender>
+  
+  <logger name="operator" level="error">
+    <appender-ref ref="FILE_OPERATION" />
+  </logger>
+
+  <logger name="progress" additivity="false">
+    <appender-ref ref="FILE_PROGRESS" />
+  </logger>
+
   <root level="INFO">
     <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
   </root>
 </configuration>
