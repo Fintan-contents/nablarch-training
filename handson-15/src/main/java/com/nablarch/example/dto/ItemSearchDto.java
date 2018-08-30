@@ -1,11 +1,13 @@
 package com.nablarch.example.dto;
 
+import java.io.Serializable;
+
 /**
  * 商品検索のDto
  *
  * @author Nabu Rakutaro
  */
-public class ItemSearchDto {
+public class ItemSearchDto implements Serializable {
 
     /** シリアルバージョンUID */
     private static final long serialVersionUID = 1L;
