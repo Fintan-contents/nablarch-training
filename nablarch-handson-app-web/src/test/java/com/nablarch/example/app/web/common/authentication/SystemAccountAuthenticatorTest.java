@@ -332,7 +332,7 @@ public class SystemAccountAuthenticatorTest {
         } catch (PasswordExpiredException e) {
             assertThat(e.getUserId(), is("1"));
             assertThat(e.getPasswordExpirationDate(), is(DateUtil.getDate("20130804")));
-            assertThat(DateUtil.getParsedDate(e.getBusinessDate().toString(), "yyyy-MM-dd HH:mm:ss.S"), is(DateUtil.getDate("20130805")));
+            assertThat(e.getBusinessDate(), is(DateUtil.getDate("20130805")));
         }
     }
 
