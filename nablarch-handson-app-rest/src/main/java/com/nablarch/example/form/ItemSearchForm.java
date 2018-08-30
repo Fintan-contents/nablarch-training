@@ -2,12 +2,14 @@ package com.nablarch.example.form;
 
 import nablarch.core.validation.ee.Domain;
 
+import java.io.Serializable;
+
 /**
  * 商品検索フォーム
  *
  * @author Nabu Rakutaro
  */
-public class ItemSearchForm {
+public class ItemSearchForm implements Serializable {
 
     /** シリアルバージョンUID */
     private static final long serialVersionUID = 1L;
