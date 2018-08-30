@@ -4,7 +4,7 @@
 <component-configuration
     xmlns="http://tis.co.jp/nablarch/component-configuration"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration /component-configuration.xsd">
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration https://nablarch.github.io/schema/component-configuration.xsd">
 
   <!-- Nablarchタグのハンドラの設定ファイル -->
   <component name="nablarchTagHandler" class="nablarch.common.web.handler.NablarchTagHandler">
@@ -25,25 +25,6 @@
     <property name="displayMethod" value="${nablarch.customTagConfig.displayMethod}" />
     <property name="useGetRequest" value="${nablarch.customTagConfig.useGetRequest}" />
   </component>
-
-  <component name="dateTimeFormatter" class="com.nablarch.example.app.web.formatter.ExampleDateTimeFormatter">
-    <property name="dateTimeFormatter">
-      <component class="nablarch.common.web.tag.DateTimeFormatter" />
-    </property>
-    <property name="yyyymmddFormatter">
-      <component class="nablarch.common.web.tag.YYYYMMDDFormatter" />
-    </property>
-  </component>
   
-  <!--
-   フォーマッターの設定
-   @see nablarch.common.web.tag.TagUtil
-    -->
-  <map name="valueFormatters">
-    <entry key="decimal">
-      <value-component class="nablarch.common.web.tag.DecimalFormatter" />
-    </entry>
-    <entry key="exampleDateTime" value-name="dateTimeFormatter" />
-  </map>
 
 </component-configuration>
