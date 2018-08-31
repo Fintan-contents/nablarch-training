@@ -14,7 +14,8 @@ import java.util.List;
  * 商品検索・登録・更新機能。
  *
  * @author Nabu Rakutaro
- */public class ItemAction {
+ */
+public class ItemAction {
 
     /**
      * 商品情報を検索する。
