@@ -25,7 +25,8 @@ public class LoginUserPrincipalCheckHandler implements Handler<HttpRequest, Obje
     @Override
     public Object handle(HttpRequest request, ExecutionContext context) {
         if (SessionUtil.orNull(context, "userContext") == null
-                && !Objects.equals(request.getRequestPath(), "/action/login")) {
+                && (!Objects.equals(request.getRequestPath(), "/action/login")
+                && !Objects.equals(request.getRequestPath(), "/"))) {
             return new HttpResponse("/WEB-INF/view/login/index.jsp");
         }
         return context.handleNext(request);

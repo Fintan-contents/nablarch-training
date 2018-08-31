@@ -1,6 +1,5 @@
 package com.nablarch.example.app.web.common.authentication;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import nablarch.common.dao.NoDataException;
@@ -98,7 +97,7 @@ public class SystemAccountAuthenticator implements PasswordAuthenticator {
         }
 
         // 有効期限は日付単位で管理しているので、現在日時から時間を切り捨てた日付を使用する。
-        Date sysDate = new Timestamp(DateUtil.getDate(SystemTimeUtil.getDateString()).getTime());
+        final Date sysDate = DateUtil.getDate(SystemTimeUtil.getDateString());
         final SystemAccount account;
         try {
             account = UniversalDao.findBySqlFile(

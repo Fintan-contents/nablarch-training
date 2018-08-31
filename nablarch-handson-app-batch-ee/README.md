@@ -1,6 +1,6 @@
 nablarch-handson-app-batch-ee
 ===============
-Nablarch Framework（nablarch-fw-batch-ee、nablarch-etl）のバッチExampleアプリケーションです。
+Nablarchアプリケーションフレームワークを利用して作成したJSR352に準拠したバッチExampleアプリケーションです。
 
 ## アプリケーションのビルドと実行
 
@@ -17,25 +17,26 @@ Nablarch Framework（nablarch-fw-batch-ee、nablarch-etl）のバッチExample�
     cd nablarch-handson-app-batch-ee
     $mvn clean package
 
-ビルド後、以下のコマンドを実行し依存するライブラリを取得します。
-
-    $mvn dependency:copy-dependencies
-
+ここまでの操作で、targetディレクトリにjarが作成されます。
 
 ### 実行
 
-ビルド、依存ライブラリの取得が終わったら、以下のコマンドを実行するとサンプルアプリケーションを動作させることができます。
+targetディレクトリにjarの作成が終わったら、以下のコマンドを実行するとサンプルアプリケーションを動作させることができます。
 
+    $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=<batch-job名>
 
-    $java -cp ./target/*;./target/dependency/* nablarch.fw.batch.ee.Main <batch-job名>
+実行すると、以下のようなログがコンソールに出力されますが、問題はありません。
 
+    (中略)
+    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PostActivate not found, interception based on it is not enabled
+    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PrePassivate not found, interception based on it is not enabled
+    (中略)
 
 ＜batch-job名＞の指定例を示します。
 
-    java -cp ./target/*;./target/dependency/* nablarch.fw.batch.ee.Main zip-code-truncate-table
+    mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=zip-code-truncate-table
 
-
-＜batch-job名＞を変えることで、CSVからDBおよびDBからCSVへのデータ保存と、DBのTRUNCATE処理を行うことができます。
+＜batch-job名＞を変えることで、CSVからDBへのデータ保存と、DBのTRUNCATE処理などを行うことができます。
 動作させることができる処理は、次の通りです。実行後、以下の説明に出てくるCSVファイルやテーブルを見て、処理結果を確認してください。
 
 * JBatchのみ利用（ETLなし）
@@ -47,8 +48,6 @@ Nablarch Framework（nablarch-fw-batch-ee、nablarch-etl）のバッチExample�
     * (ハンズオン14)郵便番号登録ETLバッチ(SQL*Loaderを使わないCSV→DB)
         * <チェックアウトディレクトリ>/testdata/input/KEN_ALL.CSV を入力元とし、ZIP_CODE_DATA テーブルにデータを登録します。
         * SQL*Loaderは使いません。
-    * 郵便番号出力バッチ(DB→CSV)
-        * ZIP_CODE_DATAテーブルのデータを <チェックアウトディレクトリ>/testdata/output 以下に出力します。
 
 動作させる処理は、引数の<batch-job名>を変更することで選択できます。
 
@@ -57,7 +56,6 @@ Nablarch Framework（nablarch-fw-batch-ee、nablarch-etl）のバッチExample�
     * ＜batch-job名＞に「zip-code-truncate-table」を指定すると、郵便番号テーブルTRUNCATEバッチが実行されます。
 * ETLとJBatchを利用
     * ＜batch-job名＞に「etl-zip-code-csv-to-db-chunk」を指定すると、郵便番号登録ETLバッチ(SQL*Loaderを使わないCSV→DB)が実行されます。
-    * ＜batch-job名＞に「etl-zip-code-db-to-csv-chunk」を指定すると、郵便番号出力バッチが実行されます。
 
 
 なお、インプットのCSVデータは、下記サイトより取得できる郵便番号データ（全国一括）を元にしています。
