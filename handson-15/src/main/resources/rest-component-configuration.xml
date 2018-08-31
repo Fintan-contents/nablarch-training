@@ -2,7 +2,7 @@
 
 <component-configuration
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://tis.co.jp/nablarch/component-configuration"
-    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  /component-configuration.xsd">
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  https://nablarch.github.io/schema/component-configuration.xsd">
 
   <!-- テーブル定義 -->
   <import file="nablarch/schema-config.xml" />
@@ -17,11 +17,12 @@
   <component name="validationStrategy" class="nablarch.common.web.validator.BeanValidationStrategy" />
 
   <!-- 環境設定ファイル -->
-  <config-file file="common.config" />
-  <config-file file="env.config" />
+  <config-file file="common.properties" />
+  <config-file file="env.properties" />
 
   <!-- データベース設定 -->
-  <import file="nablarch/webui/db-for-webui.xml"/>
+  <import file="nablarch/core/db-base.xml" />
+  <import file="db.xml" />
 
   <!--パッケージマッピングの設定 -->
   <component name="packageMapping" class="nablarch.integration.router.RoutesMapping">
@@ -43,6 +44,7 @@
     <property name="handlerQueue">
       <list>
         <component class="nablarch.fw.handler.GlobalErrorHandler"/>
+        <component class="nablarch.fw.web.handler.HttpCharacterEncodingHandler" />
         <component class="nablarch.fw.jaxrs.JaxRsResponseHandler">
           <property name="errorResponseBuilder">
             <component class="com.nablarch.example.error.ExampleErrorResponseBuilder" />

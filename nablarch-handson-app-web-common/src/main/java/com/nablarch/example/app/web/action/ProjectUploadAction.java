@@ -8,7 +8,6 @@ import nablarch.common.dao.UniversalDao;
 import nablarch.common.databind.InvalidDataFormatException;
 import nablarch.common.databind.ObjectMapper;
 import nablarch.common.databind.ObjectMapperFactory;
-import nablarch.common.web.WebUtil;
 import nablarch.common.web.session.SessionUtil;
 import nablarch.common.web.token.OnDoubleSubmission;
 import nablarch.core.beans.BeanUtil;
@@ -75,7 +74,7 @@ public class ProjectUploadAction {
         insertProjects(projects);
 
         // 完了メッセージの追加
-        WebUtil.notifyMessages(context, MessageUtil.createMessage(MessageLevel.INFO, "success.upload.project", projects.size()));
+        context.setRequestScopedVar("uploadProjectSize", projects.size());
 
         // ファイルの保存
         saveFile(partInfo);
@@ -183,7 +182,6 @@ public class ProjectUploadAction {
      * @return 作成したプロジェクトエンティティ
      */
     private Project createProject(ProjectUploadDto projectUploadDto, Integer userId) {
-
         Project project = BeanUtil.createAndCopy(Project.class, projectUploadDto);
         project.setUserId(userId);
         return project;
