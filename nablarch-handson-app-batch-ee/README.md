@@ -1,6 +1,6 @@
 nablarch-handson-app-batch-ee
 ===============
-Nablarch Framework（nablarch-fw-batch-ee、nablarch-etl）のバッチExampleアプリケーションです。
+Nablarchアプリケーションフレームワークを利用して作成したバッチExampleアプリケーションです。
 
 ## アプリケーションのビルドと実行
 
@@ -36,7 +36,7 @@ targetディレクトリにjarの作成が終わったら、以下のコマン�
 
     mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=zip-code-truncate-table
 
-＜batch-job名＞を変えることで、CSVからDBおよびDBからCSVへのデータ保存と、DBのTRUNCATE処理を行うことができます。
+＜batch-job名＞を変えることで、CSVからDBへのデータ保存と、DBのTRUNCATE処理などを行うことができます。
 動作させることができる処理は、次の通りです。実行後、以下の説明に出てくるCSVファイルやテーブルを見て、処理結果を確認してください。
 
 * JBatchのみ利用（ETLなし）
@@ -48,8 +48,6 @@ targetディレクトリにjarの作成が終わったら、以下のコマン�
     * (ハンズオン14)郵便番号登録ETLバッチ(SQL*Loaderを使わないCSV→DB)
         * <チェックアウトディレクトリ>/testdata/input/KEN_ALL.CSV を入力元とし、ZIP_CODE_DATA テーブルにデータを登録します。
         * SQL*Loaderは使いません。
-    * 郵便番号出力バッチ(DB→CSV)
-        * ZIP_CODE_DATAテーブルのデータを <チェックアウトディレクトリ>/testdata/output 以下に出力します。
 
 動作させる処理は、引数の<batch-job名>を変更することで選択できます。
 
@@ -58,7 +56,6 @@ targetディレクトリにjarの作成が終わったら、以下のコマン�
     * ＜batch-job名＞に「zip-code-truncate-table」を指定すると、郵便番号テーブルTRUNCATEバッチが実行されます。
 * ETLとJBatchを利用
     * ＜batch-job名＞に「etl-zip-code-csv-to-db-chunk」を指定すると、郵便番号登録ETLバッチ(SQL*Loaderを使わないCSV→DB)が実行されます。
-    * ＜batch-job名＞に「etl-zip-code-db-to-csv-chunk」を指定すると、郵便番号出力バッチが実行されます。
 
 
 なお、インプットのCSVデータは、下記サイトより取得できる郵便番号データ（全国一括）を元にしています。
