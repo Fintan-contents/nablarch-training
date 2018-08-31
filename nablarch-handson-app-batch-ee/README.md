@@ -1,6 +1,6 @@
 nablarch-handson-app-batch-ee
 ===============
-Nablarchアプリケーションフレームワークを利用して作成したバッチExampleアプリケーションです。
+Nablarchアプリケーションフレームワークを利用して作成したJSR352に準拠したバッチExampleアプリケーションです。
 
 ## アプリケーションのビルドと実行
 
