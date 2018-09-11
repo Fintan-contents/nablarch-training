@@ -94,8 +94,8 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 
 - プロジェクト変更画面([update.jsp](./src/main/webapp/WEB-INF/view/project/update.jsp))
 - プロジェクト更新確認画面([confirmOfUpdate.jsp](./src/main/webapp/WEB-INF/view/project/confirmOfUpdate.jsp))
-- プロジェクト更新完了画面([completeOfChange.jsp](./src/main/webapp/WEB-INF/view/project/completeOfChange.jsp))
-- プロジェクト削除完了([completeOfChange.jsp](./src/main/webapp/WEB-INF/view/project/completeOfChange.jsp))
+- プロジェクト更新完了画面([completeOfUpdate.jsp](./src/main/webapp/WEB-INF/view/project/completeOfUpdate.jsp))
+- プロジェクト削除完了画面([completeOfDelete.jsp](./src/main/webapp/WEB-INF/view/project/completeOfDelete.jsp))
 
 
 ## 仕様について
@@ -169,6 +169,7 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 - 本メソッドには以下の処理を実装します。
     - Formに実装した入力値の精査処理の呼び出し。
     - 入力精査エラー時の遷移先設定の実装。エラー発生時の遷移先はプロジェクト変更画面([update.jsp](./src/main/webapp/WEB-INF/view/project/update.jsp))にしてください。
+    - 顧客IDの存在チェック(「プロジェクトのデータに関するルール」の項を参照)。SQL IDは"FIND_BY_CLIENT_ID"です。
     - Formの内容を、セッション中のProjectのエンティティ(ProjectAction#edit内で格納したもの)に設定してください。
     - 正常終了時、プロジェクト変更画面([confirmOfUpdate.jsp](./src/main/webapp/WEB-INF/view/project/confirmOfUpdate.jsp))に遷移する処理を実装してください。
 
@@ -188,11 +189,7 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 
 ##### 更新完了画面を表示する処理([ProjectAction#completeOfUpdate](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))
 - 本メソッドには以下の処理を実装します。
-    - errorsタグに処理成功を示すメッセージを表示する処理を実装してください。
-        - 表示のためには、WebUtil#notifyMessagesを使用します。
-          WebUtil#notifyMessagesの第2引数は、MessageUtil#createMessageを使用して生成してください。MessageUtil#createMessageに設定する引数は以下の通りです。
-            - メッセージレベル：MessageLevel#INFO
-            - メッセージID：success.update.project
+    - 正常終了時、プロジェクト更新完了([completeOfUpdate.jsp](./src/main/webapp/WEB-INF/view/project/completeOfUpdate.jsp))に遷移する処理を実装してください。
 
 
 #### 削除処理に関する実装内容
@@ -205,12 +202,7 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 
 ##### 削除完了画面の表示処理([ProjectAction#completeOfDelete](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))
 - 本メソッドには以下の処理を実装します。
-    - errorsタグに処理成功を示すメッセージを表示する処理を実装してください。
-        - 表示のためには、WebUtil#notifyMessagesを使用します。
-          WebUtil#notifyMessagesの第2引数は、MessageUtil#createMessageを使用して生成してください。MessageUtil#createMessageに設定する引数は以下の通りです。
-            - メッセージレベル：MessageLevel#INFO
-            - メッセージID：success.delete.project
-    - 正常終了時、プロジェクト削除完了([completeOfChange.jsp](./src/main/webapp/WEB-INF/view/project/completeOfChange.jsp))に遷移する処理を実装してください。
+    - 正常終了時、プロジェクト削除完了([completeOfDelete.jsp](./src/main/webapp/WEB-INF/view/project/completeOfDelete.jsp))に遷移する処理を実装してください。
 
 
 ## 動作確認方法
@@ -225,7 +217,8 @@ exercise-10 を起動後以下を行います。
 6. 変更ボタンをクリックします。
 7. 必須項目を消し、更新ボタンをクリックした際、エラーが表示されることを確認します。
 8. 全ての項目を適切に入力して更新ボタンをクリックした際、プロジェクト更新確認画面(入力した値が表示されている画面)が表示されることを確認してください。
-9. 入力へ戻るボタンをクリックすると、プロジェクト変更画面が表示されることを確認してください。
+9. 入力へ戻るボタンをクリックすると、プロジェクト変更画面が表示され、全ての項目が項番8で更新ボタンをクリックする前の状態に戻っていること
+(入力値が復元されていること)を確認してください。
 10. 更新ボタンをクリックすると、プロジェクト更新確認画面が表示されることを確認してください。
 11. 確定ボタンをクリックすると、プロジェクト更新完了画面が表示されることを確認してください。
 
@@ -233,7 +226,7 @@ exercise-10 を起動後以下を行います。
 ### 削除処理の動作確認
 1. 更新処理の動作確認の項番6まで進めます。
 2. 削除ボタンをクリックします。
-3. プロジェクト変更完了画面が表示されますので、次へをクリックします。
+3. プロジェクト削除完了画面が表示されますので、次へをクリックします。
 4. プロジェクト検索一覧画面に、削除したプロジェクトが表示されないことを確認します。
 
 

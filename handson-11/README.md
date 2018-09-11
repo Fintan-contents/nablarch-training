@@ -48,6 +48,7 @@
 - 7.19. JSPカスタムタグ
 	- 使用方法
 		- タグリファレンス(使用方法「ちなみに」内リンク)
+		- フォーマットして値を出力する
 
 #### Nablarch実装例集の解説書
 - 検索結果の一覧表示
@@ -115,7 +116,7 @@
 | projectId        | プロジェクトIDをリンクで表示してください。リンクの遷移先は、プロジェクト詳細画面です。パスの最後を「show/プロジェクトID」とすることでProjectAction#showメソッドにプロジェクトIDがパラメータとして渡ります。 |
 | projectName      | プロジェクト名をそのまま表示してください。 |
 | projectType      | 値に対応するコード名称を表示してください。コードは、[ProjectType](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/common/code/ProjectType.java)列挙型に定義されています。|
-| projectStartDate | yyyy/MM/ddの書式で表示してください。書式の変換はカスタムタグの機能を使用してください。データタイプは、「exampleDateTime」を指定してください。 |
+| projectStartDate | yyyy/MM/ddの書式で表示してください。カスタムタグformatByDefaultを使用してください。フォーマッタは、「dateTime」を指定してください。 |
 | projectEndDate   | 同上の表示を行ってください。 |
 
 

@@ -11,18 +11,7 @@
 -------------------------------------------------------------------------------
 SEARCH_PROJECT_FOR_BULK_UPDATE =
 SELECT
-    PROJECT_ID,
-    PROJECT_NAME,
-    PROJECT_TYPE,
-    PROJECT_CLASS,
-    PROJECT_START_DATE,
-    PROJECT_END_DATE,
-    CLIENT_ID,
-    PROJECT_MANAGER,
-    PROJECT_LEADER,
-    USER_ID,
-    NOTE,
-    VERSION
+    *
 FROM
     PROJECT
 WHERE

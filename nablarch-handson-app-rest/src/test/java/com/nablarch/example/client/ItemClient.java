@@ -25,8 +25,7 @@ public class ItemClient {
         // 全件検索
         System.out.print(makeDataString(ItemClient.getItems()));
         // 指定条件検索
-        String searchParam = "?category=hardware";
-        System.out.print(makeDataString(getItems(searchParam)));
+        System.out.print(makeDataString(getItems("category", "hardware")));
 
         // 登録
         ItemForm item = createInsertItem();
@@ -34,8 +33,7 @@ public class ItemClient {
         System.out.print(makeDataString(ItemClient.getItems()));
 
         // 更新対象商品取得
-        String updateSearchParam = "?itemName=商品９９９";
-        Item updateItem = getItems(updateSearchParam).get(0);
+        Item updateItem = getItems("itemName", "商品９９９").get(0);
         ItemUpdateForm updateForm = setUpdateItem(updateItem);
 
         // 更新
@@ -85,13 +83,15 @@ public class ItemClient {
 
     /**
      * HTTP GETメソッドを使用したクライアント操作を行う。
-     * @param param 検索条件パラメータ
+     * @param key query paramのキー
+     * @param value query paramの値
      * @return 商品情報リスト
      */
-    private static List<Item> getItems(String param) throws UnsupportedEncodingException {
+    private static List<Item> getItems(String key, String value) throws UnsupportedEncodingException {
 
         return ClientBuilder.newClient()
-                .target(targetUrl + param)
+                .target(targetUrl)
+                .queryParam(key, value)
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<List<Item>>() {});
     }

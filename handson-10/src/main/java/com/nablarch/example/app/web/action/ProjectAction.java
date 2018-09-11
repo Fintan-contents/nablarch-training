@@ -145,6 +145,7 @@ public class ProjectAction {
         if (form.hasClientId()) {
             if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID",
                     new Object[] {Integer.parseInt(form.getClientId())})) {
+                //補足：数値に対する自動フォーマット(自動的にカンマ編集される)を避けるため、Integerを明示的に文字列に変換している。
                 throw new ApplicationException(
                         MessageUtil.createMessage(MessageLevel.ERROR, "errors.nothing.client",
                                 form.getClientId()));
@@ -171,7 +172,7 @@ public class ProjectAction {
 
         UniversalDao.insert(project);
 
-        return new HttpResponse("redirect://completeOfCreate");
+        return new HttpResponse(303, "redirect://completeOfCreate");
     }
 
     /**

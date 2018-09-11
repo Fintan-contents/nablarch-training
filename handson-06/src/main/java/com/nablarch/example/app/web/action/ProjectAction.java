@@ -17,7 +17,6 @@ import nablarch.common.dao.DeferredEntityList;
 import nablarch.common.dao.UniversalDao;
 import nablarch.common.databind.ObjectMapper;
 import nablarch.common.databind.ObjectMapperFactory;
-import nablarch.common.web.WebUtil;
 import nablarch.common.web.download.FileResponse;
 import nablarch.common.web.interceptor.InjectForm;
 import nablarch.common.web.session.SessionUtil;
@@ -105,6 +104,7 @@ public class ProjectAction {
         if (form.hasClientId()) {
             if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID",
                     new Object[] {Integer.parseInt(form.getClientId())})) {
+                //補足：数値に対する自動フォーマット(自動的にカンマ編集される)を避けるため、Integerを明示的に文字列に変換している。
                 throw new ApplicationException(
                         MessageUtil.createMessage(MessageLevel.ERROR, "errors.nothing.client",
                                 form.getClientId()));
@@ -131,7 +131,7 @@ public class ProjectAction {
 
         UniversalDao.insert(project);
 
-        return new HttpResponse("redirect://completeOfCreate");
+        return new HttpResponse(303, "redirect://completeOfCreate");
     }
 
     /**
@@ -313,6 +313,7 @@ public class ProjectAction {
         if (form.hasClientId()) {
             if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID",
                     new Object[] {Integer.parseInt(form.getClientId())})) {
+                //補足：数値に対する自動フォーマット(自動的にカンマ編集される)を避けるため、Integerを明示的に文字列に変換している。
                 throw new ApplicationException(
                         MessageUtil.createMessage(MessageLevel.ERROR,
                                 "errors.nothing.client", form.getClientId()));
@@ -366,7 +367,7 @@ public class ProjectAction {
         final Project targetProject = SessionUtil.delete(context, "project");
         UniversalDao.update(targetProject);
 
-        return new HttpResponse("redirect://completeOfUpdate");
+        return new HttpResponse(303, "redirect://completeOfUpdate");
     }
 
     /**
@@ -377,8 +378,7 @@ public class ProjectAction {
      * @return HTTPレスポンス
      */
     public HttpResponse completeOfUpdate(HttpRequest request, ExecutionContext context) {
-        WebUtil.notifyMessages(context, MessageUtil.createMessage(MessageLevel.INFO, "success.update.project"));
-        return new HttpResponse("/WEB-INF/view/project/completeOfChange.jsp");
+        return new HttpResponse("/WEB-INF/view/project/completeOfUpdate.jsp");
     }
 
     /**
@@ -393,7 +393,7 @@ public class ProjectAction {
         final Project project = SessionUtil.delete(context, "project");
         UniversalDao.delete(project);
 
-        return new HttpResponse("redirect://completeOfDelete");
+        return new HttpResponse(303, "redirect://completeOfDelete");
     }
 
     /**
@@ -404,7 +404,6 @@ public class ProjectAction {
      * @return HTTPレスポンス
      */
     public HttpResponse completeOfDelete(HttpRequest request, ExecutionContext context) {
-        WebUtil.notifyMessages(context, MessageUtil.createMessage(MessageLevel.INFO, "success.delete.project"));
-        return new HttpResponse("/WEB-INF/view/project/completeOfChange.jsp");
+        return new HttpResponse("/WEB-INF/view/project/completeOfDelete.jsp");
     }
 }
