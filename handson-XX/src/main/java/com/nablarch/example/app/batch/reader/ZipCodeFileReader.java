@@ -23,7 +23,8 @@ public class ZipCodeFileReader implements DataReader<ZipCodeForm> {
     /**
      * 読み込むファイルの名称
      */
-    private static final String FILE_NAME = "importZipCode";
+     // 読み込むファイルの名称は「importZipCode」としてください。
+    private static final String FILE_NAME = "fileName";
 
     /**
      * 処理対象のデータを返すイテレータ
@@ -84,13 +85,7 @@ public class ZipCodeFileReader implements DataReader<ZipCodeForm> {
         FilePathSetting filePathSetting = FilePathSetting.getInstance();
         File zipCodeFile = filePathSetting.getFileWithoutCreate("csv-input", FILE_NAME);
 
-        // ファイルの読み出しに利用するイテレータを生成
-        try {
-            iterator = new ObjectMapperIterator<>(ObjectMapperFactory.create(ZipCodeForm.class,
-                    new FileInputStream(zipCodeFile)));
-        } catch (FileNotFoundException e) {
-            throw new IllegalStateException(e);
-        }
+        // ファイルの読み出しに利用するイテレータを実装してください。
     }
 
 }
