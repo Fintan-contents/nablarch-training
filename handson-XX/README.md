@@ -29,7 +29,7 @@ nablarchバッチを作成してみよう
 * 一つの郵便番号で二以上の町域を表す場合の表示　（「1」は該当、「0」は該当せず）
 * 更新の表示　（「0」は変更なし、「1」は変更あり、「2」廃止（廃止データのみ使用））
 * 変更理由　（「0」は変更なし、「1」市政・区政・町政・分区・政令指定都市施行、「2」住居表示の実施、 「3」区画整理、「4」郵便区調整等、「5」訂正、「6」廃止（廃止データのみ使用））
- 
+
 ## 演習を開始するための準備
 
 ### 事前準備
@@ -38,7 +38,7 @@ nablarchバッチを作成してみよう
     $cd entity  
     $mvn clean install  
 
-##演習内容に関するリファレンスマニュアル
+## 演習内容に関するリファレンスマニュアル
 
 本演習中に実装方法で不明な点が存在した場合は、以下のドキュメントを参照してください。
 
@@ -91,38 +91,39 @@ nablarchバッチを作成してみよう
    
 	* 入力となるCSVのフォーマットは以下の通りです。
 
-    	| 設定項目            | 設定値              |
-    	|:-------------------|:--------------------|
-    	| 列区切り           | カンマ(,)            |
-    	| 行区切り           | 改行(\r\n)           |
-    	| フィールド囲み文字  | ダブルクォート(”)     |
-    	| 空行を無視          | true                |
-    	| ヘッダ行あり        | false               |
-    	| 文字コード          | UTF-8               |
-    	| クォートモード      | NORMAL              |
+| 設定項目 | 設定値 |
+|:---|:---|
+| 列区切り | カンマ(,) |
+| 行区切り | 改行(\r\n) |
+| フィールド囲み文字 | ダブルクォート(”) |
+| 空行を無視 | true |
+| ヘッダ行あり | false |
+| 文字コード | UTF-8 |
+| クォートモード | NORMAL |
+
 
 * Bean Validation を実施するために、バリデーション用のアノテーションを付与してください。
-* ドメインの設定。ドメインは、[ExampleDomainType](./src/main/java/com/nablarch/example/app/entity/core/validation/validator/ExampleDomainType.java)で定義されているものを使用してください。どのプロパティにどのドメインを設定するかは、下表を参照してください。
+* ドメインの設定。ドメインは、[ExampleDomainType](./src/main/java/com/nablarch/example/app/entity/core/validation/validator/ExampleDomainType.java)で定義されているものを使用してください。どのプロパティにどのドメインを設定するかは、下表を参照してください。  
 
-    | 項目               | 必須 |ドメイン             |
-    |:-------------------|:-----|:-------------------|
-    | 全国地方公共団体コード | ○    | localGovernmentCode |
-    | 郵便番号（5桁） | ○    | oldZipCode |
-    | 郵便番号（7桁） | ○    | zipCode |
-    | 都道府県名カナ | ○    | prefectureKana |
-    | 市区町村名カナ | ○    | cityKana |
-    | 町域名カナ | ○    | address |
-    | 都道府県名漢字 | ○    | prefecture |
-    | 市区町村名漢字 | ○    | city |
-    | 町域名漢字 | ○    | address |
-    | 一町域が二以上の郵便番号 | ○    | flag |
-    | 小字毎に番地が起番されている町域 | ○    | flag |
-    | 丁目を有する町域 | ○    | flag |
-    | 一つの郵便番号で二以上の町域 | ○    | flag |
-    | 更新 | ○    | code |
-    | 変更理由 | ○    | code |
+| 項目 | 必須 | ドメイン |
+|:----|:-----|:----|
+| 全国地方公共団体コード | ○ | localGovernmentCode |
+| 郵便番号（5桁） | ○ | oldZipCode |
+| 郵便番号（7桁） | ○ | zipCode |
+| 都道府県名カナ | ○ | prefectureKana |
+| 市区町村名カナ | ○ | cityKana |
+| 町域名カナ | ○ | address |
+| 都道府県名漢字 | ○ | prefecture |
+| 市区町村名漢字 | ○ | city |
+| 町域名漢字 | ○ | address |
+| 一町域が二以上の郵便番号 | ○ | flag |
+| 小字毎に番地が起番されている町域 | ○ | flag |
+| 丁目を有する町域 | ○ | flag |
+| 一つの郵便番号で二以上の町域 | ○ | flag |
+| 更新 | ○ | code |
+| 変更理由 | ○ | code |
     
-* 行数プロパティを定義し、ゲッタに @LineNumber を付与する。
+* 行数プロパティのゲッタに @LineNumber を付与する。
 
 
 ### データリーダ([ZipCodeFileReader.java](./src/main/java/com/nablarch/example/app/batch/reader/ZipCodeFileReader.java))
@@ -146,7 +147,7 @@ nablarchバッチを作成してみよう
 　　
 * createReader メソッド
     * 使用するデータリーダクラスのインスタンスを返却してください。
-  
+
 ## 動作確認方法
 
 ### 実行前のテーブルの内容を確認
@@ -162,18 +163,19 @@ nablarchバッチを作成してみよう
     DELETE FROM ZIP_CODE_DATA;
     ```
 1. 最初に開いたコマンドプロンプトを終了して、h2.batを終了します。
+
+
    **注意**
    h2.bat実行中はバッチプログラムからDBへアクセスすることができないため、**バッチを実行できません。**
- 
+
 ### バッチ実行
 
 チェックアウトディレクトリに移動後、以下を実行してjarの作成を行います。
- 
+
     $cd handson-XX
     $mvn clean package
  
-ここまでの操作で、targetディレクトリにjarが作成されます。
- 
+ここまでの操作で、targetディレクトリにjarが作成されます。  
 <チェックアウトディレクトリ>/handson-XX ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
     $mvn exec:java -Dexec.mainClass=nablarch.fw.launcher.Main -Dexec.args="'-requestPath' 'ImportZipCodeFileAction/ImportZipCodeFile' '-diConfig' 'classpath:import-zip-code-file.xml' '-userId' '105'"
@@ -190,9 +192,9 @@ nablarchバッチを作成してみよう
 1. SELECT文が画面に表示されますので、そのままRunボタンをクリックします。
 1. 住所情報が表示されることを確認します。
 1. 手順1を実行した際に開いたコマンドプロンプトを終了して、H2のConsoleを終了します。
- 
+
 ### H2への接続情報
- 
+
 | 項目      | 値                         |
 |:----------|:---------------------------|
 | JDBC URL  | jdbc:h2:..\\..\entity\h2\db\nablarch_example |
