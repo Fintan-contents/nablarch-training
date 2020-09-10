@@ -85,7 +85,13 @@ public class ZipCodeFileReader implements DataReader<ZipCodeForm> {
         FilePathSetting filePathSetting = FilePathSetting.getInstance();
         File zipCodeFile = filePathSetting.getFileWithoutCreate("csv-input", FILE_NAME);
 
-        // ファイルの読み出しに利用するイテレータを実装してください。
+        // ファイルの読み出しに利用するイテレータを生成
+        try {
+            iterator = new ObjectMapperIterator<>(ObjectMapperFactory.create(ZipCodeForm.class,
+                    new FileInputStream(zipCodeFile)));
+        } catch (FileNotFoundException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
 }
