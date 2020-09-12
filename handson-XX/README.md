@@ -3,11 +3,11 @@ nablarchバッチを作成してみよう
 
 ## 演習内容
 
-本ハンズオンでは、Nablarchバッチの作成方法を学習します。
+本ハンズオンでは、Nablarchバッチアプリケーションを利用してCSVファイルの内容をDBに登録する方法を学習します。
 
 ## 作成するバッチについて
 
-指定されたフォルダ内の住所情報CSVファイルを、データバインドを使用して読み込み、DBに登録します。
+Nablarchバッチアプリケーションを利用して、CSV形式の郵便番号データをデータバインドを使用して読み込み、DBに登録します。
 
 なお、インプットのCSVデータは、下記サイトより取得できる郵便番号データ（全国一括）を元にしています。
  
@@ -123,7 +123,7 @@ nablarchバッチを作成してみよう
 | 更新 | ○ | code |
 | 変更理由 | ○ | code |
     
-* 行数プロパティのゲッタに @LineNumber を付与する。
+* 行数プロパティのゲッタに @LineNumber を付与してください。
 
 
 ### データリーダ([ZipCodeFileReader.java](./src/main/java/com/nablarch/example/app/batch/reader/ZipCodeFileReader.java))
@@ -179,8 +179,11 @@ nablarchバッチを作成してみよう
 <チェックアウトディレクトリ>/handson-XX ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
     $mvn exec:java -Dexec.mainClass=nablarch.fw.launcher.Main -Dexec.args="'-requestPath' 'ImportZipCodeFileAction/ImportZipCodeFile' '-diConfig' 'classpath:import-zip-code-file.xml' '-userId' '105'"
-   
-実行すると、以下のようなログがコンソールに出力されますが、問題はありません。
+
+下記のようなログがコンソールに出力されれば、バッチは正常終了してます。
+
+    Thread Status: normal end.
+    Thread Result:[200 Success] The request has succeeded.
  
 ### バッチ実行結果の確認
  
@@ -190,7 +193,7 @@ nablarchバッチを作成してみよう
 1. ブラウザから http://localhost:8082 を開きます。H2に接続するための情報を入力する画面が表示されるので、後述の「H2への接続情報」に記載されている情報を入力し、Connectボタンをクリックします。
 1. 左側のペインに表示されているZIP_CODE_DATAをクリックします。
 1. SELECT文が画面に表示されますので、そのままRunボタンをクリックします。
-1. 住所情報が表示されることを確認します。
+1. ZIP_CODE_DATAに登録されている住所情報の件数が62件であることを確認します。
 1. 手順1を実行した際に開いたコマンドプロンプトを終了して、H2のConsoleを終了します。
 
 ### H2への接続情報

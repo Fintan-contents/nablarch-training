@@ -22,24 +22,7 @@ Nablarchアプリケーションフレームワークを利用して作成した
 
 ### 実行
 
-targetディレクトリにjarの作成が終わったら、以下のコマンドを実行するとサンプルアプリケーションを動作させることができます。
-
-javaコマンドで Mainクラス を指定してアプリケーションを起動します。
-
-    $mvn exec:java -Dexec.mainClass=nablarch.fw.launcher.Main -Dexec.args="'-requestPath' '(業務アクションクラス名) + / + (リクエストID)' '-diConfig' '(設定ファイルのパス)' '-userId' '(ユーザID)'"
-   
-
-* データバインドを使用した住所登録バッチ(CSV→DB)
-    * (ハンズオンXX)指定されたフォルダ内(/work/input)の住所情報CSVファイル(importZipCode.csv)を、データバインドを使用して読み込み、DB(ZIP_CODE_DATAテーブル)に登録します。
-
-
-動作させる処理は、引数のを変更することで選択できます。
-
-* データバインドを使用した住所登録バッチ(CSV→DB)  
-    * (業務アクションクラス名) + / + (リクエストID) に「ImportZipCodeFileAction/ImportZipCodeFile」を指定する。
-    * (設定ファイルのパス)に「classpath:import-zip-code-file.xml」を指定する。
-    * (ユーザID)に「105」を指定する。
-
+targetディレクトリにjarの作成が終わったら、以下のコマンドを実行するとデータバインドを使用した住所登録バッチアプリケーションを動作させることができます。
 
     $mvn exec:java -Dexec.mainClass=nablarch.fw.launcher.Main -Dexec.args="'-requestPath' 'ImportZipCodeFileAction/ImportZipCodeFile' '-diConfig' 'classpath:import-zip-code-file.xml' '-userId' '105'"
 
