@@ -7,7 +7,6 @@ import nablarch.core.log.LoggerManager;
 import nablarch.core.message.Message;
 import nablarch.core.message.MessageLevel;
 import nablarch.core.message.MessageUtil;
-import nablarch.core.util.annotation.Published;
 import nablarch.core.validation.ee.ValidatorUtil;
 import nablarch.fw.ExecutionContext;
 
@@ -37,7 +36,6 @@ import java.util.Set;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Interceptor(ValidateData.ValidateDataImpl.class)
-@Published
 public @interface ValidateData {
 
     /**

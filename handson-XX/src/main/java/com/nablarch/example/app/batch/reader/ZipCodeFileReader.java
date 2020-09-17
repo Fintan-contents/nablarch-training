@@ -4,7 +4,6 @@ import com.nablarch.example.app.batch.form.ZipCodeForm;
 import com.nablarch.example.app.batch.reader.iterator.ObjectMapperIterator;
 import nablarch.common.databind.ObjectMapperFactory;
 import nablarch.core.util.FilePathSetting;
-import nablarch.core.util.annotation.Published;
 import nablarch.fw.DataReader;
 import nablarch.fw.ExecutionContext;
 
@@ -14,17 +13,16 @@ import java.io.FileNotFoundException;
 
 /**
  * 住所ファイルを読み込むためのデータリーダクラス。
- * <p>
+ *
  * @author Nabu Rakutaro
  */
-@Published
 public class ZipCodeFileReader implements DataReader<ZipCodeForm> {
 
     /**
      * 読み込むファイルの名称
      */
      // 読み込むファイルの名称は「importZipCode」としてください。
-    private static final String FILE_NAME = "fileName";
+    private static final String FILE_NAME = "";
 
     /**
      * 処理対象のデータを返すイテレータ
@@ -40,9 +38,10 @@ public class ZipCodeFileReader implements DataReader<ZipCodeForm> {
     @Override
     public ZipCodeForm read(ExecutionContext ctx) {
 
-        if (iterator == null) {
-            initialize();
-        }
+        // イテレータが存在しない場合は、initializeメソッドを呼び出して、
+        // イテレータを生成する処理を実装してください。
+
+
         // 一行分のデータを返却してください。
         return null;
     }
@@ -56,22 +55,22 @@ public class ZipCodeFileReader implements DataReader<ZipCodeForm> {
     @Override
     public boolean hasNext(ExecutionContext ctx) {
 
-        if (iterator == null) {
-            initialize();
-        }
+        // イテレータが存在しない場合は、initializeメソッドを呼び出して、
+        // イテレータを生成する処理を実装してください。
+
+
         // 次行の有無を返却してください。
         return false;
     }
 
     /**
      * 終了処理。
-     * <p/>
-     * {@link ObjectMapperIterator#close()} を呼び出す。
+     *
      * @param ctx 実行コンテキスト
      */
     @Override
     public void close(ExecutionContext ctx) {
-        // close処理を行ってください。
+        // ObjectMapperIterator#close()を呼び出して、イテレータをclose処理するを実装してください。
 
     }
 

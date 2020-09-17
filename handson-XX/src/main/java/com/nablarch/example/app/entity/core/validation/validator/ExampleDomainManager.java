@@ -1,6 +1,5 @@
 package com.nablarch.example.app.entity.core.validation.validator;
 
-import nablarch.core.util.annotation.Published;
 import nablarch.core.validation.ee.DomainManager;
 
 /**
@@ -8,7 +7,6 @@ import nablarch.core.validation.ee.DomainManager;
  * 
  * @author Nabu Rakutaro
  */
-@Published(tag = "architect")
 public class ExampleDomainManager implements DomainManager<ExampleDomainType> {
     @Override
     public Class<ExampleDomainType> getDomainBean() {

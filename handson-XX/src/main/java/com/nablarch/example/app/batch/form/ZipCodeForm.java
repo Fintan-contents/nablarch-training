@@ -1,13 +1,5 @@
 package com.nablarch.example.app.batch.form;
 
-import nablarch.common.databind.LineNumber;
-import nablarch.common.databind.csv.Csv;
-import nablarch.common.databind.csv.Csv.CsvType;
-import nablarch.common.databind.csv.CsvDataBindConfig.QuoteMode;
-import nablarch.common.databind.csv.CsvFormat;
-import nablarch.core.util.annotation.Published;
-import nablarch.core.validation.ee.Domain;
-import nablarch.core.validation.ee.Required;
 
 /**
  * {@link nablarch.fw.DataReader} が読み込んだデータレコードをバインドし、バリデーションするフォームクラス。
@@ -15,8 +7,9 @@ import nablarch.core.validation.ee.Required;
  * @author Nabu Rakutaro
  */
 // @Csvと@CsvFormatを付与してください。
-@Published
 public class ZipCodeForm {
+
+    // Bean Validation を実施するために、各項目にバリデーション用のアノテーションを付与してください。
 
     /**
      * 全国地方公共団体コード

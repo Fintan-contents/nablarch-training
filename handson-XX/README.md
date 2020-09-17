@@ -69,10 +69,22 @@ Nablarchバッチアプリケーションを利用して、CSV形式の郵便番
 
 ### CSVをバインドするForm([ZipCodeForm.java](./src/main/java/com/nablarch/example/app/batch/form/ZipCodeForm.java))
 
-* アノテーションを用いて、CSVファイルのフォーマットを設定してください。
-    * type属性はCUSTOMです。
-	* プロパティ名と順番は以下の通りです。
- 
+* @CsvFormatと@csvアノテーションを用いて、CSVファイルのフォーマットを設定してください。
+   * 入力となるCSVのフォーマットは以下の通りです。  
+
+  | 設定項目 | 設定値 |
+  |:---|:---|
+  | 列区切り | カンマ(,) |
+  | 行区切り | 改行(\r\n) |
+  | フィールド囲み文字 | ダブルクォート(”) |
+  | 空行を無視 | true |
+  | ヘッダ行あり | false |
+  | 文字コード | UTF-8 |
+  | クォートモード | NORMAL |
+
+   * type属性はCUSTOMです。
+   * 入力となるCSVのプロパティ名と順番は以下の通りです。
+
           "localGovernmentCode",
           "zipCode5digit",
           "zipCode7digit",
@@ -89,17 +101,6 @@ Nablarchバッチアプリケーションを利用して、CSV形式の郵便番
           "updateData",
           "updateDataReason"
    
-	* 入力となるCSVのフォーマットは以下の通りです。
-
-| 設定項目 | 設定値 |
-|:---|:---|
-| 列区切り | カンマ(,) |
-| 行区切り | 改行(\r\n) |
-| フィールド囲み文字 | ダブルクォート(”) |
-| 空行を無視 | true |
-| ヘッダ行あり | false |
-| 文字コード | UTF-8 |
-| クォートモード | NORMAL |
 
 
 * Bean Validation を実施するために、バリデーション用のアノテーションを付与してください。
