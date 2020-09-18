@@ -101,8 +101,6 @@ Nablarchバッチアプリケーションを利用して、CSV形式の郵便番
           "updateData",
           "updateDataReason"
    
-
-
 * Bean Validation を実施するために、バリデーション用のアノテーションを付与してください。
 * ドメインの設定。ドメインは、[ExampleDomainType](./src/main/java/com/nablarch/example/app/entity/core/validation/validator/ExampleDomainType.java)で定義されているものを使用してください。どのプロパティにどのドメインを設定するかは、下表を参照してください。  
 
@@ -129,13 +127,15 @@ Nablarchバッチアプリケーションを利用して、CSV形式の郵便番
 
 ### データリーダ([ZipCodeFileReader.java](./src/main/java/com/nablarch/example/app/batch/reader/ZipCodeFileReader.java))
 
+[ObjectMapper](https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html) のように hasNext メソッドを持たないクラスからデータを読み込む場合、イテレータを作成することでデータリーダの実装をシンプルにできる上、 データ読み込み処理をバッチごとに実装する手間を省くことができます。
+
 * 読み込むファイルの名称は「importZipCode.csv」としてください。
 
 * read メソッド
     * 一行分のデータを返却する処理を実装してください。
 
 * hasNext メソッド
-    * 次行の有無を判定する処理を実装してください。。
+    * 次行の有無を判定する処理を実装してください。
     
 * read メソッド
     * ファイルの読み込み終了後のストリームのclose処理を実装してください。
@@ -194,7 +194,7 @@ Nablarchバッチアプリケーションを利用して、CSV形式の郵便番
 1. ブラウザから http://localhost:8082 を開きます。H2に接続するための情報を入力する画面が表示されるので、後述の「H2への接続情報」に記載されている情報を入力し、Connectボタンをクリックします。
 1. 左側のペインに表示されているZIP_CODE_DATAをクリックします。
 1. SELECT文が画面に表示されますので、そのままRunボタンをクリックします。
-1. ZIP_CODE_DATAに登録されている住所情報の件数が62件であることを確認します。
+1. ZIP_CODE_DATAに登録されている住所情報の件数が**62**件であることを確認します。
 1. 手順1を実行した際に開いたコマンドプロンプトを終了して、H2のConsoleを終了します。
 
 ### H2への接続情報
