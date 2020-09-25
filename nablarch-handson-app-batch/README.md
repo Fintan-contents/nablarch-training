@@ -51,8 +51,6 @@ targetディレクトリにjarの作成が終わったら、以下のコマン�
 
 ## 参考
 
-- ドメインと各ドメインごとのバリデーション内容は、[ExampleDomainType.java](./src/main/java/com/nablarch/example/app/entity/core/validation/validator/ExampleDomainType.java)で定義しています。
+- [ObjectMapper](https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html) は、hasNext メソッドを持たないため、本解答例では、イテレータを用意しています。イテレータの実装に関しては、[ObjectMapperIterator.java](./src/main/java/com/nablarch/example/app/batch/reader/iterator/ObjectMapperIterator.java)の実装を参照してください。イテレータを作成することでバッチごとにデータ読み込み処理を実装しなくてもよい利点があります。
 
-- [ObjectMapper](https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html) は、hasNext メソッドを持たないため、本ハンズオンでは、イテレータを作成しています。イテレータを作成することでバッチごとにデータ読み込み処理を実装しなくてもよくなっています。イテレータの実装に関しては、[ObjectMapperIterator.java](./src/main/java/com/nablarch/example/app/batch/reader/iterator/ObjectMapperIterator.java)の実装を参照してください。
-
-- Bean Validationを実行するロジックにバッチごとの差はないため、本ハンズオンではインターセプタを作成してバリデーション処理を共通化しています。インターセプタの実装に関しては、[ValidateData.java](./src/main/java/com/nablarch/example/app/batch/interceptor/ValidateData.java) の実装を参照してください。
+- Bean Validationを実行するロジックにバッチごとの差はないため、本解答例ではインターセプタを用意してバリデーション処理を共通化しています。インターセプタの実装に関しては、[ValidateData.java](./src/main/java/com/nablarch/example/app/batch/interceptor/ValidateData.java) の実装を参照してください。
