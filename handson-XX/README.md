@@ -72,6 +72,7 @@ Nablarchバッチアプリケーションを利用して、CSV形式の郵便番
 * @CsvFormatと@csvアノテーションを用いて、CSVファイルのフォーマットを設定してください。
    * 入力となるCSVのフォーマットは以下の通りです。  
 
+
   | 設定項目 | 設定値 |
   |:---|:---|
   | 列区切り | カンマ(,) |
@@ -101,8 +102,7 @@ Nablarchバッチアプリケーションを利用して、CSV形式の郵便番
           "updateData",
           "updateDataReason"
    
-* Bean Validation を実施するために、バリデーション用のアノテーションを付与してください。
-* ドメインの設定。ドメインは、[ExampleDomainType](./src/main/java/com/nablarch/example/app/entity/core/validation/validator/ExampleDomainType.java)で定義されているものを使用してください。どのプロパティにどのドメインを設定するかは、下表を参照してください。  
+* Bean Validation を実施するために、バリデーション用のアノテーションを付与してください。設定するアノテーションは下表を参照してください。  
 
 | 項目 | 必須 | ドメイン |
 |:----|:-----|:----|
@@ -126,8 +126,6 @@ Nablarchバッチアプリケーションを利用して、CSV形式の郵便番
 
 
 ### データリーダ([ZipCodeFileReader.java](./src/main/java/com/nablarch/example/app/batch/reader/ZipCodeFileReader.java))
-
-[ObjectMapper](https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html) のように hasNext メソッドを持たないクラスからデータを読み込む場合、イテレータを作成することでデータリーダの実装をシンプルにできる上、 データ読み込み処理をバッチごとに実装する手間を省くことができます。
 
 * 読み込むファイルの名称は「importZipCode.csv」としてください。
 
@@ -208,3 +206,12 @@ Nablarchバッチアプリケーションを利用して、CSV形式の郵便番
 ## 解答例について
  
 解答例は、[nablarch-handson-app-batch](../nablarch-handson-app-batch/README.md)を参照してください。
+
+
+## 参考
+
+- ドメインと各ドメインごとのバリデーション内容は、[ExampleDomainType.java](./src/main/java/com/nablarch/example/app/entity/core/validation/validator/ExampleDomainType.java)で定義しています。
+
+- [ObjectMapper](https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html) は、hasNext メソッドを持たないため、本ハンズオンでは、イテレータを作成することでデータリーダの実装をシンプルにして、データ読み込み処理をバッチごとに実装する手間を省いています。イテレータの実装に関しては、[ObjectMapperIterator.java](./src/main/java/com/nablarch/example/app/batch/reader/iterator/ObjectMapperIterator.java)の実装を参照してください。  
+
+- Bean Validationを実行するロジックにバッチごとの差はないため、本ハンズオンではインターセプタを作成してバリデーション処理を共通化しています。インターセプタの実装に関しては、[ValidateData.java](./src/main/java/com/nablarch/example/app/batch/interceptor/ValidateData.java) の実装を参照してください。

@@ -96,6 +96,7 @@ public class ZipCodeForm {
      *
      * @return 行数
      */
+    // 行数プロパティのゲッタに @LineNumber を付与してください。
 
     public Long getLineNumber() {
         return lineNumber;
