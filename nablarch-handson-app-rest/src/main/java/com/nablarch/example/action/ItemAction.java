@@ -65,11 +65,20 @@ public class ItemAction {
      * @return HTTPレスポンス
      */
     @PUT
+    @Path("{id:\\d+}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Valid
-    public HttpResponse update(ItemUpdateForm form) {
-        UniversalDao.update(BeanUtil.createAndCopy(Item.class, form));
+    public HttpResponse update(HttpRequest req, ItemUpdateForm form) {
+
+        if (req.getParam("id") == null) {
+            return new HttpResponse(HttpResponse.Status.BAD_REQUEST.getStatusCode());
+        }
+
+        int id = Integer.parseInt(req.getParam("id")[0]);
+        Item item = BeanUtil.createAndCopy(Item.class, form);
+        item.setItemId(id);
+
+        UniversalDao.update(item);
         return new HttpResponse(HttpResponse.Status.OK.getStatusCode());
     }
-
 }
