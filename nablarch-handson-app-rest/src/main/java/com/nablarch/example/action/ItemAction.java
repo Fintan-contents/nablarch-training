@@ -12,8 +12,7 @@ import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
 
 import javax.validation.Valid;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -22,6 +21,7 @@ import java.util.List;
  *
  * @author Nabu Rakutaro
  */
+@Path("/items")
 public class ItemAction {
 
     /**
@@ -30,6 +30,7 @@ public class ItemAction {
      * @param req HTTPリクエスト
      * @return 商品情報リスト
      */
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Item> find(HttpRequest req) {
 
@@ -48,6 +49,7 @@ public class ItemAction {
      * @param form 商品情報
      * @return HTTPレスポンス
      */
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Valid
     public HttpResponse save(ItemForm form) {
@@ -62,6 +64,7 @@ public class ItemAction {
      * @param form 商品情報
      * @return HTTPレスポンス
      */
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Valid
     public HttpResponse update(ItemUpdateForm form) {
