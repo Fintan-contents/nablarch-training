@@ -69,7 +69,7 @@ Nablarchバッチアプリケーションを利用して、CSV形式の郵便番
 
 ### CSVをバインドするForm([ZipCodeForm.java](./src/main/java/com/nablarch/example/app/batch/form/ZipCodeForm.java))
 
-* @CsvFormatと@csvアノテーションを用いて、CSVファイルのフォーマットを設定してください。
+* @CsvFormatと@Csvアノテーションを用いて、CSVファイルのフォーマットを設定してください。
    * 入力となるCSVのフォーマットは以下の通りです。  
 
 
