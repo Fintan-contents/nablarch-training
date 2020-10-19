@@ -112,12 +112,12 @@ JSR352に準拠したバッチアプリケーションには、BatchletとChunk�
 
 チェックアウトディレクトリに移動後、以下を実行してjarの作成を行います。
 
-    $cd handson-13
+    $cd handson-15
     $mvn clean package
 
 ここまでの操作で、targetディレクトリにjarが作成されます。
 
-<チェックアウトディレクトリ>/handson-13 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
+<チェックアウトディレクトリ>/handson-15 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
     $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=bonus-calculate
 
