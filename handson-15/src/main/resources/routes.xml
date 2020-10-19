@@ -1,7 +1,7 @@
 <routes>
   <get    path="items" to="Item#find" />
   <!--
-    handson-15 step1
+    handson-16 step1
     上記の記述は、次のような意味です。
     ・GETメソッドで、パス"items"にアクセスされたら、ItemActionクラスのfindメソッドを呼び出す。
     これを参考に、以下のマッピングを定義してください。

@@ -23,28 +23,28 @@ public class ItemAction {
      * @param req HTTPリクエスト
      * @return 商品情報リスト
      */
-    // handson-15 step1
+    // handson-16 step1
     // レスポンスメディアタイプを「JSON」として、アノテーションを付与してください。
     public List<Item> find(HttpRequest req) {
 
         // 検索条件を設定するための変数
         ItemSearchForm form = null;
 
-        // handson-15 step1
+        // handson-16 step1
         // 検索条件を取得する為に、form変数に、リクエストパラメータを設定してください。
         // 以前のエクササイズでも使用した、BeanUtilクラスを使用して実装してください。
 
-        // handson-15 step2
+        // handson-16 step2
         // ValidatorUtilクラスを用いてform変数の精査を実行してください。
 
         // 検索条件Dto
         ItemSearchDto searchCondition = null;
 
-        // handson-15 step3
+        // handson-16 step3
         // 検索条件として使用するために、searchCondition変数にform変数のプロパティを設定してください。
         // 以前のエクササイズでも使用した、BeanUtilクラスを使用して実装してください。
 
-        // handson-15 step4
+        // handson-16 step4
         // ユニバーサルDAOを使用して、検索用のSQLを呼び出し、レコードを取得して返却してください。
         // ・使用するエンティティクラスはItemです。
         // ・SQL_IDはItem.sqlを参照してください。
@@ -57,19 +57,19 @@ public class ItemAction {
      * @param form 商品情報
      * @return HTTPレスポンス
      */
-    // handson-15 step5
+    // handson-16 step5
     // リクエストメディアタイプを「JSON」として、アノテーションを付与してください。
-    // handson-15 step6
+    // handson-16 step6
     // リクエストに対するBeanValidationの実行を指示するアノテーションを付与してください。
     public HttpResponse save(ItemForm form) {
-        // handson-15 step7
+        // handson-16 step7
         // form変数をItemエンティティにコピーしてください。
         // 以前のエクササイズでも使用した、BeanUtilクラスを使用して実装してください。
 
-        // handson-15 step8
+        // handson-16 step8
         // ユニバーサルDAOを使用して、コピーしたItemエンティティをDBに登録してください。
 
-        // handson-15 step9
+        // handson-16 step9
         // 「Created」に対応するステータスコードを返すよう修正してください。
         return new HttpResponse(HttpResponse.Status.INTERNAL_SERVER_ERROR.getStatusCode());
     }
@@ -80,19 +80,19 @@ public class ItemAction {
      * @param form 商品情報
      * @return HTTPレスポンス
      */
-    // handson-15 step10
+    // handson-16 step10
     // リクエストメディアタイプを「JSON」として、アノテーションを付与してください。
-    // handson-15 step11
+    // handson-16 step11
     // リクエストに対するBeanValidationの実行を指示するアノテーションを付与してください。
     public HttpResponse update(ItemUpdateForm form) {
-        // handson-15 step12
+        // handson-16 step12
         // form変数をItemエンティティにコピーしてください。
         // 以前のエクササイズでも使用した、BeanUtilクラスを使用して実装してください。
 
-        // handson-15 step13
+        // handson-16 step13
         // ユニバーサルDAOを使用して、コピーしたItemエンティティでDBを更新してください。
 
-        // handson-15 step14
+        // handson-16 step14
         // 「OK」に対応するステータスコードを返すよう修正してください。
         return new HttpResponse(HttpResponse.Status.INTERNAL_SERVER_ERROR.getStatusCode());
     }
