@@ -1,0 +1,41 @@
+<job id="etl-zip-code-csv-to-db-chunk" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+
+  <listeners>
+    <listener ref="nablarchJobListenerExecutor" />
+  </listeners>
+
+  <step id="truncate" next="extract">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+    </listeners>
+    <!-- テーブルクリーニングのBatchletを定義してください。 -->
+  </step>
+
+  <step id="extract" next="validation">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+      <listener ref="nablarchItemWriteListenerExecutor" />
+    </listeners>
+    <!--
+        Chunkを定義してください。item-countは3000とします。
+     -->
+  </step>
+
+  <step id="validation" next="load">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+    </listeners>
+    <!-- 精査を行うBatchletを定義してください。 -->
+  </step>
+
+  <step id="load">
+    <listeners>
+      <listener ref="nablarchStepListenerExecutor" />
+      <listener ref="nablarchItemWriteListenerExecutor" />
+    </listeners>
+    <!--
+        Chunkを定義してください。item-countは3000とします。
+     -->
+  </step>
+
+</job>
