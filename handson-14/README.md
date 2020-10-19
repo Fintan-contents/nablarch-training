@@ -155,8 +155,8 @@ ETLデザイナーで作成します。
     - JOB定義のバリデーションを行ってください。
     - 設定ファイルを出力してください。
     - 出力した設定ファイルを、下記のディレクトリ配下に移動させてください。
-        - XMLファイル： <チェックアウトディレクトリ>/handson-14/src/main/resources/META-INF/batch-jobs/
-        - JSONファイル: <チェックアウトディレクトリ>/handson-14/src/main/resources/META-INF/etl-config/
+        - XMLファイル： <チェックアウトディレクトリ>/handson-15/src/main/resources/META-INF/batch-jobs/
+        - JSONファイル: <チェックアウトディレクトリ>/handson-15/src/main/resources/META-INF/etl-config/
 
 
 ## 動作確認方法
@@ -182,12 +182,12 @@ ETLデザイナーで作成します。
 
 チェックアウトディレクトリに移動後、以下を実行してjarの作成を行います。
 
-    $cd handson-14
+    $cd handson-15
     $mvn clean package
 
 ここまでの操作で、targetディレクトリにjarが作成されます。
 
-<チェックアウトディレクトリ>/handson-14 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
+<チェックアウトディレクトリ>/handson-15 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
     $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=etl-zip-code-csv-to-db-chunk
 
