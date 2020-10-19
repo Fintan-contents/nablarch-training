@@ -171,11 +171,11 @@ Nablarchバッチアプリケーションを利用して、CSV形式の郵便番
 
 チェックアウトディレクトリに移動後、以下を実行してjarの作成を行います。
 
-    $cd handson-XX
+    $cd handson-12
     $mvn clean package
  
 ここまでの操作で、targetディレクトリにjarが作成されます。  
-<チェックアウトディレクトリ>/handson-XX ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
+<チェックアウトディレクトリ>/handson-12 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
     $mvn exec:java -Dexec.mainClass=nablarch.fw.launcher.Main -Dexec.args="'-requestPath' 'ImportZipCodeFileAction/ImportZipCodeFile' '-diConfig' 'classpath:import-zip-code-file.xml' '-userId' '105'"
 
