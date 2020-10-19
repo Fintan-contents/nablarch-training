@@ -140,4 +140,4 @@ ZIP_CODE_DATAテーブル と ZIP_CODE_DATA_WORKテーブル のデータを削�
 
 ## 解答例について
 
-解答例は、[nablarch-handson-app-batdh-ee](../nablarch-handson-app-batch-ee/README.md)を参照してください。
+解答例は、[nablarch-handson-app-batch-ee](../nablarch-handson-app-batch-ee/README.md)を参照してください。
