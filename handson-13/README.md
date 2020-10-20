@@ -1,12 +1,11 @@
-Chunkタイプのバッチを作ってみよう
-===============
+RESTfulウェブサービスを作成してみよう
+==================================
 
 ## 演習内容
-JSR352に準拠したバッチアプリケーションには、BatchletとChunkの2種類があります。本ハンズオンでは、バッチExampleアプリケーションを題材にして、Chunkタイプのバッチの作り方を学習します。
+本ハンズオンでは、NablarchのJAX-RSサポートを利用して、RESTfulウェブサービスを作成する方法を学習します。
 
-## 作成するバッチについて
-
-社員テーブルから社員情報を抜き出し、各社員の設定に応じて固定賞与または月給ベースの賞与を計算し、賞与テーブルに書き込むバッチです。社員テーブルから社員情報を抜き出す部分、賞与を計算する部分、計算した賞与を賞与テーブルに書き込む部分の3つからできています。
+## 作成するウェブサービスについて
+商品テーブルの一覧検索、商品の追加、更新を提供するウェブサービスです。
 
 ## 演習を開始するための準備
 
@@ -22,122 +21,138 @@ JSR352に準拠したバッチアプリケーションには、BatchletとChunk�
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
+- 3.1. RESTfulウェブサービス編
+    - 3.1.1. アーキテクチャ概要
+    - 3.1.3. Getting Started
 
 - 7.4.2. ユニバーサルDAO
-    - 使用方法
-        - 検索結果を遅延ロードする
-        - バッチ実行（一括登録、更新、削除）を行う
-- 4.1.1. アーキテクチャ概要
-	- バッチアプリケーションの処理の流れ
-		- Chunk
-    - バッチアプリケーションで使用するリスナー
-    - リスナーの指定方法
-- 4.1.3. Getting Started
-	- データを導出するバッチの作成(Chunkステップ)
-		- JOB設定ファイルを作成する
+	- 使用方法
+		- 任意のSQL(SQLファイル)で検索する
+		- 条件を指定して検索する
 
 ## 実装する機能
-
-- 社員情報を抜き出すアイテムリーダを実装してください。
-- 賞与を計算するアイテムプロセッサを実装してください。
-- 計算した賞与を賞与テーブルに書き込むアイテムライタを実装してください。
-- ジョブ定義ファイルを作成してください。
+- ルート定義ファイルを作成してください。
+- 商品テーブルの検索、商品の追加、更新を行う3つのメソッドを実装してください。
 
 ## 演習
+では、RESTfulウェブサービスを実装していきましょう。
 
-では、Chunkバッチを実装していきましょう。
+### ルート定義ファイルを作成する
+ウェブサービスを提供するURLと対応するアクションクラス、メソッドをマッピングするルート定義ファイル([routes.xml](./src/main/resources/routes.xml))を完成させてください。
 
-### Java部分
+実装すべき内容の詳細は雛形に記載してあります。
 
-#### アイテムリーダ([EmployeeSearchReader.java](./src/main/java/com/nablarch/example/app/batch/ee/chunk/EmployeeSearchReader.java))
+### アクションを作成する（[ItemAction.java](./src/main/java/com/nablarch/example/action/ItemAction.java)）
+ItemAction.javaに、検索処理、レコードの追加処理、レコードの更新処理を実装してください。
 
-##### openメソッド
+実装すべき内容の詳細は雛形に記載してあります。
 
-- DBから社員情報を検索し、イテレータを取得してください。
-
-##### readItemメソッド
-
-- イテレータを使用して、検索した社員情報を1レコードずつ返却してください。返却するレコードがない場合は、「null」を返却してください。
-
-##### closeメソッド
-
-- 検索した社員情報をクローズしてください。
-
-#### アイテムプロセッサ([BonusCalculateProcessor.java](./src/main/java/com/nablarch/example/app/batch/ee/chunk/BonusCalculateProcessor.java))
-
-##### processItemメソッド
-
-- 賞与支給額を計算し、社員IDと共にBonusエンティティに設定、返却してください。
-
-#### アイテムライタ([BonusWriter.java](./src/main/java/com/nablarch/example/app/batch/ee/chunk/BonusWriter.java))
-
-##### writeItemsメソッド
-- 引数のリストをBonusテーブルに登録してください。なお、このリストはBonusCalculateProcessor#processItemで返却したインスタンスのリストです。
-
-### XML部分([bonus-calculate.xml](./src/main/resources/META-INF/batch-jobs/bonus-calculate.xml))
-
-- ジョブレベル
-    - ジョブレベルのリスナーを実行するNablarchのリスナーを定義してください。
-- 「step1」ステップ
-    - ステップレベルのリスナーを実行するNablarchのリスナーを定義してください。
-    - ItemWriterレベルのリスナーを実行するNablarchのリスナーを定義してください。
-    - Chunkを定義してください。アイテムライタのwriteItems一回当たりで処理する件数は1000件としてください。
-        - reader、processor、writerは以下の表のように指定してください。
-
-|要素名|指定するクラス|
-|:----|:---------|
-|reader|EmployeeSearchReader|
-|processor|BonusCalculateProcessor|
-|writer|BonusWriter|
 
 ## 動作確認方法
 
-### 実行前のテーブルの内容を確認
+### アプリケーションのビルド
+まず、アプリケーションをビルドします。チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
+    cd handson-13
+    $mvn clean compile
+
+### アプリケーションの起動
+次に、waitt-maven-pluginを実行し、ウェブサービスを起動します。以下のコマンドを実行してください。
+
+    $mvn waitt:run-headless
+
+### テスト用クライアントクラスからのアクセス
+
+最後に、src/test/java配下にある、以下のクラスのmainメソッドを実行します。
+
+* com.nablarch.example.client.ItemClient
+
+このクラスでは、以下のリクエストを起動したウェブサービスに対して順番に送信し、結果を標準出力に表示しています。
+
+1. 商品テーブルの全件検索(10件出力されます)。
+2. カテゴリーが「hardware」である商品の検索(4件出力されます)。
+3. 商品を下表1の内容で追加(「insert status:201」が出力されます)。
+4. 商品テーブルの全件検索(11件出力されます)。
+5. 商品名に「商品９９９」を含む商品を検索し、下表2の内容で更新(「update status:200」が出力されます)。
+6. 商品テーブルの全件検索(11件出力されます)。
+
+
+- 表1
+
+| 項目        | 値               |
+|:------------|:-----------------|
+| ItemId      | 自動採番         |
+| ItemName    | 商品９９９       |
+| Category    | hardware         |
+| Explanation | 商品９９９の説明 |
+| Price       | 20000            |
+
+- 表2
+
+| 項目        | 値               |
+|:------------|:-----------------|
+| ItemId      | (変更なし)       |
+| ItemName    | 商品８８８       |
+| Category    | software         |
+| Explanation | 商品８８８の説明 |
+| Price       | 18000            |
+
+初期状態のデータでは、標準出力に以下の内容が表示されれば問題ありません。
+
+    ---- items (size: 10) ----
+    Item(ItemId: 1, ItemName: 商品１, Category: hardware, Explanation: 商品１の説明, Price: 100000)
+    Item(ItemId: 2, ItemName: 商品２, Category: hardware, Explanation: 商品２の説明, Price: 110000)
+    Item(ItemId: 3, ItemName: 商品３, Category: software, Explanation: 商品３の説明, Price: 10000)
+    Item(ItemId: 4, ItemName: 商品４, Category: hardware, Explanation: 商品４の説明, Price: 90000)
+    Item(ItemId: 5, ItemName: 商品５, Category: software, Explanation: 商品５の説明, Price: 25000)
+    Item(ItemId: 6, ItemName: 商品６, Category: software, Explanation: 商品６の説明, Price: 1500)
+    Item(ItemId: 7, ItemName: 商品７, Category: hardware, Explanation: 商品７の説明, Price: 1000000)
+    Item(ItemId: 8, ItemName: 商品８, Category: software, Explanation: 商品８の説明, Price: 120000)
+    Item(ItemId: 9, ItemName: 商品９, Category: software, Explanation: 商品９の説明, Price: 115000)
+    Item(ItemId: 10, ItemName: 商品１０, Category: software, Explanation: 商品１０の説明, Price: 300000)
+    ---- items (size: 4) ----
+    Item(ItemId: 1, ItemName: 商品１, Category: hardware, Explanation: 商品１の説明, Price: 100000)
+    Item(ItemId: 2, ItemName: 商品２, Category: hardware, Explanation: 商品２の説明, Price: 110000)
+    Item(ItemId: 4, ItemName: 商品４, Category: hardware, Explanation: 商品４の説明, Price: 90000)
+    Item(ItemId: 7, ItemName: 商品７, Category: hardware, Explanation: 商品７の説明, Price: 1000000)
+    insert status:201
+    ---- items (size: 11) ----
+    Item(ItemId: 1, ItemName: 商品１, Category: hardware, Explanation: 商品１の説明, Price: 100000)
+    Item(ItemId: 2, ItemName: 商品２, Category: hardware, Explanation: 商品２の説明, Price: 110000)
+    Item(ItemId: 3, ItemName: 商品３, Category: software, Explanation: 商品３の説明, Price: 10000)
+    Item(ItemId: 4, ItemName: 商品４, Category: hardware, Explanation: 商品４の説明, Price: 90000)
+    Item(ItemId: 5, ItemName: 商品５, Category: software, Explanation: 商品５の説明, Price: 25000)
+    Item(ItemId: 6, ItemName: 商品６, Category: software, Explanation: 商品６の説明, Price: 1500)
+    Item(ItemId: 7, ItemName: 商品７, Category: hardware, Explanation: 商品７の説明, Price: 1000000)
+    Item(ItemId: 8, ItemName: 商品８, Category: software, Explanation: 商品８の説明, Price: 120000)
+    Item(ItemId: 9, ItemName: 商品９, Category: software, Explanation: 商品９の説明, Price: 115000)
+    Item(ItemId: 10, ItemName: 商品１０, Category: software, Explanation: 商品１０の説明, Price: 300000)
+    Item(ItemId: 11, ItemName: 商品９９９, Category: hardware, Explanation: 商品９９９の説明, Price: 20000)
+    update status:200
+    ---- items (size: 11) ----
+    Item(ItemId: 1, ItemName: 商品１, Category: hardware, Explanation: 商品１の説明, Price: 100000)
+    Item(ItemId: 2, ItemName: 商品２, Category: hardware, Explanation: 商品２の説明, Price: 110000)
+    Item(ItemId: 3, ItemName: 商品３, Category: software, Explanation: 商品３の説明, Price: 10000)
+    Item(ItemId: 4, ItemName: 商品４, Category: hardware, Explanation: 商品４の説明, Price: 90000)
+    Item(ItemId: 5, ItemName: 商品５, Category: software, Explanation: 商品５の説明, Price: 25000)
+    Item(ItemId: 6, ItemName: 商品６, Category: software, Explanation: 商品６の説明, Price: 1500)
+    Item(ItemId: 7, ItemName: 商品７, Category: hardware, Explanation: 商品７の説明, Price: 1000000)
+    Item(ItemId: 8, ItemName: 商品８, Category: software, Explanation: 商品８の説明, Price: 120000)
+    Item(ItemId: 9, ItemName: 商品９, Category: software, Explanation: 商品９の説明, Price: 115000)
+    Item(ItemId: 10, ItemName: 商品１０, Category: software, Explanation: 商品１０の説明, Price: 300000)
+    Item(ItemId: 11, ItemName: 商品８８８, Category: software, Explanation: 商品８８８の説明, Price: 18000)
+
+## DBの確認方法
+
+1. ウェブサービスが起動している場合は終了させます。
 1. コマンドプロンプトを起動します。
 1. カレントディレクトリを<チェックアウトディレクトリ>/h2/bin/に移動します。
 1. h2.batを起動します。
 2. ブラウザから http://localhost:8082 を開きます。H2に接続するための情報を入力する画面が表示されるので、後述の「H2への接続情報」に記載されている情報を入力し、Connectボタンをクリックします。
-1. 左側のペインに表示されているBONUSをクリックします。
-1. SELECT文が画面に表示されますので、そのままRunボタンをクリックします。
-1. データが何も入っていないことを確認します。何か入っていた場合は、Clearボタンをクリックしてから、中央のSQLを入力するフィールドに以下のように入力し、Runボタンをクリックします。
-```
-    DELETE FROM BONUS;
-```
-1. 最初に開いたコマンドプロンプトを終了して、h2.batを終了します。
+1. 中央のSQLを入力するフィールドに確認のためのSQLを入力し、Runボタンをクリックします。なお、本ハンズオンでは、ITEMテーブルを操作しています。
+
    **注意**
-   h2.bat実行中はバッチプログラムからDBへアクセスすることができないため、**バッチを実行できません。**
-
-### バッチ実行
-
-チェックアウトディレクトリに移動後、以下を実行してjarの作成を行います。
-
-    $cd handson-13
-    $mvn clean package
-
-ここまでの操作で、targetディレクトリにjarが作成されます。
-
-<チェックアウトディレクトリ>/handson-13 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
-
-    $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=bonus-calculate
-
-実行すると、以下のようなログがコンソールに出力されますが、問題はありません。
-
-    (中略)
-    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PostActivate not found, interception based on it is not enabled
-    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PrePassivate not found, interception based on it is not enabled
-    (中略)
-
-### バッチ実行結果の確認
-
-1. コマンドプロンプトを起動します。
-1. カレントディレクトリを<チェックアウトディレクトリ>/h2/bin/に移動します。
-1. h2.batを起動します。
-2. ブラウザから http://localhost:8082 を開きます。H2に接続するための情報を入力する画面が表示されるので、後述の「H2への接続情報」に記載されている情報を入力し、Connectボタンをクリックします。
-1. 左側のペインに表示されているBONUSをクリックします。
-1. SELECT文が画面に表示されますので、そのままRunボタンをクリックします。
-1. 賞与情報が表示されることを確認します。
-1. 手順1を実行した際に開いたコマンドプロンプトを終了して、H2のConsoleを終了します。
+   h2.bat実行中はアプリケーションからDBへアクセスすることができないため、**ウェブサービスを実行できません。**
 
 ### H2への接続情報
 
@@ -149,4 +164,4 @@ JSR352に準拠したバッチアプリケーションには、BatchletとChunk�
 
 ## 解答例について
 
-解答例は、[nablarch-handson-app-batdh-ee](../nablarch-handson-app-batch-ee/README.md)を参照してください。
+解答例は、[nablarch-handson-app-rest](../nablarch-handson-app-rest/README.md)を参照してください。
