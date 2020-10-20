@@ -45,7 +45,7 @@ public class ImportZipCodeFileAction extends BatchAction<ZipCodeForm> {
     @Override
     public DataReader<ZipCodeForm> createReader(ExecutionContext ctx) {
 
-        // データリーダクラスのインスタンスを返却してください。
+        // データリーダクラス(ZipCodeFileReader)のインスタンスを返却してください。
         return null;
     }
 }
