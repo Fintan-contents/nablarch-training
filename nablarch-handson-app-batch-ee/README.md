@@ -40,12 +40,12 @@ targetディレクトリにjarの作成が終わったら、以下のコマン�
 動作させることができる処理は、次の通りです。実行後、以下の説明に出てくるCSVファイルやテーブルを見て、処理結果を確認してください。
 
 * JBatchのみ利用（ETLなし）
-    * (ハンズオン13)賞与計算バッチ(DB→DB)
+    * (ハンズオン15)賞与計算バッチ(DB→DB)
         * EMPLOYEEテーブルから社員情報を取得し、賞与を計算してBONUSテーブルに登録する、Chunkステップのバッチです。
-    * (ハンズオン12)郵便番号テーブルTRUNCATEバッチ
+    * (ハンズオン14)郵便番号テーブルTRUNCATEバッチ
         * ZIP_CODE_DATAテーブル と ZIP_CODE_DATA_WORKテーブルのデータを削除する、Batchletステップのバッチです。
 * ETLとJBatchを利用
-    * (ハンズオン14)郵便番号登録ETLバッチ(SQL*Loaderを使わないCSV→DB)
+    * (ハンズオン16)郵便番号登録ETLバッチ(SQL*Loaderを使わないCSV→DB)
         * <チェックアウトディレクトリ>/testdata/input/KEN_ALL.CSV を入力元とし、ZIP_CODE_DATA テーブルにデータを登録します。
         * SQL*Loaderは使いません。
 

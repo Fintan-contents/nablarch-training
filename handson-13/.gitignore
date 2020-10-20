@@ -54,6 +54,8 @@ build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
 
 # IntelliJ IDEA
@@ -61,13 +63,10 @@ gradle-app.setting
 *.iml
 
 *.log
-*.bad
-/target/
-.classpath
+
 .project
+.classpath
 
-# h2
-h2/db/
-
-# gsp
-gsp-target/
+target
+gsp-target
+h2
