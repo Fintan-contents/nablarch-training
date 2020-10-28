@@ -70,16 +70,12 @@ public class ItemAction {
      * @return HTTPレスポンス
      */
     @PUT
-    @Path("{id:\\d+}")
+    @Path("{itemId:\\d+}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Valid
     public HttpResponse update(HttpRequest req, ItemUpdateForm form) {
 
-        if (req.getParam("id") == null) {
-            return new HttpResponse(HttpResponse.Status.BAD_REQUEST.getStatusCode());
-        }
-
-        int id = Integer.parseInt(req.getParam("id")[0]);
+        int id = Integer.parseInt(req.getParam("itemId")[0]);
         Item item = BeanUtil.createAndCopy(Item.class, form);
         item.setItemId(id);
 
