@@ -25,8 +25,13 @@
   <import file="db.xml" />
 
   <!--パッケージマッピングの設定 -->
-  <component name="packageMapping" class="nablarch.integration.router.RoutesMapping">
-    <property name="basePackage" value="${nablarch.commonProperty.basePackage}" />
+  <component name="packageMapping" class="nablarch.integration.router.PathOptionsProviderRoutesMapping">
+    <property name="pathOptionsProvider">
+      <component class="nablarch.integration.router.jaxrs.JaxRsPathOptionsProvider">
+        <property name="applicationPath" value="${nablarch.webApi.applicationPath}"/>
+        <property name="basePackage" value="${nablarch.commonProperty.basePackage}"/>
+      </component>
+    </property>
     <property name="methodBinderFactory">
       <component class="nablarch.fw.jaxrs.JaxRsMethodBinderFactory">
         <property name="handlerList">
