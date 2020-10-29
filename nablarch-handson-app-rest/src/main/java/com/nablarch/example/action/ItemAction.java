@@ -13,6 +13,10 @@ import nablarch.fw.web.HttpResponse;
 
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -22,6 +26,7 @@ import java.util.List;
  *
  * @author Nabu Rakutaro
  */
+@Path("/items")
 public class ItemAction {
 
     /**
@@ -30,6 +35,7 @@ public class ItemAction {
      * @param req HTTPリクエスト
      * @return 商品情報リスト
      */
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Item> find(HttpRequest req) {
 
@@ -48,6 +54,7 @@ public class ItemAction {
      * @param form 商品情報
      * @return HTTPレスポンス
      */
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Valid
     public HttpResponse save(ItemForm form) {
@@ -62,11 +69,17 @@ public class ItemAction {
      * @param form 商品情報
      * @return HTTPレスポンス
      */
+    @PUT
+    @Path("{itemId:\\d+}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Valid
-    public HttpResponse update(ItemUpdateForm form) {
-        UniversalDao.update(BeanUtil.createAndCopy(Item.class, form));
+    public HttpResponse update(HttpRequest req, ItemUpdateForm form) {
+
+        int id = Integer.parseInt(req.getParam("itemId")[0]);
+        Item item = BeanUtil.createAndCopy(Item.class, form);
+        item.setItemId(id);
+
+        UniversalDao.update(item);
         return new HttpResponse(HttpResponse.Status.OK.getStatusCode());
     }
-
 }
