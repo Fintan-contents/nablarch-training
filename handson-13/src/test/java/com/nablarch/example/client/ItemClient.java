@@ -34,10 +34,9 @@ public class ItemClient {
 
         // 更新対象商品取得
         Item updateItem = getItems("itemName", "商品９９９").get(0);
-        ItemUpdateForm updateForm = setUpdateItem(updateItem);
 
         // 更新
-        System.out.println("update status:" + putItem(updateForm));
+        System.out.println("update status:" + putItem(updateItem));
         System.out.print(makeDataString(ItemClient.getItems()));
     }
 
@@ -61,7 +60,6 @@ public class ItemClient {
      */
     private static ItemUpdateForm setUpdateItem(Item item) {
         ItemUpdateForm form = new ItemUpdateForm();
-        form.setItemId(item.getItemId().toString());
         form.setItemName("商品８８８");
         form.setCategory("software");
         form.setExplanation("商品８８８の説明");
@@ -110,14 +108,15 @@ public class ItemClient {
 
     /**
      * HTTP PUTメソッドを使用したクライアント操作を行う。
-     * @param item 更新用商品情報
+     * @param updateItem 更新商品情報
      * @return ステータスコード
      */
-    private static Integer putItem(ItemUpdateForm item) {
+    private static Integer putItem(Item updateItem) {
+
         return ClientBuilder.newClient()
-                .target(targetUrl)
+                .target(targetUrl + "/"+ updateItem.getItemId().toString())
                 .request(MediaType.APPLICATION_JSON)
-                .put(Entity.json(item)).getStatus();
+                .put(Entity.json(setUpdateItem(updateItem))).getStatus();
     }
 
     /**

@@ -14,11 +14,6 @@ public class ItemUpdateForm implements Serializable {
     /** シリアルバージョンUID */
     private static final long serialVersionUID = 1L;
 
-    /** 商品ID */
-    @Required
-    @Domain("id")
-    private String itemId;
-
     /** 商品名 */
     @Required
     @Domain("itemName")
@@ -37,23 +32,6 @@ public class ItemUpdateForm implements Serializable {
     @Required
     @Domain("amountOfMoney")
     private String price;
-
-    /**
-     * 商品IDを取得する。
-     *
-     * @return 商品ID
-     */
-    public String getItemId() {
-        return itemId;
-    }
-
-    /**
-     * 商品IDを設定する。
-     * @param itemId 商品ID
-     */
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
 
     /**
      * 商品名を取得する。
