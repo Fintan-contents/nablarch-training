@@ -25,13 +25,6 @@ targetディレクトリにjarの作成が終わったら、以下のコマン�
 
     $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=<batch-job名>
 
-実行すると、以下のようなログがコンソールに出力されますが、問題はありません。
-
-    (中略)
-    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PostActivate not found, interception based on it is not enabled
-    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PrePassivate not found, interception based on it is not enabled
-    (中略)
-
 ＜batch-job名＞の指定例を示します。
 
     mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=zip-code-truncate-table
