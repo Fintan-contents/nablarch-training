@@ -23,7 +23,7 @@ JSR352に準拠したバッチアプリケーションには、BatchletとChunk�
 
 #### Nablarchアプリケーションフレームワークの解説書
 
-- 7.4.2. ユニバーサルDAO
+- 7.3.2. ユニバーサルDAO
     - 使用方法
         - 検索結果を遅延ロードする
         - バッチ実行（一括登録、更新、削除）を行う
@@ -120,13 +120,6 @@ JSR352に準拠したバッチアプリケーションには、BatchletとChunk�
 <チェックアウトディレクトリ>/handson-15 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
     $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=bonus-calculate
-
-実行すると、以下のようなログがコンソールに出力されますが、問題はありません。
-
-    (中略)
-    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PostActivate not found, interception based on it is not enabled
-    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PrePassivate not found, interception based on it is not enabled
-    (中略)
 
 ### バッチ実行結果の確認
 

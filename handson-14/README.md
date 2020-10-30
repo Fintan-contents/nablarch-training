@@ -107,13 +107,6 @@ ZIP_CODE_DATAテーブル と ZIP_CODE_DATA_WORKテーブル のデータを削�
 
     $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=zip-code-truncate-table
 
-実行すると、以下のようなログがコンソールに出力されますが、問題はありません。
-
-    (中略)
-    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PostActivate not found, interception based on it is not enabled
-    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PrePassivate not found, interception based on it is not enabled
-    (中略)
-
 
 
 ### バッチ実行結果の確認

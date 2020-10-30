@@ -52,13 +52,12 @@ ETL機能とJSR352に準拠したバッチアプリケーションを組み合�
 #### Nablarch拡張コンポーネントの解説書
 
 - 4.ETL
-	- 4.2.ETLの各フェーズの使用
+	- 4.2.ETLの各フェーズの仕様
 		- 4.2.1.Extractフェーズ
-			- JSR352 のChunkステップを使用したデータのロード
+			- ロード方法：Chunk
         - 4.2.2. Transformフェーズ
-        	- データのバリデーション
         - 4.2.3. Loadフェーズ
-    		- データベース出力
+    		- ロード方法：データベースへの登録
 	- 4.4. 使用方法
 		- 4.4.2. ETL用設定ファイルを作成する
 
@@ -190,13 +189,6 @@ ETLデザイナーで作成します。
 <チェックアウトディレクトリ>/handson-16 ディレクトリにて以下のコマンドを実行すると、アプリケーションを動作させることができます。
 
     $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=etl-zip-code-csv-to-db-chunk
-
-実行すると、以下のようなログがコンソールに出力されますが、問題はありません。
-
-    (中略)
-    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PostActivate not found, interception based on it is not enabled
-    WARN  o.j.w.Interceptor WELD-001700: Interceptor annotation class javax.ejb.PrePassivate not found, interception based on it is not enabled
-    (中略)
 
 ### バッチ実行結果の確認
 

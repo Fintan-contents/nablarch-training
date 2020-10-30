@@ -11,6 +11,7 @@
   <import file="nablarch/test/master-data-restorer.xml"/>
   <import file="nablarch/test/test-data.xml"/>
   <import file="nablarch/test/test-transaction.xml"/>
+  <import file="nablarch/test/rest-request-test.xml"/>
   <import file="nablarch/test/http-request-test.xml"/>
 
   <!-- メインを上書きする設定-->
@@ -20,11 +21,17 @@
   <component name="httpTestConfiguration" class="nablarch.test.core.http.HttpTestConfiguration">
     <property name="checkHtml" value="false" />
   </component>
+  <component name="restTestConfiguration" class="nablarch.test.core.http.RestTestConfiguration">
+    <property name="webFrontControllerKey" value="jaxrsController"/>
+  </component>
 
   <!-- DBの接続設定を定義する -->
   <component name="dbInfo" class="nablarch.test.core.db.GenericJdbcDbInfo">
     <property name="dataSource" ref="dataSource"/>
     <property name="schema" value="PUBLIC"/>
   </component>
+
+  <!-- テスト用HttpServerにJetty6を定義する -->
+  <component name="httpServerFactory" class="nablarch.fw.web.httpserver.HttpServerFactoryJetty6"/>
 
 </component-configuration>
