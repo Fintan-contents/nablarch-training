@@ -2,6 +2,7 @@ package com.nablarch.example.app.web.form;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import javax.validation.constraints.AssertTrue;
 
@@ -397,7 +398,7 @@ public class ProjectUpdateForm implements Serializable {
         }
         BigDecimal result = new BigDecimal(getProfitBeforeAllocation());
         try {
-            result = result.divide(new BigDecimal(sales), 3, BigDecimal.ROUND_DOWN);
+            result = result.divide(new BigDecimal(sales), 3, RoundingMode.DOWN);
         } catch (ArithmeticException e) {
             return BigDecimal.ZERO.setScale(3);
         }
@@ -431,7 +432,7 @@ public class ProjectUpdateForm implements Serializable {
         }
         BigDecimal result = new BigDecimal(getOperatingProfit());
         try {
-            result = result.divide(new BigDecimal(sales), 3, BigDecimal.ROUND_DOWN);
+            result = result.divide(new BigDecimal(sales), 3, RoundingMode.DOWN);
         } catch (ArithmeticException e) {
             return BigDecimal.ZERO.setScale(3);
         }

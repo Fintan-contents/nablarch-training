@@ -25,7 +25,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>5u18</version>
+        <version>5u19</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -61,6 +61,11 @@
 
     <dependency>
       <groupId>com.nablarch.framework</groupId>
+      <artifactId>nablarch-fw-web-doublesubmit-jdbc</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-common-idgenerator-jdbc</artifactId>
     </dependency>
 
@@ -82,6 +87,12 @@
     <dependency>
       <groupId>com.nablarch.integration</groupId>
       <artifactId>nablarch-jackson-adaptor</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.nablarch.integration</groupId>
+      <artifactId>slf4j-nablarch-adaptor</artifactId>
+      <scope>runtime</scope>
     </dependency>
 
     <dependency>
@@ -133,18 +144,6 @@
       <artifactId>HikariCP</artifactId>
       <version>3.3.1</version>
       <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>com.nablarch.integration</groupId>
-      <artifactId>slf4j-nablarch-adaptor</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-
-    <!-- ホットデプロイ用 -->
-    <dependency>
-      <groupId>com.nablarch.framework</groupId>
-      <artifactId>nablarch-fw-web-hotdeploy</artifactId>
     </dependency>
 
     <!-- TEST -->
@@ -258,6 +257,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.1</version>
         <configuration>
           <webXml>${webxml.path}</webXml>
         </configuration>
@@ -265,6 +265,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
+        <version>3.1.0</version>
         <configuration>
           <filesets>
             <fileset>
@@ -297,6 +298,17 @@
           </servers>
         </configuration>
       </plugin>
+      <!-- カバレッジ取得 -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.3</version>
+        <configuration>
+          <excludes>
+            <exclude>**/com/nablarch/example/app/entity/*</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
     </plugins>
     <extensions>
       <extension>
@@ -318,6 +330,11 @@
         <configuration>
           <additionalparam>-Xdoclint:none</additionalparam>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.0</version>
       </plugin>
     </plugins>
   </reporting>

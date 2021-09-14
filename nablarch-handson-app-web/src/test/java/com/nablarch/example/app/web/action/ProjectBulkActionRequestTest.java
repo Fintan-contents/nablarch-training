@@ -31,6 +31,7 @@ public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate
      * 一括更新画面初期表示正常系ケース。
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void indexNormal() {
         execute("indexNormal", new SignedInAdvice() {
 
@@ -53,6 +54,7 @@ public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate
      * プロジェクト一括更新検索正常系ケース。
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void listNormal() {
         execute("listNormal", new SignedInAdvice() {
 
@@ -92,6 +94,7 @@ public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate
      * プロジェクト一括更新確認正常系ケース。
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void confirmOfUpdateNormal() {
         execute("confirmOfUpdateNormal", new SignedInAdvice() {
 
@@ -174,6 +177,7 @@ public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate
             }
 
             @Override
+            @SuppressWarnings("unchecked")
             public void afterExecute(ExampleTestCaseInfo testCaseInfo,
                                      ExecutionContext context) {
                 // 検索フォームの確認

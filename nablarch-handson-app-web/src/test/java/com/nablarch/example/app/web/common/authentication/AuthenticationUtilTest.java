@@ -17,7 +17,7 @@ import com.nablarch.example.app.web.common.authentication.exception.Authenticati
 import nablarch.core.repository.ObjectLoader;
 import nablarch.core.repository.SystemRepository;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * {@link AuthenticationUtil}のテストクラス
