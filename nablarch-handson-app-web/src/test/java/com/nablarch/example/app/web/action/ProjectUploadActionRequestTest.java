@@ -1,7 +1,7 @@
 package com.nablarch.example.app.web.action;
 
-import com.nablarch.example.app.test.advice.SignedInAdvice;
 import com.nablarch.example.app.test.ExampleHttpRequestTestTemplate;
+import com.nablarch.example.app.test.advice.SignedInAdvice;
 import org.junit.Test;
 
 /**

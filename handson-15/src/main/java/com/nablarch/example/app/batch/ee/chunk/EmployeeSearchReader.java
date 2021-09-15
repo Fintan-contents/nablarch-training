@@ -1,15 +1,13 @@
 package com.nablarch.example.app.batch.ee.chunk;
 
-import java.io.Serializable;
-import java.util.Iterator;
+import com.nablarch.example.app.batch.ee.form.EmployeeForm;
+import nablarch.common.dao.DeferredEntityList;
 
 import javax.batch.api.chunk.AbstractItemReader;
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
-
-import com.nablarch.example.app.batch.ee.form.EmployeeForm;
-
-import nablarch.common.dao.DeferredEntityList;
+import java.io.Serializable;
+import java.util.Iterator;
 
 /**
  * 社員情報をDBから取得する{@link javax.batch.api.chunk.ItemReader}実装クラス。

@@ -43,7 +43,7 @@
       <groupId>com.nablarch.profile</groupId>
       <artifactId>nablarch-web</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-fw-web</artifactId>
@@ -63,7 +63,7 @@
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-fw-web-doublesubmit-jdbc</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-common-idgenerator-jdbc</artifactId>
@@ -78,7 +78,7 @@
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-core-jdbc</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>com.nablarch.integration</groupId>
       <artifactId>nablarch-jsr310-adaptor</artifactId>
@@ -131,7 +131,7 @@
       <groupId>org.apache.geronimo.specs</groupId>
       <artifactId>geronimo-jpa_2.0_spec</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>

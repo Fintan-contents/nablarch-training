@@ -11,7 +11,6 @@ import com.nablarch.example.app.web.dto.ProjectSearchDto;
 import com.nablarch.example.app.web.form.ProjectForm;
 import com.nablarch.example.app.web.form.ProjectSearchForm;
 import com.nablarch.example.app.web.form.ProjectTargetForm;
-
 import nablarch.common.dao.DeferredEntityList;
 import nablarch.common.dao.UniversalDao;
 import nablarch.common.databind.ObjectMapper;
@@ -142,14 +141,11 @@ public class ProjectAction {
     public HttpResponse confirmOfCreate(HttpRequest request, ExecutionContext context) {
 
         ProjectForm form = context.getRequestScopedVar("form");
-        if (form.hasClientId()) {
-            if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID",
-                    new Object[] {Integer.parseInt(form.getClientId())})) {
-                //補足：数値に対する自動フォーマット(自動的にカンマ編集される)を避けるため、Integerを明示的に文字列に変換している。
-                throw new ApplicationException(
-                        MessageUtil.createMessage(MessageLevel.ERROR, "errors.nothing.client",
-                                form.getClientId()));
-            }
+        if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID",
+                new Object[] {Integer.parseInt(form.getClientId())})) {
+            throw new ApplicationException(
+                    MessageUtil.createMessage(MessageLevel.ERROR, "errors.nothing.client",
+                            form.getClientId()));
         }
 
         Project project = BeanUtil.createAndCopy(Project.class, form);
@@ -197,14 +193,13 @@ public class ProjectAction {
         Project project = SessionUtil.get(context, "project");
         ProjectDto dto = BeanUtil.createAndCopy(ProjectDto.class, project);
 
-        if (dto.hasClientId()) {
-            // 入力画面に戻る際に顧客データが見つからない場合はデータ不整合なので、
-            // NoDataException を発生させてシステムエラーとする。
-            // ※ example アプリは顧客データのメンテナンス機能がないのでこの対応とするが、
-            //   通常業務で削除されることが想定される場合はシステムエラーとはせずにユーザーへの通知が必要。
-            Client client = UniversalDao.findById(Client.class, dto.getClientId());
-            dto.setClientName(client.getClientName());
-        }
+
+        // 入力画面に戻る際に顧客データが見つからない場合はデータ不整合なので、
+        // NoDataException を発生させてシステムエラーとする。
+        // ※ example アプリは顧客データのメンテナンス機能がないのでこの対応とするが、
+        //   通常業務で削除されることが想定される場合はシステムエラーとはせずにユーザーへの通知が必要。
+        Client client = UniversalDao.findById(Client.class, dto.getClientId());
+        dto.setClientName(client.getClientName());
 
         context.setRequestScopedVar("form", dto);
 

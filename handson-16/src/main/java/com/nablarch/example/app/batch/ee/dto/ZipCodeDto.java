@@ -1,16 +1,12 @@
 package com.nablarch.example.app.batch.ee.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-import nablarch.common.databind.csv.Csv;
-import nablarch.common.databind.csv.Csv.CsvType;
-import nablarch.common.databind.csv.CsvDataBindConfig.QuoteMode;
-import nablarch.common.databind.csv.CsvFormat;
 import nablarch.core.validation.ee.Domain;
 import nablarch.core.validation.ee.Required;
 import nablarch.etl.WorkItem;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * 郵便番号。

@@ -1,19 +1,10 @@
 package com.nablarch.example.app.web.common.authentication;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.*;
-import static org.junit.Assert.fail;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
-import java.sql.Types;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.nablarch.example.app.web.common.authentication.encrypt.PBKDF2PasswordEncryptor;
+import com.nablarch.example.app.web.common.authentication.encrypt.PasswordEncryptor;
+import com.nablarch.example.app.web.common.authentication.exception.AuthenticationFailedException;
+import com.nablarch.example.app.web.common.authentication.exception.PasswordExpiredException;
+import com.nablarch.example.app.web.common.authentication.exception.UserIdLockedException;
 import nablarch.core.db.connection.ConnectionFactory;
 import nablarch.core.db.connection.DbConnectionContext;
 import nablarch.core.db.transaction.SimpleDbTransactionManager;
@@ -22,21 +13,18 @@ import nablarch.core.repository.SystemRepository;
 import nablarch.core.repository.di.DiContainer;
 import nablarch.core.repository.di.config.xml.XmlComponentDefinitionLoader;
 import nablarch.core.util.DateUtil;
-
 import org.h2.jdbcx.JdbcDataSource;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
+import org.junit.*;
 import please.change.me.util.FixedSystemTimeProvider;
 
-import com.nablarch.example.app.web.common.authentication.encrypt.PBKDF2PasswordEncryptor;
-import com.nablarch.example.app.web.common.authentication.encrypt.PasswordEncryptor;
-import com.nablarch.example.app.web.common.authentication.exception.AuthenticationFailedException;
-import com.nablarch.example.app.web.common.authentication.exception.PasswordExpiredException;
-import com.nablarch.example.app.web.common.authentication.exception.UserIdLockedException;
+import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * {@link SystemAccountAuthenticator}のテストクラス。

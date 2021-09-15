@@ -3,7 +3,6 @@ package com.nablarch.example.app.batch.action;
 import com.nablarch.example.app.batch.form.ZipCodeForm;
 import com.nablarch.example.app.batch.interceptor.ValidateData;
 import com.nablarch.example.app.batch.reader.ZipCodeFileReader;
-
 import nablarch.fw.DataReader;
 import nablarch.fw.ExecutionContext;
 import nablarch.fw.Result;

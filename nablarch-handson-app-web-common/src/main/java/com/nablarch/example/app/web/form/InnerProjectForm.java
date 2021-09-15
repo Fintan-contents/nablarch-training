@@ -1,12 +1,11 @@
 package com.nablarch.example.app.web.form;
 
-import java.io.Serializable;
-
-import javax.validation.constraints.AssertTrue;
-
 import com.nablarch.example.app.entity.core.validation.validator.DateRangeValidator;
 import nablarch.core.validation.ee.Domain;
 import nablarch.core.validation.ee.Required;
+
+import javax.validation.constraints.AssertTrue;
+import java.io.Serializable;
 
 /**
  * プロジェクト一覧検索更新フォームの一行分のフォーム。

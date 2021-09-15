@@ -1,7 +1,8 @@
 package com.nablarch.example.app.web.form;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import nablarch.core.util.StringUtil;
+import nablarch.test.core.db.DbAccessTestSupport;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -9,10 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
-
-import nablarch.core.util.StringUtil;
-import nablarch.test.core.db.DbAccessTestSupport;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * {@link ProjectForm} のテストクラス。

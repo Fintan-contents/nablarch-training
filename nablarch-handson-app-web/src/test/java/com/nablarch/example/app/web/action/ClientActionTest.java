@@ -8,7 +8,9 @@ import nablarch.common.dao.UniversalDao;
 import nablarch.core.message.ApplicationException;
 import nablarch.fw.web.MockHttpRequest;
 import nablarch.test.core.db.DbAccessTestSupport;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +19,8 @@ import java.util.stream.IntStream;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.startsWith;
-import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThrows;
 
 /**

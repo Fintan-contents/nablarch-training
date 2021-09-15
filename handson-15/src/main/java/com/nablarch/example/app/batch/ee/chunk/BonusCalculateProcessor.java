@@ -1,11 +1,10 @@
 package com.nablarch.example.app.batch.ee.chunk;
 
+import com.nablarch.example.app.batch.ee.form.EmployeeForm;
+
 import javax.batch.api.chunk.ItemProcessor;
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
-
-import com.nablarch.example.app.batch.ee.form.EmployeeForm;
-import com.nablarch.example.app.entity.Bonus;
 
 /**
  * 賞与計算を行う{@link ItemProcessor}実装クラス。

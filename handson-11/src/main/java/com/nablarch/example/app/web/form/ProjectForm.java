@@ -1,14 +1,13 @@
 package com.nablarch.example.app.web.form;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-
-import javax.validation.constraints.AssertTrue;
-
+import com.nablarch.example.app.entity.core.validation.validator.DateRangeValidator;
 import nablarch.core.validation.ee.Domain;
 import nablarch.core.validation.ee.Required;
 
-import com.nablarch.example.app.entity.core.validation.validator.DateRangeValidator;
+import javax.validation.constraints.AssertTrue;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * プロジェクト登録フォーム。
@@ -398,7 +397,7 @@ public class ProjectForm implements Serializable {
         }
         BigDecimal result = new BigDecimal(getProfitBeforeAllocation());
         try {
-            result = result.divide(new BigDecimal(sales), 3, BigDecimal.ROUND_DOWN);
+            result = result.divide(new BigDecimal(sales), 3, RoundingMode.DOWN);
         } catch (ArithmeticException e) {
             return BigDecimal.ZERO.setScale(3);
         }
@@ -432,7 +431,7 @@ public class ProjectForm implements Serializable {
         }
         BigDecimal result = new BigDecimal(getOperatingProfit());
         try {
-            result = result.divide(new BigDecimal(sales), 3, BigDecimal.ROUND_DOWN);
+            result = result.divide(new BigDecimal(sales), 3, RoundingMode.DOWN);
         } catch (ArithmeticException e) {
             return BigDecimal.ZERO.setScale(3);
         }
