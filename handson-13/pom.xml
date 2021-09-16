@@ -20,7 +20,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>5u18</version>
+        <version>5u19</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -47,13 +47,13 @@
       <groupId>com.nablarch.integration</groupId>
       <artifactId>nablarch-router-adaptor</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>com.nablarch.integration</groupId>
       <artifactId>nablarch-jackson-adaptor</artifactId>
       <scope>runtime</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-core-validation-ee</artifactId>
@@ -66,11 +66,6 @@
 
     <dependency>
       <groupId>com.nablarch.framework</groupId>
-      <artifactId>nablarch-core-jdbc</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-common-jdbc</artifactId>
     </dependency>
 
@@ -78,7 +73,7 @@
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-common-dao</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
@@ -200,7 +195,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>3.2.2</version>
+        <version>3.3.2</version>
         <configuration>
           <webXml>${webxml.path}</webXml>
           <classifier>${env.classifier}</classifier>
