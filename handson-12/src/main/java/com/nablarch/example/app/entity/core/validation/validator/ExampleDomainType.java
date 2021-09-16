@@ -1,5 +1,6 @@
 package com.nablarch.example.app.entity.core.validation.validator;
 
+import nablarch.core.util.annotation.Published;
 import nablarch.core.validation.ee.Length;
 import nablarch.core.validation.ee.SystemChar;
 
@@ -10,6 +11,7 @@ import nablarch.core.validation.ee.SystemChar;
  * @author Nabu Rakutaro
  */
 @SuppressWarnings("all")
+@Published(tag = "architect")
 public class ExampleDomainType {
 
     /** 公共団体コード */

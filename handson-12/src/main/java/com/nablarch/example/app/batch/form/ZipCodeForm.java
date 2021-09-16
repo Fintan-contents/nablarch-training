@@ -1,12 +1,15 @@
 package com.nablarch.example.app.batch.form;
 
 
+import nablarch.core.util.annotation.Published;
+
 /**
  * {@link nablarch.fw.DataReader} が読み込んだデータレコードをバインドし、バリデーションするフォームクラス。
  * <p>
  * @author Nabu Rakutaro
  */
 // @Csvと@CsvFormatを付与してください。
+@Published
 public class ZipCodeForm {
 
     // Bean Validation を実施するために、各項目にバリデーション用のアノテーションを付与してください。
@@ -100,15 +103,6 @@ public class ZipCodeForm {
 
     public Long getLineNumber() {
         return lineNumber;
-    }
-
-    /**
-     * 全国地方公共団体コードを返します。
-     *
-     * @return 全国地方公共団体コード
-     */
-    public String getLocalGovernmentCode() {
-        return localGovernmentCode;
     }
 
     /**
@@ -381,5 +375,13 @@ public class ZipCodeForm {
         this.lineNumber = lineNumber;
     }
 
+    /**
+     * 全国地方公共団体コードを返します。
+     *
+     * @return 全国地方公共団体コード
+     */
+    public String getLocalGovernmentCode() {
+        return localGovernmentCode;
+    }
 
 }

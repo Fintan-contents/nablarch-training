@@ -1,6 +1,7 @@
 package com.nablarch.example.app.batch.reader.iterator;
 
 import nablarch.common.databind.ObjectMapper;
+import nablarch.core.util.annotation.Published;
 
 import java.util.Iterator;
 
@@ -10,6 +11,7 @@ import java.util.Iterator;
  * @param <E> {@link ObjectMapper}から変換するオブジェクトの型
  * @author Nabu Rakutaro
  */
+@Published
 public class ObjectMapperIterator<E> implements Iterator<E> {
 
     /**
