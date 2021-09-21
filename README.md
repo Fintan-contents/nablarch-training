@@ -32,11 +32,10 @@ handson-01から順番に実施することで Nablarch を体系的に学習す
 | [13](./handson-13/README.md) | 基本   | RESTfulウェブサービスを作成してみよう | NablarchのJAX-RSサポートを利用した、RESTfulウェブサービスの作り方を学びます。|
 | [14](./handson-14/README.md) | 基本   | Batchletを作ってみよう | JSR352に準拠したバッチアプリケーションの一つであるBatchletの作り方を学びます。 |
 | [15](./handson-15/README.md) | 基本   | Chunkタイプのバッチを作ってみよう | JSR352に準拠したバッチアプリケーションの一つであるChunkの作り方を学びます。 |
-| [16](./handson-16/README.md) | 基本   | ETLを使って、CSVファイルの内容をDBに登録してみよう | ETLを利用したバッチアプリケーションでCSVファイルの内容をDBに登録する方法を学びます。 |
 | [nablarch-handson-app-web](./nablarch-handson-app-web/README.md) | -   | 解答 | 01～11の解答(完成品)のプログラムです。 |
 | [nablarch-handson-app-batch](./nablarch-handson-app-batch/README.md) | -   | 解答 | 12の解答(完成品)のプログラムです。 |
 | [nablarch-handson-app-rest](./nablarch-handson-app-rest/README.md) | -   | 解答 | 13の解答(完成品)のプログラムです。 |
-| [nablarch-handson-app-batch-ee](./nablarch-handson-app-batch-ee/README.md) | -   | 解答 | 14～16の解答(完成品)のプログラムです。 |
+| [nablarch-handson-app-batch-ee](./nablarch-handson-app-batch-ee/README.md) | -   | 解答 | 14～15の解答(完成品)のプログラムです。 |
 
 ### 3. ハンズオンを実施する。
 
