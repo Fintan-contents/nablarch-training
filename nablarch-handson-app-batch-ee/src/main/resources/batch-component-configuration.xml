@@ -15,9 +15,9 @@
                class="com.nablarch.example.app.validation.DomainBeanManager"/>
 
     <!-- 環境設定 -->
-    <config-file file="env.config" />
-    <config-file file="common.config" />
-    <config-file file="base-path.config" />
+    <config-file file="env.properties" />
+    <config-file file="common.properties" />
+    <config-file file="base-path.properties" />
 
     <!-- データベース設定-->
     <import file="nablarch/batch/db-for-batch.xml" />

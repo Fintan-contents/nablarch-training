@@ -4,14 +4,14 @@
 
   <groupId>nablarch.handson</groupId>
   <artifactId>nablarch-handson-app-entity</artifactId>
-  <version>1.4.0</version>
+  <version>1.5.0</version>
 
 
   <!-- DB接続設定とビルド設定 -->
   <properties>
     <!-- 利用するJavaのバージョン -->
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -19,8 +19,6 @@
     <!-- gsp-dba-maven-pluginが使用するデータベース設定 -->
     <db.adminUser>SAMPLE</db.adminUser>
     <db.user>NABLARCH_EXAMPLE</db.user>
-
-
   </properties>
 
   <dependencyManagement>
@@ -28,7 +26,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>5u18</version>
+        <version>5u19</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -39,6 +37,12 @@
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-common-dao</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+      <version>1.3.2</version>
     </dependency>
   </dependencies>
   <build>
@@ -80,6 +84,31 @@
             <version>1.4.192</version>
             <scope>runtime</scope>
           </dependency>
+          <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>javax.activation-api</artifactId>
+            <version>1.2.0</version>
+          </dependency>
+          <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+          </dependency>
+          <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-core</artifactId>
+            <version>2.3.0</version>
+          </dependency>
+          <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.3.0</version>
+          </dependency>
+          <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+          </dependency>
         </dependencies>
         <executions>
           <execution>
@@ -112,20 +141,5 @@
         </executions>
       </plugin>
     </plugins>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <configuration>
-            <archive>
-              <manifestEntries>
-                <Target-Environment>開発環境</Target-Environment>
-              </manifestEntries>
-            </archive>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
   </build>
 </project>

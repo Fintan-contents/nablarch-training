@@ -3,7 +3,7 @@ package com.nablarch.example.app.batch.action;
 import com.nablarch.example.app.batch.form.ZipCodeForm;
 import com.nablarch.example.app.batch.interceptor.ValidateData;
 import com.nablarch.example.app.batch.reader.ZipCodeFileReader;
-
+import nablarch.core.util.annotation.Published;
 import nablarch.fw.DataReader;
 import nablarch.fw.ExecutionContext;
 import nablarch.fw.Result;
@@ -13,6 +13,7 @@ import nablarch.fw.action.BatchAction;
  * 住所ファイルをDBに登録するバッチクラス。
  * @author Nabu Rakutaro
  */
+@Published
 public class ImportZipCodeFileAction extends BatchAction<ZipCodeForm> {
 
     /**

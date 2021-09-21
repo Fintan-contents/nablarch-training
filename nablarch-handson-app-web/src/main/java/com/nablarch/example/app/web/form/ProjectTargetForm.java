@@ -1,8 +1,8 @@
 package com.nablarch.example.app.web.form;
 
-import java.io.Serializable;
-
 import nablarch.core.validation.ee.Required;
+
+import java.io.Serializable;
 
 /**
  * 処理対象パラメータ。

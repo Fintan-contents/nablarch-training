@@ -2,7 +2,7 @@
 <component-configuration
         xmlns="http://tis.co.jp/nablarch/component-configuration"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration /component-configuration.xsd">
+        xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration https://nablarch.github.io/schema/component-configuration.xsd">
 
   <!-- プロダクションのコンポーネント設定を読み込む -->
   <import file="web-component-configuration.xml"/>
@@ -26,5 +26,8 @@
     <property name="dataSource" ref="dataSource"/>
     <property name="schema" value="PUBLIC"/>
   </component>
+
+  <!-- テスト用HttpServerにJetty9を定義する -->
+  <component name="httpServerFactory" class="nablarch.fw.web.httpserver.HttpServerFactoryJetty9"/>
 
 </component-configuration>

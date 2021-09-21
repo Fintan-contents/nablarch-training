@@ -8,7 +8,7 @@ import nablarch.core.validation.ee.SystemChar;
  *
  * @author Nabu Rakutaro
  */
- @SuppressWarnings("all")
+@SuppressWarnings("all")
 public class DomainBean {
 
     /** 公共団体コード */
@@ -17,7 +17,7 @@ public class DomainBean {
     private String localGovernmentCode;
 
     /** 旧郵便番号 */
-    @Length(min = 5, max = 5)
+    @Length(min = 3, max = 5)
     @SystemChar(charsetDef = "数字とスペース")
     private String oldZipCode;
 

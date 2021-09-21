@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
 
 /**
  * {@link IndustryAction}のテストクラス
@@ -49,6 +49,7 @@ public class IndustryActionTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void find() throws Exception {
         List<IndustryDto> result = sut.find();
 

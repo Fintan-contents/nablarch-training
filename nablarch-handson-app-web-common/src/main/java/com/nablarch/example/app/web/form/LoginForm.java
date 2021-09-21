@@ -1,9 +1,9 @@
 package com.nablarch.example.app.web.form;
 
-import java.io.Serializable;
-
 import nablarch.core.validation.ee.Domain;
 import nablarch.core.validation.ee.Required;
+
+import java.io.Serializable;
 
 /**
  * ログイン入力フォーム。

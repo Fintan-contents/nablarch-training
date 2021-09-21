@@ -12,7 +12,6 @@ import com.nablarch.example.app.web.form.ProjectForm;
 import com.nablarch.example.app.web.form.ProjectSearchForm;
 import com.nablarch.example.app.web.form.ProjectTargetForm;
 import com.nablarch.example.app.web.form.ProjectUpdateForm;
-
 import nablarch.common.dao.DeferredEntityList;
 import nablarch.common.dao.UniversalDao;
 import nablarch.common.databind.ObjectMapper;
@@ -292,7 +291,6 @@ public class ProjectAction {
 
         if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID",
                 new Object[] {Integer.parseInt(form.getClientId())})) {
-            //補足：数値に対する自動フォーマット(自動的にカンマ編集される)を避けるため、Integerを明示的に文字列に変換している。
             throw new ApplicationException(
                     MessageUtil.createMessage(MessageLevel.ERROR,
                             "errors.nothing.client", form.getClientId()));

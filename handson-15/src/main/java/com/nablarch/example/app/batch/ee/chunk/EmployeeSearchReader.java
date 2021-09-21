@@ -1,15 +1,13 @@
 package com.nablarch.example.app.batch.ee.chunk;
 
-import java.io.Serializable;
-import java.util.Iterator;
+import com.nablarch.example.app.batch.ee.form.EmployeeForm;
+import nablarch.common.dao.DeferredEntityList;
+import nablarch.fw.batch.ee.chunk.BaseDatabaseItemReader;
 
-import javax.batch.api.chunk.AbstractItemReader;
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
-
-import com.nablarch.example.app.batch.ee.form.EmployeeForm;
-
-import nablarch.common.dao.DeferredEntityList;
+import java.io.Serializable;
+import java.util.Iterator;
 
 /**
  * 社員情報をDBから取得する{@link javax.batch.api.chunk.ItemReader}実装クラス。
@@ -18,7 +16,7 @@ import nablarch.common.dao.DeferredEntityList;
  */
 @Dependent
 @Named
-public class EmployeeSearchReader extends AbstractItemReader {
+public class EmployeeSearchReader extends BaseDatabaseItemReader {
 
     /** 社員情報のリスト */
     private DeferredEntityList<EmployeeForm> list;
@@ -27,7 +25,7 @@ public class EmployeeSearchReader extends AbstractItemReader {
     private Iterator<EmployeeForm> iterator;
 
     @Override
-    public void open(Serializable checkpoint) throws Exception {
+    public void doOpen(Serializable checkpoint) throws Exception {
         // 遅延ロードを使用して、社員情報(処理対象)を取得し、「list」に代入してください。
         // SQL IDは、「SELECT_EMPLOYEE」を使用してください。
         list = null;
@@ -43,7 +41,7 @@ public class EmployeeSearchReader extends AbstractItemReader {
     }
 
     @Override
-    public void close() throws Exception {
+    public void doClose() throws Exception {
         // 「list」をクローズしてください。
     }
 }

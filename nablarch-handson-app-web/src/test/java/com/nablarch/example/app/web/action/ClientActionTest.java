@@ -10,9 +10,7 @@ import nablarch.fw.web.MockHttpRequest;
 import nablarch.test.core.db.DbAccessTestSupport;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +19,9 @@ import java.util.stream.IntStream;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.startsWith;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertThrows;
 
 /**
  * {@link ClientAction}のテストクラス
@@ -33,9 +32,6 @@ public class ClientActionTest {
     private ClientAction sut = new ClientAction();
 
     private DbAccessTestSupport transaction = new DbAccessTestSupport(getClass());
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Before
     public void setup() {
@@ -92,10 +88,8 @@ public class ClientActionTest {
         paramMap.put("clientName", new String[]{"test"});
         request.setParamMap(paramMap);
 
-        expectedException.expect(ApplicationException.class);
-        expectedException.expectMessage(startsWith("顧客名は64文字以下の全角文字で入力してください。"));
-
-        sut.find(request);
+        Exception exception = assertThrows(ApplicationException.class, () -> sut.find(request));
+        assertThat(exception.getMessage(), is(startsWith("顧客名は64文字以下の全角文字で入力してください。")));
     }
 
 }

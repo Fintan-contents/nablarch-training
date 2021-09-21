@@ -4,15 +4,15 @@
 
   <groupId>nablarch.handson</groupId>
   <artifactId>nablarch-handson-app-web</artifactId>
-  <version>1.4.0</version>
+  <version>1.5.0</version>
   <packaging>war</packaging>
 
   <properties>
     <scheme>画面オンライン</scheme>
 
     <!-- 利用するJavaのバージョン -->
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -25,7 +25,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>5u18</version>
+        <version>5u19</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -43,7 +43,7 @@
       <groupId>com.nablarch.profile</groupId>
       <artifactId>nablarch-web</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-fw-web</artifactId>
@@ -61,6 +61,11 @@
 
     <dependency>
       <groupId>com.nablarch.framework</groupId>
+      <artifactId>nablarch-fw-web-doublesubmit-jdbc</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-common-idgenerator-jdbc</artifactId>
     </dependency>
 
@@ -73,7 +78,7 @@
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-core-jdbc</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>com.nablarch.integration</groupId>
       <artifactId>nablarch-jsr310-adaptor</artifactId>
@@ -82,6 +87,12 @@
     <dependency>
       <groupId>com.nablarch.integration</groupId>
       <artifactId>nablarch-jackson-adaptor</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.nablarch.integration</groupId>
+      <artifactId>slf4j-nablarch-adaptor</artifactId>
+      <scope>runtime</scope>
     </dependency>
 
     <dependency>
@@ -120,7 +131,7 @@
       <groupId>org.apache.geronimo.specs</groupId>
       <artifactId>geronimo-jpa_2.0_spec</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
@@ -133,18 +144,6 @@
       <artifactId>HikariCP</artifactId>
       <version>3.3.1</version>
       <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>com.nablarch.integration</groupId>
-      <artifactId>slf4j-nablarch-adaptor</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-
-    <!-- ホットデプロイ用 -->
-    <dependency>
-      <groupId>com.nablarch.framework</groupId>
-      <artifactId>nablarch-fw-web-hotdeploy</artifactId>
     </dependency>
 
     <!-- TEST -->
@@ -167,7 +166,7 @@
     </dependency>
     <dependency>
       <groupId>com.nablarch.framework</groupId>
-      <artifactId>nablarch-testing-jetty6</artifactId>
+      <artifactId>nablarch-testing-jetty9</artifactId>
       <scope>test</scope>
     </dependency>
 
@@ -197,6 +196,7 @@
       <version>2.4.0</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.skyscreamer</groupId>
       <artifactId>jsonassert</artifactId>
@@ -205,9 +205,39 @@
     </dependency>
 
     <dependency>
+      <groupId>com.sun.activation</groupId>
+      <artifactId>javax.activation</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-core</artifactId>
+      <version>2.3.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <version>2.3.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+      <version>1.3.2</version>
+    </dependency>
+
+    <dependency>
       <groupId>nablarch.handson</groupId>
       <artifactId>nablarch-handson-app-entity</artifactId>
-      <version>1.4.0</version>
+      <version>1.5.0</version>
     </dependency>
 
   </dependencies>
@@ -227,6 +257,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.1</version>
         <configuration>
           <webXml>${webxml.path}</webXml>
         </configuration>
@@ -234,6 +265,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
+        <version>3.1.0</version>
         <configuration>
           <filesets>
             <fileset>
@@ -266,6 +298,17 @@
           </servers>
         </configuration>
       </plugin>
+      <!-- カバレッジ取得 -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.3</version>
+        <configuration>
+          <excludes>
+            <exclude>**/com/nablarch/example/app/entity/*</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
     </plugins>
     <extensions>
       <extension>
@@ -287,6 +330,11 @@
         <configuration>
           <additionalparam>-Xdoclint:none</additionalparam>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.0</version>
       </plugin>
     </plugins>
   </reporting>

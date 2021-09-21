@@ -1,9 +1,9 @@
 package com.nablarch.example.app.web.action;
 
 import com.nablarch.example.app.entity.Project;
+import com.nablarch.example.app.test.ExampleHttpRequestTestTemplate;
 import com.nablarch.example.app.test.ExampleTestCaseInfo;
 import com.nablarch.example.app.test.advice.SignedInAdvice;
-import com.nablarch.example.app.test.ExampleHttpRequestTestTemplate;
 import nablarch.common.web.session.SessionUtil;
 import nablarch.core.util.DateUtil;
 import nablarch.fw.ExecutionContext;

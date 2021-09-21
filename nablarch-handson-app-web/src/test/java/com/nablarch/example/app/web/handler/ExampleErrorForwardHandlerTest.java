@@ -1,24 +1,20 @@
 package com.nablarch.example.app.web.handler;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
-
-import javax.persistence.OptimisticLockException;
-
-import org.hamcrest.Description;
-import org.hamcrest.TypeSafeMatcher;
-
+import com.nablarch.example.app.web.common.file.TemporaryFileFailedException;
 import nablarch.common.dao.NoDataException;
 import nablarch.common.web.session.SessionKeyNotFoundException;
 import nablarch.fw.ExecutionContext;
 import nablarch.fw.web.HttpErrorResponse;
 import nablarch.fw.web.HttpResponse;
-
-import com.nablarch.example.app.web.common.file.TemporaryFileFailedException;
-
-import org.junit.Rule;
+import org.hamcrest.Description;
+import org.hamcrest.TypeSafeMatcher;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
+
+import javax.persistence.OptimisticLockException;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertThrows;
 
 /**
  * {@link ExampleErrorForwardHandler}のテスト。
@@ -26,9 +22,6 @@ import org.junit.rules.ExpectedException;
 public class ExampleErrorForwardHandlerTest {
 
     private ExampleErrorForwardHandler sut = new ExampleErrorForwardHandler();
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void success_shouldReturnHttpResponse() throws Exception {
@@ -46,11 +39,9 @@ public class ExampleErrorForwardHandlerTest {
             throw new SessionKeyNotFoundException("key");
         });
 
-        expectedException.expect(HttpErrorResponse.class);
-        expectedException.expect(
-                ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/doubleSubmissionError.jsp"));
-        expectedException.expect(StatusCodeMatcher.isStatusCode(400));
-        sut.handle(new Object(), context);
+        Exception exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
+        assertThat((HttpErrorResponse)exception, is(ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/doubleSubmissionError.jsp")));
+        assertThat((HttpErrorResponse)exception, is(StatusCodeMatcher.isStatusCode(400)));
     }
 
     @Test
@@ -60,11 +51,9 @@ public class ExampleErrorForwardHandlerTest {
             throw new NoDataException();
         });
 
-        expectedException.expect(HttpErrorResponse.class);
-        expectedException.expect(
-                ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/pageNotFoundError.jsp"));
-        expectedException.expect(StatusCodeMatcher.isStatusCode(404));
-        sut.handle(new Object(), context);
+        Exception exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
+        assertThat((HttpErrorResponse)exception, is(ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/pageNotFoundError.jsp")));
+        assertThat((HttpErrorResponse)exception, is(StatusCodeMatcher.isStatusCode(404)));
     }
 
     @Test
@@ -74,11 +63,10 @@ public class ExampleErrorForwardHandlerTest {
             throw new OptimisticLockException();
         });
 
-        expectedException.expect(HttpErrorResponse.class);
-        expectedException.expect(
-                ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/optimisticLockError.jsp"));
-        expectedException.expect(StatusCodeMatcher.isStatusCode(400));
-        sut.handle(new Object(), context);
+        Exception exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
+        assertThat((HttpErrorResponse)exception, is(ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/optimisticLockError.jsp")));
+        assertThat((HttpErrorResponse)exception, is(StatusCodeMatcher.isStatusCode(400)));
+
     }
 
     @Test
@@ -88,9 +76,9 @@ public class ExampleErrorForwardHandlerTest {
             throw new TemporaryFileFailedException(new Throwable());
         });
 
-        expectedException.expect(HttpErrorResponse.class);
-        expectedException.expect(StatusCodeMatcher.isStatusCode(500));
-        sut.handle(new Object(), context);
+        Exception exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
+        assertThat((HttpErrorResponse)exception, is(StatusCodeMatcher.isStatusCode(500)));
+
     }
 
     private static class ContentPathMatcher extends TypeSafeMatcher<HttpErrorResponse> {

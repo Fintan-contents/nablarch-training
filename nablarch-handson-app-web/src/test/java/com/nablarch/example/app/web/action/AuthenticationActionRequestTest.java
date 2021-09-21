@@ -1,9 +1,9 @@
 package com.nablarch.example.app.web.action;
 
+import com.nablarch.example.app.test.ExampleHttpRequestTestTemplate;
 import com.nablarch.example.app.test.ExampleTestCaseInfo;
 import com.nablarch.example.app.test.advice.ExampleAdvice;
 import com.nablarch.example.app.test.advice.SignedInAdvice;
-import com.nablarch.example.app.test.ExampleHttpRequestTestTemplate;
 import com.nablarch.example.app.web.common.authentication.context.LoginUserPrincipal;
 import nablarch.common.web.session.SessionUtil;
 import nablarch.fw.ExecutionContext;

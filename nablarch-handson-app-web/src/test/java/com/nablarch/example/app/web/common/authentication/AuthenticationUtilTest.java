@@ -1,23 +1,18 @@
 package com.nablarch.example.app.web.common.authentication;
 
-import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.nablarch.example.app.web.common.authentication.encrypt.PasswordEncryptor;
+import com.nablarch.example.app.web.common.authentication.exception.AuthenticationException;
+import nablarch.core.repository.ObjectLoader;
+import nablarch.core.repository.SystemRepository;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.nablarch.example.app.web.common.authentication.encrypt.PasswordEncryptor;
-import com.nablarch.example.app.web.common.authentication.exception.AuthenticationException;
+import java.lang.reflect.Constructor;
+import java.util.*;
 
-import nablarch.core.repository.ObjectLoader;
-import nablarch.core.repository.SystemRepository;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * {@link AuthenticationUtil}のテストクラス

@@ -4,6 +4,7 @@ import com.nablarch.example.app.batch.form.ZipCodeForm;
 import com.nablarch.example.app.batch.reader.iterator.ObjectMapperIterator;
 import nablarch.common.databind.ObjectMapperFactory;
 import nablarch.core.util.FilePathSetting;
+import nablarch.core.util.annotation.Published;
 import nablarch.fw.DataReader;
 import nablarch.fw.ExecutionContext;
 
@@ -16,6 +17,7 @@ import java.io.FileNotFoundException;
  *
  * @author Nabu Rakutaro
  */
+@Published
 public class ZipCodeFileReader implements DataReader<ZipCodeForm> {
 
     /**

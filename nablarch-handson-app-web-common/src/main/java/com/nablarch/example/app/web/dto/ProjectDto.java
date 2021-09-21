@@ -2,6 +2,7 @@ package com.nablarch.example.app.web.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 
 /**
@@ -385,7 +386,7 @@ public class ProjectDto implements Serializable {
         }
         BigDecimal result = new BigDecimal(getProfitBeforeAllocation());
         try {
-            result = result.divide(new BigDecimal(sales), 3, BigDecimal.ROUND_DOWN);
+            result = result.divide(new BigDecimal(sales), 3, RoundingMode.DOWN);
         } catch (ArithmeticException e) {
             return BigDecimal.ZERO.setScale(3);
         }
@@ -419,7 +420,7 @@ public class ProjectDto implements Serializable {
         }
         BigDecimal result = new BigDecimal(getOperatingProfit());
         try {
-            result = result.divide(new BigDecimal(sales), 3, BigDecimal.ROUND_DOWN);
+            result = result.divide(new BigDecimal(sales), 3, RoundingMode.DOWN);
         } catch (ArithmeticException e) {
             return BigDecimal.ZERO.setScale(3);
         }

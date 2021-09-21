@@ -24,6 +24,9 @@
   <import file="nablarch/core/db-base.xml" />
   <import file="db.xml" />
 
+  <!-- スレッドコンテキストハンドラ -->
+  <import file="nablarch/webui/threadcontext-for-webui-in-sessionstore.xml"/>
+
   <!--パッケージマッピングの設定 -->
   <component name="packageMapping" class="nablarch.integration.router.PathOptionsProviderRoutesMapping">
     <property name="pathOptionsProvider">
@@ -49,6 +52,7 @@
     <property name="handlerQueue">
       <list>
         <component class="nablarch.fw.handler.GlobalErrorHandler"/>
+        <component class="nablarch.common.handler.threadcontext.ThreadContextClearHandler"/>
         <component class="nablarch.fw.web.handler.HttpCharacterEncodingHandler" />
         <component class="nablarch.fw.jaxrs.JaxRsResponseHandler">
           <property name="errorResponseBuilder">
@@ -57,7 +61,26 @@
           <property name="errorLogWriter">
             <component class="com.nablarch.example.error.ExampleErrorLogWriter" />
           </property>
+          <property name="responseFinishers">
+            <list>
+              <component class="nablarch.fw.jaxrs.AdoptHandlerResponseFinisher">
+                <property name="handler">
+                  <component class="nablarch.fw.web.handler.SecureHandler">
+                    <property name="secureResponseHeaderList">
+                      <list>
+                        <component class="nablarch.fw.web.handler.secure.ContentTypeOptionsHeader" />
+                        <component class="nablarch.fw.web.handler.secure.ReferrerPolicyHeader" />
+                        <component class="nablarch.fw.web.handler.secure.CacheControlHeader" />
+                      </list>
+                    </property>
+                  </component>
+                </property>
+              </component>
+            </list>
+          </property>
         </component>
+        <component-ref name="threadContextHandler"/>
+        <component class="nablarch.common.web.handler.HttpAccessLogHandler"/>
         <component-ref name="dbConnectionManagementHandler"/>
         <component-ref name="transactionManagementHandler"/>
         <component-ref name="packageMapping"/>
