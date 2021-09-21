@@ -11,6 +11,6 @@
 
   <!-- CSRF対策の無効化 -->
   <component name="csrfTokenVerificationHandler"
-             class="com.nablarch.example.app.test.com.nablarch.example.app.test.NopHandler" />
+             class="com.nablarch.example.app.test.NopHandler" />
 
 </component-configuration>
