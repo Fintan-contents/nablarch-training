@@ -43,18 +43,20 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
+2.2と7.10.1の「データベースとの相関バリデーションを行う」を読むことで、どの精査をFormで行い、どの精査をActionで行うかがわかります。また、7.10.1の「相関バリデーションを行う」を読むことで、Formで行う相関バリデーションの実装方法がわかります。
 
-- 2.2. アプリケーションの責務配置
-- 7.10.1. Bean Validation
-	- 相関バリデーションを行う
-	- データベースとの相関バリデーションを行う
-		(2.2と7.10.1の「データベースとの相関バリデーションを行う」を読むことで、どの精査をFormで行い、どの精査をActionで行うかがわかります。また、7.10.1の「相関バリデーションを行う」を読むことで、Formで行う相関バリデーションの実装方法がわかります。)
+- [2.2. アプリケーションの責務配置](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/web/application_design.html#application-design)
+- [7.10.1. Bean Validation](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation)
+	- [相関バリデーションを行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-correlation-validation)
+	- [データベースとの相関バリデーションを行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-database-validation)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- UniversalDao
+- [UniversalDao](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/dao/UniversalDao.html)
     (レコードの存在チェックに使用できるメソッドが記載されています)
-- DateUtil
+- [DateUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/util/DateUtil.html)
 	(相関バリデーション実施時に、プロジェクト開始日とプロジェクト終了日が正しく入力されているか確認する際とDate型に変換する際に使用します)
+- [StringUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/util/StringUtil.html)
+	(相関バリデーション実施時に、プロジェクト開始日とプロジェクト終了日が入力されているか確認する際に使用します)
 
 ## 実装する機能
 ユーザの入力を元に、新しいプロジェクトを登録する機能を実装してください。挿入先のテーブルはPROJECTテーブルになります。
@@ -71,7 +73,7 @@
 
 
 ## ER図
-本エクササイズで使用するテーブルのER図です。
+本ハンズオンで使用するテーブルのER図です。
 
 ![ER図](./fig/fig03.png "ER図")
 
@@ -95,30 +97,30 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 
 ### 画面間の連携に関する仕様
 #### ログインユーザのIDについて
-- ログインユーザのIDはセッションで保持しています。セッションへ登録する処理は、ログイン処理([AuthenticationAction#login](./src/main/java/com/nablarch/example/app/web/action/AuthenticationAction.java))で行っています。
+- ログインユーザのIDはセッションストアで保持しています。セッションストアへ登録する処理は、ログイン処理([AuthenticationAction#login](./src/main/java/com/nablarch/example/app/web/action/AuthenticationAction.java))で行っています。
 
-#### 画面から送信される値及び、画面表示する値に関するFormの利用ルール
+#### 画面から送信される値及び、画面表示する値に関するFormとDTOの利用ルール
 - 以下の値の連携は、Formを使用して連携してください。
     - プロジェクト登録画面([create.jsp](./src/main/webapp/WEB-INF/view/project/create.jsp))から、プロジェクト登録情報確認画面の表示処理([ProjectAction#confirmOfCreate](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))へ送信された値の取り出しは、プロジェクト登録Form([ProjectForm](./src/main/java/com/nablarch/example/app/web/form/ProjectForm.java))を使用してください。
 
 - 以下の値の連携は、DTOを使用してください。
     - プロジェクト登録画面([create.jsp](./src/main/webapp/WEB-INF/view/project/create.jsp))へ戻る処理([ProjectAction#backToNew](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))で表示する値は、プロジェクト情報DTO([ProjectDto](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/dto/ProjectDto.java))を介して設定してください。
 
-#### セッションを用いた値の連携を使用する箇所
-以下の値の連携は、セッション上のProjectのエンティティを介して行ってください。セッションに登録する際のキー名は"project"としてください。
+#### セッションストアを用いた値の連携を使用する箇所
+以下の値の連携は、セッションストア上のProjectのエンティティを介して行ってください。セッションストアに登録する際のキー名は"project"としてください。
 
 | 遷移元 | 遷移先 |
 |:-------|:-------|
-| プロジェクト登録確認画面([confirmOfCreate.jsp](./src/main/webapp/WEB-INF/view/project/confirmOfCreate.jsp)) （セッションへの値の登録自体は、登録情報確認画面表示処理([ProjectAction#confirmOfCreate](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))で実施）| 登録情報入力画面へ戻る処理([ProjectAction#backToNew](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)) |
+| プロジェクト登録確認画面([confirmOfCreate.jsp](./src/main/webapp/WEB-INF/view/project/confirmOfCreate.jsp)) （セッションストアへの値の登録自体は、登録情報確認画面表示処理([ProjectAction#confirmOfCreate](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))で実施）| 登録情報入力画面へ戻る処理([ProjectAction#backToNew](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)) |
 | 同上 | プロジェクト登録処理([ProjectAction#create](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)) |
 
-補足：セッションからの値に取り出しについては、[handson-04](../handson-04/README.md)と[handson-05](../handson-05/README.md)で登場しました。セッションへの値の登録については、APIドキュメント(アプリケーションプログラマ向け)を参照してください。
+補足：セッションストアからの値の取り出しについては、[handson-04](../handson-04/README.md)と[handson-05](../handson-05/README.md)で登場しました。セッションストアへの値の登録については、APIドキュメント(アプリケーションプログラマ向け)を参照してください。
 
 
 ### システム全般で共通する仕様
 #### DB更新(登録)を伴うリクエストのルール
 - DB更新(登録)を伴うリクエストは以下のルールを守ってください。
-    - 更新完了画面の表示について、リロードした際に値がPOSTされるのを防ぐために、リダイレクトを使用してください。
+    - 登録完了画面の表示について、リロードした際に値がPOSTされるのを防ぐために、リダイレクトを使用してください。
         表示にリダイレクトを使用する方法は、[handson-05](../handson-05/README.md)で登場しました。
     - 二重サブミット対策を実装してください。エラー時の遷移先はデフォルト(web-component-configuration.xmlで定義されています)とします。
         二重サブミット対策は、[handson-05](../handson-05/README.md)で登場しました。
@@ -145,8 +147,8 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 
 ##### プロジェクト登録初期画面の表示処理([ProjectAction#newEntity](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))
 - 本メソッドには以下の処理を実装します。
-    - 登録処理で使用するセッション情報を削除してください。キーは"project"です。
-	    （後続処理で古いセッション情報を誤って使用しないようにするための処理です）
+    - 登録処理で使用するセッションストア情報を削除してください。キーは"project"です。
+	    （後続処理で古いセッションストア情報を誤って使用しないようにするための処理です）
     - プロジェクト登録画面([create.jsp](./src/main/webapp/WEB-INF/view/project/create.jsp))に遷移する処理を実装してください。
 
 
@@ -157,8 +159,8 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
     - 顧客IDの存在チェック(「プロジェクトのデータに関するルール」の項を参照)。SQL IDは"FIND_BY_CLIENT_ID"です。
     - PROJECTテーブルへのInsert処理に使用するためのEntityの準備のために以下の実装を行います。
         - Entityを生成し、Formの値を設定してください。
-        - セッションからログインユーザのIDを取得し、Entityに設定してください。
-        - 用意したEntityはセッションに登録してください(セッションに登録する際に使用するキー名は「セッションを用いた値の連携を使用する箇所」の項を参照)。
+        - セッションストアからログインユーザのIDを取得し、Entityに設定してください。
+        - 用意したEntityはセッションストアに登録してください(セッションストアに登録する際に使用するキー名は「セッションストアを用いた値の連携を使用する箇所」の項を参照)。
     - 正常終了時、プロジェクト登録確認画面([confirmOfCreate.jsp](./src/main/webapp/WEB-INF/view/project/confirmOfCreate.jsp))に遷移する処理を実装してください。
 
 
@@ -200,7 +202,7 @@ JSPファイルは実装済みです。以下のファイルを使用してく�
 |販管費||amountOfMoney|
 |本社配賦||amountOfMoney|
 
-※:開始日よりも前(同日は問題なし)に設定されている場合エラーとします。開始日が未設定の場合は、いつであっても問題ありません。チェック処理を実装するメソッドなどは下記を参照してください。
+※開始日よりも前(同日は問題なし)に設定されている場合エラーとします。開始日が未設定の場合は、いつであっても問題ありません。チェック処理を実装するメソッドなどは下記を参照してください。
 
 ##### プロジェクト登録Formの精査処理([ProjectForm#isValidProjectPeriod](./src/main/java/com/nablarch/example/app/web/form/ProjectForm.java))
 - 本メソッドには以下の処理を実装します。
