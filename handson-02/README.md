@@ -39,10 +39,15 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- 7.3.2. ユニバーサルDAO
-	- 使用方法
-	- 任意のSQL(SQLファイル)で検索する
-	- テーブルをJOINした検索結果を取得する
+- [7.3.2. ユニバーサルDAO](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#dao)
+	- [任意のSQL(SQLファイル)で検索する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#sql-sql)
+	- [テーブルをJOINした検索結果を取得する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#join)
+	- [条件を指定して検索する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-search-with-condition)
+
+### APIドキュメント(アプリケーションプログラマ向け)
+- [UniversalDao](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/dao/UniversalDao.html)
+- [ExecutionContext](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/ExecutionContext.html)
+
 
 ## 演習
 では、以下の手順でデータベースの内容を表示してみましょう。

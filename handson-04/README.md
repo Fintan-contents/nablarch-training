@@ -40,21 +40,21 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- 7.17.セッションストア
-	- 使用方法
-		- 入力～確認～完了画面間で入力情報を保持する
-			- 更新機能での実装例
+- [7.17.セッションストア](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store.html#session-store)
+  - [入力～確認～完了画面間で入力情報を保持する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store.html#session-store-input-data)
+  	- [更新機能での実装例](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store/update_example.html#id1)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- SessionUtil
-- BeanUtil
+- [SessionUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/web/session/SessionUtil.html)
+- [BeanUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/beans/BeanUtil.html)
+- [UniversalDao](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/dao/UniversalDao.html)
 
 ## 演習
 では、以下の手順で確認画面から入力画面へ戻る処理を実装してみましょう。
 
 ### 1. アクション(ProjectAction.java)を修正する。
 プロジェクト変更確認画面からプロジェクト変更画面への遷移時には[ProjectAction.java](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java) の backToEdit メソッドが呼出されます。
-  入力情報を復元する為にはこのメソッドでセッションに格納されている入力情報を取得後、DTOを生成しその値をコピーする必要があります。
+  入力情報を復元する為にはこのメソッドでセッションストアに格納されている入力情報を取得後、DTOを生成しその値をコピーする必要があります。
   コピーしたDTOをリクエストスコープに格納して画面表示すれば、入力情報を復元できます。
 
 
