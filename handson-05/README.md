@@ -39,19 +39,21 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- 7.19. JSPカスタムタグ
-	- 使用方法
-		- 二重サブミットを防ぐ
-
-- 7.17. セッションストア
-	- 使用方法
-		- 入力～確認～完了画面間で入力情報を保持する
-			- 更新機能での実装例
-
-- 7.3.2. ユニバーサルDAO
+- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#jsp)
+	- [二重サブミットを防ぐ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#tag-double-submission)
+      - クライアント側の二重サブミット防止
+      - サーバ側の二重サブミット防止
+- [6.3.4. OnDoubleSubmissionインターセプター](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#ondoublesubmission)
+  - [OnDoubleSubmissionを利用する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id4)
+  - [OnDoubleSubmissionのデフォルト値を指定する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id5)
+- [7.17. セッションストア](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store.html#session-store)
+  - [更新機能での実装例](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store/update_example.html#id1)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- ResourceLocator
+- [SessionUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/web/session/SessionUtil.html)
+- [UniversalDao](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/dao/UniversalDao.html)
+- [ResourceLocator](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/web/ResourceLocator.html)
+
 
 ## 演習
 では、以下の手順で、入力データをデータベースに反映してみましょう。

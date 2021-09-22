@@ -153,6 +153,7 @@
                                             <jsp:attribute name="bodyRowFragment">
                                                 <tr class="info">
                                                     <td>
+                                                        <!-- プロジェクト種別用の記述です。c:ifタグの内側を実装してください。 -->
                                                         <c:forEach var="projectType" items="<%= ProjectType.values() %>">
                                                             <c:if test="${projectType.code == row.projectType}">
 

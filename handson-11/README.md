@@ -43,18 +43,12 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- 7.3.1. データベースアクセス(JDBCラッパー)
-	- Beanオブジェクトを入力としてSQLを実行する
-- 7.19. JSPカスタムタグ
-	- 使用方法
-		- タグリファレンス
-		- フォーマットして値を出力する
-
-#### Nablarch実装例集の解説書
-- 検索結果の一覧表示
-	- listSearchResultタグ
-		- listSearchResultタグの主要な属性
-		- 検索結果
+- [7.3.1. データベースアクセス(JDBCラッパー)](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#jdbc)
+  - [like検索を行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#database-like-condition)
+  - [in句の条件数が可変となるSQLを実行する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#insql)
+- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#jsp)
+  - [フォーマットして値を出力する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#tag-format-value)
+  - [タグリファレンス](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag/tag_reference.html#tag-reference)
 
 ## 実装する機能
 以下の機能を実装してください。
@@ -94,7 +88,7 @@
 
 ## 仕様について
 ### 画面間の連携に関する仕様
-#### 画面から送信される値及び、画面表示する値に関するDTOの利用ルール
+#### 画面から送信される値及び、画面表示する値に関するFormとDTOの利用ルール
 - 以下の値の連携は、Formを使用して連携してください。
 	- プロジェクト検索一覧画面([index.jsp](./src/main/webapp/WEB-INF/view/project/index.jsp))から、プロジェクト詳細画面の表示処理([ProjectAction#show](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java))へ送信された値の取り出しは、プロジェクト詳細画面への遷移用Form([ProjectTargetForm](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/form/ProjectTargetForm.java))を使用してください。
 
@@ -108,14 +102,14 @@
 ### JSP部分
 #### 検索に関する部分
 ##### プロジェクト検索結果表示部分([index.jsp](./src/main/webapp/WEB-INF/view/project/index.jsp))
-- 154行目の <tr class="info"> タグの中を記述してください。各行の値はProjectクラスに格納されています。
+- 154行目の `<tr class="info">` タグの内側を記述してください。各行の値はProjectクラスに格納されています。
   下表の項目を出力するように実装します。
 
 |プロパティ名      | 説明 |
 |:-----------------|:-----|
 | projectId        | プロジェクトIDをリンクで表示してください。リンクの遷移先は、プロジェクト詳細画面です。パスの最後を「show/プロジェクトID」とすることでProjectAction#showメソッドにプロジェクトIDがパラメータとして渡ります。 |
 | projectName      | プロジェクト名をそのまま表示してください。 |
-| projectType      | 値に対応するコード名称を表示してください。コードは、[ProjectType](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/common/code/ProjectType.java)列挙型に定義されています。|
+| projectType      | 一部実装してあります。値に対応するコード名称を表示してください。コードは、[ProjectType](../nablarch-handson-app-web-common/src/main/java/com/nablarch/example/app/web/common/code/ProjectType.java)列挙型に定義されています。|
 | projectStartDate | yyyy/MM/ddの書式で表示してください。カスタムタグformatByDefaultを使用してください。フォーマッタは、「dateTime」を指定してください。 |
 | projectEndDate   | 同上の表示を行ってください。 |
 
@@ -178,8 +172,8 @@
     - PROJECT_NAME … 部分一致検索
     - PROJECT_TYPE … 完全一致検索
     - PROJECT_CLASS … IN句を使用した検索(画面から複数入力可)
-    - PROJECT_START_DATE … 範囲指定検索(画面から期間を入力する)
-    - PROJECT_END_DATE … 範囲指定検索(画面から期間を入力する)
+    - PROJECT_START_DATE … 範囲指定検索(入力された日付以降、入力された日付を含む)
+    - PROJECT_END_DATE … 範囲指定検索(入力された日付以前、入力された日付を含む)
 - 以下のいずれかの条件でソートできるように実装してください。
   (どの条件でソートするかはProjectSearchDto#getSortId()の値で決定する)
     - 第1キー：PROJECT_ID 昇順

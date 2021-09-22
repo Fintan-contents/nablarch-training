@@ -68,7 +68,7 @@ public class ProjectAction {
         // handson-06 step2
         // ExecutionContext#setRequestScopedVarを使用して、検索結果をリクエストスコープに設定してください。
         // setRequestScopedVarの第1引数は、プロジェクト検索一覧画面のjsp(src/main/webapp/WEB-INF/view/project/index.jsp)を確認して、
-        // listSearchResultタグのresultSetName属性と同じ値を設定してください。
+        // app:listSearchResultタグのresultSetName属性と同じ値を設定してください。
 
 
         return new HttpResponse("/WEB-INF/view/project/index.jsp");
