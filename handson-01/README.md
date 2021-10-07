@@ -1,13 +1,13 @@
-画面表示してみよう
-===========================
+データベースから情報を取得して画面表示してみよう
+==================================
 
 ## 演習内容
-画面アプリケーションを開発する際には画面を表示する必要があります。
-  本ハンズオンでは ウェブExampleアプリケーション のログインを題材にして画面の表示方法を学習します。
+本ハンズオンでは データベースのデータ表示を学習します。
+  ウェブExampleアプリケーション のプロジェクト変更画面を題材にして、データベースの内容を表示する方法を学習します。
 
 ## 作成する機能について
 
-指定した画面へ遷移する機能を作成します。
+プロジェクト変更画面の初期表示処理を作成します。
 
 ## 演習を開始するための準備
 
@@ -26,7 +26,7 @@
     $mvn clean install
 
 ### web プロジェクト起動
-チェックアウトディレクトリに移動し、以下のコマンドを実行してください。ブラウザが自動的に起動します。「指定されたページは存在しないか、既に削除されています。 」というエラーメッセージが表示されることを確認してください。
+チェックアウトディレクトリに移動し、以下のコマンドを実行してください。ブラウザが自動的に起動します。正常に「ログイン画面」が表示されることを確認してください。
 
     $cd handson-01
     $mvn clean compile
@@ -38,28 +38,31 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#jsp)
+- [7.3.2. ユニバーサルDAO](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#dao)
+	- [任意のSQL(SQLファイル)で検索する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#sql-sql)
+	- [テーブルをJOINした検索結果を取得する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#join)
+	- [条件を指定して検索する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-search-with-condition)
+
+### APIドキュメント(アプリケーションプログラマ向け)
+- [UniversalDao](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/dao/UniversalDao.html)
+- [ExecutionContext](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/ExecutionContext.html)
+
 
 ## 演習
-では、以下の手順でログイン画面を表示してみましょう。
+では、以下の手順でデータベースの内容を表示してみましょう。
 
-### 1. JSP（index.jsp）を作成する。
-開発する機能の画面レイアウトは HTML で連携されることが一般的です。
-  画面を表示するためには与えられた HTML を元に JSP を作成する必要があります。
-  HTML の各タグ（input 等）を Nablarch の JSPカスタムタグに書き換えてみましょう。
-  書き換えの元となる HTML は[handson-01-html.zip](./handson-01-html.zip) に格納してあります。
-  また、雛形となる JSP は [index.jsp](./src/main/webapp/WEB-INF/view/login/index.jsp)(src/main/webapp/WEB-INF/view/login/配下) に配置してあります。
+### 1. アクション（ProjectAction.java）を作成する
+[ProjectAction.java](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java) に、DBから値を取得して表示する処理を実装してください。
+  実装するメソッドはeditメソッドです。実装すべき内容は雛形に記載してあります。
 
-### 2. アクション（AuthenticationAction.java）を作成する。
-Nablarch で JSP を表示するためにはアクションクラス（正式には業務アクションハンドラ）を作成し、コンテンツパスに表示する JSP を指定する必要があります。
-  本ハンズオンでは、コンテンツパスの指定方法を学んでください。ログインのアクションクラスである [AuthenticationAction.java](./src/main/java/com/nablarch/example/app/web/action/AuthenticationAction.java) の index メソッドを修正し、作成した JSP が表示されるようにしてください。
 
 ## 動作確認方法
-[web プロジェクト起動](#web-プロジェクト起動)を参考に handson-01 を起動し、以下の点を確認してください。
 
-- ログイン画面が表示される
-- ログイン画面のレイアウトが提示された HTML と同じになっている
-- ログインID、パスワードを入力後、「ログイン」ボタンを押下するとログインできる。
+1. [web プロジェクト起動](#web-プロジェクト起動)を参考に handson-01 を起動します。
+2. ログインします。
+3. プロジェクト検索一覧画面が表示されるので、画面中央の検索結果について、いずれかの行のプロジェクトIDをクリックします。
+5. プロジェクト詳細画面が表示されるので、変更ボタンをクリックします。
+6. プロジェクト変更画面が表示されます。ここでプロジェクト詳細画面と同一のデータが表示されていれば、成功です。
 
 ※ログイン時に利用できるユーザは以下です。
 

@@ -20,7 +20,12 @@
             <n:include path="/WEB-INF/view/common/header.jsp" />
         </div>
         <section>
-            <n:form method="POST" useToken="true">
+            <%-- handson-06 step1 --%>
+            <%--
+                 ここを修正。二重サブミット防止用の属性を追記。記述内容は、Nablarchアプリケーションフレームワークの解説書の
+                 「二重サブミットを防ぐ」を参照してください。
+             --%>
+            <n:form method="POST">
                 <div class="title-nav">
                     <span class="page-title">プロジェクト変更画面</span>
                     <div class="button-nav">
@@ -31,7 +36,12 @@
                         </n:forInputPage>
                         <n:forConfirmationPage>
                             <n:submit value="入力へ戻る" uri="#" id="topBackButton" cssClass="btn btn-raised btn-default" type="button" />
-                            <n:submit value="確定" uri="#" id="topSubmitButton" cssClass="btn btn-raised btn-success" allowDoubleSubmission="false" type="button" />
+                            <%-- handson-06 step2 --%>
+                            <%--
+                                 ここを修正。二重サブミット防止用の属性を追記。記述内容は、Nablarchアプリケーションフレームワークの解説書の
+                                 「二重サブミットを防ぐ」を参照してください。
+                             --%>
+                            <n:submit value="確定" uri="#" id="topSubmitButton" cssClass="btn btn-raised btn-success" type="button" />
                         </n:forConfirmationPage>
                     </div>
                 </div>
@@ -295,7 +305,12 @@
                         </n:forInputPage>
                         <n:forConfirmationPage>
                             <n:submit value="入力へ戻る" uri="/action/project/backToEdit" id="bottomBackButton" cssClass="btn btn-raised btn-default" type="button" />
-                            <n:submit value="確定" uri="/action/project/update" id="bottomSubmitButton" cssClass="btn btn-raised btn-success" allowDoubleSubmission="false" type="button" />
+                            <%-- handson-06 step3 --%>
+                            <%--
+                                 ここを修正。二重サブミット防止用の属性を追記。記述内容は、Nablarchアプリケーションフレームワークの解説書の
+                                 「二重サブミットを防ぐ」を参照してください。
+                             --%>
+                            <n:submit value="確定" uri="/action/project/update" id="bottomSubmitButton" cssClass="btn btn-raised btn-success" type="button" />
                         </n:forConfirmationPage>
                     </div>
                 </div>

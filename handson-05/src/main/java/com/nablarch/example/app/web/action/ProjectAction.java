@@ -40,36 +40,30 @@ import java.util.List;
 public class ProjectAction {
 
     /**
-     * 更新処理。
+     * 更新画面へ戻る。
      *
      * @param request HTTPリクエスト
      * @param context 実行コンテキスト
      * @return HTTPレスポンス
      */
-    // handson-05  step4
-    // OnDoubleSubmissionアノテーションを使用して、サーバ側での二重サブミット防止を実装してください。
-    // アノテーションの使用方法は、Nablarchアプリケーションフレームワークの解説書の「OnDoubleSubmissionインターセプター」を参照してください。
-    // エラー発生時の遷移先はデフォルト(web-component-configuration.xmlで定義しています)とします。
-    public HttpResponse update(HttpRequest request, ExecutionContext context) {
-        // handson-05  step1
-        // セッションから entity を取り出してください。次に、セッションからその entity を削除してください
-        // (本メソッド実行後、セッションで持ちまわっていた entity が不要になるため)。キー名は "project"です。
-        //  entity の取り出し、削除にはSessionUtilクラスを使用します。
-        // SessionUtilクラスの使用方法は、Nablarchアプリケーションフレームワークの解説書やAPIドキュメントを参照してください。
+    public HttpResponse backToEdit(HttpRequest request, ExecutionContext context) {
+        // handson-05 step1
+        // セッションに格納してある更新用の entity に入力した値が "project" というキー名で保存されているので、セッションから entity を取得します。
+        // セッションからの情報取得には nablarch.common.web.session.SessionUtil を使用してください。
+        // また、画面に値を表示する為には ProjectDto を生成して値を設定する必要があります。
+        // セッションから取得した entity で保持している値を　nablarch.core.beans.BeanUtil　を使用して ProjectDto にコピーしてください。
 
         // handson-05 step2
-        // セッションから取り出した entity を使用して、DBのupdateを実装してください。
-        // updateの方法は、NablarchアプリケーションフレームワークのAPIドキュメントを参照してください。
-        // なお、セッションから取り出した entity は、Entityアノテーションが付与されているクラスのインスタンスですので、
-        // ユニバーサルDAOのメソッドの引数としてそのまま使用できます。
+        // 画面からの入力値で entity で保持していない値が入力されていた場合はその情報を DB から取得する必要があります。
+        // 今回のエクササイズでは顧客名については entity では保持していないので、顧客情報が入力されていた場合は DB から値を再取得する必要があります。
+        // entity で保持している顧客IDを元に、顧客名をDBから主キー検索して下さい。
+        // また、取得した値は ProjectDtoに設定しないと画面には出力できません。忘れずに設定してください。
 
-        // handson-05  step3
-        // 下行を書き換えて、更新完了画面を表示する実装をしてください。
-        // 更新完了画面をリロードした際に値がPOSTされるのを防ぐために、表示にはリダイレクトを使用してください。
-        // リダイレクトの方法は、APIドキュメント(アプリケーションプログラマ向け)の「ResourceLocator」を参照してください。
-        // (現在のページからの相対パスを指定するものとします。)
-        // リダイレクト先は、completeOfUpdate"です
-        return new HttpResponse("xxxxxxxxxx");
+        // handson-05 step3
+        // 画面に入力情報を復元する為に入力値を設定した ProjectDto をリクエストスコープに設定します。
+        // JSP の各入力フォームの名前と一致するようにキー名を指定してください。
+
+        return new HttpResponse("/WEB-INF/view/project/update.jsp");
     }
 
     /**
@@ -339,27 +333,18 @@ public class ProjectAction {
     }
 
     /**
-     * 更新画面へ戻る。
+     * 更新処理。
      *
      * @param request HTTPリクエスト
      * @param context 実行コンテキスト
      * @return HTTPレスポンス
      */
-    public HttpResponse backToEdit(HttpRequest request, ExecutionContext context) {
+    @OnDoubleSubmission
+    public HttpResponse update(HttpRequest request, ExecutionContext context) {
+        final Project targetProject = SessionUtil.delete(context, "project");
+        UniversalDao.update(targetProject);
 
-        Project project = SessionUtil.get(context, "project");
-
-        ProjectDto dto = BeanUtil.createAndCopy(ProjectDto.class, project);
-
-        // 入力画面に戻る際に顧客データが見つからない場合はデータ不整合なので、
-        // NoDataException を発生させてシステムエラーとする。
-        // ※ example アプリは顧客データのメンテナンス機能がないのでこの対応とするが、
-        //   通常業務で削除されることが想定される場合はシステムエラーとはせずにユーザーへの通知が必要。
-        Client client = UniversalDao.findById(Client.class, dto.getClientId());
-        dto.setClientName(client.getClientName());
-        context.setRequestScopedVar("form", dto);
-
-        return new HttpResponse("/WEB-INF/view/project/update.jsp");
+        return new HttpResponse(303, "redirect://completeOfUpdate");
     }
 
     /**

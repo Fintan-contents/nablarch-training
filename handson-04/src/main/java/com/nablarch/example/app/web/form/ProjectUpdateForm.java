@@ -20,8 +20,8 @@ public class ProjectUpdateForm implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** プロジェクト名 */
-    @Required
-    @Domain("projectName")
+    // handson-04
+    // 必須項目であることを表すアノテーションと、ドメインが「projectName」であることを表すアノテーションを付与してください。
     private String projectName;
 
     /** プロジェクト種別 */
