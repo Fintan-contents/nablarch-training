@@ -37,8 +37,7 @@
                 </div>
             </n:form>
             <div class="message-area margin-top">
-                <%-- handson-03 --%>
-                <%-- 複数のエラーメッセージをリスト表示するNablarchのカスタムタグを記述してください --%>
+                <n:errors filter="global" cssClass="message-error"/>
             </div>
             <h2 class="font-group">
                 プロジェクト詳細

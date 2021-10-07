@@ -40,38 +40,36 @@ import java.util.List;
 public class ProjectAction {
 
     /**
-     * 検索結果を表示。
+     * 更新処理。
      *
      * @param request HTTPリクエスト
      * @param context 実行コンテキスト
      * @return HTTPレスポンス
      */
-    @InjectForm(form = ProjectSearchForm.class, prefix = "searchForm", name = "searchForm")
-    @OnError(type = ApplicationException.class, path = "/WEB-INF/view/project/index.jsp")
-    public HttpResponse list(HttpRequest request, ExecutionContext context) {
-
-        ProjectSearchForm searchForm = context.getRequestScopedVar("searchForm");
-        ProjectSearchDto searchCondition = BeanUtil.createAndCopy(ProjectSearchDto.class, searchForm);
-
-        // handson-06 step1
-        // ユニバーサルDAOを使用して、一覧検索用のSQLを呼び出して、ページング有りで、レコードを取得してください。
-        // ・ページ番号は、searchCondition.getPageNumber()から取得してください。
-        // ・１ページ辺り20件取得してください。
-        // ・使用するエンティティクラスは、Projectです。
-        // ・SQL_IDは、Project.sqlを参照してください。
-        // ・検索条件は、本メソッドで用意しているsearchCondition変数に設定して渡してください。
-        //   設定する条件は、「プロジェクト種別」に値:「development」とします。
-        // 実装方法はNablarchアプリケーションフレームワークの解説書の「ユニバーサルDAO」を参照してください。
-        // 「ページングを行う」の部分が特に参考になります。
-
+    // handson-06  step4
+    // OnDoubleSubmissionアノテーションを使用して、サーバ側での二重サブミット防止を実装してください。
+    // アノテーションの使用方法は、Nablarchアプリケーションフレームワークの解説書の「OnDoubleSubmissionインターセプター」を参照してください。
+    // エラー発生時の遷移先はデフォルト(web-component-configuration.xmlで定義しています)とします。
+    public HttpResponse update(HttpRequest request, ExecutionContext context) {
+        // handson-06  step1
+        // セッションから entity を取り出してください。次に、セッションからその entity を削除してください
+        // (本メソッド実行後、セッションで持ちまわっていた entity が不要になるため)。キー名は "project"です。
+        //  entity の取り出し、削除にはSessionUtilクラスを使用します。
+        // SessionUtilクラスの使用方法は、Nablarchアプリケーションフレームワークの解説書やAPIドキュメントを参照してください。
 
         // handson-06 step2
-        // ExecutionContext#setRequestScopedVarを使用して、検索結果をリクエストスコープに設定してください。
-        // setRequestScopedVarの第1引数は、プロジェクト検索一覧画面のjsp(src/main/webapp/WEB-INF/view/project/index.jsp)を確認して、
-        // app:listSearchResultタグのresultSetName属性と同じ値を設定してください。
+        // セッションから取り出した entity を使用して、DBのupdateを実装してください。
+        // updateの方法は、NablarchアプリケーションフレームワークのAPIドキュメントを参照してください。
+        // なお、セッションから取り出した entity は、Entityアノテーションが付与されているクラスのインスタンスですので、
+        // ユニバーサルDAOのメソッドの引数としてそのまま使用できます。
 
-
-        return new HttpResponse("/WEB-INF/view/project/index.jsp");
+        // handson-06  step3
+        // 下行を書き換えて、更新完了画面を表示する実装をしてください。
+        // 更新完了画面をリロードした際に値がPOSTされるのを防ぐために、表示にはリダイレクトを使用してください。
+        // リダイレクトの方法は、APIドキュメント(アプリケーションプログラマ向け)の「ResourceLocator」を参照してください。
+        // (現在のページからの相対パスを指定するものとします。)
+        // リダイレクト先は、completeOfUpdate"です
+        return new HttpResponse("xxxxxxxxxx");
     }
 
     /**
@@ -181,6 +179,26 @@ public class ProjectAction {
 
         // 初期表示するページ番号、ソート順を検索条件として指定する
         ProjectSearchDto searchCondition = BeanUtil.createAndCopy(ProjectSearchDto.class, searchForm);
+        List<Project> searchList = searchProject(searchCondition, context);
+        context.setRequestScopedVar("searchResult", searchList);
+
+        return new HttpResponse("/WEB-INF/view/project/index.jsp");
+    }
+
+    /**
+     * 検索結果を表示。
+     *
+     * @param request HTTPリクエスト
+     * @param context 実行コンテキスト
+     * @return HTTPレスポンス
+     */
+    @InjectForm(form = ProjectSearchForm.class, prefix = "searchForm", name = "searchForm")
+    @OnError(type = ApplicationException.class, path = "/WEB-INF/view/project/index.jsp")
+    public HttpResponse list(HttpRequest request, ExecutionContext context) {
+
+        ProjectSearchForm searchForm = context.getRequestScopedVar("searchForm");
+        ProjectSearchDto searchCondition = BeanUtil.createAndCopy(ProjectSearchDto.class, searchForm);
+
         List<Project> searchList = searchProject(searchCondition, context);
         context.setRequestScopedVar("searchResult", searchList);
 
@@ -342,21 +360,6 @@ public class ProjectAction {
         context.setRequestScopedVar("form", dto);
 
         return new HttpResponse("/WEB-INF/view/project/update.jsp");
-    }
-
-    /**
-     * 更新処理。
-     *
-     * @param request HTTPリクエスト
-     * @param context 実行コンテキスト
-     * @return HTTPレスポンス
-     */
-    @OnDoubleSubmission
-    public HttpResponse update(HttpRequest request, ExecutionContext context) {
-        final Project targetProject = SessionUtil.delete(context, "project");
-        UniversalDao.update(targetProject);
-
-        return new HttpResponse(303, "redirect://completeOfUpdate");
     }
 
     /**

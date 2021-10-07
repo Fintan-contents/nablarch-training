@@ -1,17 +1,13 @@
-画面から値を受け取ってみよう
-==================================
+画面表示してみよう
+===========================
 
 ## 演習内容
-以下について学習します。
-
- - ユーザに値を入力してもらった値を、精査して受け取る方法
- - 入力画面と確認画面の共通化を支援する機能を使用した、確認画面の作成方法
-
-本ハンズオンではウェブExampleアプリケーション のプロジェクト変更画面を題材にします。
+画面アプリケーションを開発する際には画面を表示する必要があります。
+  本ハンズオンでは ウェブExampleアプリケーション のログインを題材にして画面の表示方法を学習します。
 
 ## 作成する機能について
 
-入力値の精査と、入力画面を利用した確認画面の作成を行います。
+指定した画面へ遷移する機能を作成します。
 
 ## 演習を開始するための準備
 
@@ -30,8 +26,7 @@
     $mvn clean install
 
 ### web プロジェクト起動
-チェックアウトディレクトリに移動し、以下のコマンドを実行してください。その後、http://localhost:8082 にアクセスし、
-  正常に「ログイン画面」が表示されることを確認してください。
+チェックアウトディレクトリに移動し、以下のコマンドを実行してください。ブラウザが自動的に起動します。「指定されたページは存在しないか、既に削除されています。 」というエラーメッセージが表示されることを確認してください。
 
     $cd handson-03
     $mvn clean compile
@@ -43,71 +38,28 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-
 - [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#jsp)
-	- [エラー表示を行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#tag-write-error)
-	- [入力画面と確認画面を共通化する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#tag-make-common)
-
-- [7.10.1. Bean Validation](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation)
-	- [ドメインバリデーションを使う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-domain-validation)
-		- 各Beanでドメインバリデーションを使う
-  - [ウェブアプリケーションのユーザ入力値のチェックを行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-web-application)
-
-- [6.3.1. InjectForm インターセプター](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/InjectForm.html#injectform)
-	- [InjectFormを利用する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/InjectForm.html#id4)
-	- [バリデーションエラー時の遷移先を指定する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/InjectForm.html#id5)
-
-- [6.3.2. OnErrorインターセプター](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_error.html#onerror)
-  - [OnErrorを利用する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_error.html#id4)
-
-### APIドキュメント(アプリケーションプログラマ向け)
-- [注釈型 Required](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/validation/ee/Required.html)
-- [注釈型 Domain](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/validation/ee/Domain.html)
-- [注釈型 OnError](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/web/interceptor/OnError.html)
-
 
 ## 演習
-では、以下の手順で入力画面と確認画面を実装しましょう。
+では、以下の手順でログイン画面を表示してみましょう。
 
-### 1. 入力画面のJSP（update.jsp）を作成する
-[update.jsp](./src/main/webapp/WEB-INF/view/project/update.jsp) にエラー出力領域を作成してください。
-  実装すべき内容の詳細は雛形に記載してあります。
+### 1. JSP（index.jsp）を作成する。
+開発する機能の画面レイアウトは HTML で連携されることが一般的です。
+  画面を表示するためには与えられた HTML を元に JSP を作成する必要があります。
+  HTML の各タグ（input 等）を Nablarch の JSPカスタムタグに書き換えてみましょう。
+  書き換えの元となる HTML は[handson-03-html.zip](./handson-03-html.zip) に格納してあります。
+  また、雛形となる JSP は [index.jsp](./src/main/webapp/WEB-INF/view/login/index.jsp)(src/main/webapp/WEB-INF/view/login/配下) に配置してあります。
 
-
-### 2. 確認画面のJSP（confirmOfUpdate.jsp）を作成する
-[confirmOfUpdate.jsp](./src/main/webapp/WEB-INF/view/project/confirmOfUpdate.jsp) を実装して、確認画面を完成させてください。
-  実装すべき内容の詳細は雛形に記載してあります。
-
-
-### 3. Form（ProjectUpdateForm.java）に精査処理を実装する
-[ProjectUpdateForm.java](./src/main/java/com/nablarch/example/app/web/form/ProjectUpdateForm.java)に以下を実装してください。
-
-- ドメイン指定によるバリデーションに使用するアノテーションの付与(今回は、projectNameプロパティに対して付与します。他のプロパティには付与済みです)
-
-実装すべき内容の詳細は雛形に記載してあります。
-
-
-### 4. アクション（ProjectAction.java）に精査処理の呼び出しを実装する
-[ProjectAction.java](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)のconfirmOfUpdateメソッドに以下を実装してください。
-
-- 精査処理呼び出し
-- 精査失敗時の遷移先の指定
-
-実装すべき内容の詳細は雛形に記載してあります。
-
+### 2. アクション（AuthenticationAction.java）を作成する。
+Nablarch で JSP を表示するためにはアクションクラス（正式には業務アクションハンドラ）を作成し、コンテンツパスに表示する JSP を指定する必要があります。
+  本ハンズオンでは、コンテンツパスの指定方法を学んでください。ログインのアクションクラスである [AuthenticationAction.java](./src/main/java/com/nablarch/example/app/web/action/AuthenticationAction.java) の index メソッドを修正し、作成した JSP が表示されるようにしてください。
 
 ## 動作確認方法
-handson-03 を起動後以下を行います。
+[web プロジェクト起動](#web-プロジェクト起動)を参考に handson-03 を起動し、以下の点を確認してください。
 
-1. http://localhost:8082 にアクセスします。
-2. ログインします。
-4. 検索結果の、いずれかの行のプロジェクトIDをクリックします。
-5. プロジェクト詳細画面が表示されるので、変更ボタンをクリックします。
-6. プロジェクト変更画面が表示されます。想定どおりのボタンが表示されていることを確認してください。
-7. プロジェクト変更画面で、プロジェクト名を空にして更新ボタンをクリックしてください。
-8. プロジェクト変更画面に、エラーメッセージが表示されることを確認してください。
-9. プロジェクト変更画面で、プロジェクト名に全角でなにか入力して、更新ボタンをクリックしてください。
-10. 入力内容の確認画面(テキストボックス等が、単なる文字列として表示される画面)に遷移することを確認してください。
+- ログイン画面が表示される
+- ログイン画面のレイアウトが提示された HTML と同じになっている
+- ログインID、パスワードを入力後、「ログイン」ボタンを押下するとログインできる。
 
 ※ログイン時に利用できるユーザは以下です。
 

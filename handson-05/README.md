@@ -1,13 +1,14 @@
-データベースを更新してみよう
-==================================
+入力した情報を復元して入力画面に戻ってみよう
+===========================
 
 ## 演習内容
-ユーザに入力していただいたデータをデータベースに反映し、その後完了画面を表示する方法を学習します。
-  本ハンズオンではウェブExampleアプリケーションのプロジェクト変更確認画面及び、プロジェクト変更完了画面を題材にします。
+入力、確認、完了の3画面で構成される画面機能では、確認画面から入力画面へ戻る必要があります。
+  この時、入力画面には確認画面に遷移する前の情報を復元するのが一般的です。
+  本ハンズオンではウェブExampleアプリケーションのプロジェクト変更確認画面からプロジェクト変更画面への遷移を題材に入力情報を復元する方法を学習します。
 
 ## 作成する機能について
 
-プロジェクト変更確認画面に表示されている内容でDBを更新し、プロジェクト変更完了画面へ遷移する機能を作成します。
+プロジェクト変更確認画面からプロジェクト変更入力画面へ戻る機能を作成します。
 
 ## 演習を開始するための準備
 
@@ -26,8 +27,8 @@
     $mvn clean install
 
 ### web プロジェクト起動
-チェックアウトディレクトリに移動し、以下のコマンドを実行してください。その後、http://localhost:8082 にアクセスし、
-  正常に「ログイン画面」が表示されることを確認してください。
+チェックアウトディレクトリに移動し、以下のコマンドを実行してください。ブラウザが自動的に起動します。
+正常に「ログイン画面」が表示されることを確認してください。
 
     $cd handson-05
     $mvn clean compile
@@ -39,57 +40,31 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#jsp)
-	- [二重サブミットを防ぐ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#tag-double-submission)
-      - クライアント側の二重サブミット防止
-      - サーバ側の二重サブミット防止
-- [6.3.4. OnDoubleSubmissionインターセプター](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#ondoublesubmission)
-  - [OnDoubleSubmissionを利用する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id4)
-  - [OnDoubleSubmissionのデフォルト値を指定する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id5)
-- [7.17. セッションストア](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store.html#session-store)
-  - [更新機能での実装例](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store/update_example.html#id1)
+- [7.17.セッションストア](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store.html#session-store)
+  - [入力～確認～完了画面間で入力情報を保持する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store.html#session-store-input-data)
+  	- [更新機能での実装例](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store/update_example.html#id1)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
 - [SessionUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/web/session/SessionUtil.html)
+- [BeanUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/beans/BeanUtil.html)
 - [UniversalDao](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/dao/UniversalDao.html)
-- [ResourceLocator](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/web/ResourceLocator.html)
-
 
 ## 演習
-では、以下の手順で、入力データをデータベースに反映してみましょう。
+では、以下の手順で確認画面から入力画面へ戻る処理を実装してみましょう。
 
-### 1. JSP（update.jsp）を作成する。
-DBに対するコミットを伴う処理では、二重サブミット対策が必要となります。
-  [update.jsp](./src/main/webapp/WEB-INF/view/project/update.jsp)に二重サブミット対策を実装してください。
+### 1. アクション(ProjectAction.java)を修正する。
+プロジェクト変更確認画面からプロジェクト変更画面への遷移時には[ProjectAction.java](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java) の backToEdit メソッドが呼出されます。
+  入力情報を復元する為にはこのメソッドでセッションストアに格納されている入力情報を取得後、DTOを生成しその値をコピーする必要があります。
+  コピーしたDTOをリクエストスコープに格納して画面表示すれば、入力情報を復元できます。
 
-実装すべき内容の詳細は雛形に記載してあります。
-
-### 2. アクション（ProjectAction.java）を作成する。
-[ProjectAction.java](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)に以下を実装してください。
-
-- セッションから前画面より引き継いだエンティティを取得後し、その後削除する処理
-- DB更新処理
-- プロジェクト変更完了画面の表示処理
-- 二重サブミット防止(サーバ側)
-
-実装すべき内容の詳細は雛形に記載してあります。
-  実装内容がやや多いですが、雛形中に「handson-05  step○○」と記載してありますので、step1から実装してみてください。
-
-実装対象のメソッドは、ProjectActionのupdateメソッドです。
 
 ## 動作確認方法
-handson-05 を起動後以下を行います。
+[web プロジェクト起動](#web-プロジェクト起動)を参考に handson-05 を起動し、以下の点を確認してください。
+  プロジェクト変更画面までは、プロジェクト検索→プロジェクト詳細→プロジェクト変更の順に辿ってください。
 
-1. http://localhost:8082 にアクセスします。
-2. ログインします。
-3. プロジェクト検索一覧画面が表示され、画面下部に検索結果が表示されます。
-4. 検索結果のいずれかの行のプロジェクトIDをクリックします。
-5. プロジェクト詳細画面が表示されるので、変更ボタンをクリックします。
-6. プロジェクト変更画面が表示されます。ここでプロジェクト名を変更して、更新ボタンをクリックしてください。このときにプロジェクト名をメモしておいてください。
-7. プロジェクト変更確認画面が表示されますので、確定ボタンをクリックしてください。
-8. プロジェクト変更完了画面が表示されます。画面上部のリンクを使用して、プロジェクト検索画面を表示してください。
-9. メモしておいたプロジェクト名で検索してください。検索結果にそれが表示されれば成功です。
-
+- プロジェクト変更画面で入力した情報がプロジェクト変更確認画面に表示されている。
+- プロジェクト変更確認画面から「入力へ戻る」ボタンを押下し、プロジェクト変更画面へ遷移した際には入力した情報が復元されている。
+- 何度やっても同じ動作をする。 (前々回の入力情報が復元されたりしない。)
 
 ※ログイン時に利用できるユーザは以下です。
 

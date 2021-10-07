@@ -1,14 +1,17 @@
-入力した情報を復元して入力画面に戻ってみよう
-===========================
+画面から値を受け取ってみよう
+==================================
 
 ## 演習内容
-入力、確認、完了の3画面で構成される画面機能では、確認画面から入力画面へ戻る必要があります。
-  この時、入力画面には確認画面に遷移する前の情報を復元するのが一般的です。
-  本ハンズオンではウェブExampleアプリケーションのプロジェクト変更確認画面からプロジェクト変更画面への遷移を題材に入力情報を復元する方法を学習します。
+以下について学習します。
+
+ - ユーザに値を入力してもらった値を、精査して受け取る方法
+ - 入力画面と確認画面の共通化を支援する機能を使用した、確認画面の作成方法
+
+本ハンズオンではウェブExampleアプリケーション のプロジェクト変更画面を題材にします。
 
 ## 作成する機能について
 
-プロジェクト変更確認画面からプロジェクト変更入力画面へ戻る機能を作成します。
+入力値の精査と、入力画面を利用した確認画面の作成を行います。
 
 ## 演習を開始するための準備
 
@@ -27,8 +30,7 @@
     $mvn clean install
 
 ### web プロジェクト起動
-チェックアウトディレクトリに移動し、以下のコマンドを実行してください。その後、http://localhost:8082 にアクセスし、
-  正常に「ログイン画面」が表示されることを確認してください。
+チェックアウトディレクトリに移動し、以下のコマンドを実行してください。ブラウザが自動的に起動します。正常に「ログイン画面」が表示されることを確認してください。
 
     $cd handson-04
     $mvn clean compile
@@ -40,31 +42,70 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- [7.17.セッションストア](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store.html#session-store)
-  - [入力～確認～完了画面間で入力情報を保持する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store.html#session-store-input-data)
-  	- [更新機能での実装例](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store/update_example.html#id1)
+
+- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#jsp)
+	- [エラー表示を行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#tag-write-error)
+	- [入力画面と確認画面を共通化する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#tag-make-common)
+
+- [7.10.1. Bean Validation](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation)
+	- [ドメインバリデーションを使う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-domain-validation)
+		- 各Beanでドメインバリデーションを使う
+  - [ウェブアプリケーションのユーザ入力値のチェックを行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-web-application)
+
+- [6.3.1. InjectForm インターセプター](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/InjectForm.html#injectform)
+	- [InjectFormを利用する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/InjectForm.html#id4)
+	- [バリデーションエラー時の遷移先を指定する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/InjectForm.html#id5)
+
+- [6.3.2. OnErrorインターセプター](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_error.html#onerror)
+  - [OnErrorを利用する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_error.html#id4)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- [SessionUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/web/session/SessionUtil.html)
-- [BeanUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/beans/BeanUtil.html)
-- [UniversalDao](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/dao/UniversalDao.html)
+- [注釈型 Required](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/validation/ee/Required.html)
+- [注釈型 Domain](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/validation/ee/Domain.html)
+- [注釈型 OnError](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/web/interceptor/OnError.html)
+
 
 ## 演習
-では、以下の手順で確認画面から入力画面へ戻る処理を実装してみましょう。
+では、以下の手順で入力画面と確認画面を実装しましょう。
 
-### 1. アクション(ProjectAction.java)を修正する。
-プロジェクト変更確認画面からプロジェクト変更画面への遷移時には[ProjectAction.java](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java) の backToEdit メソッドが呼出されます。
-  入力情報を復元する為にはこのメソッドでセッションストアに格納されている入力情報を取得後、DTOを生成しその値をコピーする必要があります。
-  コピーしたDTOをリクエストスコープに格納して画面表示すれば、入力情報を復元できます。
+### 1. 入力画面のJSP（update.jsp）を作成する
+[update.jsp](./src/main/webapp/WEB-INF/view/project/update.jsp) にエラー出力領域を作成してください。
+  実装すべき内容の詳細は雛形に記載してあります。
+
+
+### 2. 確認画面のJSP（confirmOfUpdate.jsp）を作成する
+[confirmOfUpdate.jsp](./src/main/webapp/WEB-INF/view/project/confirmOfUpdate.jsp) を実装して、確認画面を完成させてください。
+  実装すべき内容の詳細は雛形に記載してあります。
+
+
+### 3. Form（ProjectUpdateForm.java）に精査処理を実装する
+[ProjectUpdateForm.java](./src/main/java/com/nablarch/example/app/web/form/ProjectUpdateForm.java)に以下を実装してください。
+
+- ドメイン指定によるバリデーションに使用するアノテーションの付与(今回は、projectNameプロパティに対して付与します。他のプロパティには付与済みです)
+
+実装すべき内容の詳細は雛形に記載してあります。
+
+
+### 4. アクション（ProjectAction.java）に精査処理の呼び出しを実装する
+[ProjectAction.java](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)のconfirmOfUpdateメソッドに以下を実装してください。
+
+- 精査処理呼び出し
+- 精査失敗時の遷移先の指定
+
+実装すべき内容の詳細は雛形に記載してあります。
 
 
 ## 動作確認方法
-handson-04 を起動後、 http://localhost:8082 にアクセスし以下の点を確認してください。
-  プロジェクト変更画面までは、プロジェクト検索→プロジェクト詳細→プロジェクト変更の順に辿ってください。
 
-- プロジェクト変更画面で入力した情報がプロジェクト変更確認画面に表示されている。
-- プロジェクト変更確認画面から「入力へ戻る」ボタンを押下し、プロジェクト変更画面へ遷移した際には入力した情報が復元されている。
-- 何度やっても同じ動作をする。 (前々回の入力情報が復元されたりしない。)
+1. [web プロジェクト起動](#web-プロジェクト起動)を参考に handson-05 を起動します。
+2. ログインします。
+3. 検索結果の、いずれかの行のプロジェクトIDをクリックします。
+4. プロジェクト詳細画面が表示されるので、変更ボタンをクリックします。
+5. プロジェクト変更画面が表示されます。想定どおりのボタンが表示されていることを確認してください。
+6. プロジェクト変更画面で、プロジェクト名を空にして更新ボタンをクリックしてください。
+7. プロジェクト変更画面に、エラーメッセージが表示されることを確認してください。
+8. プロジェクト変更画面で、プロジェクト名に全角でなにか入力して、更新ボタンをクリックしてください。
+9.  入力内容の確認画面(テキストボックス等が、単なる文字列として表示される画面)に遷移することを確認してください。
 
 ※ログイン時に利用できるユーザは以下です。
 

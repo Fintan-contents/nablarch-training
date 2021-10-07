@@ -1,13 +1,13 @@
-一覧画面を表示してみよう
+データベースを更新してみよう
 ==================================
 
 ## 演習内容
-データベースから取得したデータを元に、ページング付きの一覧画面を表示する方法を学習します。
-  本ハンズオンではウェブExampleアプリケーションのプロジェクト検索一覧画面を題材にします。
+ユーザに入力していただいたデータをデータベースに反映し、その後完了画面を表示する方法を学習します。
+  本ハンズオンではウェブExampleアプリケーションのプロジェクト変更確認画面及び、プロジェクト変更完了画面を題材にします。
 
 ## 作成する機能について
 
-ウェブExampleアプリケーションのプロジェクト検索一覧画面では、画面から検索条件を指定できますが、本ハンズオンでは、アクションの中で固定の検索条件を与え、その結果を一覧表示します。
+プロジェクト変更確認画面に表示されている内容でDBを更新し、プロジェクト変更完了画面へ遷移する機能を作成します。
 
 ## 演習を開始するための準備
 
@@ -26,8 +26,8 @@
     $mvn clean install
 
 ### web プロジェクト起動
-チェックアウトディレクトリに移動し、以下のコマンドを実行してください。その後、http://localhost:8082 にアクセスし、
-  正常に「ログイン画面」が表示されることを確認してください。
+チェックアウトディレクトリに移動し、以下のコマンドを実行してください。ブラウザが自動的に起動します。
+正常に「ログイン画面」が表示されることを確認してください。
 
     $cd handson-06
     $mvn clean compile
@@ -39,45 +39,56 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- [7.3.1. データベースアクセス(JDBCラッパー)](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#jdbc)
-	- [Beanオブジェクトを入力としてSQLを実行する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#database-input-bean)
-
-- [7.3.2. ユニバーサルDAO](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#dao)
-	- [任意のSQL(SQLファイル)で検索する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#sql-sql)
-	- [条件を指定して検索する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-search-with-condition)
-	- [ページングを行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-paging)
+- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#jsp)
+	- [二重サブミットを防ぐ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#tag-double-submission)
+      - クライアント側の二重サブミット防止
+      - サーバ側の二重サブミット防止
+- [6.3.4. OnDoubleSubmissionインターセプター](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#ondoublesubmission)
+  - [OnDoubleSubmissionを利用する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id4)
+  - [OnDoubleSubmissionのデフォルト値を指定する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id5)
+- [7.17. セッションストア](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store.html#session-store)
+  - [更新機能での実装例](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store/update_example.html#id1)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
+- [SessionUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/web/session/SessionUtil.html)
 - [UniversalDao](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/dao/UniversalDao.html)
-- [ExecutionContext](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/ExecutionContext.html)
+- [ResourceLocator](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/web/ResourceLocator.html)
+
 
 ## 演習
-では、以下の手順で、データベースから取得したデータを元に一覧画面を作成しましょう。
+では、以下の手順で、入力データをデータベースに反映してみましょう。
 
-### 1. SQL文（Project.sql）を作成する
-ユニバーサルDAOは、一覧画面用のSQLは生成してくれないので、自分でSQLを書く必要が有ります。
-  [Project.sql](./src/main/resources/com/nablarch/example/app/entity/Project.sql)にWHERE句を追加して、SQLを完成させてください。
-
-実装すべき内容の詳細は雛形に記載してあります。
-
-
-### 2. アクション（ProjectAction.java）を作成する
-[ProjectAction.java](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)に、検索処理と、取得結果の設定を実装してください。
+### 1. JSP（update.jsp）を作成する。
+DBに対するコミットを伴う処理では、二重サブミット対策が必要となります。
+  [update.jsp](./src/main/webapp/WEB-INF/view/project/update.jsp)に二重サブミット対策を実装してください。
 
 実装すべき内容の詳細は雛形に記載してあります。
 
-実装対象のメソッドは、ProjectActionのlistメソッドです。
+### 2. アクション（ProjectAction.java）を作成する。
+[ProjectAction.java](./src/main/java/com/nablarch/example/app/web/action/ProjectAction.java)に以下を実装してください。
 
+- セッションから前画面より引き継いだエンティティを取得後し、その後削除する処理
+- DB更新処理
+- プロジェクト変更完了画面の表示処理
+- 二重サブミット防止(サーバ側)
+
+実装すべき内容の詳細は雛形に記載してあります。
+  実装内容がやや多いですが、雛形中に「handson-06  step○○」と記載してありますので、step1から実装してみてください。
+
+実装対象のメソッドは、ProjectActionのupdateメソッドです。
 
 ## 動作確認方法
-handson-06 を起動後以下を行います。
 
-1. http://localhost:8082 にアクセスします。
+1. [web プロジェクト起動](#web-プロジェクト起動)を参考に handson-06 を起動します。
 2. ログインします。
-3. プロジェクト検索一覧画面が表示されるので、検索ボタンをクリックします。
-4. 検索結果として、新規開発PJの一覧が表示されることを確認します。
-5. 検索結果の右上に存在する「>>」をクリックして、検索結果が切り替わることを確認します。
-6. 検索結果の右上に存在する「<<」をクリックして、検索結果が切り替わることを確認します。
+3. プロジェクト検索一覧画面が表示され、画面下部に検索結果が表示されます。
+4. 検索結果のいずれかの行のプロジェクトIDをクリックします。
+5. プロジェクト詳細画面が表示されるので、変更ボタンをクリックします。
+6. プロジェクト変更画面が表示されます。ここでプロジェクト名を変更して、更新ボタンをクリックしてください。このときにプロジェクト名をメモしておいてください。
+7. プロジェクト変更確認画面が表示されますので、確定ボタンをクリックしてください。
+8. プロジェクト変更完了画面が表示されます。画面上部のリンクを使用して、プロジェクト検索画面を表示してください。
+9. メモしておいたプロジェクト名で検索してください。検索結果にそれが表示されれば成功です。
+
 
 ※ログイン時に利用できるユーザは以下です。
 

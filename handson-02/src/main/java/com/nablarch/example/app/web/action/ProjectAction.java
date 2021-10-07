@@ -40,40 +40,38 @@ import java.util.List;
 public class ProjectAction {
 
     /**
-     * 更新初期画面を表示。
+     * 検索結果を表示。
      *
      * @param request HTTPリクエスト
      * @param context 実行コンテキスト
      * @return HTTPレスポンス
      */
-    @InjectForm(form = ProjectTargetForm.class)
-    public HttpResponse edit(HttpRequest request, ExecutionContext context) {
+    @InjectForm(form = ProjectSearchForm.class, prefix = "searchForm", name = "searchForm")
+    @OnError(type = ApplicationException.class, path = "/WEB-INF/view/project/index.jsp")
+    public HttpResponse list(HttpRequest request, ExecutionContext context) {
 
-        // 更新処理で使用するセッション情報を削除しておく。
-        SessionUtil.delete(context, "project");
+        ProjectSearchForm searchForm = context.getRequestScopedVar("searchForm");
+        ProjectSearchDto searchCondition = BeanUtil.createAndCopy(ProjectSearchDto.class, searchForm);
 
-        ProjectTargetForm targetForm = context.getRequestScopedVar("form");
-        LoginUserPrincipal userContext = SessionUtil.get(context, "userContext");
-
-        // handson-02 step 1
-        // UniversalDaoのfindBySqlFileメソッドを使用して、PROJECT(及びCLIENT)テーブルから値を取得してください。
-        // 引数は以下のようにしてください。
-        // ・エンティティクラスはProjectDtoを使用してください。
-        // ・SQLIDは、"FIND_BY_PROJECT"を使用してください。
-        // ・検索条件の一つ目は、前の画面から引き継いだプロジェクトIDです。二つ目は、ログインしているユーザのIDです。
-        //   一つ目は、targetForm変数から取得できます。二つ目は、userContextから取得できます。
-        //   検索条件は配列で渡してください。
-        ProjectDto dto = null;
-
-        // handson-02 step 2
-        // ExecutionContext#setRequestScopedVarを使用して値をリクエストスコープに値を設定してください。
-        // 値を設定する際のリクエストスコープ名(setRequestScopedVarの第1引数)は、"form"としてください。
-        // ("form"は、JSPの各画面項目に記述されているリクエストスコープ名です)
+        // handson-02 step1
+        // ユニバーサルDAOを使用して、一覧検索用のSQLを呼び出して、ページング有りで、レコードを取得してください。
+        // ・ページ番号は、searchCondition.getPageNumber()から取得してください。
+        // ・１ページ辺り20件取得してください。
+        // ・使用するエンティティクラスは、Projectです。
+        // ・SQL_IDは、Project.sqlを参照してください。
+        // ・検索条件は、本メソッドで用意しているsearchCondition変数に設定して渡してください。
+        //   設定する条件は、「プロジェクト種別」に値:「development」とします。
+        // 実装方法はNablarchアプリケーションフレームワークの解説書の「ユニバーサルDAO」を参照してください。
+        // 「ページングを行う」の部分が特に参考になります。
 
 
-        SessionUtil.put(context, "project", BeanUtil.createAndCopy(Project.class, dto));
+        // handson-02 step2
+        // ExecutionContext#setRequestScopedVarを使用して、検索結果をリクエストスコープに設定してください。
+        // setRequestScopedVarの第1引数は、プロジェクト検索一覧画面のjsp(src/main/webapp/WEB-INF/view/project/index.jsp)を確認して、
+        // app:listSearchResultタグのresultSetName属性と同じ値を設定してください。
 
-        return new HttpResponse("/WEB-INF/view/project/update.jsp");
+
+        return new HttpResponse("/WEB-INF/view/project/index.jsp");
     }
 
     /**
@@ -190,26 +188,6 @@ public class ProjectAction {
     }
 
     /**
-     * 検索結果を表示。
-     *
-     * @param request HTTPリクエスト
-     * @param context 実行コンテキスト
-     * @return HTTPレスポンス
-     */
-    @InjectForm(form = ProjectSearchForm.class, prefix = "searchForm", name = "searchForm")
-    @OnError(type = ApplicationException.class, path = "/WEB-INF/view/project/index.jsp")
-    public HttpResponse list(HttpRequest request, ExecutionContext context) {
-
-        ProjectSearchForm searchForm = context.getRequestScopedVar("searchForm");
-        ProjectSearchDto searchCondition = BeanUtil.createAndCopy(ProjectSearchDto.class, searchForm);
-
-        List<Project> searchList = searchProject(searchCondition, context);
-        context.setRequestScopedVar("searchResult", searchList);
-
-        return new HttpResponse("/WEB-INF/view/project/index.jsp");
-    }
-
-    /**
      * 検索条件、実行コンテキスト、取得するページ番号を指定してプロジェクトのリストを取得する。
      * <p/>
      * 実行コンテキスト及びセッションから、ログインユーザの情報を取得して検索条件に追加する。
@@ -288,6 +266,33 @@ public class ProjectAction {
     }
 
     /**
+     * 更新初期画面を表示。
+     *
+     * @param request HTTPリクエスト
+     * @param context 実行コンテキスト
+     * @return HTTPレスポンス
+     */
+    @InjectForm(form = ProjectTargetForm.class)
+    public HttpResponse edit(HttpRequest request, ExecutionContext context) {
+
+        // 更新処理で使用するセッション情報を削除しておく。
+        SessionUtil.delete(context, "project");
+
+        ProjectTargetForm targetForm = context.getRequestScopedVar("form");
+        LoginUserPrincipal userContext = SessionUtil.get(context, "userContext");
+
+        ProjectDto dto = UniversalDao.findBySqlFile(ProjectDto.class, "FIND_BY_PROJECT",
+                new Object[] {targetForm.getProjectId(), userContext.getUserId()});
+
+        // 出力情報をリクエストスコープにセット
+        context.setRequestScopedVar("form", dto);
+
+        SessionUtil.put(context, "project", BeanUtil.createAndCopy(Project.class, dto));
+
+        return new HttpResponse("/WEB-INF/view/project/update.jsp");
+    }
+
+    /**
      * 更新確認画面を表示。
      *
      * @param request HTTPリクエスト
@@ -334,7 +339,6 @@ public class ProjectAction {
         //   通常業務で削除されることが想定される場合はシステムエラーとはせずにユーザーへの通知が必要。
         Client client = UniversalDao.findById(Client.class, dto.getClientId());
         dto.setClientName(client.getClientName());
-
         context.setRequestScopedVar("form", dto);
 
         return new HttpResponse("/WEB-INF/view/project/update.jsp");
