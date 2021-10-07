@@ -62,13 +62,13 @@ Nablarch について体系的に学ぶことができます。
 * Java 11 以降
 * Git クライアント
 * Maven 3.0.4以降
-* Chrome(ハンズオン1～11で使用します。IEでも実施可能ですが、レイアウトが崩れることがあります)
+* Nablarch 5u18以降に対応しています(ハンズオンで使用しているバージョンは5u19です)
 
 ### 1. リポジトリの作成
-以下のGitリポジトリを作成してください。
-ローカルで動作させるだけの場合は適切なブランチのZipをダウンロードし、ディレクトリに展開するだけでもかまいません。
+以下のGitリポジトリをクローンしてください。
+ローカルで動作させるだけの場合はZipファイルとしてダウンロードし、展開するだけでもかまいません。
 
-    $git clone -b master http://nablarch.intra.tis.co.jp/gitbucket/git/nablarch-handson/nablarch-handson.git
+    $git clone https://github.com/Fintan-contents/nablarch-training/tree/main
 
 
 ### 2. mavenのプロキシ設定
