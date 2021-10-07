@@ -25,11 +25,8 @@
     $cd nablarch-handson-app-web-common
     $mvn clean install
 
-
-
 ### web プロジェクト起動
-チェックアウトディレクトリに移動し、以下のコマンドを実行してください。その後、http://localhost:8082 にアクセスし、
-  「指定されたページは存在しないか、既に削除されています。 」というエラーメッセージが表示されることを確認してください。
+チェックアウトディレクトリに移動し、以下のコマンドを実行してください。ブラウザが自動的に起動します。「指定されたページは存在しないか、既に削除されています。 」というエラーメッセージが表示されることを確認してください。
 
     $cd handson-01
     $mvn clean compile
@@ -58,7 +55,7 @@ Nablarch で JSP を表示するためにはアクションクラス（正式に
   本ハンズオンでは、コンテンツパスの指定方法を学んでください。ログインのアクションクラスである [AuthenticationAction.java](./src/main/java/com/nablarch/example/app/web/action/AuthenticationAction.java) の index メソッドを修正し、作成した JSP が表示されるようにしてください。
 
 ## 動作確認方法
-handson-01 を起動後、 http://localhost:8082 にアクセスし以下の点を確認してください。
+[web プロジェクト起動](#web-プロジェクト起動)を参考に handson-01 を起動し、以下の点を確認してください。
 
 - ログイン画面が表示される
 - ログイン画面のレイアウトが提示された HTML と同じになっている
