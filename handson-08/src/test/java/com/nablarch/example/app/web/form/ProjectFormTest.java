@@ -18,6 +18,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
  *
  * @author Nabu Rakutaro
  */
+/*
+ * 本クラスはFormクラスなので、EntityTestSupportを継承するのが一般的である。
+ * しかし本ハンズオンでは、コンポーネントクラスの単体テストの理解に主眼をおいているため、
+ * あえてDbAccessTestSupportを継承している。
+ */
 public class ProjectFormTest extends DbAccessTestSupport {
 
     /** テスト対象クラス */
