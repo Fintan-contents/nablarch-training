@@ -192,12 +192,6 @@
         <version>3.3.2</version>
         <configuration>
           <webXml>${webxml.path}</webXml>
-          <classifier>${env.classifier}</classifier>
-          <archive>
-            <manifestEntries>
-              <Target-Environment>${env.name}</Target-Environment>
-            </manifestEntries>
-          </archive>
         </configuration>
       </plugin>
     </plugins>
