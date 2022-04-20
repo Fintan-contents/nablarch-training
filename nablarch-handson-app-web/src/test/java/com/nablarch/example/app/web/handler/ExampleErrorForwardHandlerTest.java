@@ -19,12 +19,12 @@ import static org.junit.Assert.assertThrows;
 /**
  * {@link ExampleErrorForwardHandler}のテスト。
  */
-public class ExampleErrorForwardHandlerTest {
+class ExampleErrorForwardHandlerTest {
 
     private ExampleErrorForwardHandler sut = new ExampleErrorForwardHandler();
 
     @Test
-    public void success_shouldReturnHttpResponse() throws Exception {
+    void success_shouldReturnHttpResponse() throws Exception {
         ExecutionContext context = new ExecutionContext();
         context.addHandler((o, context1) -> new HttpResponse("success.jsp"));
 
@@ -33,52 +33,50 @@ public class ExampleErrorForwardHandlerTest {
     }
 
     @Test
-    public void sessionKeyNotFound_shouldThrowDoubleSubmissionErrorPage() throws Exception {
+    void sessionKeyNotFound_shouldThrowDoubleSubmissionErrorPage() throws Exception {
         ExecutionContext context = new ExecutionContext();
         context.addHandler((o, context1) -> {
             throw new SessionKeyNotFoundException("key");
         });
 
-        Exception exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
-        assertThat((HttpErrorResponse)exception, is(ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/doubleSubmissionError.jsp")));
-        assertThat((HttpErrorResponse)exception, is(StatusCodeMatcher.isStatusCode(400)));
+        HttpErrorResponse exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
+        assertThat(exception, ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/doubleSubmissionError.jsp"));
+        assertThat(exception, StatusCodeMatcher.isStatusCode(400));
     }
 
     @Test
-    public void noDataFound_shouldThrowPageNotFoundPage() throws Exception {
+    void noDataFound_shouldThrowPageNotFoundPage() throws Exception {
         ExecutionContext context = new ExecutionContext();
         context.addHandler((o, context1) -> {
             throw new NoDataException();
         });
 
-        Exception exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
-        assertThat((HttpErrorResponse)exception, is(ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/pageNotFoundError.jsp")));
-        assertThat((HttpErrorResponse)exception, is(StatusCodeMatcher.isStatusCode(404)));
+        HttpErrorResponse exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
+        assertThat(exception, ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/pageNotFoundError.jsp"));
+        assertThat(exception, StatusCodeMatcher.isStatusCode(404));
     }
 
     @Test
-    public void optimisticLockException_shouldThrowOptimisticLockErrorPage() throws Exception {
+    void optimisticLockException_shouldThrowOptimisticLockErrorPage() throws Exception {
         ExecutionContext context = new ExecutionContext();
         context.addHandler((o, context1) -> {
             throw new OptimisticLockException();
         });
 
-        Exception exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
-        assertThat((HttpErrorResponse)exception, is(ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/optimisticLockError.jsp")));
-        assertThat((HttpErrorResponse)exception, is(StatusCodeMatcher.isStatusCode(400)));
-
+        HttpErrorResponse exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
+        assertThat(exception, ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/optimisticLockError.jsp"));
+        assertThat(exception, StatusCodeMatcher.isStatusCode(400));
     }
 
     @Test
-    public void failedToTempFile_shouldThrowInternalError() throws Exception {
+    void failedToTempFile_shouldThrowInternalError() throws Exception {
         ExecutionContext context = new ExecutionContext();
         context.addHandler((o, context1) -> {
             throw new TemporaryFileFailedException(new Throwable());
         });
 
-        Exception exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
-        assertThat((HttpErrorResponse)exception, is(StatusCodeMatcher.isStatusCode(500)));
-
+        HttpErrorResponse exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
+        assertThat(exception, StatusCodeMatcher.isStatusCode(500));
     }
 
     private static class ContentPathMatcher extends TypeSafeMatcher<HttpErrorResponse> {

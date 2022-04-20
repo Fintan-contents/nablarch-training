@@ -1,7 +1,8 @@
 package com.nablarch.example.app.web.action;
 
 import com.nablarch.example.app.entity.Project;
-import com.nablarch.example.app.test.ExampleHttpRequestTestTemplate;
+import com.nablarch.example.app.test.ExampleHttpRequestTest;
+import com.nablarch.example.app.test.ExampleHttpRequestTestSupport;
 import com.nablarch.example.app.test.ExampleTestCaseInfo;
 import com.nablarch.example.app.test.MockEntityList;
 import com.nablarch.example.app.test.advice.SignedInAdvice;
@@ -11,7 +12,7 @@ import nablarch.common.web.session.SessionUtil;
 import nablarch.core.beans.BeanUtil;
 import nablarch.fw.ExecutionContext;
 import nablarch.test.Assertion;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -20,31 +21,28 @@ import java.util.List;
  *
  * @author Nabu Rakutaro
  */
-public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate {
-
-    @Override
-    protected String getBaseUri() {
-        return "/action/projectBulk/";
-    }
+@ExampleHttpRequestTest(baseUri = "/action/projectBulk/")
+class ProjectBulkActionRequestTest {
+    ExampleHttpRequestTestSupport support;
 
     /**
      * 一括更新画面初期表示正常系ケース。
      */
     @Test
     @SuppressWarnings("unchecked")
-    public void indexNormal() {
-        execute("indexNormal", new SignedInAdvice() {
+    void indexNormal() {
+        support.execute("indexNormal", new SignedInAdvice() {
 
             @Override
             public void afterExecute(ExampleTestCaseInfo testCaseInfo,
                                      ExecutionContext context) {
                 // 検索フォームの確認
-                assertEntity(testCaseInfo.getSheetName(),
+                support.assertEntity(testCaseInfo.getSheetName(),
                         "searchForm" + testCaseInfo.getTestCaseNo(),
                         context.getRequestScopedVar("searchForm"));
 
                 // プロジェクト表示結果の確認
-                assertBeanList(testCaseInfo.getSheetName(), "projectListDto", testCaseInfo,
+                support.assertBeanList(testCaseInfo.getSheetName(), "projectListDto", testCaseInfo,
                         (List<Object>) BeanUtil.getProperty(context.getRequestScopedVar("bulkForm"), "projectList"));
             }
         });
@@ -55,27 +53,27 @@ public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate
      */
     @Test
     @SuppressWarnings("unchecked")
-    public void listNormal() {
-        execute("listNormal", new SignedInAdvice() {
+    void listNormal() {
+        support.execute("listNormal", new SignedInAdvice() {
 
             @Override
             public void afterExecute(ExampleTestCaseInfo testCaseInfo,
                                      ExecutionContext context) {
                 // 検索フォームの確認
-                assertEntity(testCaseInfo.getSheetName(),
+                support.assertEntity(testCaseInfo.getSheetName(),
                         "searchForm" + testCaseInfo.getTestCaseNo(),
                         context.getRequestScopedVar("searchForm"));
 
                 // プロジェクト表示結果の確認
-                assertBeanList(testCaseInfo.getSheetName(), "projectListDto", testCaseInfo,
+                support.assertBeanList(testCaseInfo.getSheetName(), "projectListDto", testCaseInfo,
                         (List<Object>) BeanUtil.getProperty(context.getRequestScopedVar("bulkForm"), "projectList"));
 
                 // 検索結果がセッションに格納されていることの確認
-                assertBeanList(testCaseInfo.getSheetName(), "projectListDtoInSession", testCaseInfo,
+                support.assertBeanList(testCaseInfo.getSheetName(), "projectListDtoInSession", testCaseInfo,
                         (List<Object>) BeanUtil.getProperty(SessionUtil.get(context, "projectListDto"), "projectList"));
 
                 // 検索条件がセッションに格納されていることを確認する
-                assertEntity(testCaseInfo.getSheetName(),
+                support.assertEntity(testCaseInfo.getSheetName(),
                         "projectSearchDto" + testCaseInfo.getTestCaseNo(),
                         SessionUtil.get(context, "projectSearchDto"));
             }
@@ -86,8 +84,8 @@ public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate
      * プロジェクト一括更新検索異常系ケース。
      */
     @Test
-    public void listAbNormal() {
-        execute("listAbNormal", new SignedInAdvice());
+    void listAbNormal() {
+        support.execute("listAbNormal", new SignedInAdvice());
     }
 
     /**
@@ -95,8 +93,8 @@ public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate
      */
     @Test
     @SuppressWarnings("unchecked")
-    public void confirmOfUpdateNormal() {
-        execute("confirmOfUpdateNormal", new SignedInAdvice() {
+    void confirmOfUpdateNormal() {
+        support.execute("confirmOfUpdateNormal", new SignedInAdvice() {
 
             @Override
             protected void signedInBeforeExecute(ExampleTestCaseInfo testCaseInfo,
@@ -129,7 +127,7 @@ public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate
                                      ExecutionContext context) {
 
                 // 更新内容が上書きされたことを確認する
-                assertBeanList(testCaseInfo.getSheetName(), "projectListDtoInSession", testCaseInfo,
+                support.assertBeanList(testCaseInfo.getSheetName(), "projectListDtoInSession", testCaseInfo,
                         (List<Object>) BeanUtil.getProperty(SessionUtil.get(context, "projectListDto"), "projectList"));
             }
         });
@@ -139,16 +137,16 @@ public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate
      * プロジェクト一括更新確認異常系ケース。
      */
     @Test
-    public void confirmOfUpdateAbNormal() {
-        execute("confirmOfUpdateAbNormal", new SignedInAdvice());
+    void confirmOfUpdateAbNormal() {
+        support.execute("confirmOfUpdateAbNormal", new SignedInAdvice());
     }
 
     /**
      * プロジェクト一括更新確認異常系ケース。
      */
     @Test
-    public void backToListNormal() {
-        execute("backToListNormal", new SignedInAdvice() {
+    void backToListNormal() {
+        support.execute("backToListNormal", new SignedInAdvice() {
             @Override
             protected void signedInBeforeExecute(ExampleTestCaseInfo testCaseInfo,
                                                  ExecutionContext context) {
@@ -181,12 +179,12 @@ public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate
             public void afterExecute(ExampleTestCaseInfo testCaseInfo,
                                      ExecutionContext context) {
                 // 検索フォームの確認
-                assertEntity(testCaseInfo.getSheetName(),
+                support.assertEntity(testCaseInfo.getSheetName(),
                         "projectSearchDto" + testCaseInfo.getTestCaseNo(),
                         context.getRequestScopedVar("searchForm"));
 
                 // プロジェクト表示結果の確認
-                assertBeanList(testCaseInfo.getSheetName(), "projectListDto", testCaseInfo,
+                support.assertBeanList(testCaseInfo.getSheetName(), "projectListDto", testCaseInfo,
                         (List<Object>) BeanUtil.getProperty(context.getRequestScopedVar("bulkForm"), "projectList"));
             }
 
@@ -197,8 +195,8 @@ public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate
      * プロジェクト一括登録正常系ケース。
      */
     @Test
-    public void updateNormal() {
-        execute("updateNormal", new SignedInAdvice() {
+    void updateNormal() {
+        support.execute("updateNormal", new SignedInAdvice() {
             @Override
             protected void signedInBeforeExecute(ExampleTestCaseInfo testCaseInfo,
                                                  ExecutionContext context) {
@@ -231,16 +229,16 @@ public class ProjectBulkActionRequestTest extends ExampleHttpRequestTestTemplate
      * プロジェクト一括登録異常系ケース。
      */
     @Test
-    public void updateAbNormal() {
-        execute("updateAbNormal", new SignedInAdvice());
+    void updateAbNormal() {
+        support.execute("updateAbNormal", new SignedInAdvice());
     }
 
     /**
      * プロジェクト一括登録完了画面正常系ケース。
      */
     @Test
-    public void completeOfUpdateNormal() {
-        execute("completeOfUpdateNormal", new SignedInAdvice() {
+    void completeOfUpdateNormal() {
+        support.execute("completeOfUpdateNormal", new SignedInAdvice() {
             @Override
             protected void signedInBeforeExecute(ExampleTestCaseInfo testCaseInfo,
                                                  ExecutionContext context) {
