@@ -38,7 +38,7 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#jsp)
+- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/tag.html#jsp)
 
 ## 演習
 では、以下の手順でログイン画面を表示してみましょう。

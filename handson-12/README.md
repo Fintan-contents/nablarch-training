@@ -44,24 +44,24 @@ Nablarchバッチアプリケーションを利用して、CSV形式の郵便番
 
 ### 解説書
 #### Nablarchアプリケーションフレームワークの解説書
-- [4.2.1. アーキテクチャ概要](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/nablarch_batch/architecture.html#id1)
-    - [Nablarchバッチアプリケーションで使用するデータリーダ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/nablarch_batch/architecture.html#nablarch-batch-data-reader)
-    - [Nablarchバッチアプリケーションで使用するアクション](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/nablarch_batch/architecture.html#nablarch-batch-action)
-- [7.4.1. データバインド](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/data_io/data_bind.html#data-bind)
-    - [CSVファイルのフォーマットを指定する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/data_io/data_bind.html#csv)
-    - [ファイルのデータの論理行番号を取得する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/data_io/data_bind.html#data-bind-line-number)
-- [7.10.1. Bean Validation](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation)
-	- [ドメインバリデーションを使う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-domain-validation)
+- [4.2.1. アーキテクチャ概要](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/nablarch_batch/architecture.html#id1)
+    - [Nablarchバッチアプリケーションで使用するデータリーダ](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/nablarch_batch/architecture.html#nablarch-batch-data-reader)
+    - [Nablarchバッチアプリケーションで使用するアクション](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/nablarch_batch/architecture.html#nablarch-batch-action)
+- [7.4.1. データバインド](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/data_io/data_bind.html#data-bind)
+    - [CSVファイルのフォーマットを指定する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/data_io/data_bind.html#csv)
+    - [ファイルのデータの論理行番号を取得する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/data_io/data_bind.html#data-bind-line-number)
+- [7.10.1. Bean Validation](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation)
+	- [ドメインバリデーションを使う](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-domain-validation)
 		- 各Beanでドメインバリデーションを使う
-- [4.2.3. Getting Started](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/nablarch_batch/getting_started/getting_started.html#getting-started)
-    - [ファイルをDBに登録するバッチの作成](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/nablarch_batch/getting_started/nablarch_batch/index.html#db)
+- [4.2.3. Getting Started](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/nablarch_batch/getting_started/getting_started.html#getting-started)
+    - [ファイルをDBに登録するバッチの作成](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/nablarch_batch/getting_started/nablarch_batch/index.html#db)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- [DataReader](https://nablarch.github.io/docs/5u19/javadoc/nablarch/fw/DataReader.html)
-- [BatchAction](https://nablarch.github.io/docs/5u19/javadoc/nablarch/fw/action/BatchAction.html)
-- [UniversalDao](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/dao/UniversalDao.html)
-- [注釈型 Csv](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/databind/csv/Csv.html)
-- [注釈型 CsvFormat](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/databind/csv/CsvFormat.html)
+- [DataReader](https://nablarch.github.io/docs/5u21/javadoc/nablarch/fw/DataReader.html)
+- [BatchAction](https://nablarch.github.io/docs/5u21/javadoc/nablarch/fw/action/BatchAction.html)
+- [UniversalDao](https://nablarch.github.io/docs/5u21/javadoc/nablarch/common/dao/UniversalDao.html)
+- [注釈型 Csv](https://nablarch.github.io/docs/5u21/javadoc/nablarch/common/databind/csv/Csv.html)
+- [注釈型 CsvFormat](https://nablarch.github.io/docs/5u21/javadoc/nablarch/common/databind/csv/CsvFormat.html)
 
 ## 実装する機能
 
@@ -222,6 +222,6 @@ h2.bat実行中はバッチプログラムからDBへアクセスすることが
 
 ## 参考
 
-- [ObjectMapper](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/databind/ObjectMapper.html) は、hasNext メソッドを持たないため、本ハンズオンでは、イテレータを用意しています。イテレータの実装に関しては、[ObjectMapperIterator.java](./src/main/java/com/nablarch/example/app/batch/reader/iterator/ObjectMapperIterator.java)の実装を参照してください。イテレータを作成することでバッチごとにデータ読み込み処理を実装しなくてもよい利点があります。
+- [ObjectMapper](https://nablarch.github.io/docs/5u21/javadoc/nablarch/common/databind/ObjectMapper.html) は、hasNext メソッドを持たないため、本ハンズオンでは、イテレータを用意しています。イテレータの実装に関しては、[ObjectMapperIterator.java](./src/main/java/com/nablarch/example/app/batch/reader/iterator/ObjectMapperIterator.java)の実装を参照してください。イテレータを作成することでバッチごとにデータ読み込み処理を実装しなくてもよい利点があります。
 
 - Bean Validationを実行するロジックにバッチごとの差はないため、本ハンズオンではインターセプタを用意してバリデーション処理を共通化しています。インターセプタの実装に関しては、[ValidateData.java](./src/main/java/com/nablarch/example/app/batch/interceptor/ValidateData.java) の実装を参照してください。

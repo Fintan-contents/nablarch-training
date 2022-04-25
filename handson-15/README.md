@@ -23,20 +23,20 @@ JSR352に準拠したバッチアプリケーションには、BatchletとChunk�
 
 #### Nablarchアプリケーションフレームワークの解説書
 
-- [4.1.1. アーキテクチャ概要](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/jsr352/architecture.html#jsr352-architecture)
-	- [バッチアプリケーションの処理の流れ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/jsr352/architecture.html#id3)
-		- [Chunk](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/jsr352/architecture.html#chunk)
-    - [リスナーの指定方法](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/jsr352/architecture.html#jsr352-listener-definition)
+- [4.1.1. アーキテクチャ概要](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/jsr352/architecture.html#jsr352-architecture)
+	- [バッチアプリケーションの処理の流れ](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/jsr352/architecture.html#id3)
+		- [Chunk](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/jsr352/architecture.html#chunk)
+    - [リスナーの指定方法](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/jsr352/architecture.html#jsr352-listener-definition)
       - ジョブ定義ファイルへの設定
-- [4.1.3. Getting Started](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/jsr352/getting_started/getting_started.html#getting-started)
-	- [データを導出するバッチの作成(Chunkステップ)](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/jsr352/getting_started/chunk/index.html#chunk)
-- [7.3.2. ユニバーサルDAO](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#dao)
-  - [任意のSQL(SQLファイル)で検索する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#sql-sql)
-  - [検索結果を遅延ロードする](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-lazy-load)
-  - [バッチ実行（一括登録、更新、削除）を行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-batch-execute)
+- [4.1.3. Getting Started](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/jsr352/getting_started/getting_started.html#getting-started)
+	- [データを導出するバッチの作成(Chunkステップ)](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/jsr352/getting_started/chunk/index.html#chunk)
+- [7.3.2. ユニバーサルDAO](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/universal_dao.html#dao)
+  - [任意のSQL(SQLファイル)で検索する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/universal_dao.html#sql-sql)
+  - [検索結果を遅延ロードする](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-lazy-load)
+  - [バッチ実行（一括登録、更新、削除）を行う](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-batch-execute)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- [UniversalDao](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/dao/UniversalDao.html)
+- [UniversalDao](https://nablarch.github.io/docs/5u21/javadoc/nablarch/common/dao/UniversalDao.html)
 
 ## 実装する機能
 - 社員情報を抜き出すアイテムリーダを実装してください。

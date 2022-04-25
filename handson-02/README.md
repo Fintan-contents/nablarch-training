@@ -39,17 +39,17 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- [7.3.1. データベースアクセス(JDBCラッパー)](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#jdbc)
-	- [Beanオブジェクトを入力としてSQLを実行する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#database-input-bean)
+- [7.3.1. データベースアクセス(JDBCラッパー)](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/database.html#jdbc)
+	- [Beanオブジェクトを入力としてSQLを実行する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/database.html#database-input-bean)
 
-- [7.3.2. ユニバーサルDAO](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#dao)
-	- [任意のSQL(SQLファイル)で検索する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#sql-sql)
-	- [条件を指定して検索する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-search-with-condition)
-	- [ページングを行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-paging)
+- [7.3.2. ユニバーサルDAO](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/universal_dao.html#dao)
+	- [任意のSQL(SQLファイル)で検索する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/universal_dao.html#sql-sql)
+	- [条件を指定して検索する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-search-with-condition)
+	- [ページングを行う](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-paging)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- [UniversalDao](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/dao/UniversalDao.html)
-- [ExecutionContext](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/ExecutionContext.html)
+- [UniversalDao](https://nablarch.github.io/docs/5u21/javadoc/nablarch/common/dao/UniversalDao.html)
+- [ExecutionContext](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/ExecutionContext.html)
 
 ## 演習
 では、以下の手順で、データベースから取得したデータを元に一覧画面を作成しましょう。

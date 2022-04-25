@@ -39,12 +39,12 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- [7.3.1. データベースアクセス(JDBCラッパー)](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#jdbc)
-	- [可変条件を持つSQLを実行する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#database-use-variable-condition)
-	- [order byのソート項目を実行時に動的に切り替えてSQLを実行する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#order-bysql)
+- [7.3.1. データベースアクセス(JDBCラッパー)](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/database.html#jdbc)
+	- [可変条件を持つSQLを実行する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/database.html#database-use-variable-condition)
+	- [order byのソート項目を実行時に動的に切り替えてSQLを実行する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/database.html#order-bysql)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- [BeanUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/beans/BeanUtil.html)
+- [BeanUtil](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/beans/BeanUtil.html)
 
 ## 演習
 では、以下の手順で、データベースから取得したデータを元に検索一覧画面を作成しましょう。

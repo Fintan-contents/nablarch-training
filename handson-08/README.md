@@ -32,13 +32,13 @@ ProjectFormのテストクラスを完成させます。
 ### 解説書
 
 #### テスティングフレームワークの解説書
-- [3.2.1. 自動テストフレームワーク](https://nablarch.github.io/docs/5u19/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/01_Abstract.html#auto-test-framework)
-	- [テストメソッド記述方法](https://nablarch.github.io/docs/5u19/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/01_Abstract.html#id5)
-	- [Excelによるテストデータ記述](https://nablarch.github.io/docs/5u19/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/01_Abstract.html#excel)
-	  - [命名規約](https://nablarch.github.io/docs/5u19/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/01_Abstract.html#id6)
-- [3.2.9. 目的別API使用方法](https://nablarch.github.io/docs/5u19/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/03_Tips.html#api)
-	- [Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい](https://nablarch.github.io/docs/5u19/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/03_Tips.html#excel)
-	- [同じテストメソッドをテストデータを変えて実行したい](https://nablarch.github.io/docs/5u19/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/03_Tips.html#how-to-run-the-same-test)
+- [3.2.1. 自動テストフレームワーク](https://nablarch.github.io/docs/5u21/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/01_Abstract.html#auto-test-framework)
+	- [テストメソッド記述方法](https://nablarch.github.io/docs/5u21/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/01_Abstract.html#id5)
+	- [Excelによるテストデータ記述](https://nablarch.github.io/docs/5u21/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/01_Abstract.html#excel)
+	  - [命名規約](https://nablarch.github.io/docs/5u21/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/01_Abstract.html#id6)
+- [3.2.9. 目的別API使用方法](https://nablarch.github.io/docs/5u21/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/03_Tips.html#api)
+	- [Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい](https://nablarch.github.io/docs/5u21/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/03_Tips.html#excel)
+	- [同じテストメソッドをテストデータを変えて実行したい](https://nablarch.github.io/docs/5u21/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/03_Tips.html#how-to-run-the-same-test)
 
 ## 演習
 では、自動テストを実装しましょう。

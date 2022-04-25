@@ -57,6 +57,6 @@ h2.bat実行中はバッチアプリケーションからDBへアクセスする
 
 ## 参考
 
-- [ObjectMapper](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/databind/ObjectMapper.html) は、hasNext メソッドを持たないため、本解答例では、イテレータを用意しています。イテレータの実装に関しては、[ObjectMapperIterator.java](./src/main/java/com/nablarch/example/app/batch/reader/iterator/ObjectMapperIterator.java)の実装を参照してください。イテレータを作成することでバッチごとにデータ読み込み処理を実装しなくてもよい利点があります。
+- [ObjectMapper](https://nablarch.github.io/docs/5u21/javadoc/nablarch/common/databind/ObjectMapper.html) は、hasNext メソッドを持たないため、本解答例では、イテレータを用意しています。イテレータの実装に関しては、[ObjectMapperIterator.java](./src/main/java/com/nablarch/example/app/batch/reader/iterator/ObjectMapperIterator.java)の実装を参照してください。イテレータを作成することでバッチごとにデータ読み込み処理を実装しなくてもよい利点があります。
 
 - Bean Validationを実行するロジックにバッチごとの差はないため、本解答例ではインターセプタを用意してバリデーション処理を共通化しています。インターセプタの実装に関しては、[ValidateData.java](./src/main/java/com/nablarch/example/app/batch/interceptor/ValidateData.java) の実装を参照してください。

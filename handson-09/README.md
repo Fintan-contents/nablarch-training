@@ -45,17 +45,17 @@
 #### Nablarchアプリケーションフレームワークの解説書
 2.2と7.10.1の「データベースとの相関バリデーションを行う」を読むことで、どの精査をFormで行い、どの精査をActionで行うかがわかります。また、7.10.1の「相関バリデーションを行う」を読むことで、Formで行う相関バリデーションの実装方法がわかります。
 
-- [2.2. アプリケーションの責務配置](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/web/application_design.html#application-design)
-- [7.10.1. Bean Validation](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation)
-	- [相関バリデーションを行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-correlation-validation)
-	- [データベースとの相関バリデーションを行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-database-validation)
+- [2.2. アプリケーションの責務配置](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/web/application_design.html#application-design)
+- [7.10.1. Bean Validation](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation)
+	- [相関バリデーションを行う](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-correlation-validation)
+	- [データベースとの相関バリデーションを行う](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-database-validation)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- [UniversalDao](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/dao/UniversalDao.html)
+- [UniversalDao](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/dao/UniversalDao.html)
     (レコードの存在チェックに使用できるメソッドが記載されています)
-- [DateUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/util/DateUtil.html)
+- [DateUtil](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/util/DateUtil.html)
 	(相関バリデーション実施時に、プロジェクト開始日とプロジェクト終了日が正しく入力されているか確認する際とDate型に変換する際に使用します)
-- [StringUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/util/StringUtil.html)
+- [StringUtil](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/util/StringUtil.html)
 	(相関バリデーション実施時に、プロジェクト開始日とプロジェクト終了日が入力されているか確認する際に使用します)
 
 ## 実装する機能

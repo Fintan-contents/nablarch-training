@@ -39,20 +39,20 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#jsp)
-	- [二重サブミットを防ぐ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#tag-double-submission)
+- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/tag.html#jsp)
+	- [二重サブミットを防ぐ](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/tag.html#tag-double-submission)
       - クライアント側の二重サブミット防止
       - サーバ側の二重サブミット防止
-- [6.3.4. OnDoubleSubmissionインターセプター](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#ondoublesubmission)
-  - [OnDoubleSubmissionを利用する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id4)
-  - [OnDoubleSubmissionのデフォルト値を指定する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id5)
-- [7.17. セッションストア](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store.html#session-store)
-  - [更新機能での実装例](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/session_store/update_example.html#id1)
+- [6.3.4. OnDoubleSubmissionインターセプター](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#ondoublesubmission)
+  - [OnDoubleSubmissionを利用する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id4)
+  - [OnDoubleSubmissionのデフォルト値を指定する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id5)
+- [7.17. セッションストア](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/session_store.html#session-store)
+  - [更新機能での実装例](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/session_store/update_example.html#id1)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- [SessionUtil](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/web/session/SessionUtil.html)
-- [UniversalDao](https://nablarch.github.io/docs/5u19/javadoc/nablarch/common/dao/UniversalDao.html)
-- [ResourceLocator](https://nablarch.github.io/docs/5u19/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/web/ResourceLocator.html)
+- [SessionUtil](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/web/session/SessionUtil.html)
+- [UniversalDao](https://nablarch.github.io/docs/5u21/javadoc/nablarch/common/dao/UniversalDao.html)
+- [ResourceLocator](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/web/ResourceLocator.html)
 
 
 ## 演習

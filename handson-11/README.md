@@ -43,12 +43,12 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- [7.3.1. データベースアクセス(JDBCラッパー)](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#jdbc)
-  - [like検索を行う](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#database-like-condition)
-  - [in句の条件数が可変となるSQLを実行する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/database/database.html#insql)
-- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#jsp)
-  - [フォーマットして値を出力する](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag.html#tag-format-value)
-  - [タグリファレンス](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/libraries/tag/tag_reference.html#tag-reference)
+- [7.3.1. データベースアクセス(JDBCラッパー)](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/database.html#jdbc)
+  - [like検索を行う](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/database.html#database-like-condition)
+  - [in句の条件数が可変となるSQLを実行する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/database.html#insql)
+- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/tag.html#jsp)
+  - [フォーマットして値を出力する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/tag.html#tag-format-value)
+  - [タグリファレンス](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/tag/tag_reference.html#tag-reference)
 
 ## 実装する機能
 以下の機能を実装してください。

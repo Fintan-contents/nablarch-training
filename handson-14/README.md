@@ -23,13 +23,13 @@ ZIP_CODE_DATAテーブル と ZIP_CODE_DATA_WORKテーブル のデータを削�
 
 #### Nablarchアプリケーションフレームワークの解説書
 
-- [4.1.1. アーキテクチャ概要](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/jsr352/architecture.html#jsr352-architecture)
-	- [バッチアプリケーションの処理の流れ](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/jsr352/architecture.html#id3)
-		- [Batchlet](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/jsr352/architecture.html#batchlet)
-    - [リスナーの指定方法](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/jsr352/architecture.html#jsr352-listener-definition)
+- [4.1.1. アーキテクチャ概要](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/jsr352/architecture.html#jsr352-architecture)
+	- [バッチアプリケーションの処理の流れ](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/jsr352/architecture.html#id3)
+		- [Batchlet](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/jsr352/architecture.html#batchlet)
+    - [リスナーの指定方法](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/jsr352/architecture.html#jsr352-listener-definition)
       - ジョブ定義ファイルへの設定
-- [4.1.3. Getting Started](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/jsr352/getting_started/getting_started.html#getting-started)
-	- [対象テーブルのデータを削除するバッチの作成(Batchletステップ)](https://nablarch.github.io/docs/5u19/doc/application_framework/application_framework/batch/jsr352/getting_started/batchlet/index.html#batchlet)
+- [4.1.3. Getting Started](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/jsr352/getting_started/getting_started.html#getting-started)
+	- [対象テーブルのデータを削除するバッチの作成(Batchletステップ)](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/batch/jsr352/getting_started/batchlet/index.html#batchlet)
 
 ## 実装する機能
 
