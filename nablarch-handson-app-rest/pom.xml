@@ -4,7 +4,7 @@
 
   <groupId>nablarch.handson</groupId>
   <artifactId>nablarch-handson-app-rest</artifactId>
-  <version>1.6.0</version>
+  <version>1.7.0</version>
   <packaging>war</packaging>
 
   <properties>
@@ -20,7 +20,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>5u21</version>
+        <version>5u23</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -77,7 +77,7 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <version>1.4.196</version>
+      <version>2.2.220</version>
       <scope>runtime</scope>
     </dependency>
 
@@ -115,20 +115,20 @@
     <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-json-jackson</artifactId>
-      <version>2.29.1</version>
+      <version>2.35</version>
     </dependency>
 
     <dependency>
       <groupId>org.glassfish.jersey.core</groupId>
       <artifactId>jersey-client</artifactId>
-      <version>2.29.1</version>
+      <version>2.35</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.glassfish.jersey.inject</groupId>
       <artifactId>jersey-hk2</artifactId>
-      <version>2.29.1</version>
+      <version>2.35</version>
       <scope>test</scope>
     </dependency>
 
@@ -165,7 +165,7 @@
     <dependency>
       <groupId>nablarch.handson</groupId>
       <artifactId>nablarch-handson-app-entity</artifactId>
-      <version>1.6.0</version>
+      <version>1.7.0</version>
     </dependency>
   </dependencies>
 
