@@ -40,7 +40,8 @@ class ExampleErrorForwardHandlerTest {
         });
 
         HttpErrorResponse exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
-        assertThat(exception, ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/doubleSubmissionError.jsp"));
+        assertThat(exception,
+                ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/doubleSubmissionError.jsp"));
         assertThat(exception, StatusCodeMatcher.isStatusCode(400));
     }
 
@@ -52,7 +53,8 @@ class ExampleErrorForwardHandlerTest {
         });
 
         HttpErrorResponse exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
-        assertThat(exception, ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/pageNotFoundError.jsp"));
+        assertThat(exception,
+                ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/pageNotFoundError.jsp"));
         assertThat(exception, StatusCodeMatcher.isStatusCode(404));
     }
 
@@ -64,7 +66,8 @@ class ExampleErrorForwardHandlerTest {
         });
 
         HttpErrorResponse exception = assertThrows(HttpErrorResponse.class, () -> sut.handle(new Object(), context));
-        assertThat(exception, ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/optimisticLockError.jsp"));
+        assertThat(exception,
+                ContentPathMatcher.hasContentPath("/WEB-INF/view/common/errorPages/optimisticLockError.jsp"));
         assertThat(exception, StatusCodeMatcher.isStatusCode(400));
     }
 

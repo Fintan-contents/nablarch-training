@@ -3,15 +3,16 @@ package com.nablarch.example.app.web.action;
 import com.nablarch.example.app.entity.Project;
 import com.nablarch.example.app.test.ExampleHttpRequestTest;
 import com.nablarch.example.app.test.ExampleHttpRequestTestSupport;
-import com.nablarch.example.app.test.ExampleTestCaseInfo;
 import com.nablarch.example.app.test.MockEntityList;
 import com.nablarch.example.app.test.advice.SignedInAdvice;
 import com.nablarch.example.app.web.dto.ProjectListDto;
 import com.nablarch.example.app.web.dto.ProjectSearchDto;
 import nablarch.common.web.session.SessionUtil;
 import nablarch.core.beans.BeanUtil;
+import nablarch.core.util.DateUtil;
 import nablarch.fw.ExecutionContext;
 import nablarch.test.Assertion;
+import nablarch.test.core.http.TestCaseInfo;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -29,12 +30,11 @@ class ProjectBulkActionRequestTest {
      * 一括更新画面初期表示正常系ケース。
      */
     @Test
-    @SuppressWarnings("unchecked")
     void indexNormal() {
         support.execute("indexNormal", new SignedInAdvice() {
 
             @Override
-            public void afterExecute(ExampleTestCaseInfo testCaseInfo,
+            public void afterExecute(TestCaseInfo testCaseInfo,
                                      ExecutionContext context) {
                 // 検索フォームの確認
                 support.assertEntity(testCaseInfo.getSheetName(),
@@ -52,12 +52,11 @@ class ProjectBulkActionRequestTest {
      * プロジェクト一括更新検索正常系ケース。
      */
     @Test
-    @SuppressWarnings("unchecked")
     void listNormal() {
         support.execute("listNormal", new SignedInAdvice() {
 
             @Override
-            public void afterExecute(ExampleTestCaseInfo testCaseInfo,
+            public void afterExecute(TestCaseInfo testCaseInfo,
                                      ExecutionContext context) {
                 // 検索フォームの確認
                 support.assertEntity(testCaseInfo.getSheetName(),
@@ -92,12 +91,11 @@ class ProjectBulkActionRequestTest {
      * プロジェクト一括更新確認正常系ケース。
      */
     @Test
-    @SuppressWarnings("unchecked")
     void confirmOfUpdateNormal() {
         support.execute("confirmOfUpdateNormal", new SignedInAdvice() {
 
             @Override
-            protected void signedInBeforeExecute(ExampleTestCaseInfo testCaseInfo,
+            protected void signedInBeforeExecute(TestCaseInfo testCaseInfo,
                                                  ExecutionContext context) {
 
                 // セッションに更新対象のプロジェクトを設定する
@@ -108,7 +106,14 @@ class ProjectBulkActionRequestTest {
                 p1.setProjectType("development");
                 p1.setProjectClass("s");
                 p1.setClientId(1);
+                p1.setProjectStartDate(DateUtil.getDate("20180101"));
+                p1.setProjectEndDate(DateUtil.getDate("20180102"));
                 p1.setVersion(0L);
+                p1.setSales(1);
+                p1.setCostOfGoodsSold(2);
+                p1.setSga(3);
+                p1.setAllocationOfCorpExpenses(4);
+                
                 projectListDto.getProjectList().add(p1);
 
                 Project p2 = new Project();
@@ -117,13 +122,19 @@ class ProjectBulkActionRequestTest {
                 p2.setProjectType("development");
                 p2.setProjectClass("s");
                 p2.setClientId(1);
+                p1.setProjectStartDate(DateUtil.getDate("20180102"));
+                p1.setProjectEndDate(DateUtil.getDate("20180103"));
                 p2.setVersion(0L);
+                p2.setSales(10);
+                p2.setCostOfGoodsSold(20);
+                p2.setSga(30);
+                p2.setAllocationOfCorpExpenses(40);
                 projectListDto.getProjectList().add(p2);
                 SessionUtil.put(context, "projectListDto", projectListDto);
             }
 
             @Override
-            public void afterExecute(ExampleTestCaseInfo testCaseInfo,
+            public void afterExecute(TestCaseInfo testCaseInfo,
                                      ExecutionContext context) {
 
                 // 更新内容が上書きされたことを確認する
@@ -148,11 +159,11 @@ class ProjectBulkActionRequestTest {
     void backToListNormal() {
         support.execute("backToListNormal", new SignedInAdvice() {
             @Override
-            protected void signedInBeforeExecute(ExampleTestCaseInfo testCaseInfo,
+            protected void signedInBeforeExecute(TestCaseInfo testCaseInfo,
                                                  ExecutionContext context) {
 
                 ProjectListDto projectListDto = new ProjectListDto();
-                MockEntityList<Project> projectList = new MockEntityList<Project>();
+                MockEntityList<Project> projectList = new MockEntityList<>();
                 projectList.setUpMockList(1, 20L, 1);
                 projectListDto.setProjectList(projectList);
 
@@ -162,6 +173,8 @@ class ProjectBulkActionRequestTest {
                 p1.setProjectType("development");
                 p1.setProjectClass("s");
                 p1.setClientId(1);
+                p1.setProjectStartDate(DateUtil.getDate("20180101"));
+                p1.setProjectEndDate(DateUtil.getDate("20180102"));
                 p1.setVersion(0L);
                 projectListDto.getProjectList().add(p1);
                 SessionUtil.put(context, "projectListDto", projectListDto);
@@ -175,8 +188,7 @@ class ProjectBulkActionRequestTest {
             }
 
             @Override
-            @SuppressWarnings("unchecked")
-            public void afterExecute(ExampleTestCaseInfo testCaseInfo,
+            public void afterExecute(TestCaseInfo testCaseInfo,
                                      ExecutionContext context) {
                 // 検索フォームの確認
                 support.assertEntity(testCaseInfo.getSheetName(),
@@ -198,7 +210,7 @@ class ProjectBulkActionRequestTest {
     void updateNormal() {
         support.execute("updateNormal", new SignedInAdvice() {
             @Override
-            protected void signedInBeforeExecute(ExampleTestCaseInfo testCaseInfo,
+            protected void signedInBeforeExecute(TestCaseInfo testCaseInfo,
                                                  ExecutionContext context) {
 
                 // セッションに更新対象のプロジェクトを設定する
@@ -210,6 +222,16 @@ class ProjectBulkActionRequestTest {
                 p1.setProjectClass("s");
                 p1.setClientId(1);
                 p1.setVersion(0L);
+                p1.setProjectStartDate(DateUtil.getDate("20180101"));
+                p1.setProjectEndDate(DateUtil.getDate("20180102"));
+                p1.setProjectManager("まねーじゃ１");
+                p1.setProjectLeader("りーだー１");
+                p1.setNote("あ");
+                p1.setUserId(105);
+                p1.setSales(1);
+                p1.setCostOfGoodsSold(2);
+                p1.setSga(3);
+                p1.setAllocationOfCorpExpenses(4);
                 projectListDto.getProjectList().add(p1);
 
                 Project p2 = new Project();
@@ -219,6 +241,16 @@ class ProjectBulkActionRequestTest {
                 p2.setProjectClass("s");
                 p2.setClientId(1);
                 p2.setVersion(0L);
+                p2.setProjectStartDate(DateUtil.getDate("20180201"));
+                p2.setProjectEndDate(DateUtil.getDate("20180228"));
+                p2.setProjectManager("まねーじゃ２");
+                p2.setProjectLeader("りーだー２");
+                p2.setNote("い");
+                p2.setUserId(105);
+                p2.setSales(10);
+                p2.setCostOfGoodsSold(20);
+                p2.setSga(30);
+                p2.setAllocationOfCorpExpenses(40);
                 projectListDto.getProjectList().add(p2);
                 SessionUtil.put(context, "projectListDto", projectListDto);
             }
@@ -240,7 +272,7 @@ class ProjectBulkActionRequestTest {
     void completeOfUpdateNormal() {
         support.execute("completeOfUpdateNormal", new SignedInAdvice() {
             @Override
-            protected void signedInBeforeExecute(ExampleTestCaseInfo testCaseInfo,
+            protected void signedInBeforeExecute(TestCaseInfo testCaseInfo,
                                                  ExecutionContext context) {
 
                 ProjectListDto projectListDto = new ProjectListDto();
@@ -252,7 +284,7 @@ class ProjectBulkActionRequestTest {
             }
 
             @Override
-            public void afterExecute(ExampleTestCaseInfo testCaseInfo,
+            public void afterExecute(TestCaseInfo testCaseInfo,
                                      ExecutionContext context) {
 
                 if (SessionUtil.orNull(context, "projectListDto") != null) {
