@@ -4,7 +4,7 @@
 
   <groupId>nablarch.handson</groupId>
   <artifactId>nablarch-handson-app-web-common</artifactId>
-  <version>1.6.0</version>
+  <version>1.7.0</version>
   <packaging>jar</packaging>
 
   <properties>
@@ -24,7 +24,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>5u21</version>
+        <version>5u23</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -71,6 +71,11 @@
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-core-jdbc</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.nablarch.framework</groupId>
+      <artifactId>nablarch-common-auth-session</artifactId>
     </dependency>
     
     <dependency>
@@ -153,7 +158,7 @@
     <dependency>
       <groupId>nablarch.handson</groupId>
       <artifactId>nablarch-handson-app-entity</artifactId>
-      <version>1.6.0</version>
+      <version>1.7.0</version>
     </dependency>
 
   </dependencies>

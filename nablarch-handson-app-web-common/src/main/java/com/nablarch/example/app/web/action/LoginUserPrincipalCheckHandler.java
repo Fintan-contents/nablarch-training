@@ -1,5 +1,10 @@
 package com.nablarch.example.app.web.action;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 import nablarch.common.web.session.SessionUtil;
 import nablarch.fw.ExecutionContext;
 import nablarch.fw.Handler;
@@ -7,25 +12,20 @@ import nablarch.fw.web.HttpErrorResponse;
 import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
 /**
  * ログイン状態チェックハンドラ 。
  *
  * @author Nabu Rakutaro
  */
 public class LoginUserPrincipalCheckHandler implements Handler<HttpRequest, Object> {
-
+    
     /** チェック対象外のリクエストID **/
     private static final Set<String> IGNORE_REQUEST_IDS = new HashSet<>(Arrays.asList(
             "/",
             "/action/login",
             "/action/Authentication/login"
     ));
-
+    
     /**
      * セッションからユーザ情報を取得できなかった場合は、ログイン画面を表示。
      *

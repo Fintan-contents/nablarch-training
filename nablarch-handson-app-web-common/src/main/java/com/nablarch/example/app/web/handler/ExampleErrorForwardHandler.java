@@ -1,6 +1,7 @@
 package com.nablarch.example.app.web.handler;
 
-import com.nablarch.example.app.web.common.file.TemporaryFileFailedException;
+import javax.persistence.OptimisticLockException;
+
 import nablarch.common.dao.NoDataException;
 import nablarch.common.web.session.SessionKeyNotFoundException;
 import nablarch.core.log.app.FailureLogUtil;
@@ -9,7 +10,7 @@ import nablarch.fw.Handler;
 import nablarch.fw.web.HttpErrorResponse;
 import nablarch.fw.web.HttpResponse.Status;
 
-import javax.persistence.OptimisticLockException;
+import com.nablarch.example.app.web.common.file.TemporaryFileFailedException;
 
 /**
  * 特定の例外が送出された場合に、適切なエラー画面に遷移させるハンドラ。

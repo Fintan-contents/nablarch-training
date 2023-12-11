@@ -1,6 +1,11 @@
 package com.nablarch.example.app.web.dto;
 
-import com.nablarch.example.app.entity.core.validation.validator.DateRangeValidator;
+import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.validation.constraints.AssertTrue;
+
 import nablarch.common.databind.LineNumber;
 import nablarch.common.databind.csv.Csv;
 import nablarch.common.databind.csv.Csv.CsvType;
@@ -11,10 +16,7 @@ import nablarch.core.util.StringUtil;
 import nablarch.core.validation.ee.Domain;
 import nablarch.core.validation.ee.Required;
 
-import javax.validation.constraints.AssertTrue;
-import java.io.Serializable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.nablarch.example.app.entity.core.validation.validator.DateRangeValidator;
 
 /**
  * CSV形式でアップロードされたプロジェクト情報の一行分のデータをバインドするBeanクラス。
@@ -38,6 +40,9 @@ public class ProjectUploadDto implements Serializable {
 
     /** シリアルバージョンUID */
     private static final long serialVersionUID = 1L;
+
+    /** 日付の形式 */
+    private static final String dateFormat = "yyyy/MM/dd";
 
     /** 数値判定用の正規表現 */
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("^[-]?[0-9]+$");
