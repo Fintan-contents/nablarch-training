@@ -163,7 +163,6 @@ public class ProjectAction {
         Project project = SessionUtil.get(context, "project");
         ProjectDto dto = BeanUtil.createAndCopy(ProjectDto.class, project);
 
-
         // 入力画面に戻る際に顧客データが見つからない場合はデータ不整合なので、
         // NoDataException を発生させてシステムエラーとする。
         // ※ example アプリは顧客データのメンテナンス機能がないのでこの対応とするが、
@@ -228,7 +227,7 @@ public class ProjectAction {
         LoginUserPrincipal userContext = SessionUtil.get(context, "userContext");
 
         ProjectDto dto = UniversalDao.findBySqlFile(ProjectDto.class, "FIND_BY_PROJECT",
-                new Object[] {targetForm.getProjectId(), userContext.getUserId()});
+                new Object[] {Integer.parseInt(targetForm.getProjectId()), userContext.getUserId()});
 
         // 出力情報をリクエストスコープにセット
         context.setRequestScopedVar("form", dto);
@@ -249,7 +248,6 @@ public class ProjectAction {
     @OnError(type = ApplicationException.class, path = "/WEB-INF/view/project/update.jsp")
     public HttpResponse confirmOfUpdate(HttpRequest request, ExecutionContext context) {
         ProjectUpdateForm form = context.getRequestScopedVar("form");
-
 
         if (!UniversalDao.exists(Client.class, "FIND_BY_CLIENT_ID",
                 new Object[] {Integer.parseInt(form.getClientId())})) {
