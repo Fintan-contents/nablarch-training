@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="n" uri="http://tis.co.jp/nablarch" %>
 <%@ page session="false" %>
@@ -25,9 +25,11 @@
                     <li>
                         <n:a href="/action/projectBulk/index">プロジェクト一括更新</n:a>
                     </li>
-                    <li>
-                        <n:a href="/action/projectUpload">プロジェクト一括登録</n:a>
-                    </li>
+                    <c:if test="${userContext.admin}">
+                        <li>
+                            <n:a href="/action/projectUpload">プロジェクト一括登録</n:a>
+                        </li>
+                    </c:if>
                 </ul>
             </div>
         </div>

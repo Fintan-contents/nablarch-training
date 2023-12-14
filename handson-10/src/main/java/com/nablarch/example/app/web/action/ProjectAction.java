@@ -193,7 +193,6 @@ public class ProjectAction {
         Project project = SessionUtil.get(context, "project");
         ProjectDto dto = BeanUtil.createAndCopy(ProjectDto.class, project);
 
-
         // 入力画面に戻る際に顧客データが見つからない場合はデータ不整合なので、
         // NoDataException を発生させてシステムエラーとする。
         // ※ example アプリは顧客データのメンテナンス機能がないのでこの対応とするが、
@@ -217,7 +216,7 @@ public class ProjectAction {
 
         // 初期表示時点でのページ番号とソートキーを設定する
         ProjectSearchForm searchForm = new ProjectSearchForm();
-        searchForm.setSortKey(ProjectSortKey.ID.getCode());
+        searchForm.setSortKey(ProjectSortKey.ID.getValue());
         searchForm.setPageNumber("1");
         context.setRequestScopedVar("searchForm", searchForm);
 
@@ -319,7 +318,7 @@ public class ProjectAction {
         LoginUserPrincipal userContext = SessionUtil.get(context, "userContext");
 
         ProjectDto dto = UniversalDao.findBySqlFile(ProjectDto.class, "FIND_BY_PROJECT",
-                new Object[] {targetForm.getProjectId(), userContext.getUserId()});
+                new Object[] {Integer.parseInt(targetForm.getProjectId()), userContext.getUserId()});
 
         // 出力情報をリクエストスコープにセット
         context.setRequestScopedVar("form", dto);
