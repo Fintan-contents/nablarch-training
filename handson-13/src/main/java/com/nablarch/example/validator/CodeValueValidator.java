@@ -40,7 +40,7 @@ public class CodeValueValidator implements ConstraintValidator<CodeValue, String
 
         if (enumValues != null) {
             for (Object enumValue : enumValues) {
-                if (value.equals(((CodeEnum) enumValue).getCode())) {
+                if (value.equals(((CodeEnum) enumValue).getValue())) {
                     return true;
                 }
             }
