@@ -177,7 +177,7 @@ public class ProjectAction {
 
         // 初期表示時点でのページ番号とソートキーを設定する
         ProjectSearchForm searchForm = new ProjectSearchForm();
-        searchForm.setSortKey(ProjectSortKey.ID.getCode());
+        searchForm.setSortKey(ProjectSortKey.ID.getValue());
         searchForm.setPageNumber("1");
         context.setRequestScopedVar("searchForm", searchForm);
 
@@ -279,7 +279,7 @@ public class ProjectAction {
         LoginUserPrincipal userContext = SessionUtil.get(context, "userContext");
 
         ProjectDto dto = UniversalDao.findBySqlFile(ProjectDto.class, "FIND_BY_PROJECT",
-                new Object[] {targetForm.getProjectId(), userContext.getUserId()});
+                new Object[] {Integer.parseInt(targetForm.getProjectId()), userContext.getUserId()});
 
         // 出力情報をリクエストスコープにセット
         context.setRequestScopedVar("form", dto);

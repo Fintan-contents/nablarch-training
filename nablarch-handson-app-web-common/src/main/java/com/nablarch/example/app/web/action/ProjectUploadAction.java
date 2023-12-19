@@ -1,9 +1,10 @@
 package com.nablarch.example.app.web.action;
 
-import com.nablarch.example.app.entity.Client;
-import com.nablarch.example.app.entity.Project;
-import com.nablarch.example.app.web.common.authentication.context.LoginUserPrincipal;
-import com.nablarch.example.app.web.dto.ProjectUploadDto;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import nablarch.common.authorization.role.CheckRole;
 import nablarch.common.dao.UniversalDao;
 import nablarch.common.databind.InvalidDataFormatException;
 import nablarch.common.databind.ObjectMapper;
@@ -25,9 +26,10 @@ import nablarch.fw.web.interceptor.OnError;
 import nablarch.fw.web.upload.PartInfo;
 import nablarch.fw.web.upload.util.UploadHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.nablarch.example.app.entity.Client;
+import com.nablarch.example.app.entity.Project;
+import com.nablarch.example.app.web.common.authentication.context.LoginUserPrincipal;
+import com.nablarch.example.app.web.dto.ProjectUploadDto;
 
 /**
  * プロジェクトファイルアップロード一括登録機能。
@@ -43,6 +45,7 @@ public class ProjectUploadAction {
      * @param context 実行コンテキスト
      * @return HTTPレスポンス
      */
+    @CheckRole(LoginUserPrincipal.ROLE_ADMIN)
     public HttpResponse index(HttpRequest request, ExecutionContext context) {
         return new HttpResponse("/WEB-INF/view/projectUpload/create.jsp");
     }
@@ -54,6 +57,7 @@ public class ProjectUploadAction {
      * @param context 実行コンテキスト
      * @return HTTPレスポンス
      */
+    @CheckRole(LoginUserPrincipal.ROLE_ADMIN)
     @OnDoubleSubmission
     @OnError(type = ApplicationException.class, path = "/WEB-INF/view/projectUpload/create.jsp")
     public HttpResponse upload(HttpRequest request, ExecutionContext context) {

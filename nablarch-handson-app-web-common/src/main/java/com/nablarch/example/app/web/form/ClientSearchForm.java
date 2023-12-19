@@ -1,10 +1,10 @@
 package com.nablarch.example.app.web.form;
 
-import nablarch.core.util.StringUtil;
-import nablarch.core.validation.ee.Domain;
-
 import java.io.Serializable;
 import java.util.Objects;
+
+import nablarch.core.util.StringUtil;
+import nablarch.core.validation.ee.Domain;
 
 /**
  * 顧客検索フォーム。

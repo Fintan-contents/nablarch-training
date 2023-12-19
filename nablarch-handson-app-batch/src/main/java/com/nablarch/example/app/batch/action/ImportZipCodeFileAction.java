@@ -5,6 +5,7 @@ import com.nablarch.example.app.batch.interceptor.ValidateData;
 import com.nablarch.example.app.batch.reader.ZipCodeFileReader;
 import com.nablarch.example.app.entity.ZipCodeData;
 import nablarch.common.dao.UniversalDao;
+
 import nablarch.core.beans.BeanUtil;
 import nablarch.core.util.annotation.Published;
 import nablarch.fw.DataReader;

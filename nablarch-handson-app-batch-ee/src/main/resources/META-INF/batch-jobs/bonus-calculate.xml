@@ -7,6 +7,7 @@
     <listeners>
       <listener ref="nablarchStepListenerExecutor" />
       <listener ref="nablarchItemWriteListenerExecutor" />
+      <listener ref="progressLogListener" />
     </listeners>
 
     <chunk item-count="1000">

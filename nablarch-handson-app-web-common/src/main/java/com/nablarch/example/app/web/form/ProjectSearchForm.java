@@ -1,14 +1,15 @@
 package com.nablarch.example.app.web.form;
 
-import nablarch.core.util.StringUtil;
-import nablarch.core.validation.ee.Domain;
-
-import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import javax.validation.Valid;
+
+import nablarch.core.util.StringUtil;
+import nablarch.core.validation.ee.Domain;
 
 /**
  * プロジェクト検索一覧フォーム

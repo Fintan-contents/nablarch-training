@@ -73,7 +73,7 @@ Nablarchアプリケーションフレームワークを利用して作成した
 | Price       | 18000            |
 
 
-初期状態のデータでは、標準出力に以下の内容が表示されれば問題ありません。
+初期状態のデータでは、標準出力に以下の内容が表示されれば問題ありません（ItemIdは異なる可能性があります）。
 
     ---- items (size: 10) ----
     Item(ItemId: 1, ItemName: 商品１, Category: hardware, Explanation: 商品１の説明, Price: 100000)

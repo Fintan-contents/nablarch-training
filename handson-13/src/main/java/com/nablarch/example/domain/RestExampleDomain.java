@@ -12,6 +12,7 @@ import nablarch.core.validation.ee.SystemChar;
  *
  * @author Nabu Rakutaro
  */
+@SuppressWarnings("all")
 public class RestExampleDomain {
     /** ID */
     @NumberRange(min = 0)
