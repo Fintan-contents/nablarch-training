@@ -4,10 +4,10 @@ import com.nablarch.example.app.entity.Item;
 import com.nablarch.example.form.ItemForm;
 import com.nablarch.example.form.ItemUpdateForm;
 
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
