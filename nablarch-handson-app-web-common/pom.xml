@@ -124,23 +124,6 @@
     </dependency>
 
     <dependency>
-      <groupId>jakarta.xml.bind</groupId>
-      <artifactId>jakarta.xml.bind-api</artifactId>
-      <version>4.0.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-impl</artifactId>
-      <version>4.0.5</version>
-    </dependency>
-
-    <dependency>
-      <groupId>jakarta.annotation</groupId>
-      <artifactId>jakarta.annotation-api</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>nablarch.handson</groupId>
       <artifactId>nablarch-handson-app-entity</artifactId>
       <version>1.7.0</version>
@@ -159,18 +142,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.13.0</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-clean-plugin</artifactId>
-        <version>3.4.0</version>
-        <configuration>
-          <filesets>
-            <fileset>
-              <directory>work/jsp</directory>
-            </fileset>
-          </filesets>
-        </configuration>
       </plugin>
 
     </plugins>

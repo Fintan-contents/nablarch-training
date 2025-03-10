@@ -10,28 +10,12 @@ Nablarchアプリケーションフレームワークを利用して作成した
     $cd entity
     $mvn clean install
 
-### アプリケーションのビルド
+### アプリケーションのビルドと起動
 
-次に、アプリケーションをビルドします。チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
+jetty-ee10-maven-pluginを実行して、アプリケーションのビルドとJetty 12の起動を行います。以下のコマンドを実行してください。
 
-    cd nablarch-handson-app-rest
-    $mvn clean compile
-
-実行に成功すると、以下のようなログがコンソールに出力されます。
-
-    (中略)
-    [INFO] --- maven-compiler-plugin:3.2:compile (default-compile) @ nablarch-handson-app-rest ---
-    [INFO] Changes detected - recompiling the module!
-    [INFO] Compiling 12 source files to C:\example\nablarch-handson\nablarch-handson-app-rest\target\classes
-    [INFO] ------------------------------------------------------------------------
-    [INFO] BUILD SUCCESS
-    [INFO] ------------------------------------------------------------------------
-    (中略)
-
-### アプリケーションの起動
-最後にwaitt-maven-pluginを実行し、ウェブサービスを起動します。以下のコマンドを実行してください。
-
-    $mvn waitt:run-headless
+    $cd nablarch-handson-app-rest
+    $mvn jetty:run
 
 ### テスト用クライアントクラスからのアクセス
 

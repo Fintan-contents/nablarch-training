@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ItemClient {
 
-    private static final String targetUrl = "http://localhost:9080/items";
+    private static final String targetUrl = "http://localhost:8080/items";
 
     /**
      * 商品情報の操作を行う。

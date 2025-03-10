@@ -217,7 +217,7 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <version>2.2.224</version>
+      <version>2.3.232</version>
     </dependency>
 
     <dependency>
@@ -247,23 +247,6 @@
     <dependency>
       <groupId>com.nablarch.integration</groupId>
       <artifactId>nablarch-jboss-logging-adaptor</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>jakarta.xml.bind</groupId>
-      <artifactId>jakarta.xml.bind-api</artifactId>
-      <version>4.0.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-impl</artifactId>
-      <version>4.0.5</version>
-    </dependency>
-
-    <dependency>
-      <groupId>jakarta.annotation</groupId>
-      <artifactId>jakarta.annotation-api</artifactId>
     </dependency>
 
     <dependency>
