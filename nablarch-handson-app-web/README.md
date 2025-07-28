@@ -10,30 +10,15 @@ Nablarchアプリケーションフレームワークを利用して作成した
     $cd entity
     $mvn clean install
 
-### アプリケーションのビルド
+### アプリケーションのビルド、起動
 
-次に、アプリケーションをビルドします。チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
+jetty-ee10-maven-pluginを実行して、アプリケーションのビルドとJetty 12の起動を行います。
+チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
-    cd nablarch-handson-app-web
-    $mvn clean compile
+    $cd nablarch-handson-app-web
+    $mvn jetty:run
 
-実行に成功すると、以下のようなログがコンソールに出力されます。
-
-    (中略)
-    [INFO] --- maven-compiler-plugin:3.2:compile (default-compile) @ nablarch-example-app-web ---
-    [INFO] Changes detected - recompiling the module!
-    [INFO] Compiling 56 source files to c:\example\nablarch-example-web\target\classes
-    [INFO] ------------------------------------------------------------------------
-    [INFO] BUILD SUCCESS
-    [INFO] ------------------------------------------------------------------------
-    (中略)
-
-### アプリケーションの起動
-最後にwaitt-maven-pluginを実行し、組み込みTomcatを起動させます。以下のコマンドを実行してください。
-
-    $mvn waitt:run
-
-起動に成功すると、自動的にアプリケーションのログイン画面が表示されます。
+起動に成功したら、ブラウザで http://localhost:8080/ を開いてください。ログイン画面が表示されます。
 以下のログインID、パスワードでログインできます。
 
 | ログインID | パスワード |
