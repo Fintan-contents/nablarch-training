@@ -4,7 +4,7 @@ import com.nablarch.example.app.entity.core.validation.validator.DateRangeValida
 import nablarch.core.validation.ee.Domain;
 import nablarch.core.validation.ee.Required;
 
-import javax.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.AssertTrue;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
