@@ -9,7 +9,7 @@ import nablarch.fw.Handler;
 import nablarch.fw.web.HttpErrorResponse;
 import nablarch.fw.web.HttpResponse.Status;
 
-import jakarta.persistence.OptimisticLockException;
+import javax.persistence.OptimisticLockException;
 
 /**
  * 特定の例外が送出された場合に、適切なエラー画面に遷移させるハンドラ。

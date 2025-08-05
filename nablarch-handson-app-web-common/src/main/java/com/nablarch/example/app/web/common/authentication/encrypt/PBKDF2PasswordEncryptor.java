@@ -5,7 +5,6 @@ import nablarch.core.util.Base64Util;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
@@ -26,7 +25,7 @@ public class PBKDF2PasswordEncryptor implements PasswordEncryptor {
     /**
      * 暗号化アルゴリズム名
      */
-    private static final String CRYPT_ALGORITHM = "PBKDF2WithHmacSHA256";
+    private static final String CRYPT_ALGORITHM = "PBKDF2WithHmacSha1";
 
     /**
      * パスワード暗号化のストレッチング回数
@@ -58,7 +57,7 @@ public class PBKDF2PasswordEncryptor implements PasswordEncryptor {
         try {
             return SecretKeyFactory.getInstance(CRYPT_ALGORITHM);
         } catch (NoSuchAlgorithmException e) {
-            // Oracle JRE など、PBKDF2WithHmacSHA256が提供されているJREを利用する場合には、アルゴリズムが存在するため、この例外は発生し得ない。
+            // Oracle JRE など、PBKDF2WithHmacSha1が提供されているJREを利用する場合には、アルゴリズムが存在するため、この例外は発生し得ない。
             throw new IllegalStateException("Initialization Failed. Can't get instance of SecretKeyFactory. "
                     + "Algorithm name is '" + CRYPT_ALGORITHM + "'.", e);
         }
@@ -142,7 +141,7 @@ public class PBKDF2PasswordEncryptor implements PasswordEncryptor {
         if (fixed == null) {
             throw new IllegalStateException("Fixed salt string is not set.");
         }
-        return (fixed + saltSeed).getBytes(StandardCharsets.UTF_8);
+        return (fixed + saltSeed).getBytes(Charset.forName("UTF-8"));
     }
 
     /**

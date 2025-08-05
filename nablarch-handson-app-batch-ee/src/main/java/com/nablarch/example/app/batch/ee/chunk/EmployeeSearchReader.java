@@ -5,13 +5,13 @@ import nablarch.common.dao.DeferredEntityList;
 import nablarch.common.dao.UniversalDao;
 import nablarch.fw.batch.ee.chunk.BaseDatabaseItemReader;
 
-import jakarta.enterprise.context.Dependent;
-import jakarta.inject.Named;
+import javax.enterprise.context.Dependent;
+import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Iterator;
 
 /**
- * 社員情報をDBから取得する{@link jakarta.batch.api.chunk.ItemReader}実装クラス。
+ * 社員情報をDBから取得する{@link javax.batch.api.chunk.ItemReader}実装クラス。
  *
  * @author Nabu Rakutaro
  */

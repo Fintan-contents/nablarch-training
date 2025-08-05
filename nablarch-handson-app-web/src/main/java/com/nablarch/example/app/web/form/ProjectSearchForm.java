@@ -3,7 +3,7 @@ package com.nablarch.example.app.web.form;
 import nablarch.core.util.StringUtil;
 import nablarch.core.validation.ee.Domain;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
