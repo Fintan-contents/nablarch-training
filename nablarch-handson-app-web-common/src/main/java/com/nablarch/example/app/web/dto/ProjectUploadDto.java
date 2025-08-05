@@ -11,7 +11,7 @@ import nablarch.core.util.StringUtil;
 import nablarch.core.validation.ee.Domain;
 import nablarch.core.validation.ee.Required;
 
-import jakarta.validation.constraints.AssertTrue;
+import javax.validation.constraints.AssertTrue;
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

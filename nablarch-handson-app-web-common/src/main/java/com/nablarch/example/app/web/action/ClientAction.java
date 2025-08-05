@@ -8,8 +8,8 @@ import nablarch.core.beans.BeanUtil;
 import nablarch.core.validation.ee.ValidatorUtil;
 import nablarch.fw.web.HttpRequest;
 
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**

@@ -2,8 +2,8 @@ package com.nablarch.example.app.entity.core.validation.validator;
 
 import nablarch.core.util.StringUtil;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 /**
  * 指定された整数の範囲の金額であることを検証するバリデータ。
