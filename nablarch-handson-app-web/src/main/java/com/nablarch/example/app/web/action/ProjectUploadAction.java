@@ -16,6 +16,7 @@ import nablarch.core.message.ApplicationException;
 import nablarch.core.message.Message;
 import nablarch.core.message.MessageLevel;
 import nablarch.core.message.MessageUtil;
+import nablarch.core.util.DateUtil;
 import nablarch.core.validation.ee.ValidatorUtil;
 import nablarch.fw.ExecutionContext;
 import nablarch.fw.web.HttpRequest;
@@ -24,7 +25,6 @@ import nablarch.fw.web.interceptor.OnError;
 import nablarch.fw.web.upload.PartInfo;
 import nablarch.fw.web.upload.util.UploadHelper;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -229,7 +229,7 @@ public class ProjectUploadAction {
             fileExtension = '.' + fileName.substring(lastDotPos + 1, fileName.length());
         }
 
-        String date = SystemTimeUtil.getLocalDateTime().format(DateTimeFormatter.ofPattern("yyMMddHHmmss"));
+        String date = DateUtil.formatDate(SystemTimeUtil.getDate(), "yyMMddHHmmss");
         return fileNameWithoutExtension + '_' + date + fileExtension;
     }
 }
