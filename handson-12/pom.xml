@@ -22,14 +22,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>6u2</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>jakarta.platform</groupId>
-        <artifactId>jakarta.jakartaee-bom</artifactId>
-        <version>10.0.0</version>
+        <version>5u21</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -37,6 +30,7 @@
   </dependencyManagement>
 
   <dependencies>
+
     <dependency>
       <groupId>com.nablarch.profile</groupId>
       <artifactId>nablarch-batch</artifactId>
@@ -49,9 +43,9 @@
     </dependency>
 
     <dependency>
-      <groupId>org.glassfish.expressly</groupId>
-      <artifactId>expressly</artifactId>
-      <version>5.0.0</version>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.el</artifactId>
+      <version>3.0.0</version>
     </dependency>
 
     <dependency>
@@ -64,7 +58,7 @@
     <dependency>
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
-      <version>6.2.1</version>
+      <version>3.3.1</version>
       <scope>runtime</scope>
     </dependency>
 
@@ -75,14 +69,14 @@
     </dependency>
 
     <dependency>
-      <groupId>org.hibernate.validator</groupId>
+      <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
-      <version>8.0.1.Final</version>
+      <version>5.3.6.Final</version>
     </dependency>
 
     <dependency>
-      <groupId>jakarta.persistence</groupId>
-      <artifactId>jakarta.persistence-api</artifactId>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-jpa_2.0_spec</artifactId>
     </dependency>
 
     <dependency>
@@ -97,7 +91,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
-        <version>3.4.0</version>
+        <version>3.0.0</version>
         <configuration>
           <filesets>
             <fileset>
@@ -112,7 +106,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>3.4.2</version>
+        <version>3.2.0</version>
         <configuration>
           <archive>
             <manifest>
@@ -150,9 +144,8 @@
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
         <artifactId>wagon-webdav-jackrabbit</artifactId>
-        <version>3.5.3</version>
+        <version>3.0.0</version>
       </extension>
     </extensions>
   </build>
-
 </project>
