@@ -1,16 +1,16 @@
 package com.nablarch.example.app.web.action;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
 import nablarch.common.web.session.SessionUtil;
 import nablarch.fw.ExecutionContext;
 import nablarch.fw.Handler;
 import nablarch.fw.web.HttpErrorResponse;
 import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * ログイン状態チェックハンドラ 。

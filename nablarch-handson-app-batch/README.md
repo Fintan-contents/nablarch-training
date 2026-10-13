@@ -26,6 +26,7 @@ targetディレクトリにjarの作成が終わったら、以下のコマン�
 
     $mvn exec:java -Dexec.mainClass=nablarch.fw.launcher.Main -Dexec.args="'-requestPath' 'ImportZipCodeFileAction/ImportZipCodeFile' '-diConfig' 'classpath:import-zip-code-file.xml' '-userId' '105'"
 
+
 ### DBの確認方法
  
 1. コマンドプロンプトを起動します。

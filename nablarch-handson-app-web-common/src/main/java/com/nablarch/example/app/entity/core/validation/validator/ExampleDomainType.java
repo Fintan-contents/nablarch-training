@@ -1,17 +1,7 @@
 package com.nablarch.example.app.entity.core.validation.validator;
 
-import nablarch.core.validation.ee.DateFormat;
-import nablarch.core.validation.ee.Digits;
-import nablarch.core.validation.ee.EnumElement;
-import nablarch.core.validation.ee.Length;
-import nablarch.core.validation.ee.NumberRange;
-import nablarch.core.validation.ee.SystemChar;
-
-import com.nablarch.example.app.web.common.code.ClientSortKey;
-import com.nablarch.example.app.web.common.code.ProjectClass;
-import com.nablarch.example.app.web.common.code.ProjectSortKey;
-import com.nablarch.example.app.web.common.code.ProjectType;
-import com.nablarch.example.app.web.common.code.SortOrder;
+import com.nablarch.example.app.web.common.code.*;
+import nablarch.core.validation.ee.*;
 
 
 /**

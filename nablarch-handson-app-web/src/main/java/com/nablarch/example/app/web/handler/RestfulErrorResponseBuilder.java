@@ -2,7 +2,6 @@ package com.nablarch.example.app.web.handler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import nablarch.core.message.ApplicationException;
 import nablarch.core.validation.ValidationResultMessage;
 import nablarch.fw.ExecutionContext;
@@ -11,7 +10,6 @@ import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
 
 import javax.ws.rs.core.MediaType;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

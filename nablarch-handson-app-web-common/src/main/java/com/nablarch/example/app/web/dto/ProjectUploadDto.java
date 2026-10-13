@@ -1,11 +1,6 @@
 package com.nablarch.example.app.web.dto;
 
-import java.io.Serializable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.validation.constraints.AssertTrue;
-
+import com.nablarch.example.app.entity.core.validation.validator.DateRangeValidator;
 import nablarch.common.databind.LineNumber;
 import nablarch.common.databind.csv.Csv;
 import nablarch.common.databind.csv.Csv.CsvType;
@@ -16,7 +11,10 @@ import nablarch.core.util.StringUtil;
 import nablarch.core.validation.ee.Domain;
 import nablarch.core.validation.ee.Required;
 
-import com.nablarch.example.app.entity.core.validation.validator.DateRangeValidator;
+import javax.validation.constraints.AssertTrue;
+import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * CSV形式でアップロードされたプロジェクト情報の一行分のデータをバインドするBeanクラス。

@@ -193,6 +193,7 @@ public class ProjectAction {
         Project project = SessionUtil.get(context, "project");
         ProjectDto dto = BeanUtil.createAndCopy(ProjectDto.class, project);
 
+
         // 入力画面に戻る際に顧客データが見つからない場合はデータ不整合なので、
         // NoDataException を発生させてシステムエラーとする。
         // ※ example アプリは顧客データのメンテナンス機能がないのでこの対応とするが、

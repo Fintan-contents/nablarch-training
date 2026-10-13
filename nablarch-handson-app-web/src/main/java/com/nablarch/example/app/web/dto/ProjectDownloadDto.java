@@ -1,13 +1,13 @@
 package com.nablarch.example.app.web.dto;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import nablarch.common.databind.csv.Csv;
 import nablarch.common.databind.csv.Csv.CsvType;
 import nablarch.common.databind.csv.CsvDataBindConfig.QuoteMode;
 import nablarch.common.databind.csv.CsvFormat;
 import nablarch.core.text.FormatterUtil;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * プロジェクト情報をCSV形式でダウンロード時に一行分のデータをバインドするBeanクラス。

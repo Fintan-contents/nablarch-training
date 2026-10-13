@@ -12,7 +12,6 @@ import com.nablarch.example.app.web.form.ProjectForm;
 import com.nablarch.example.app.web.form.ProjectSearchForm;
 import com.nablarch.example.app.web.form.ProjectTargetForm;
 import com.nablarch.example.app.web.form.ProjectUpdateForm;
-
 import nablarch.common.dao.DeferredEntityList;
 import nablarch.common.dao.UniversalDao;
 import nablarch.common.databind.ObjectMapper;
