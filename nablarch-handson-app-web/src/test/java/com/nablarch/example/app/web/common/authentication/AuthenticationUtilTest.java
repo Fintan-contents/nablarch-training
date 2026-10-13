@@ -223,7 +223,7 @@ class AuthenticationUtilTest {
      * @throws Exception コンストラクタの呼び出しに失敗した場合
      */
     @Test
-    public void testConstructor() throws Exception {
+    void testConstructor() throws Exception {
         Constructor<AuthenticationUtil> constructor = AuthenticationUtil.class.getDeclaredConstructor();
         constructor.setAccessible(true);
         constructor.newInstance();

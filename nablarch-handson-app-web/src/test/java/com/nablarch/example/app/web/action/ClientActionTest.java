@@ -6,10 +6,7 @@ import nablarch.test.junit5.extension.http.RestTest;
 import org.junit.jupiter.api.Test;
 
 import static com.jayway.jsonassert.JsonAssert.with;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.hasEntry;
-import static org.hamcrest.Matchers.hasItems;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 
 /**
  * {@link ClientAction}のテストクラス

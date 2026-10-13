@@ -14,7 +14,7 @@ public enum ItemCategory implements CodeEnum {
     /** 商品カテゴリーのラベル */
     private String label;
     /** 商品カテゴリーのコード */
-    private String code;
+    private String value;
 
     /**
      * コンストラクタ。
@@ -23,7 +23,7 @@ public enum ItemCategory implements CodeEnum {
      */
     ItemCategory(String code, String label) {
         this.label = label;
-        this.code = code;
+        this.value = code;
     }
 
     @Override
@@ -32,7 +32,7 @@ public enum ItemCategory implements CodeEnum {
     }
 
     @Override
-    public String getCode() {
-        return code;
+    public String getValue() {
+        return value;
     }
 }
