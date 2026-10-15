@@ -6,7 +6,7 @@ import nablarch.fw.jaxrs.JaxRsErrorLogWriter;
 import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
 
-import javax.persistence.OptimisticLockException;
+import jakarta.persistence.OptimisticLockException;
 
 /**
  * Example用のエラーログ出力クラス。
