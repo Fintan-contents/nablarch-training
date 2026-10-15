@@ -6,14 +6,14 @@ import nablarch.common.dao.UniversalDao;
 import nablarch.fw.batch.ee.chunk.BaseDatabaseItemReader;
 import nablarch.fw.batch.ee.progress.ProgressManager;
 
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.Iterator;
 
 /**
- * 社員情報をDBから取得する{@link javax.batch.api.chunk.ItemReader}実装クラス。
+ * 社員情報をDBから取得する{@link jakarta.batch.api.chunk.ItemReader}実装クラス。
  *
  * @author Nabu Rakutaro
  */

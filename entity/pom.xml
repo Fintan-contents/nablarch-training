@@ -68,7 +68,7 @@
       <plugin>
         <groupId>jp.co.tis.gsp</groupId>
         <artifactId>gsp-dba-maven-plugin</artifactId>
-        <version>4.6.0</version>
+        <version>5.1.0</version>
         <configuration>
           <driver>org.h2.Driver</driver>
           <url>jdbc:h2:./h2/db/nablarch_example</url>
