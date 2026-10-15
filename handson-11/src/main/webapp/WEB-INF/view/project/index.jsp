@@ -110,7 +110,7 @@
                                                         id="sortKey"
                                                         name="searchForm.sortKey"
                                                         listName="sortKeyList"
-                                                        elementValueProperty="code"
+                                                        elementValueProperty="value"
                                                         elementLabelProperty="label"
                                                         elementLabelPattern="$LABEL$"
                                                         cssClass="btn dropdown-toggle"/>
@@ -119,7 +119,7 @@
                                                         id="sortDir"
                                                         name="searchForm.sortDir"
                                                         listName="sortOrderList"
-                                                        elementValueProperty="code"
+                                                        elementValueProperty="value"
                                                         elementLabelProperty="label"
                                                         elementLabelPattern="$LABEL$"
                                                         cssClass="btn dropdown-toggle"/>
@@ -137,7 +137,7 @@
                                             prevSubmitCss="prev-page-link"
                                             nextSubmitCss="next-page-link"
                                             resultSetCss="table table-striped table-hover"
-                                            listSearchInfoName="searchForm"
+                                            searchFormName="searchForm"
                                             searchUri="${uri}"
                                             resultSetName="searchResult"
                                             useResultCount="false">
@@ -155,7 +155,7 @@
                                                     <td>
                                                         <!-- プロジェクト種別用の記述です。c:ifタグの内側を実装してください。 -->
                                                         <c:forEach var="projectType" items="<%= ProjectType.values() %>">
-                                                            <c:if test="${projectType.code == row.projectType}">
+                                                            <c:if test="${projectType.value == row.projectType}">
 
                                                             </c:if>
                                                         </c:forEach>
