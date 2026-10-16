@@ -5,8 +5,8 @@ import com.nablarch.example.app.web.dto.IndustryDto;
 import nablarch.common.dao.UniversalDao;
 import nablarch.core.beans.BeanUtil;
 
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.stream.Collectors;
 

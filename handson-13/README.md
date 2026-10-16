@@ -63,9 +63,10 @@ ItemAction.javaに、URIとアクションクラスとのマッピング、検�
     $mvn clean compile
 
 ### アプリケーションの起動
-次に、waitt-maven-pluginを実行し、ウェブサービスを起動します。以下のコマンドを実行してください。
+jetty-ee10-maven-pluginを使用してJettyを起動し、アプリケーションを実行します。
+以下のコマンドを実行してください。
 
-    $mvn waitt:run-headless
+    $mvn jetty:run
 
 ### テスト用クライアントクラスからのアクセス
 
