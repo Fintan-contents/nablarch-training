@@ -5,7 +5,7 @@ import com.nablarch.example.dto.ItemSearchDto;
 import com.nablarch.example.form.ItemForm;
 import com.nablarch.example.form.ItemSearchForm;
 import com.nablarch.example.form.ItemUpdateForm;
-import nablarch.fw.web.HttpRequest;
+import nablarch.fw.jaxrs.JaxRsHttpRequest;
 import nablarch.fw.web.HttpResponse;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class ItemAction {
     // findメソッドとHTTPメソッドの「GET」が紐づくよう、アノテーションを付与してください。
     // handson-13 step3
     // レスポンスメディアタイプを「JSON」として、アノテーションを付与してください。
-    public List<Item> find(HttpRequest req) {
+    public List<Item> find(JaxRsHttpRequest req) {
 
         // 検索条件を設定するための変数
         ItemSearchForm form = null;
@@ -95,7 +95,7 @@ public class ItemAction {
     // リクエストメディアタイプを「JSON」として、アノテーションを付与してください。
     // handson-13 step17
     // リクエストに対するBeanValidationの実行を指示するアノテーションを付与してください。
-    public HttpResponse update(HttpRequest req, ItemUpdateForm form) {
+    public HttpResponse update(JaxRsHttpRequest req, ItemUpdateForm form) {
 
         // パスパラメータを設定するための変数
         int id;
