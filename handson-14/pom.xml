@@ -210,6 +210,11 @@
       <artifactId>wildfly-elytron-security-manager</artifactId>
       <version>2.2.2.Final</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>32.1.1-jre</version>
+    </dependency>
 
     <dependency>
       <groupId>org.jberet</groupId>
