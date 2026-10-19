@@ -28,12 +28,14 @@
     $mvn clean install
 
 ### web プロジェクト起動
-チェックアウトディレクトリに移動し、以下のコマンドを実行してください。ブラウザが自動的に起動します。
-正常に「ログイン画面」が表示されることを確認してください。
+チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
     $cd handson-10
-    $mvn clean compile
-    $mvn waitt:run
+    $mvn jetty:run
+
+起動が完了したら、ブラウザから以下のURLにアクセスし、「ログイン画面」が表示されることを確認してください。
+
+    http://localhost:8080/
 
 ## 演習内容に関するリファレンスマニュアル
 本演習中に実装方法で不明な点が存在した場合は、以下のドキュメントを参照してください。
@@ -45,14 +47,14 @@
 #### Nablarchアプリケーションフレームワークの解説書
 2.2と7.10.1の「データベースとの相関バリデーションを行う」を読むことで、どの精査をFormで行い、どの精査をActionで行うかがわかります。
 
-- [2.2. アプリケーションの責務配置](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/web/application_design.html#application-design)
-- [7.10.1. Bean Validation](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation)
-	- [データベースとの相関バリデーションを行う](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-database-validation)
-- [7.3.2. ユニバーサルDAO](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/universal_dao.html#dao)
-  - [楽観的ロックを行う](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-jpa-optimistic-lock)
+- [2.2. アプリケーションの責務配置](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/web/application_design.html#application-design)
+- [7.10.1. Bean Validation](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation)
+	- [データベースとの相関バリデーションを行う](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation-database-validation)
+- [7.3.2. ユニバーサルDAO](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/database/universal_dao.html#dao)
+  - [楽観的ロックを行う](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/database/universal_dao.html#universal-dao-jpa-optimistic-lock)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- [UniversalDao](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/dao/UniversalDao.html)
+- [UniversalDao](https://nablarch.github.io/docs/5u23/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/dao/UniversalDao.html)
     (レコードの存在チェックに使用できるメソッドが記載されています)
 
 ## 実装内容

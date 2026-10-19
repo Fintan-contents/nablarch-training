@@ -18,14 +18,14 @@ import java.util.Set;
  * @author Nabu Rakutaro
  */
 public class LoginUserPrincipalCheckHandler implements Handler<HttpRequest, Object> {
-
+    
     /** チェック対象外のリクエストID **/
     private static final Set<String> IGNORE_REQUEST_IDS = new HashSet<>(Arrays.asList(
             "/",
             "/action/login",
             "/action/Authentication/login"
     ));
-
+    
     /**
      * セッションからユーザ情報を取得できなかった場合は、ログイン画面を表示。
      *

@@ -26,12 +26,14 @@
     $mvn clean install
 
 ### web プロジェクト起動
-チェックアウトディレクトリに移動し、以下のコマンドを実行してください。ブラウザが自動的に起動します。
-正常に「ログイン画面」が表示されることを確認してください。
+チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
     $cd handson-07
-    $mvn clean compile
-    $mvn waitt:run
+    $mvn jetty:run
+
+起動が完了したら、ブラウザから以下のURLにアクセスし、「ログイン画面」が表示されることを確認してください。
+
+    http://localhost:8080/
 
 ## 演習内容に関するリファレンスマニュアル
 本演習中に実装方法で不明な点が存在した場合は、以下のドキュメントを参照してください。
@@ -39,12 +41,12 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- [7.3.1. データベースアクセス(JDBCラッパー)](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/database.html#jdbc)
-	- [可変条件を持つSQLを実行する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/database.html#database-use-variable-condition)
-	- [order byのソート項目を実行時に動的に切り替えてSQLを実行する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/database/database.html#order-bysql)
+- [7.3.1. データベースアクセス(JDBCラッパー)](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/database/database.html#jdbc)
+	- [可変条件を持つSQLを実行する](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/database/database.html#database-use-variable-condition)
+	- [order byのソート項目を実行時に動的に切り替えてSQLを実行する](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/database/database.html#order-bysql)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- [BeanUtil](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/beans/BeanUtil.html)
+- [BeanUtil](https://nablarch.github.io/docs/5u23/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/beans/BeanUtil.html)
 
 ## 演習
 では、以下の手順で、データベースから取得したデータを元に検索一覧画面を作成しましょう。

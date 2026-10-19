@@ -2,8 +2,8 @@
 <%@page import="com.nablarch.example.app.web.common.code.ProjectSortKey"%>
 <%@page import="com.nablarch.example.app.web.common.code.SortOrder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%@ taglib prefix="n" uri="http://tis.co.jp/nablarch" %>
 <%@ taglib prefix="app" tagdir="/WEB-INF/tags/listSearchResult" %>
 <%@ page session="false" %>
@@ -84,7 +84,7 @@
                                                     id="sortKey"
                                                     name="searchForm.sortKey"
                                                     listName="sortKeyList"
-                                                    elementValueProperty="code"
+                                                    elementValueProperty="value"
                                                     elementLabelProperty="label"
                                                     elementLabelPattern="$LABEL$"
                                                     cssClass="btn dropdown-toggle"/>
@@ -93,7 +93,7 @@
                                                     id="sortDir"
                                                     name="searchForm.sortDir"
                                                     listName="sortOrderList"
-                                                    elementValueProperty="code"
+                                                    elementValueProperty="value"
                                                     elementLabelProperty="label"
                                                     elementLabelPattern="$LABEL$"
                                                     cssClass="btn dropdown-toggle"/>
@@ -126,7 +126,7 @@
                                             prevSubmitCss="prev-page-link"
                                             nextSubmitCss="next-page-link"
                                             resultSetCss="table table-striped table-hover"
-                                            listSearchInfoName="searchForm"
+                                            searchFormName="searchForm"
                                             searchUri="${uri}"
                                             resultSetName="projectListDto.projectList"
                                             useResultCount="false">
@@ -159,7 +159,7 @@
                                                             <n:set var="projectTypeList" value="<%= ProjectType.values() %>"/>
                                                             <n:select name="bulkForm.projectList[${status.index}].projectType"
                                                                       listName="projectTypeList"
-                                                                      elementValueProperty="code"
+                                                                      elementValueProperty="value"
                                                                       elementLabelProperty="label"
                                                                       elementLabelPattern="$LABEL$"
                                                                       cssClass="form-control btn dropdown-toggle"/>

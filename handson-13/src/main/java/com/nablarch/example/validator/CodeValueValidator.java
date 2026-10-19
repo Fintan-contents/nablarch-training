@@ -3,8 +3,8 @@ package com.nablarch.example.validator;
 import com.nablarch.example.code.CodeEnum;
 import nablarch.core.util.StringUtil;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * CodeValueの検証を行う実装クラス。
@@ -40,7 +40,7 @@ public class CodeValueValidator implements ConstraintValidator<CodeValue, String
 
         if (enumValues != null) {
             for (Object enumValue : enumValues) {
-                if (value.equals(((CodeEnum) enumValue).getCode())) {
+                if (value.equals(((CodeEnum) enumValue).getValue())) {
                     return true;
                 }
             }

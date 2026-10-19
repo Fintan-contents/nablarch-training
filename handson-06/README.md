@@ -26,12 +26,14 @@
     $mvn clean install
 
 ### web プロジェクト起動
-チェックアウトディレクトリに移動し、以下のコマンドを実行してください。ブラウザが自動的に起動します。
-正常に「ログイン画面」が表示されることを確認してください。
+チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
     $cd handson-06
-    $mvn clean compile
-    $mvn waitt:run
+    $mvn jetty:run
+
+起動が完了したら、ブラウザから以下のURLにアクセスし、「ログイン画面」が表示されることを確認してください。
+
+    http://localhost:8080/
 
 ## 演習内容に関するリファレンスマニュアル
 本演習中に実装方法で不明な点が存在した場合は、以下のドキュメントを参照してください。
@@ -39,20 +41,20 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/tag.html#jsp)
-	- [二重サブミットを防ぐ](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/tag.html#tag-double-submission)
+- [7.19. JSPカスタムタグ](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/tag.html#jsp)
+	- [二重サブミットを防ぐ](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/tag.html#tag-double-submission)
       - クライアント側の二重サブミット防止
       - サーバ側の二重サブミット防止
-- [6.3.4. OnDoubleSubmissionインターセプター](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#ondoublesubmission)
-  - [OnDoubleSubmissionを利用する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id4)
-  - [OnDoubleSubmissionのデフォルト値を指定する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id5)
-- [7.17. セッションストア](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/session_store.html#session-store)
-  - [更新機能での実装例](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/session_store/update_example.html#id1)
+- [6.3.4. OnDoubleSubmissionインターセプター](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#ondoublesubmission)
+  - [OnDoubleSubmissionを利用する](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id4)
+  - [OnDoubleSubmissionのデフォルト値を指定する](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/handlers/web_interceptor/on_double_submission.html#id5)
+- [7.17. セッションストア](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/session_store.html#session-store)
+  - [更新機能での実装例](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/session_store/update_example.html#id1)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- [SessionUtil](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/web/session/SessionUtil.html)
-- [UniversalDao](https://nablarch.github.io/docs/5u21/javadoc/nablarch/common/dao/UniversalDao.html)
-- [ResourceLocator](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/web/ResourceLocator.html)
+- [SessionUtil](https://nablarch.github.io/docs/5u23/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/web/session/SessionUtil.html)
+- [UniversalDao](https://nablarch.github.io/docs/5u23/javadoc/nablarch/common/dao/UniversalDao.html)
+- [ResourceLocator](https://nablarch.github.io/docs/5u23/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/fw/web/ResourceLocator.html)
 
 
 ## 演習

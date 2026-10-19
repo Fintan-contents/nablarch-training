@@ -27,12 +27,14 @@
     $mvn clean install
 
 ### web プロジェクト起動
-チェックアウトディレクトリに移動し、以下のコマンドを実行してください。ブラウザが自動的に起動します。
-正常に「ログイン画面」が表示されることを確認してください。
+チェックアウトディレクトリに移動し、以下のコマンドを実行してください。
 
     $cd handson-05
-    $mvn clean compile
-    $mvn waitt:run
+    $mvn jetty:run
+
+起動が完了したら、ブラウザから以下のURLにアクセスし、「ログイン画面」が表示されることを確認してください。
+
+    http://localhost:8080/
 
 ## 演習内容に関するリファレンスマニュアル
 本演習中に実装方法で不明な点が存在した場合は、以下のドキュメントを参照してください。
@@ -40,14 +42,14 @@
 ### 解説書
 
 #### Nablarchアプリケーションフレームワークの解説書
-- [7.17.セッションストア](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/session_store.html#session-store)
-  - [入力～確認～完了画面間で入力情報を保持する](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/session_store.html#session-store-input-data)
-  	- [更新機能での実装例](https://nablarch.github.io/docs/5u21/doc/application_framework/application_framework/libraries/session_store/update_example.html#id1)
+- [7.17.セッションストア](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/session_store.html#session-store)
+  - [入力～確認～完了画面間で入力情報を保持する](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/session_store.html#session-store-input-data)
+  	- [更新機能での実装例](https://nablarch.github.io/docs/5u23/doc/application_framework/application_framework/libraries/session_store/update_example.html#id1)
 
 ### APIドキュメント(アプリケーションプログラマ向け)
-- [SessionUtil](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/web/session/SessionUtil.html)
-- [BeanUtil](https://nablarch.github.io/docs/5u21/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/beans/BeanUtil.html)
-- [UniversalDao](https://nablarch.github.io/docs/5u21/javadoc/nablarch/common/dao/UniversalDao.html)
+- [SessionUtil](https://nablarch.github.io/docs/5u23/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/common/web/session/SessionUtil.html)
+- [BeanUtil](https://nablarch.github.io/docs/5u23/publishedApi/nablarch-all/publishedApiDoc/programmer/nablarch/core/beans/BeanUtil.html)
+- [UniversalDao](https://nablarch.github.io/docs/5u23/javadoc/nablarch/common/dao/UniversalDao.html)
 
 ## 演習
 では、以下の手順で確認画面から入力画面へ戻る処理を実装してみましょう。
