@@ -5,7 +5,7 @@
 
   <groupId>nablarch.handson</groupId>
   <artifactId>nablarch-handson15</artifactId>
-  <version>1.7.0</version>
+  <version>1.8.0</version>
 
   <properties>
     <!-- 利用するJavaのバージョン -->
@@ -289,7 +289,7 @@
     <dependency>
       <groupId>nablarch.handson</groupId>
       <artifactId>nablarch-handson-app-entity</artifactId>
-      <version>1.7.0</version>
+      <version>1.8.0</version>
     </dependency>
 
   </dependencies>
@@ -299,7 +299,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>5u24</version>
+        <version>5u25</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
