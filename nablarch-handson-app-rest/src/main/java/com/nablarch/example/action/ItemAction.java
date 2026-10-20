@@ -8,7 +8,7 @@ import com.nablarch.example.form.ItemUpdateForm;
 import nablarch.common.dao.UniversalDao;
 import nablarch.core.beans.BeanUtil;
 import nablarch.core.validation.ee.ValidatorUtil;
-import nablarch.fw.web.HttpRequest;
+import nablarch.fw.jaxrs.JaxRsHttpRequest;
 import nablarch.fw.web.HttpResponse;
 
 import javax.validation.Valid;
@@ -37,7 +37,7 @@ public class ItemAction {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Item> find(HttpRequest req) {
+    public List<Item> find(JaxRsHttpRequest req) {
 
         // リクエストパラメータをBeanに変換
         ItemSearchForm form = BeanUtil.createAndCopy(ItemSearchForm.class, req.getParamMap());
@@ -73,7 +73,7 @@ public class ItemAction {
     @Path("{itemId:\\d+}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Valid
-    public HttpResponse update(HttpRequest req, ItemUpdateForm form) {
+    public HttpResponse update(JaxRsHttpRequest req, ItemUpdateForm form) {
 
         int id = Integer.parseInt(req.getParam("itemId")[0]);
         Item item = BeanUtil.createAndCopy(Item.class, form);
