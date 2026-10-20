@@ -5,7 +5,7 @@
 
   <groupId>nablarch.handson</groupId>
   <artifactId>nablarch-handson15</artifactId>
-  <version>2.0.0</version>
+  <version>2.1.0</version>
 
   <properties>
     <!-- 利用するJavaのバージョン -->
@@ -28,6 +28,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.2</version>
         <configuration>
           <archive>
             <manifest>
@@ -45,6 +46,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.7.1</version>
         <configuration>
           <descriptors>
             <descriptor>distribution.xml</descriptor>
@@ -75,7 +77,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>2.5</version>
+          <version>3.4.2</version>
           <configuration>
             <excludes>
               <exclude>*.dicon</exclude>
@@ -84,14 +86,6 @@
         </plugin>
       </plugins>
     </pluginManagement>
-
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-webdav-jackrabbit</artifactId>
-        <version>3.0.0</version>
-      </extension>
-    </extensions>
 
   </build>
 
@@ -240,18 +234,6 @@
       <version>1.5.6</version>
     </dependency>
 
-    <!-- Logbackより下にslf4j-nablarch-adaptorを配置する -->
-    <dependency>
-      <groupId>com.nablarch.integration</groupId>
-      <artifactId>slf4j-nablarch-adaptor</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>com.nablarch.integration</groupId>
-      <artifactId>nablarch-jboss-logging-adaptor</artifactId>
-    </dependency>
-
     <dependency>
       <groupId>jakarta.annotation</groupId>
       <artifactId>jakarta.annotation-api</artifactId>
@@ -260,7 +242,7 @@
     <dependency>
       <groupId>nablarch.handson</groupId>
       <artifactId>nablarch-handson-app-entity</artifactId>
-      <version>2.0.0</version>
+      <version>2.1.0</version>
     </dependency>
 
   </dependencies>
@@ -270,7 +252,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>6u1</version>
+        <version>6u2</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
